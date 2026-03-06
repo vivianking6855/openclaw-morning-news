@@ -9,10 +9,13 @@
         :root {
             --bg-primary: #0f0f11;
             --bg-secondary: #161618;
+            --bg-tertiary: rgba(255, 255, 255, 0.03);
             --text-primary: #ffffff;
             --text-secondary: rgba(255, 255, 255, 0.6);
+            --text-tertiary: rgba(255, 255, 255, 0.4);
             --accent-purple: #5e6ad2;
             --accent-purple-light: #8b5cf6;
+            --accent-green: #22c55e;
             --border-subtle: rgba(255, 255, 255, 0.06);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -38,10 +41,34 @@
             margin-bottom: 16px;
         }
         .subtitle { color: var(--text-secondary); font-size: 18px; }
+        .date-display {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(255,255,255,0.03);
+            padding: 12px 24px;
+            border-radius: 100px;
+            margin-top: 24px;
+            color: var(--text-secondary);
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(94, 106, 210, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border: 1px solid rgba(94, 106, 210, 0.3);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 40px;
+        }
+        .highlight-box h2 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--accent-purple-light);
+        }
+        .highlight-box p { color: var(--text-secondary); font-size: 18px; }
         .news-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 24px;
+            margin-bottom: 40px;
         }
         .news-card {
             background: rgba(255, 255, 255, 0.03);
@@ -61,13 +88,27 @@
             font-size: 14px;
             color: var(--text-secondary);
         }
+        .news-card li:last-child { border-bottom: none; }
+        .news-card li strong { color: var(--text-primary); }
+        .full-width { grid-column: 1 / -1; }
+        .insight-box {
+            background: rgba(34, 197, 94, 0.05);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 40px;
+        }
+        .insight-box h2 {
+            font-size: 18px;
+            color: var(--accent-green);
+            margin-bottom: 12px;
+        }
         footer {
             text-align: center;
             padding: 40px 0;
             border-top: 1px solid var(--border-subtle);
             color: var(--text-secondary);
             font-size: 14px;
-            margin-top: 40px;
         }
     </style>
 </head>
@@ -76,33 +117,116 @@
         <header>
             <h1>每日晨报</h1>
             <p class="subtitle">追踪AI、科技、商业与全球动态</p>
+            <div class="date-display">2026年3月6日 星期五</div>
         </header>
+
+        <div class="highlight-box">
+            <h2>📌 今日导读</h2>
+            <p>全球首款通用AI Agent Manus发布，"人工智能+"首次以独立章节写入政府工作报告，具身智能进入产业化前夜。</p>
+        </div>
+
         <div class="news-grid">
             <div class="news-card">
                 <h3>🚀 科技前沿</h3>
                 <ul>
-                    <li>Manus AI Agent发布，GAIA基准测试超越OpenAI</li>
-                    <li>阿里开源QwQ-32B推理模型</li>
-                    <li>腾讯混元发布图生视频模型</li>
+                    <li><strong>Manus AI Agent发布</strong>（3月6日），在GAIA基准测试中超越OpenAI</li>
+                    <li><strong>阿里开源QwQ-32B推理模型</strong>，性能对标DeepSeek-R1，消费级显卡可部署</li>
+                    <li><strong>腾讯混元发布图生视频模型</strong>并开源，支持2K高质量视频</li>
                 </ul>
             </div>
+
             <div class="news-card">
                 <h3>☁️ 云原生与数据</h3>
                 <ul>
-                    <li>阿里云CPFS支持大模型训练</li>
-                    <li>Kubernetes 1.34版本发布</li>
-                    <li>云原生存储向AI原生转型</li>
+                    <li><strong>阿里云CPFS支持大模型训练</strong>，单节点吞吐达40GB/s</li>
+                    <li>Kubernetes 1.34版本正式发布，增强AI工作负载支持</li>
+                    <li>云原生存储向AI原生转型，支持热冷数据自动分层</li>
                 </ul>
             </div>
+
             <div class="news-card">
                 <h3>📊 项目管理与效能</h3>
                 <ul>
-                    <li>研发效能工具智能化</li>
-                    <li>敏捷实践深化</li>
-                    <li>禅道、Jira持续迭代</li>
+                    <li><strong>研发效能工具智能化</strong>：PingCode、ONES内置AI助手</li>
+                    <li>敏捷实践深化，强调实时仪表盘与动态目标设定</li>
+                    <li>禅道、Jira等工具持续迭代，支持国产化信创环境</li>
+                </ul>
+            </div>
+
+            <div class="news-card">
+                <h3>🏢 企业管理与运营</h3>
+                <ul>
+                    <li><strong>美的推行"以简化促增长"</strong>：禁止PPT、强制下班，效率反升20%</li>
+                    <li><strong>蔚来启动CBU组织变革</strong>：细化经营单元，提升成本控制能力</li>
+                    <li><strong>腾讯TEG架构升级</strong>：AI战略从"业务驱动"转向"技术驱动"</li>
+                </ul>
+            </div>
+
+            <div class="news-card">
+                <h3>🎥 安防企业与物联网</h3>
+                <ul>
+                    <li><strong>海康、大华、宇视集体推出DeepSeek一体机</strong></li>
+                    <li><strong>海康发布文搜NVR/CVR</strong>：基于观澜大模型，秒级图像检索</li>
+                    <li><strong>大华推出天问-DeepSeek行业大模型一体机</strong></li>
+                </ul>
+            </div>
+
+            <div class="news-card">
+                <h3>💰 金融科技与市场</h3>
+                <ul>
+                    <li><strong>"人工智能+"首次以独立章节写入政府工作报告</strong></li>
+                    <li><strong>数字人民币跨境支付加速</strong>：预计2025年市场规模突破3.5万亿元</li>
+                    <li><strong>特朗普签署行政令</strong>：建立战略比特币储备，禁止央行数字货币</li>
+                </ul>
+            </div>
+
+            <div class="news-card full-width">
+                <h3>🌍 全球动态与政策</h3>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid var(--border-subtle);">
+                                <th style="text-align: left; padding: 12px; color: var(--accent-purple-light);">地区/领域</th>
+                                <th style="text-align: left; padding: 12px; color: var(--accent-purple-light);">关键动态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--border-subtle);">
+                                <td style="padding: 12px; font-weight: 500;">美国科技股</td>
+                                <td style="padding: 12px; color: var(--text-secondary);">特斯拉今年累计跌幅超44%，英伟达跌超20%，DeepSeek冲击算力需求预期</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-subtle);">
+                                <td style="padding: 12px; font-weight: 500;">美国政策</td>
+                                <td style="padding: 12px; color: var(--text-secondary);">拟将AI芯片出口管制扩展至全球，英伟达、AMD等出口需获许可</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-subtle);">
+                                <td style="padding: 12px; font-weight: 500;">中国政策</td>
+                                <td style="padding: 12px; color: var(--text-secondary);">具身智能、6G首次写入政府工作报告；工信部称AI企业超6200家</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; font-weight: 500;">欧洲动态</td>
+                                <td style="padding: 12px; color: var(--text-secondary);">欧洲央行数字欧元准备阶段推进，预计2025年10月敲定规则手册</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="news-card">
+                <h3>🤖 机器人与硬件</h3>
+                <ul>
+                    <li><strong>宇树科技2025年人形机器人出货量超5500台</strong>，全球第一</li>
+                    <li><strong>特斯拉Optimus计划2026年上市</strong>，2025年试产5000台</li>
+                    <li><strong>2025年人形机器人量产元年</strong>，市场规模预计2030年突破千亿元</li>
                 </ul>
             </div>
         </div>
+
+        <div class="insight-box">
+            <h2>💡 今日洞察</h2>
+            <p>AI Agent从"能聊天"进化到"能干活"，具身智能站在产业化前夜。安防三巨头集体转型AI算力，传统企业通过组织变革应对增长挑战。美股科技股震荡反映市场对AI算力需求的重新评估。</p>
+        </div>
+
         <footer>
             <p>每日晨报 | 每天早上7:00更新</p>
             <p style="margin-top: 8px; opacity: 0.6;">Powered by OpenClaw</p>
