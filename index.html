@@ -26,9 +26,11 @@
             line-height: 1.6;
         }
         .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        
+        /* Header with Date */
         header {
             text-align: center;
-            padding: 60px 0;
+            padding: 60px 0 40px;
             border-bottom: 1px solid var(--border-subtle);
             margin-bottom: 40px;
         }
@@ -38,19 +40,56 @@
             background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-purple-light) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
-        .subtitle { color: var(--text-secondary); font-size: 18px; }
-        .date-display {
+        .subtitle { color: var(--text-secondary); font-size: 18px; margin-bottom: 24px; }
+        
+        /* Date Display - Enhanced */
+        .date-container {
             display: inline-flex;
             align-items: center;
-            gap: 16px;
-            background: rgba(255,255,255,0.03);
-            padding: 12px 24px;
+            gap: 20px;
+            background: rgba(94, 106, 210, 0.15);
+            border: 1px solid rgba(94, 106, 210, 0.3);
+            padding: 16px 32px;
             border-radius: 100px;
-            margin-top: 24px;
-            color: var(--text-secondary);
+            margin-top: 8px;
         }
+        .date-nav-btn {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: var(--text-secondary);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .date-nav-btn:hover {
+            background: rgba(255,255,255,0.2);
+            color: var(--text-primary);
+        }
+        .date-display {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            min-width: 200px;
+        }
+        .date-badge {
+            display: inline-block;
+            background: var(--accent-purple);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-left: 12px;
+        }
+        
         .highlight-box {
             background: linear-gradient(135deg, rgba(94, 106, 210, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
             border: 1px solid rgba(94, 106, 210, 0.3);
@@ -64,6 +103,7 @@
             color: var(--accent-purple-light);
         }
         .highlight-box p { color: var(--text-secondary); font-size: 18px; }
+        
         .news-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -91,6 +131,7 @@
         .news-card li:last-child { border-bottom: none; }
         .news-card li strong { color: var(--text-primary); }
         .full-width { grid-column: 1 / -1; }
+        
         .insight-box {
             background: rgba(34, 197, 94, 0.05);
             border: 1px solid rgba(34, 197, 94, 0.2);
@@ -103,6 +144,45 @@
             color: var(--accent-green);
             margin-bottom: 12px;
         }
+        
+        /* Archive Section */
+        .archive-section {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 40px;
+        }
+        .archive-section h2 {
+            font-size: 18px;
+            color: var(--accent-purple-light);
+            margin-bottom: 16px;
+        }
+        .archive-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .archive-item {
+            background: rgba(255,255,255,0.05);
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            border: 1px solid var(--border-subtle);
+            transition: all 0.2s;
+        }
+        .archive-item:hover, .archive-item.active {
+            background: rgba(94, 106, 210, 0.2);
+            border-color: rgba(94, 106, 210, 0.5);
+            color: var(--text-primary);
+        }
+        .archive-item.active {
+            background: var(--accent-purple);
+            color: white;
+        }
+        
         footer {
             text-align: center;
             padding: 40px 0;
@@ -117,7 +197,13 @@
         <header>
             <h1>每日晨报</h1>
             <p class="subtitle">追踪AI、科技、商业与全球动态</p>
-            <div class="date-display">2026年3月6日 星期五</div>
+            
+            <div class="date-container">
+                <button class="date-nav-btn" onclick="changeDate(-1)">←</button>
+                <span class="date-display" id="currentDate">2026年3月6日 星期五</span>
+                <span class="date-badge">今日</span>
+                <button class="date-nav-btn" onclick="changeDate(1)">→</button>
+            </div>
         </header>
 
         <div class="highlight-box">
@@ -227,10 +313,45 @@
             <p>AI Agent从"能聊天"进化到"能干活"，具身智能站在产业化前夜。安防三巨头集体转型AI算力，传统企业通过组织变革应对增长挑战。美股科技股震荡反映市场对AI算力需求的重新评估。</p>
         </div>
 
+        <div class="archive-section">
+            <h2>📚 历史归档</h2>
+            <div class="archive-list">
+                <a href="#" class="archive-item active">03月06日</a>
+                <a href="#" class="archive-item">03月05日</a>
+                <a href="#" class="archive-item">03月04日</a>
+            </div>
+        </div>
+
         <footer>
             <p>每日晨报 | 每天早上7:00更新</p>
             <p style="margin-top: 8px; opacity: 0.6;">Powered by OpenClaw</p>
         </footer>
     </div>
+
+    <script>
+        const newsData = {
+            '2026-03-06': {
+                date: '2026年3月6日 星期五',
+                isToday: true,
+                highlight: '全球首款通用AI Agent Manus发布，"人工智能+"首次以独立章节写入政府工作报告，具身智能进入产业化前夜。'
+            }
+        };
+
+        let currentDate = new Date('2026-03-06');
+
+        function formatDate(date) {
+            const year = date.getFullYear();
+            const month = date.getMonth() + 1;
+            const day = date.getDate();
+            const weekdays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+            return `${year}年${month}月${day}日 ${weekdays[date.getDay()]}`;
+        }
+
+        function changeDate(days) {
+            currentDate.setDate(currentDate.getDate() + days);
+            const dateStr = formatDate(currentDate);
+            document.getElementById('currentDate').textContent = dateStr;
+        }
+    </script>
 </body>
 </html>
