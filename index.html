@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日晨报 | Morning News</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0f0f11;
+            --bg-secondary: #161618;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.6);
+            --accent-purple: #5e6ad2;
+            --accent-purple-light: #8b5cf6;
+            --border-subtle: rgba(255, 255, 255, 0.06);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        header {
+            text-align: center;
+            padding: 60px 0;
+            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: 40px;
+        }
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-purple-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+        }
+        .subtitle { color: var(--text-secondary); font-size: 18px; }
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+        }
+        .news-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 24px;
+        }
+        .news-card h3 {
+            font-size: 16px;
+            color: var(--accent-purple-light);
+            margin-bottom: 16px;
+        }
+        .news-card ul { list-style: none; }
+        .news-card li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-subtle);
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>每日晨报</h1>
+            <p class="subtitle">追踪AI、科技、商业与全球动态</p>
+        </header>
+        <div class="news-grid">
+            <div class="news-card">
+                <h3>🚀 科技前沿</h3>
+                <ul>
+                    <li>Manus AI Agent发布，GAIA基准测试超越OpenAI</li>
+                    <li>阿里开源QwQ-32B推理模型</li>
+                    <li>腾讯混元发布图生视频模型</li>
+                </ul>
+            </div>
+            <div class="news-card">
+                <h3>☁️ 云原生与数据</h3>
+                <ul>
+                    <li>阿里云CPFS支持大模型训练</li>
+                    <li>Kubernetes 1.34版本发布</li>
+                    <li>云原生存储向AI原生转型</li>
+                </ul>
+            </div>
+            <div class="news-card">
+                <h3>📊 项目管理与效能</h3>
+                <ul>
+                    <li>研发效能工具智能化</li>
+                    <li>敏捷实践深化</li>
+                    <li>禅道、Jira持续迭代</li>
+                </ul>
+            </div>
+        </div>
+        <footer>
+            <p>每日晨报 | 每天早上7:00更新</p>
+            <p style="margin-top: 8px; opacity: 0.6;">Powered by OpenClaw</p>
+        </footer>
+    </div>
+</body>
+</html>
