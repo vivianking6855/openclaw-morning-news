@@ -3,471 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>每日晨报 | Morning News</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-primary: #0f0f11;
-            --bg-secondary: #161618;
-            --bg-tertiary: rgba(255, 255, 255, 0.03);
-            --text-primary: #ffffff;
-            --text-secondary: rgba(255, 255, 255, 0.6);
-            --text-tertiary: rgba(255, 255, 255, 0.4);
-            --accent-purple: #5e6ad2;
-            --accent-purple-light: #8b5cf6;
-            --accent-green: #22c55e;
-            --border-subtle: rgba(255, 255, 255, 0.06);
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
-        .container { max-width: 1400px; margin: 0 auto; padding: 40px 20px; }
-        
-        /* Header */
-        header {
-            text-align: center;
-            padding: 60px 0 40px;
-            border-bottom: 1px solid var(--border-subtle);
-            margin-bottom: 40px;
-        }
-        h1 {
-            font-size: 48px;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-purple-light) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 12px;
-        }
-        .subtitle { color: var(--text-secondary); font-size: 18px; margin-bottom: 24px; }
-        
-        .date-container {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            background: rgba(94, 106, 210, 0.15);
-            border: 1px solid rgba(94, 106, 210, 0.3);
-            padding: 16px 32px;
-            border-radius: 100px;
-            margin-top: 8px;
-        }
-        
-        .date-nav-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            min-width: 40px;
-            min-height: 40px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 50%;
-            color: var(--text-secondary);
-            font-size: 18px;
-            font-family: inherit;
-            cursor: pointer;
-            -webkit-appearance: none;
-            appearance: none;
-            transition: all 0.2s ease;
-        }
-        
-        .date-nav-btn:hover {
-            background: rgba(255,255,255,0.2);
-            color: var(--text-primary);
-        }
-        
-        .date-display {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--text-primary);
-            min-width: 200px;
-            text-align: center;
-        }
-        .date-badge {
-            display: inline-block;
-            background: var(--accent-purple);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 100px;
-            font-size: 12px;
-            font-weight: 500;
-            margin-left: 12px;
-        }
-        
-        /* Main Layout with Sidebar */
-        .main-layout {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 32px;
-            margin-bottom: 40px;
-        }
-        
-        /* Left Sidebar */
-        .sidebar {
-            position: sticky;
-            top: 20px;
-            height: fit-content;
-        }
-        
-        .archive-section {
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-subtle);
-            border-radius: 16px;
-            padding: 24px;
-        }
-        
-        .archive-section h2 {
-            font-size: 18px;
-            color: var(--accent-purple-light);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .archive-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        
-        .archive-item {
-            background: rgba(255,255,255,0.03);
-            padding: 12px 16px;
-            border-radius: 10px;
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-size: 14px;
-            border: 1px solid transparent;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .archive-item:hover {
-            background: rgba(94, 106, 210, 0.1);
-            border-color: rgba(94, 106, 210, 0.3);
-            color: var(--text-primary);
-        }
-        
-        .archive-item.active {
-            background: var(--accent-purple);
-            color: white;
-        }
-        
-        .archive-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--accent-green);
-        }
-        
-        /* Main Content */
-        .main-content {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-        
-        /* Highlight Box - 今日导读 */
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(94, 106, 210, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
-            border: 1px solid rgba(94, 106, 210, 0.3);
-            border-radius: 16px;
-            padding: 28px;
-        }
-        
-        .highlight-box h2 {
-            font-size: 18px;
-            margin-bottom: 12px;
-            color: var(--accent-purple-light);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .highlight-box p { 
-            color: var(--text-secondary); 
-            font-size: 16px;
-            line-height: 1.7;
-        }
-        
-        /* Insight Box - 今日洞察 */
-        .insight-box {
-            background: rgba(34, 197, 94, 0.05);
-            border: 1px solid rgba(34, 197, 94, 0.2);
-            border-radius: 16px;
-            padding: 28px;
-        }
-        
-        .insight-box h2 {
-            font-size: 18px;
-            color: var(--accent-green);
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .insight-box p {
-            color: var(--text-secondary);
-            font-size: 16px;
-            line-height: 1.7;
-        }
-        
-        /* News Grid */
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 16px;
-        }
-        
-        .news-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-subtle);
-            border-radius: 12px;
-            padding: 20px;
-        }
-        
-        .news-card h3 {
-            font-size: 15px;
-            color: var(--accent-purple-light);
-            margin-bottom: 14px;
-        }
-        
-        .news-card ul { list-style: none; }
-        
-        .news-card li {
-            padding: 8px 0;
-            border-bottom: 1px solid var(--border-subtle);
-            font-size: 13px;
-            color: var(--text-secondary);
-        }
-        
-        .news-card li:last-child { border-bottom: none; }
-        .news-card li strong { color: var(--text-primary); }
-        
-        .full-width { grid-column: 1 / -1; }
-        
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            border-top: 1px solid var(--border-subtle);
-            color: var(--text-secondary);
-            font-size: 14px;
-        }
-        
-        /* Mobile Responsive */
-        @media (max-width: 900px) {
-            .main-layout {
-                grid-template-columns: 1fr;
-            }
-            .sidebar {
-                position: static;
-                order: 2;
-            }
-            .archive-list {
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
-            .archive-item {
-                flex: 1;
-                min-width: 100px;
-            }
-        }
-    </style>
+    <title>每日晨报 | OpenClaw Morning News</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>每日晨报</h1>
-            <p class="subtitle">追踪AI、科技、商业与全球动态</p>
-            
-            <div class="date-container">
-                <button class="date-nav-btn" type="button" onclick="changeDate(-1)">←</button>
-                <span class="date-display" id="currentDate">2026年3月6日 星期五</span>
-                <span class="date-badge">今日</span>
-                <button class="date-nav-btn" type="button" onclick="changeDate(1)">→</button>
-            </div>
-        </header>
-
-        <div class="main-layout">
-            <!-- Left Sidebar -->
-            <aside class="sidebar">
-                <div class="archive-section">
-                    <h2>📚 历史归档</h2>
-                    <div class="archive-list">
-                        <a href="#" class="archive-item active">
-                            <span>03月06日</span>
-                            <span class="archive-dot"></span>
-                        </a>
-                        <a href="#" class="archive-item">
-                            <span>03月05日</span>
-                        </a>
-                        <a href="#" class="archive-item">
-                            <span>03月04日</span>
-                        </a>
-                        <a href="#" class="archive-item">
-                            <span>03月03日</span>
-                        </a>
-                        <a href="#" class="archive-item">
-                            <span>03月02日</span>
-                        </a>
-                        <a href="#" class="archive-item">
-                            <span>更多...</span>
-                        </a>
-                    </div>
-                </div>
-            </aside>
-
-            <!-- Main Content -->
-            <main class="main-content">
-                <!-- 今日导读 -->
-                <div class="highlight-box">
-                    <h2>📌 今日导读</h2>
-                    <p>全球首款通用AI Agent Manus发布，"人工智能+"首次以独立章节写入政府工作报告，具身智能进入产业化前夜。</p>
-                </div>
-
-                <!-- 今日洞察 -->
-                <div class="insight-box">
-                    <h2>💡 今日洞察</h2>
-                    <p>AI Agent从"能聊天"进化到"能干活"，具身智能站在产业化前夜。安防三巨头集体转型AI算力，传统企业通过组织变革应对增长挑战。美股科技股震荡反映市场对AI算力需求的重新评估。</p>
-                </div>
-
-                <!-- 新闻内容 -->
-                <div class="news-grid">
-                    <div class="news-card">
-                        <h3>🚀 科技前沿</h3>
-                        <ul>
-                            <li><strong>Manus AI Agent发布</strong>（3月6日），在GAIA基准测试中超越OpenAI</li>
-                            <li><strong>阿里开源QwQ-32B推理模型</strong>，性能对标DeepSeek-R1</li>
-                            <li><strong>腾讯混元发布图生视频模型</strong>并开源，支持2K高质量视频</li>
-                        </ul>
-                    </div>
-
-                    <div class="news-card">
-                        <h3>☁️ 云原生与数据</h3>
-                        <ul>
-                            <li><strong>阿里云CPFS支持大模型训练</strong>，单节点吞吐达40GB/s</li>
-                            <li>Kubernetes 1.34版本正式发布，增强AI工作负载支持</li>
-                            <li>云原生存储向AI原生转型，支持热冷数据自动分层</li>
-                        </ul>
-                    </div>
-
-                    <div class="news-card">
-                        <h3>📊 项目管理与效能</h3>
-                        <ul>
-                            <li><strong>研发效能工具智能化</strong>：PingCode、ONES内置AI助手</li>
-                            <li>敏捷实践深化，强调实时仪表盘与动态目标设定</li>
-                            <li>禅道、Jira等工具持续迭代，支持国产化信创环境</li>
-                        </ul>
-                    </div>
-
-                    <div class="news-card">
-                        <h3>🏢 企业管理与运营</h3>
-                        <ul>
-                            <li><strong>美的推行"以简化促增长"</strong>：禁止PPT、强制下班，效率反升20%</li>
-                            <li><strong>蔚来启动CBU组织变革</strong>：细化经营单元，提升成本控制能力</li>
-                            <li><strong>腾讯TEG架构升级</strong>：AI战略从"业务驱动"转向"技术驱动"</li>
-                        </ul>
-                    </div>
-
-                    <div class="news-card">
-                        <h3>🎥 安防企业与物联网</h3>
-                        <ul>
-                            <li><strong>海康、大华、宇视集体推出DeepSeek一体机</strong></li>
-                            <li><strong>海康发布文搜NVR/CVR</strong>：基于观澜大模型，秒级图像检索</li>
-                            <li><strong>大华推出天问-DeepSeek行业大模型一体机</strong></li>
-                        </ul>
-                    </div>
-
-                    <div class="news-card">
-                        <h3>💰 金融科技与市场</h3>
-                        <ul>
-                            <li><strong>"人工智能+"首次以独立章节写入政府工作报告</strong></li>
-                            <li><strong>数字人民币跨境支付加速</strong>：预计2025年市场规模突破3.5万亿元</li>
-                            <li><strong>特朗普签署行政令</strong>：建立战略比特币储备，禁止央行数字货币</li>
-                        </ul>
-                    </div>
-
-                    <div class="news-card full-width">
-                        <h3>🌍 全球动态与政策</h3>
-                        <div style="overflow-x: auto;">
-                            <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-                                <thead>
-                                    <tr style="border-bottom: 1px solid var(--border-subtle);">
-                                        <th style="text-align: left; padding: 12px; color: var(--accent-purple-light);">地区/领域</th>
-                                        <th style="text-align: left; padding: 12px; color: var(--accent-purple-light);">关键动态</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr style="border-bottom: 1px solid var(--border-subtle);">
-                                        <td style="padding: 12px; font-weight: 500;">美国科技股</td>
-                                        <td style="padding: 12px; color: var(--text-secondary);">特斯拉今年累计跌幅超44%，英伟达跌超20%，DeepSeek冲击算力需求预期</td>
-                                    </tr>
-                                    <tr style="border-bottom: 1px solid var(--border-subtle);">
-                                        <td style="padding: 12px; font-weight: 500;">美国政策</td>
-                                        <td style="padding: 12px; color: var(--text-secondary);">拟将AI芯片出口管制扩展至全球，英伟达、AMD等出口需获许可</td>
-                                    </tr>
-                                    <tr style="border-bottom: 1px solid var(--border-subtle);">
-                                        <td style="padding: 12px; font-weight: 500;">中国政策</td>
-                                        <td style="padding: 12px; color: var(--text-secondary);">具身智能、6G首次写入政府工作报告；工信部称AI企业超6200家</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding: 12px; font-weight: 500;">欧洲动态</td>
-                                        <td style="padding: 12px; color: var(--text-secondary);">欧洲央行数字欧元准备阶段推进，预计2025年10月敲定规则手册</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="news-card">
-                        <h3>🤖 机器人与硬件</h3>
-                        <ul>
-                            <li><strong>宇树科技2025年人形机器人出货量超5500台</strong>，全球第一</li>
-                            <li><strong>特斯拉Optimus计划2026年上市</strong>，2025年试产5000台</li>
-                            <li><strong>2025年人形机器人量产元年</strong>，市场规模预计2030年突破千亿元</li>
-                        </ul>
-                    </div>
-                </div>
-            </main>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">📰</span>
+                <span class="logo-text">每日晨报</span>
+            </a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link active">今日晨报</a>
+                <a href="archives.html" class="nav-link">历史归档</a>
+                <a href="about.html" class="nav-link">关于</a>
+            </nav>
         </div>
+    </header>
 
-        <footer>
-            <p>每日晨报 | 每天早上7:00更新</p>
-            <p style="margin-top: 8px; opacity: 0.6;">Powered by OpenClaw</p>
-        </footer>
+    <!-- 日期导航 -->
+    <div class="date-bar">
+        <div class="date-container">
+            <button class="date-btn" id="prevDate">← 前一天</button>
+            <span class="current-date" id="currentDate">2026年3月11日 星期三</span>
+            <button class="date-btn" id="nextDate">后一天 →</button>
+        </div>
     </div>
 
-    <script>
-        let currentDate = new Date('2026-03-06');
+    <!-- 主要内容 -->
+    <main class="main">
+        <!-- 导读区 -->
+        <section class="hero-section">
+            <div class="hero-badge">💡 今日导读</div>
+            <h1 class="hero-title" id="highlightTitle">OpenAI发布GPT-5 Turbo企业级Agent套件；欧盟AI Act全面生效</h1>
+            <p class="hero-summary" id="highlightText">AI Agent从"辅助工具"进化为"数字员工"，企业面临组织流程重构与合规风险双重挑战，"人机协同治理"成为核心竞争力。</p>
+            <div class="hero-meta">
+                <span>📅 <span id="dateDisplay">2026-03-11</span></span>
+                <span>⏱️ 3分钟阅读</span>
+                <span>🔖 <span id="categoryCount">6</span>个板块</span>
+            </div>
+        </section>
 
-        function formatDate(date) {
-            const year = date.getFullYear();
-            const month = date.getMonth() + 1;
-            const day = date.getDate();
-            const weekdays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
-            return `${year}年${month}月${day}日 ${weekdays[date.getDay()]}`;
-        }
+        <!-- 务实落地建议 -->
+        <section class="recommendations" id="recommendations">
+            <h2 class="section-title">🛠️ 务实落地建议</h2>
+            <div class="rec-grid" id="recGrid">
+                <div class="rec-card">
+                    <h4>AI管理领域</h4>
+                    <p>建立Agent分级授权机制，常规审批自动化，战略决策保留人工复核，设置人机协作SLA监控节点。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>大数据领域</h4>
+                    <p>部署Lakehouse+向量数据库混合架构，统一治理结构化与非结构化数据，降低RAG系统查询延迟至50ms内。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>AI应用领域</h4>
+                    <p>优先选择支持Function Calling的模型API，建立模型版本回滚机制，定期进行对抗性安全测试与偏见审计。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>组织变革领域</h4>
+                    <p>企业组织架构调整、人才配置、流程重构、文化转型等公司级的战略建议。</p>
+                </div>
+            </div>
+        </section>
 
-        function changeDate(days) {
-            currentDate.setDate(currentDate.getDate() + days);
-            const dateStr = formatDate(currentDate);
-            document.getElementById('currentDate').textContent = dateStr;
-        }
-        
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowLeft') changeDate(-1);
-            else if (e.key === 'ArrowRight') changeDate(1);
-        });
-    </script>
+        <!-- 内容板块 -->
+        <div class="content-grid" id="contentGrid">
+            <!-- 科技前沿 -->
+            <section class="content-card">
+                <h3><span class="card-icon">🚀</span> 科技前沿</h3>
+                <ul id="techNews">
+                    <li><strong>GPT-5 Turbo发布</strong>，支持200万token上下文与多模态Agent编排</li>
+                    <li><strong>Google Gemini 2.5 Pro</strong>推出企业级Agent市场</li>
+                    <li><strong>Anthropic Claude 4上线</strong>，推理能力提升60%</li>
+                    <li><strong>LangGraph v0.2发布</strong>，多Agent状态机管理，集成延迟降低40%</li>
+                </ul>
+            </section>
+
+            <!-- 云原生与数据 -->
+            <section class="content-card">
+                <h3><span class="card-icon">☁️</span> 云原生与数据</h3>
+                <ul id="cloudNews">
+                    <li><strong>Kubernetes v1.32发布</strong>，内置AI工作负载调度器与GPU虚拟化</li>
+                    <li><strong>阿里云ACK</strong>推出Serverless AI训练集群</li>
+                    <li><strong>Apache Flink 2.0 GA</strong>，流批一体性能提升3倍</li>
+                    <li><strong>Grafana LLM可观测性套件</strong>，根因识别准确率超90%</li>
+                </ul>
+            </section>
+
+            <!-- 项目管理与效能 -->
+            <section class="content-card">
+                <h3><span class="card-icon">📊</span> 项目管理与效能</h3>
+                <ul id="pmNews">
+                    <li><strong>GitHub报告</strong>：AI编程助手使团队交付速度提升55%</li>
+                    <li><strong>Atlassian Jira AI</strong>智能排期，识别关键路径风险</li>
+                    <li><strong>微软Work Trend Index</strong>：Agent协作模式决策周期缩短60%</li>
+                </ul>
+            </section>
+
+            <!-- 商业与市场 -->
+            <section class="content-card">
+                <h3><span class="card-icon">💰</span> 商业与市场</h3>
+                <ul id="financeNews">
+                    <li><strong>中国央行</strong>发布《人工智能金融应用管理办法》</li>
+                    <li><strong>具身智能赛道</strong>单日融资超80亿元</li>
+                    <li><strong>美国商务部</strong>升级AI芯片出口管制</li>
+                </ul>
+            </section>
+
+            <!-- 机器人与硬件 -->
+            <section class="content-card">
+                <h3><span class="card-icon">🤖</span> 机器人与硬件</h3>
+                <ul id="robotNews">
+                    <li><strong>特斯拉Optimus Gen-3</strong>启动量产前测试，单臂负载30kg</li>
+                    <li><strong>宇树科技H2</strong>人形机器人，价格降至15万元内</li>
+                    <li><strong>西门子Industrial Copilot</strong>商用，预测性维护准确率99.5%</li>
+                </ul>
+            </section>
+
+            <!-- 全球动态 -->
+            <section class="content-card full-width">
+                <h3><span class="card-icon">🌍</span> 全球动态</h3>
+                <div class="global-table">
+                    <table id="globalTable">
+                        <thead>
+                            <tr>
+                                <th>地区/领域</th>
+                                <th>关键动态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>🇪🇺 欧盟</td>
+                                <td>AI Act全面生效，全球AI合规进入强监管时代</td>
+                            </tr>
+                            <tr>
+                                <td>🇺🇸 美国</td>
+                                <td>H20芯片对华供应受限，英伟达股价创历史新高</td>
+                            </tr>
+                            <tr>
+                                <td>🇸🇬 新加坡</td>
+                                <td>推出10亿新元AI产业基金</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <!-- 洞察 -->
+        <section class="insight-section">
+            <div class="insight-box">
+                <h3>💡 今日洞察</h3>
+                <p id="insightText">AI Agent从"辅助工具"进化为"数字员工"，企业面临组织流程重构与合规风险双重挑战，"人机协同治理"成为核心竞争力。建议本周内评估现有DevOps流程中可被Agent接管的重复性环节，优先在测试用例生成与故障自愈领域试点。</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>每日晨报 | 每天早上7:30更新</p>
+            <p>Powered by <a href="https://openclaw.ai" target="_blank">OpenClaw</a></p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
 </body>
 </html>
