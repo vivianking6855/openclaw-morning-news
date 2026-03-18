@@ -413,6 +413,85 @@ body {
     }
 }
 
+/* ===== 大咖声音板块 ===== */
+.voices-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.voice-item {
+    background: linear-gradient(135deg, #fafafa 0%, #f5f5f7 100%);
+    border-left: 4px solid var(--accent);
+    padding: 20px 24px;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    position: relative;
+}
+
+.voice-item::before {
+    content: '"';
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    font-size: 48px;
+    color: var(--accent);
+    opacity: 0.2;
+    font-family: Georgia, serif;
+    line-height: 1;
+}
+
+.voice-text {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 12px;
+    padding-left: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.voice-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-left: 20px;
+    flex-wrap: wrap;
+}
+
+.voice-author {
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 14px;
+}
+
+.voice-title {
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.voice-source {
+    color: var(--accent);
+    font-size: 12px;
+    background: rgba(249, 115, 22, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+    .voice-item {
+        padding: 16px 20px;
+    }
+    
+    .voice-text {
+        font-size: 15px;
+        padding-left: 16px;
+    }
+    
+    .voice-meta {
+        padding-left: 16px;
+    }
+}
+
 /* ===== 动画效果 ===== */
 @keyframes fadeIn {
     from {
