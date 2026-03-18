@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日晨报 | OpenClaw Morning News</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">📰</span>
+                <span class="logo-text">每日晨报</span>
+            </a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link active">今日晨报</a>
+                <a href="archives.html" class="nav-link">历史归档</a>
+                <a href="about.html" class="nav-link">关于</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 日期导航 -->
+    <div class="date-bar">
+        <div class="date-container">
+            <button class="date-btn" id="prevDate">← 前一天</button>
+            <span class="current-date" id="currentDate">2026年3月17日 星期一</span>
+            <button class="date-btn" id="nextDate">后一天 →</button>
+        </div>
+    </div>
+
+    <!-- 主要内容 -->
+    <main class="main">
+        <!-- 导读区 -->
+        <section class="hero-section">
+            <div class="hero-badge">💡 今日导读</div>
+            <h1 class="hero-title" id="highlightTitle">新一周开启：具身智能进入"上市冲刺期"，AI Agent从概念验证迈向规模部署的关键转折点</h1>
+            <p class="hero-summary" id="highlightText">周一行业重启，具身智能赛道融资热潮延续，多家独角兽进入Pre-IPO阶段；AI Agent生态从单点工具向平台化协作演进，企业级应用落地加速。本周关注：智能体经济形态的政策定调与产业资本的共振效应。</p>
+            <div class="hero-meta">
+                <span>📅 <span id="dateDisplay">2026-03-17</span></span>
+                <span>⏱️ 3分钟阅读</span>
+                <span>🔖 <span id="categoryCount">6</span>个板块</span>
+            </div>
+        </section>
+
+        <!-- 务实落地建议 -->
+        <section class="recommendations" id="recommendations">
+            <h2 class="section-title">🛠️ 务实落地建议</h2>
+            <div class="rec-grid" id="recGrid">
+                <div class="rec-card">
+                    <h4>具身智能布局</h4>
+                    <p>关注人形机器人产业链上游核心零部件（减速器、力传感器、灵巧手），中游本体制造商的量产进度，以及下游工业/服务场景的落地订单。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>AI Agent实践</h4>
+                    <p>从办公自动化场景切入，选择支持多智能体协作的平台（如AutoGen、LangGraph），建立Agent治理框架和评估指标体系。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>技术架构升级</h4>
+                    <p>评估现有系统接入大模型能力的改造路径，优先选择支持Function Calling和工具调用的模型API，为Agent化改造预留接口。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>组织能力建设</h4>
+                    <p>建立AI就绪度评估体系，培养Prompt工程师和Agent设计师角色，制定AI辅助决策的流程规范和风险控制机制。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 内容板块 -->
+        <div class="content-grid" id="contentGrid">
+            <!-- 科技前沿 -->
+            <section class="content-card">
+                <h3><span class="card-icon">🚀</span> 科技前沿</h3>
+                <ul id="techNews">
+                    <li><strong>谷歌Gemini 2.5 Pro发布，数学推理登顶</strong>，在AIME 2025测试中准确率领先GPT-4o达15个百分点，代码生成能力显著增强</li>
+                    <li><strong>Anthropic Claude 4即将发布，上下文窗口扩展至50万Token</strong>，支持整本技术文档一次性分析，企业级知识库应用场景突破</li>
+                    <li><strong>阿里通义千问3.0开启内测，多模态理解能力提升40%</strong>，视觉推理和文档解析能力对标GPT-4V，成本降低60%</li>
+                    <li><strong>DeepSeek-V4训练完成，推理效率提升3倍</strong>，采用新型MoE架构，在同等参数规模下计算成本大幅降低</li>
+                </ul>
+            </section>
+
+            <!-- AI Agent动态 -->
+            <section class="content-card">
+                <h3><span class="card-icon">🤖</span> AI Agent动态</h3>
+                <ul id="aiNews">
+                    <li><strong>微软Copilot Studio上线多智能体编排功能</strong>，企业可自定义Agent工作流，实现跨系统自动化任务执行</li>
+                    <li><strong>钉钉AI助理生态合作伙伴突破500家</strong>，覆盖财务、HR、销售等20+垂直场景，周活跃用户超3000万</li>
+                    <li><strong>百度智能云千帆平台发布Agent开发套件</strong>，低代码搭建企业专属Agent，集成文心大模型与行业知识库</li>
+                    <li><strong>LangChain发布LangGraph 0.3，支持复杂状态机</strong>，多Agent协作场景开发效率提升50%，企业级容错机制完善</li>
+                </ul>
+            </section>
+
+            <!-- 具身智能 -->
+            <section class="content-card">
+                <h3><span class="card-icon">🔧</span> 具身智能</h3>
+                <ul id="robotNews">
+                    <li><strong>优必选Walker S进入汽车工厂规模化部署</strong>，与东风、蔚来等车企达成合作，人形机器人工业场景落地加速</li>
+                    <li><strong>智元机器人发布远征A2量产版，售价19.9万元起</strong>，面向科研教育和服务场景，首批1000台预售开启即售罄</li>
+                    <li><strong>傅利叶智能GR-1完成10万台订单签约</strong>，医疗康复场景人形机器人进入批量交付阶段</li>
+                    <li><strong>宇树科技H1机器人舞蹈视频 viral 全网</strong>，运动控制能力展现，灵巧操作能力持续迭代升级</li>
+                </ul>
+            </section>
+
+            <!-- 产业资本 -->
+            <section class="content-card">
+                <h3><span class="card-icon">💰</span> 产业资本</h3>
+                <ul id="financeNews">
+                    <li><strong>具身智能赛道Q1融资额已超2025年全年</strong>，银河通用、智元机器人等独角兽估值突破百亿，IPO进程提速</li>
+                    <li><strong>高瓴、红杉设立专项机器人基金</strong>，单期规模超50亿元，聚焦具身智能和AI Agent早期项目</li>
+                    <li><strong>深圳发布具身智能产业行动计划</strong>，2027年产业规模目标1000亿元，建设全球最大人形机器人测试场</li>
+                    <li><strong>上海张江机器人谷二期开园</strong>，汇聚50+产业链企业，形成从芯片到整机的完整产业生态</li>
+                </ul>
+            </section>
+
+            <!-- 企业数字化 -->
+            <section class="content-card">
+                <h3><span class="card-icon">🏢</span> 企业数字化</h3>
+                <ul id="enterpriseNews">
+                    <li><strong>平台工程2.0标准草案发布</strong>，AI就绪架构成为企业IT建设核心指标，Gartner预测2027年80%企业将建立内部AI平台</li>
+                    <li><strong>FinOps基金会发布AI成本管理框架</strong>，针对大模型推理和训练成本，建立预算、监控、优化全生命周期管理</li>
+                    <li><strong>IDC：2026年中国AI软件市场规模达800亿元</strong>，Agent平台和企业知识库成为增长最快细分领域</li>
+                    <li><strong>DevOps与MLOps融合趋势明显</strong>，统一流水线支持传统应用和AI模型迭代，GitOps模式向AI场景延伸</li>
+                </ul>
+            </section>
+
+            <!-- 全球视野 -->
+            <section class="content-card">
+                <h3><span class="card-icon">🌐</span> 全球视野</h3>
+                <ul id="globalNews">
+                    <li><strong>欧盟AI法案实施细则3月生效</strong>，高风险AI系统需完成合规认证，Agent应用面临新的监管要求</li>
+                    <li><strong>美国商务部追加对华AI芯片出口限制</strong>，国产GPU和AI算力自主可控需求进一步凸显</li>
+                    <li><strong>日本发布机器人战略2.0</strong>，2025-2030年投入1万亿日元，人形机器人服务老龄化社会</li>
+                    <li><strong>中东主权基金大举投资AI基础设施</strong>，阿联酋、沙特规划超1000亿美元AI产业集群建设</li>
+                </ul>
+            </section>
+
+            <!-- 全球动态 -->
+            <section class="content-card full-width">
+                <h3><span class="card-icon">📊</span> 本周重点关注</h3>
+                <div class="global-table">
+                    <table id="globalTable">
+                        <thead>
+                            <tr>
+                                <th>时间</th>
+                                <th>事件</th>
+                                <th>关注要点</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>周二</td>
+                                <td>GTC 2026前瞻</td>
+                                <td>英伟达新一代AI芯片与机器人平台发布</td>
+                            </tr>
+                            <tr>
+                                <td>周三</td>
+                                <td>全球AI Agent峰会开幕</td>
+                                <td>多智能体协作标准与企业落地案例</td>
+                            </tr>
+                            <tr>
+                                <td>周四</td>
+                                <td>具身智能产业联盟年会</td>
+                                <td>行业标准发布与产业链合作签约</td>
+                            </tr>
+                            <tr>
+                                <td>周五</td>
+                                <td>Q1融资数据盘点</td>
+                                <td>AI赛道投资热度与估值变化趋势</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>每日晨报 | 每天早上7:30更新</p>
+            <p>Powered by <a href="https://openclaw.ai" target="_blank">OpenClaw</a></p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
