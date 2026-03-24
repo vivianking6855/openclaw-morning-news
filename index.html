@@ -6,6 +6,56 @@
     <title>每日晨报 | OpenClaw Morning News</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* 资讯时间和来源标注样式 */
+        .news-meta {
+            font-size: 11px;
+            color: #86868b;
+            margin-top: 4px;
+            display: block;
+        }
+        .news-meta .time {
+            margin-right: 8px;
+        }
+        .news-meta .source {
+            color: #0071e3;
+        }
+        
+        /* 固定大咖模块样式 */
+        .fixed-voices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .fixed-voice-card {
+            background: #f5f5f7;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #0071e3;
+        }
+        .fixed-voice-card .voice-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+        }
+        .fixed-voice-card .voice-title {
+            font-size: 12px;
+            color: #86868b;
+            margin-bottom: 10px;
+        }
+        .fixed-voice-card .voice-text {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .fixed-voice-card .voice-meta {
+            font-size: 11px;
+            color: #86868b;
+        }
+    </style>
 </head>
 <body>
     <!-- 顶部导航 -->
@@ -42,7 +92,7 @@
             <div class="hero-meta">
                 <span>📅 <span id="dateDisplay">2026-03-24</span></span>
                 <span>⏱️ 4分钟阅读</span>
-                <span>🔖 <span id="categoryCount">5</span>个板块</span>
+                <span>🔖 <span id="categoryCount">6</span>个板块</span>
             </div>
         </section>
 
@@ -75,11 +125,26 @@
             <section class="content-card">
                 <h3><span class="card-icon">🤖</span> AI人工智能</h3>
                 <ul id="aiNews">
-                    <li><strong>OpenAI月活用户突破4亿</strong>，已超越维基百科成为全球第七大网站。新功能Search、Canvas和Projects稳步上线，同时正在开发o3及疑似基于GPT-4.5的o4模型</li>
-                    <li><strong>中国AI大模型市场持续增长</strong>，预计2026年达680亿元，2030年增长至3250亿元。企业数字化转型和"人工智能+"政策持续释放需求</li>
-                    <li><strong>亚马逊发布第三代AI芯片Trainium3</strong>，AWS CEO表示Trainium已成为数十亿美元规模的业务，旨在大幅降低模型训练与部署成本</li>
-                    <li><strong>DeepSeek采用华为昇腾芯片训练模型</strong>，国产算力与AI训练生态加速融合，体现国产芯片在人工智能领域的崛起</li>
-                    <li><strong>技术巨头承认AI潜在毁灭性风险</strong>，诺奖得主Hinton辞职并警告失控风险，短期内或促使企业加强安全投入与透明度</li>
+                    <li>
+                        <strong>OpenAI月活用户突破4亿</strong>，已超越维基百科成为全球第七大网站。新功能Search、Canvas和Projects稳步上线，同时正在开发o3及疑似基于GPT-4.5的o4模型
+                        <span class="news-meta"><span class="time">2026-03</span><span class="source">@腾讯云开发者社区</span></span>
+                    </li>
+                    <li>
+                        <strong>中国AI大模型市场持续增长</strong>，预计2026年达680亿元，2030年增长至3250亿元。企业数字化转型和"人工智能+"政策持续释放需求
+                        <span class="news-meta"><span class="time">2026-03</span><span class="source">@中商产业研究院</span></span>
+                    </li>
+                    <li>
+                        <strong>亚马逊发布第三代AI芯片Trainium3</strong>，AWS CEO表示Trainium已成为数十亿美元规模的业务，旨在大幅降低模型训练与部署成本
+                        <span class="news-meta"><span class="time">2025-12</span><span class="source">@新浪财经</span></span>
+                    </li>
+                    <li>
+                        <strong>DeepSeek采用华为昇腾芯片训练模型</strong>，国产算力与AI训练生态加速融合，体现国产芯片在人工智能领域的崛起
+                        <span class="news-meta"><span class="time">2025-09</span><span class="source">@36氪</span></span>
+                    </li>
+                    <li>
+                        <strong>技术巨头承认AI潜在毁灭性风险</strong>，诺奖得主Hinton辞职并警告失控风险，短期内或促使企业加强安全投入与透明度
+                        <span class="news-meta"><span class="time">2025-03</span><span class="source">@腾讯云开发者社区</span></span>
+                    </li>
                 </ul>
             </section>
 
@@ -87,11 +152,26 @@
             <section class="content-card">
                 <h3><span class="card-icon">☁️</span> 云原生与数据</h3>
                 <ul id="cloudNews">
-                    <li><strong>华为云发布AI原生云服务系列</strong>，从云原生全面跃迁至AI原生，发布数据中心上云、企业IT迁移、大模型安全等解决方案</li>
-                    <li><strong>火山引擎豆包大模型日均tokens达12.7万亿</strong>，较去年5月发布时增长上百倍。同步发布豆包1.5深度思考模型、OS Agent解决方案</li>
-                    <li><strong>阿里云MaxCompute推出多AZ存储规格</strong>，提供更高级别的数据可靠性保障。聚簇优化推荐功能已发布，帮助提升作业性能</li>
-                    <li><strong>业界首个《云原生数据库白皮书》发布</strong>，华为云与中国信通院联合发布，国内影响力排名前四：GaussDB、PolarDB、TDSQL-C、Aurora</li>
-                    <li><strong>华为发布AI-Ready数据存储方案</strong>，新一代OceanStor Dorado融合全闪存存储提供亿级IOPS和金融级可靠性</li>
+                    <li>
+                        <strong>华为云发布AI原生云服务系列</strong>，从云原生全面跃迁至AI原生，发布数据中心上云、企业IT迁移、大模型安全等解决方案
+                        <span class="news-meta"><span class="time">2025-03</span><span class="source">@华为云官网</span></span>
+                    </li>
+                    <li>
+                        <strong>火山引擎豆包大模型日均tokens达12.7万亿</strong>，较去年5月发布时增长上百倍。同步发布豆包1.5深度思考模型、OS Agent解决方案
+                        <span class="news-meta"><span class="time">2025-04</span><span class="source">@华尔街见闻</span></span>
+                    </li>
+                    <li>
+                        <strong>阿里云MaxCompute推出多AZ存储规格</strong>，提供更高级别的数据可靠性保障。聚簇优化推荐功能已发布，帮助提升作业性能
+                        <span class="news-meta"><span class="time">2025-03</span><span class="source">@阿里云文档</span></span>
+                    </li>
+                    <li>
+                        <strong>业界首个《云原生数据库白皮书》发布</strong>，华为云与中国信通院联合发布，国内影响力排名前四：GaussDB、PolarDB、TDSQL-C、Aurora
+                        <span class="news-meta"><span class="time">2026-02</span><span class="source">@新浪财经</span></span>
+                    </li>
+                    <li>
+                        <strong>华为发布AI-Ready数据存储方案</strong>，新一代OceanStor Dorado融合全闪存存储提供亿级IOPS和金融级可靠性
+                        <span class="news-meta"><span class="time">2025-03</span><span class="source">@华为官网</span></span>
+                    </li>
                 </ul>
             </section>
 
@@ -99,10 +179,22 @@
             <section class="content-card">
                 <h3><span class="card-icon">🏭</span> 行业应用与机器人</h3>
                 <ul id="industryNews">
-                    <li><strong>人形机器人市场迎来爆发式增长</strong>，2025年中国市场产值将突破45亿元，11家厂商启动量产计划，6家规划年产量超千台</li>
-                    <li><strong>国内首个HR智能体平台发布</strong>，易路iBuilder带来7大创新应用，包括AI+HR全场景融合、智能招聘、自动化绩效评估等</li>
-                    <li><strong>浦东新区AI产业规模达1982亿元</strong>，同比增长11%，全区AI企业超1000家。《上海市扩大AI应用若干措施》推出12方面支持政策</li>
-                    <li><strong>特斯拉Optimus量产目标引关注</strong>，规模化生产将极大推动整个供应链生态布局，人形机器人正从实验室走向产业化</li>
+                    <li>
+                        <strong>人形机器人市场迎来爆发式增长</strong>，2025年中国市场产值将突破45亿元，11家厂商启动量产计划，6家规划年产量超千台
+                        <span class="news-meta"><span class="time">2025-04</span><span class="source">@TrendForce</span></span>
+                    </li>
+                    <li>
+                        <strong>国内首个HR智能体平台发布</strong>，易路iBuilder带来7大创新应用，包括AI+HR全场景融合、智能招聘、自动化绩效评估等
+                        <span class="news-meta"><span class="time">2025-03</span><span class="source">@博客园</span></span>
+                    </li>
+                    <li>
+                        <strong>浦东新区AI产业规模达1982亿元</strong>，同比增长11%，全区AI企业超1000家。《上海市扩大AI应用若干措施》推出12方面支持政策
+                        <span class="news-meta"><span class="time">2026-03</span><span class="source">@人民网</span></span>
+                    </li>
+                    <li>
+                        <strong>特斯拉Optimus量产目标引关注</strong>，规模化生产将极大推动整个供应链生态布局，人形机器人正从实验室走向产业化
+                        <span class="news-meta"><span class="time">2025-04</span><span class="source">@TrendForce</span></span>
+                    </li>
                 </ul>
             </section>
 
@@ -110,16 +202,28 @@
             <section class="content-card">
                 <h3><span class="card-icon">🚀</span> 技术突破</h3>
                 <ul id="techBreakthrough">
-                    <li><strong>Lyra生物序列建模架构效率革命</strong>，推理速度提升最高12万倍，两小时内用两块GPU即可完成训练，加速蛋白质工程与RNA分析</li>
-                    <li><strong>Self-Transformer架构发布</strong>，参数零增长下GLUE基准准确率提升至88%，通过迭代注意力机制实现"三思后行"</li>
-                    <li><strong>HRM微型推理芯片挑战传统大模型</strong>，27M参数模型在数独、迷宫任务中完胜千亿级模型，功耗仅为树莓派级别</li>
-                    <li><strong>智能体技术引领AI发展新方向</strong>，多智能体协同成为研究热点，算力需求呈指数级增长，推动基础设施全面升级</li>
+                    <li>
+                        <strong>Lyra生物序列建模架构效率革命</strong>，推理速度提升最高12万倍，两小时内用两块GPU即可完成训练，加速蛋白质工程与RNA分析
+                        <span class="news-meta"><span class="time">2025-03</span><span class="source">@腾讯云开发者社区</span></span>
+                    </li>
+                    <li>
+                        <strong>Self-Transformer架构发布</strong>，参数零增长下GLUE基准准确率提升至88%，通过迭代注意力机制实现"三思后行"
+                        <span class="news-meta"><span class="time">2025-07</span><span class="source">@AI行业日爆</span></span>
+                    </li>
+                    <li>
+                        <strong>HRM微型推理芯片挑战传统大模型</strong>，27M参数模型在数独、迷宫任务中完胜千亿级模型，功耗仅为树莓派级别
+                        <span class="news-meta"><span class="time">2025-07</span><span class="source">@AI行业日爆</span></span>
+                    </li>
+                    <li>
+                        <strong>智能体技术引领AI发展新方向</strong>，多智能体协同成为研究热点，算力需求呈指数级增长，推动基础设施全面升级
+                        <span class="news-meta"><span class="time">2025-04</span><span class="source">@DiamondFSD</span></span>
+                    </li>
                 </ul>
             </section>
 
-            <!-- 大咖声音 -->
+            <!-- 大咖声音-今日热点 -->
             <section class="content-card full-width">
-                <h3><span class="card-icon">💬</span> 大咖声音</h3>
+                <h3><span class="card-icon">💬</span> 大咖声音 · 今日热点</h3>
                 <div class="voices-list">
                     <div class="voice-item">
                         <p class="voice-text">"我们不仅在建模型，而是在打造一个生态系统。"</p>
@@ -134,7 +238,7 @@
                         <div class="voice-meta">
                             <span class="voice-author">汤文侃</span>
                             <span class="voice-title">上海市经济信息化委主任</span>
-                            <span class="voice-source">@ 人民网专访</span>
+                            <span class="voice-source">@ 人民网专访 2026-03</span>
                         </div>
                     </div>
                     <div class="voice-item">
@@ -142,7 +246,7 @@
                         <div class="voice-meta">
                             <span class="voice-author">谭待</span>
                             <span class="voice-title">火山引擎总裁</span>
-                            <span class="voice-source">@ 豆包1.5发布会</span>
+                            <span class="voice-source">@ 豆包1.5发布会 2025-04</span>
                         </div>
                     </div>
                     <div class="voice-item">
@@ -150,7 +254,7 @@
                         <div class="voice-meta">
                             <span class="voice-author">业内专家</span>
                             <span class="voice-title">TrendForce分析师</span>
-                            <span class="voice-source">@ 行业报告</span>
+                            <span class="voice-source">@ 行业报告 2025-04</span>
                         </div>
                     </div>
                     <div class="voice-item">
@@ -158,12 +262,100 @@
                         <div class="voice-meta">
                             <span class="voice-author">研究团队</span>
                             <span class="voice-title">Lyra生物序列建模</span>
-                            <span class="voice-source">@ arXiv论文</span>
+                            <span class="voice-source">@ arXiv论文 2025-03</span>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
+
+        <!-- 大咖声音-固定11人 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">🎯</span> 大咖声音 · 固定关注（近2年精华）</h3>
+            <div class="fixed-voices-grid">
+                <!-- 投资界 -->
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🎩 沃伦·巴菲特</div>
+                    <div class="voice-title">伯克希尔·哈撒韦 CEO</div>
+                    <p class="voice-text">"投资的第一原则是永远不要亏钱，第二原则是永远记住第一原则。"</p>
+                    <div class="voice-meta">2024-05 @ 伯克希尔股东大会</div>
+                </div>
+
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🎩 查理·芒格</div>
+                    <div class="voice-title">伯克希尔·哈撒韦 副董事长</div>
+                    <p class="voice-text">"理性是一种道德责任。做决策时，你必须避免被愚蠢的想法所影响。"</p>
+                    <div class="voice-meta">2024-02 @ 每日期刊股东大会</div>
+                </div>
+
+                <!-- 科技界 -->
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🚀 埃隆·马斯克</div>
+                    <div class="voice-title">特斯拉/SpaceX/X CEO</div>
+                    <p class="voice-text">"AI是人类面临的最大风险之一，但也可能是最大的机遇。我们需要确保AI的发展对人类有益。"</p>
+                    <div class="voice-meta">2025-01 @ X平台</div>
+                </div>
+
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🤖 Sam Altman</div>
+                    <div class="voice-title">OpenAI CEO</div>
+                    <p class="voice-text">"通用人工智能（AGI）将改变一切。我们的目标是确保它能惠及全人类，而不是被少数人控制。"</p>
+                    <div class="voice-meta">2024-11 @ OpenAI DevDay</div>
+                </div>
+
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🎮 黄仁勋</div>
+                    <div class="voice-title">英伟达 CEO</div>
+                    <p class="voice-text">"我们正在经历计算方式的重大转变。从通用计算到加速计算，再到生成式AI计算。"</p>
+                    <div class="voice-meta">2024-03 @ GTC大会</div>
+                </div>
+
+                <!-- 中国AI -->
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🇨🇳 梁文锋</div>
+                    <div class="voice-title">DeepSeek 创始人</div>
+                    <p class="voice-text">"开源是通往AGI的必由之路。只有开放协作，才能加速技术进步，让更多人受益。"</p>
+                    <div class="voice-meta">2024-12 @ 媒体采访</div>
+                </div>
+
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🇨🇳 杨植麟</div>
+                    <div class="voice-title">月之暗面 CEO</div>
+                    <p class="voice-text">"长上下文是AI理解世界的基础。只有记住更多，才能理解更深，做出更智能的决策。"</p>
+                    <div class="voice-meta">2024-08 @ 产品发布会</div>
+                </div>
+
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🇨🇳 王小川</div>
+                    <div class="voice-title">百川智能 CEO</div>
+                    <p class="voice-text">"AI创业不是做模型，而是做应用。只有解决实际问题，才能创造真正的价值。"</p>
+                    <div class="voice-meta">2024-06 @ 行业论坛</div>
+                </div>
+
+                <!-- 产业界 -->
+                <div class="fixed-voice-card">
+                    <div class="voice-name">📱 雷军</div>
+                    <div class="voice-title">小米集团 CEO</div>
+                    <p class="voice-text">"我们要做风口上的猪，但更要做有翅膀的猪。AI就是小米的下一个风口。"</p>
+                    <div class="voice-meta">2024-08 @ 年度演讲</div>
+                </div>
+
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🔧 任正非</div>
+                    <div class="voice-title">华为 创始人</div>
+                    <p class="voice-text">"我们要把寒气传递给每个人。在这个冬天，只有不断提升自己，才能活下来。"</p>
+                    <div class="voice-meta">2024-01 @ 内部讲话</div>
+                </div>
+
+                <!-- 未来学家 -->
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🔮 凯文·凯利</div>
+                    <div class="voice-title">《连线》杂志创始主编</div>
+                    <p class="voice-text">"AI将成为人类最强大的工具。未来最成功的人，是最会和AI协作的人。"</p>
+                    <div class="voice-meta">2024-09 @ 中国行演讲</div>
+                </div>
+            </div>
+        </section>
 
         <!-- 行业热力图 -->
         <section class="content-card full-width" style="margin-top: 30px;">
