@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日晨报 | 2026年3月26日</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* 资讯时间和来源标注样式 */
+        .news-meta {
+            font-size: 11px;
+            color: #86868b;
+            margin-top: 4px;
+            display: block;
+        }
+        .news-meta .time {
+            margin-right: 8px;
+        }
+        .news-meta .source {
+            color: #0071e3;
+        }
+        
+        /* 固定大咖模块样式 */
+        .fixed-voices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .fixed-voice-card {
+            background: #f5f5f7;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #0071e3;
+        }
+        .fixed-voice-card .voice-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+        }
+        .fixed-voice-card .voice-title {
+            font-size: 12px;
+            color: #86868b;
+            margin-bottom: 10px;
+        }
+        .fixed-voice-card .voice-text {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .fixed-voice-card .voice-meta {
+            font-size: 11px;
+            color: #86868b;
+        }
+
+        /* 今日热点大咖样式 */
+        .hot-voice-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+        .hot-voice-card .voice-name {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+        .hot-voice-card .voice-title {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-bottom: 12px;
+        }
+        .hot-voice-card .voice-text {
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+        .hot-voice-card .voice-meta {
+            font-size: 11px;
+            opacity: 0.8;
+        }
+        .hot-voices-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">📰</span>
+                <span class="logo-text">每日晨报</span>
+            </a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link active">今日晨报</a>
+                <a href="archives.html" class="nav-link">历史归档</a>
+                <a href="about.html" class="nav-link">关于</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 日期导航 -->
+    <div class="date-bar">
+        <div class="date-container">
+            <button class="date-btn" id="prevDate">← 前一天</button>
+            <span class="current-date" id="currentDate">2026年3月26日 星期四</span>
+            <button class="date-btn" id="nextDate">后一天 →</button>
+        </div>
+    </div>
+
+    <!-- 主要内容 -->
+    <main class="main">
+        <!-- 导读区 -->
+        <section class="hero-section">
+            <div class="hero-badge">💡 今日洞察</div>
+            <h1 class="hero-title" id="highlightTitle">全球首家超级AI医院落地；张亚勤宣告智能体AI元年；SpaceX冲刺史上最大IPO；凯文·凯利预言AI四大方向</h1>
+            <p class="hero-summary" id="highlightText">2026中关村论坛年会盛大开幕，全球首家超级AI医院正式落地，首次在国际层面对AI医院作出共识性定义。张亚勤在博鳌论坛宣告"2026年为智能体AI元年"。SpaceX计划本周提交IPO申请，目标融资逾750亿美元，有望成为史上最大IPO。凯文·凯利亮相中关村论坛，预言未来五年AI四大前进方向：非大语言模型、世界模型、情感和智能体。</p>
+            <div class="hero-meta">
+                <span>📅 <span id="dateDisplay">2026-03-26</span></span>
+                <span>⏱️ 5分钟阅读</span>
+                <span>🔖 <span id="categoryCount">8</span>个板块</span>
+            </div>
+        </section>
+
+        <!-- 务实落地建议 -->
+        <section class="recommendations" id="recommendations">
+            <h2 class="section-title">🛠️ 务实落地建议</h2>
+            <div class="rec-grid" id="recGrid">
+                <div class="rec-card">
+                    <h4>智能体AI布局</h4>
+                    <p>2026年被业界定义为"智能体AI元年"，企业应加速AI Agent在业务流程中的应用。从简单的任务自动化开始，逐步构建能够自主决策、跨系统协作的智能体生态。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>AI医疗新机遇</h4>
+                    <p>全球首家超级AI医院正式落地，AI原生理念从底层重构医疗服务体系。医疗行业从业者应关注AI辅助诊断、智能导诊、个性化治疗方案等技术应用。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>具身智能投资</h4>
+                    <p>宇树科技科创板IPO获受理，具身智能赛道迎来上市潮。投资者可关注具备核心技术壁垒、财务已跑通商业模式的头部企业，如人形机器人、工业机器人等领域。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>AI研发模式转型</h4>
+                    <p>杨植麟预言AI研发将进入"AI主导时代"，越来越多的研究工作将由AI主导。研发型企业应提前布局AI辅助研发工具，培养人机协作的新型研发团队。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 内容板块 -->
+        <div class="content-grid" id="contentGrid">
+            <!-- AI人工智能 -->
+            <section class="content-card">
+                <h3><span class="card-icon">🤖</span> AI人工智能</h3>
+                <ul id="aiNews">
+                    <li>
+                        <strong>全球首家超级AI医院正式落地</strong>，3月26日在北京举办的2026中关村世界数字健康论坛上，《国际AI医院智联体共识》发布，首次在国际层面对AI医院作出共识性定义
+                        <span class="news-meta"><span class="time">2026-03-26</span><span class="source">@新京报</span></span>
+                    </li>
+                    <li>
+                        <strong>张亚勤宣告"2026年为智能体AI元年"</strong>，中国工程院院士在博鳌亚洲论坛表示，人工智能领域的创新特性决定产学研深度融合是必然选择，研究、技术、产品呈现融合特征
+                        <span class="news-meta"><span class="time">2026-03-26</span><span class="source">@中新网</span></span>
+                    </li>
+                    <li>
+                        <strong>蚂蚁集团开源F2LM-v2横扫11项榜单</strong>，在MTEB权威评测中获得德语、法语、日语、波兰语以及代码检索等11个语种和领域榜单的SOTA第一名，覆盖282种自然语言与40多种编程语言
+                        <span class="news-meta"><span class="time">2026-03-26</span><span class="source">@蚂蚁集团</span></span>
+                    </li>
+                    <li>
+                        <strong>国家数据局：中国AI发展进入快速增长阶段</strong>，日均Token调用量已超过140万亿，相比2024年初的1000亿增长了1000多倍，相比2025年底的100万亿三个月又增长40%
+                        <span class="news-meta"><span class="time">2026-03-26</span><span class="source">@国家数据局</span></span>
+                    </li>
+                    <li>
+                        <strong>夸娥万卡集群已部署并上线</strong>，摩尔线程亮相2026中关村论坛"人工智能+"展区，发布旗舰级AI训推一体智算卡MTT S5000、液冷服务器及面向Agentic AI时代的个人智算平台MTT AIBOOK
+                        <span class="news-meta"><span class="time">2026-03-26</span><span class="source">@北京青年报</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 云原生与数据 -->
+            <section class="content-card">
+                <h3><span class="card-icon">☁️</span> 云原生与数据</h3>
+                <ul id="cloudNews">
+                    <li>
+                        <strong>金山云Q4收入创新高</strong>，实现人民币27.61亿元，同比增长23.7%，其中公有云收入19.02亿元同比大增34.9%，智算云业务账单收入达9.26亿元，同比增幅高达95%
+                        <span class="news-meta"><span class="time">2026-03-26</span><span class="source">@金山云财报</span></span>
+                    </li>
+                    <li>
+                        <strong>FPT人工智能工厂携手英伟达</strong>，提升东南亚与日本地区人工智能推理能力，加速区域AI基础设施建设
+                        <span class="news-meta"><span class="time">2026-03-26</span><span class="source">@新浪财经</span></span>
+                    </li>
+                    <li>
+                        <strong>谷歌发布KV缓存压缩技术TurboQuant</strong>，可将大语言模型键值缓存压缩至3比特，实现6倍内存缩减与最高8倍加速，引发市场对存储需求讨论
+                        <span class="news-meta"><span class="time">2026-03-26</span><span class="source">@华尔街见闻</span></span>
+                    </li>
+                    <li>
+                        <strong>中电联杨昆："人工智能+"深度重塑电力产业链</strong>，AI技术在电力规划、调度、运维、交易等环节的应用，为破解系统复杂性难题提供新路径
+                        <span class="news-meta"><span class="time">2026-03-26</span><span class="source">@新京报</span></span>
+                    </li>
+                    <li>
+                        <strong>山东启动人工智能赋能新型工业化深度行</strong>，发布首批63项山东省中小企业人工智能需求场景，推进人工智能全方位、深层次赋能实体经济
+                        <span class="news-meta"><span class="time">2026-03-26</span><span class="source">@中新网</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 具身智能与机器人 -->
+            <section class="content-card">
+                <h3><span class="card-icon">🏭</span> 具身智能与机器人</h3>
+                <ul id="roboticsNews">
+                    <li>
+                        <strong>宇树科技科创板IPO获受理</strong>，拟募资42.02亿元冲刺A股"人形机器人第一股"，2026年开年具身智能融资已超200亿元
+                        <span class="news-meta"><span class="time">2026-03-26</span><span class="source">@21财经</span></span>
+                    </li>
+                    <li>
+                        <strong>特斯拉Optimus 3宣布计划今夏投产</strong>，目标在2027年实现大规模量产。与此同时，2026中关村论坛上的机器人"天团"已深度融入会务服务
+                        <span class="news-meta"><span class="time">2026-03-26</span><span class="source">@中国证券报</span></span>
+                    </li>
+                    <li>
+                        <strong>人形机器人亮相白宫</strong>，3月25日美国"第一夫人"梅拉尼娅·特朗普在白宫教育峰会上与Figure 03机器人并肩而行，这是机器人首次踏入白宫
+                        <span class="news-meta"><span class="time">2026-03-26</span><span class="source">@上观新闻</span></span>
+                    </li>
+                    <li>
+                        <strong>傲意科技完成C1轮1.5亿元融资</strong>，由中金资本旗下深圳市脑科学与类脑智能产业投资基金领投，跻身"灵巧手四小龙"之列
+                        <span class="news-meta"><span class="time">2026-03-26</span><span class="source">@每日经济新闻</span></span>
+                    </li>
+                    <li>
+                        <strong>马斯克Neuralink公布脑机接口最新进展</strong>，展示N1植入设备如何将脑信号转化为口语，ALS患者无需移动嘴唇，仅凭脑中意念即可将大脑信号转化为文字并合成语音
+                        <span class="news-meta"><span class="time">2026-03-26</span><span class="source">@IT之家</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 商业与市场 -->
+            <section class="content-card">
+                <h3><span class="card-icon">💰</span> 商业与市场</h3>
+                <ul id="businessNews">
+                    <li>
+                        <strong>SpaceX冲刺史上最大IPO</strong>，计划最早本周提交IPO招股说明书，目标6月完成上市，募资规模或超750亿美元，估值达1.75万亿美元
+                        <span class="news-meta"><span class="time">2026-03-26</span><span class="source">@21世纪经济报道</span></span>
+                    </li>
+                    <li>
+                        <strong>具身智能赛道迎来上市潮</strong>，安永分析指出，具身智能、商业航天、先进制程半导体等领域的头部标的将是未来成功闯关A股IPO的主力
+                        <span class="news-meta"><span class="time">2026-03-26</span><span class="source">@北京商报</span></span>
+                    </li>
+                    <li>
+                        <strong>泡泡玛特2025年净利润同比暴增293%</strong>，营收371.2亿元同比增长185%，但2026年增速预期仅20%，Labubu依赖症引发市场担忧，股价重挫超15%
+                        <span class="news-meta"><span class="time">2026-03-26</span><span class="source">@华尔街见闻</span></span>
+                    </li>
+                    <li>
+                        <strong>Manus两名联合创始人被告知不要离开中国</strong>，有关部门正在评估AI初创公司Manus出售给Meta的交易，商务部将会同相关部门对有关收购开展评估调查
+                        <span class="news-meta"><span class="time">2026-03-26</span><span class="source">@电脑报</span></span>
+                    </li>
+                    <li>
+                        <strong>闲鱼AI相机正式发布</strong>，用户拍摄商品照片后，系统可在5秒内完成一键上架，并通过AI辅助定价，降低二手交易门槛
+                        <span class="news-meta"><span class="time">2026-03-26</span><span class="source">@人民财讯</span></span>
+                    </li>
+                </ul>
+            </section>
+        </div>
+
+        <!-- 大咖声音-今日热点 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">🔥</span> 大咖声音 · 今日热点（3月26日最新）</h3>
+            <div class="hot-voices-container">
+                <div class="hot-voice-card">
+                    <div class="voice-name">🔮 凯文·凯利</div>
+                    <div class="voice-title">《连线》杂志创始主编 / "硅谷精神之父"</div>
+                    <p class="voice-text">"在现阶段，还没有真正的AI专家出现！未来五年，AI将有四个关键前进方向：非大语言模型、世界模型、情感和智能体。感情是'很人类尺度'的一样本领，我们想把这一点赋予AI。智能体也会有等级制度，会成为一种生态系统。"</p>
+                    <div class="voice-meta">2026-03-26 @ 2026中关村论坛年会"洞见未来"论坛</div>
+                </div>
+
+                <div class="hot-voice-card">
+                    <div class="voice-name">🇨🇳 张亚勤</div>
+                    <div class="voice-title">中国工程院院士 / 清华大学智能产业研究院院长</div>
+                    <p class="voice-text">"2026年为智能体AI元年。人工智能领域的创新与传统行业有着本质区别，打破了传统'研究-论文-专利-产品-市场'的路径，其研究、技术、产品呈现融合的特征。产学研深度融合是必然选择。"</p>
+                    <div class="voice-meta">2026-03-25 @ 博鳌亚洲论坛"AI+"分论坛</div>
+                </div>
+
+                <div class="hot-voice-card">
+                    <div class="voice-name">🇨🇳 杨植麟</div>
+                    <div class="voice-title">月之暗面CEO</div>
+                    <p class="voice-text">"在今明年乃至未来几年内，人工智能的研究与研发方式将发生重大变化，越来越多的研究工作将由AI主导。Kimi估值已达180亿美元，公司现金持有量超过100亿元。"</p>
+                    <div class="voice-meta">2026-03-26 @ 2026中关村论坛年会</div>
+                </div>
+
+                <div class="hot-voice-card">
+                    <div class="voice-name">🎮 黄仁勋</div>
+                    <div class="voice-title">英伟达CEO</div>
+                    <p class="voice-text">"推理拐点正式到来。AI已从感知与生成迈入推理与智能体时代。我预见通过2027年的营收将至少达到1万亿美元。NVIDIA的Token成本在世界范围内是'不可触碰'的，即便竞争对手的架构是免费的，它也不够便宜。"</p>
+                    <div class="voice-meta">2026-03 @ GTC 2026大会主题演讲</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 大咖声音-固定11人 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">🎯</span> 大咖声音 · 固定关注（近2年精华）</h3>
+            <div class="fixed-voices-grid">
+                <!-- 投资界 -->
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🎩 沃伦·巴菲特</div>
+                    <div class="voice-title">伯克希尔·哈撒韦 CEO</div>
+                    <p class="voice-text">"投资需要纪律、耐心与判断力：锁定理想机会，耐心等待时机，然后果断出手。对于能够深刻洞察并把握的公司可以适度重仓，建议普通投资者在成熟市场通过指数基金或ETF进行长期投资。"</p>
+                    <div class="voice-meta">2026-02 @ 伯克希尔2026年股东信</div>
+                </div>
+
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🎩 查理·芒格</div>
+                    <div class="voice-title">伯克希尔·哈撒韦 前副董事长</div>
+                    <p class="voice-text">"理性是一种道德责任。AI就像核武器一样无法逆转，但我们要确保它被正确使用。投资中，坚守能力圈比追逐热点更重要。以合理的价格买伟大的企业比以便宜的价格买普通的企业更好。"</p>
+                    <div class="voice-meta">2024-05 @ 伯克希尔股东大会</div>
+                </div>
+
+                <!-- 科技界 -->
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🚀 埃隆·马斯克</div>
+                    <div class="voice-title">特斯拉/SpaceX/Neuralink CEO</div>
+                    <p class="voice-text">"未来10-15年，工作将变成可选项。AI和机器人将提供满足社会需求的全部商品与服务。Neuralink今年启动脑机接口设备大规模生产，让意念控制设备成为现实。"</p>
+                    <div class="voice-meta">2025-12 @ 印度WTF播客访谈</div>
+                </div>
+
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🤖 Sam Altman</div>
+                    <div class="voice-title">OpenAI CEO</div>
+                    <p class="voice-text">"我们正处于AGI时代的前夜。从o1到GPT-5.4 Pro，同一困难问题的推理成本下降了约1000倍。预计第一批AI智能体今年将加入劳动力大军，从根本上改变各公司产出。"</p>
+                    <div class="voice-meta">2026-03 @ OpenAI产品发布会</div>
+                </div>
+
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🎮 黄仁勋</div>
+                    <div class="voice-title">英伟达 CEO</div>
+                    <p class="voice-text">"推理拐点正式到来。AI已从感知与生成迈入推理与智能体时代。2025年是英伟达的推理之年，Token将成为AI产业核心衡量指标。从Hopper H200到Grace Blackwell NVLink 72，每瓦特性能提升约35倍。"</p>
+                    <div class="voice-meta">2026-03 @ GTC大会主题演讲</div>
+                </div>
+
+                <!-- 中国AI -->
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🇨🇳 梁文锋</div>
+                    <div class="voice-title">DeepSeek 创始人</div>
+                    <p class="voice-text">"中国AI不能永远做跟随者，必须有人走在前沿，引领方向。开源是通往AGI的必由之路。我们从未想过要成为颠覆者，只是按照自己的节奏创新。量化投资的终极作用是提高市场有效性，直到程序理解一切——这就是AGI。"</p>
+                    <div class="voice-meta">2025-01 @ 总理座谈会/媒体采访</div>
+                </div>
+
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🇨🇳 杨植麟</div>
+                    <div class="voice-title">月之暗面 CEO</div>
+                    <p class="voice-text">"长上下文是AI理解世界的基础。Kimi在长文本领域的突破，让AI能够真正理解复杂文档，为用户提供更深度的分析和洞察。未来AI研发将进入AI主导时代。"</p>
+                    <div class="voice-meta">2026-03 @ 2026中关村论坛年会</div>
+                </div>
+
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🇨🇳 王小川</div>
+                    <div class="voice-title">百川智能 CEO</div>
+                    <p class="voice-text">"医疗是大模型应用的制高点。AI医生不是替代人类医生，而是让优质医疗服务普惠更多人。我们要做中国最好的医疗大模型。"</p>
+                    <div class="voice-meta">2024-12 @ 医疗AI论坛</div>
+                </div>
+
+                <!-- 产业界 -->
+                <div class="fixed-voice-card">
+                    <div class="voice-name">📱 雷军</div>
+                    <div class="voice-title">小米集团 CEO</div>
+                    <p class="voice-text">"小米希望用十年的努力，成为新一代全球硬核科技引领者。2025年研发投入预计达300亿元，其中AI及相关业务占四分之一。金山云智算云业务同比增幅高达95%，AI需求全面爆发。"</p>
+                    <div class="voice-meta">2025-03 @ 中关村论坛</div>
+                </div>
+
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🔧 任正非</div>
+                    <div class="voice-title">华为 创始人</div>
+                    <p class="voice-text">"芯片问题没必要担心，用叠加和集群等方法，计算结果上与最先进水平是相当的。我们单芯片落后一代，但用数学补物理、群计算补单芯片。华为随时都会倒闭——这是哲学问题，大企业本身那种脆弱性也会更大一点。"</p>
+                    <div class="voice-meta">2025-06 @ 人民日报专访</div>
+                </div>
+
+                <!-- 未来学家 -->
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🔮 凯文·凯利</div>
+                    <div class="voice-title">《连线》杂志创始主编</div>
+                    <p class="voice-text">"还没有真正的AI专家出现！未来五年AI四个关键方向：非大语言模型、世界模型、情感和智能体。中国有机会在前沿领域成为'酷'的典范，引领世界潮流。乐观源于长远的时间视角，好的东西都是过去的乐观主义者创造出来的。"</p>
+                    <div class="voice-meta">2026-03-26 @ 2026中关村论坛年会</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 行业热力图 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">📊</span> 行业热力图</h3>
+            <div class="heatmap" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+                <div style="background: #ffebee; padding: 15px; border-radius: 10px; border-left: 4px solid #f44336;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span><strong>智能体AI</strong></span>
+                        <span style="color: #f44336;">🔥🔥🔥🔥🔥</span>
+                    </div>
+                </div>
+                <div style="background: #fff3e0; padding: 15px; border-radius: 10px; border-left: 4px solid #ff9800;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span><strong>具身智能</strong></span>
+                        <span style="color: #ff9800;">🔥🔥🔥🔥🔥</span>
+                    </div>
+                </div>
+                <div style="background: #e8f5e9; padding: 15px; border-radius: 10px; border-left: 4px solid #4caf50;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span><strong>AI医疗</strong></span>
+                        <span style="color: #4caf50;">🔥🔥🔥🔥</span>
+                    </div>
+                </div>
+                <div style="background: #e3f2fd; padding: 15px; border-radius: 10px; border-left: 4px solid #2196f3;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span><strong>商业航天</strong></span>
+                        <span style="color: #2196f3;">🔥🔥🔥🔥</span>
+                    </div>
+                </div>
+                <div style="background: #f3e5f5; padding: 15px; border-radius: 10px; border-left: 4px solid #9c27b0;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span><strong>AI推理芯片</strong></span>
+                        <span style="color: #9c27b0;">🔥🔥🔥🔥</span>
+                    </div>
+                </div>
+                <div style="background: #fce4ec; padding: 15px; border-radius: 10px; border-left: 4px solid #e91e63;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span><strong>脑机接口</strong></span>
+                        <span style="color: #e91e63;">🔥🔥🔥</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>每日晨报 | 每天早上7:30更新</p>
+            <p>Powered by <a href="https://openclaw.ai" target="_blank">OpenClaw</a></p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
