@@ -3,108 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>历史归档 | 每日晨报</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>历史归档 - AI DevOps晨报</title>
+    <style>
+        :root {
+            --primary: #1d1d1f;
+            --secondary: #86868b;
+            --accent: #0071e3;
+            --bg: #f5f5f7;
+            --card-bg: #ffffff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--primary);
+            line-height: 1.6;
+        }
+        .header {
+            background: var(--primary);
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .header a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .archive-list {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .archive-item {
+            padding: 20px 25px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+        .archive-item:hover {
+            background: #f9f9f9;
+        }
+        .archive-item:last-child {
+            border-bottom: none;
+        }
+        .archive-date {
+            font-weight: 600;
+            font-size: 16px;
+        }
+        .archive-title {
+            color: var(--secondary);
+            font-size: 14px;
+            flex: 1;
+            margin-left: 20px;
+        }
+        .archive-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        footer {
+            background: var(--primary);
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+        footer p {
+            color: #a1a1a6;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
-        <div class="header-container">
-            <a href="index.html" class="logo">
-                <span class="logo-icon">📰</span>
-                <span class="logo-text">每日晨报</span>
-            </a>
-            <nav class="nav">
-                <a href="index.html" class="nav-link">今日晨报</a>
-                <a href="archives.html" class="nav-link active">历史归档</a>
-                <a href="about.html" class="nav-link">关于</a>
-            </nav>
-        </div>
+        <h1>📚 历史归档</h1>
+        <p><a href="index.html">← 返回首页</a></p>
     </header>
 
-    <main class="main">
-        <div style="background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.08);">
-            <h1 style="font-size: 32px; margin-bottom: 32px;">📚 历史归档</h1>
-            
-            <div id="archiveList">
-                <!-- 2026年4月 -->
-                <div class="archive-month" style="margin-bottom: 32px;">
-                    <h2 style="font-size: 20px; color: #86868b; margin-bottom: 16px; border-bottom: 2px solid #f5f5f7; padding-bottom: 8px;">2026年4月</h2>
-                    <div style="display: grid; gap: 12px;">
-                        <a href="2026-04-06.html" style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: #0071e3; border-radius: 8px; text-decoration: none; color: white; transition: all 0.2s;">
-                            <span>04月06日 星期一（今日）</span>
-                            <span style="font-weight: 500;">智元万台下线；星海图20亿融资；K8s 1.36将发布 →</span>
-                        </a>
-                        <a href="2026-04-05.html" style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: #f5f5f7; border-radius: 8px; text-decoration: none; color: inherit; transition: all 0.2s;">
-                            <span>04月05日 星期日</span>
-                            <span style="color: #f97316; font-weight: 500;">IDC预测AI重塑DevOps；具身智能融资超百亿；K8s 1.36发布 →</span>
-                        </a>
-                        <a href="2026-04-04.html" style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: #f5f5f7; border-radius: 8px; text-decoration: none; color: inherit; transition: all 0.2s;">
-                            <span>04月04日 星期六</span>
-                            <span style="color: #f97316; font-weight: 500;">Agentic AI重塑DevOps；具身智能融资200亿；Knative毕业 →</span>
-                        </a>
-                        <a href="news_20260403.html" style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: #f5f5f7; border-radius: 8px; text-decoration: none; color: inherit; transition: all 0.2s;">
-                            <span>04月03日 星期五</span>
-                            <span style="color: #f97316; font-weight: 500;">GOPS大会预告；AIOps更名EIS；Nacos 3.0发布 →</span>
-                        </a>
-                        <a href="news_20260402.html" style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: #f5f5f7; border-radius: 8px; text-decoration: none; color: inherit; transition: all 0.2s;">
-                            <span>04月02日 星期四</span>
-                            <span style="color: #f97316; font-weight: 500;">港股AI爆发；具身智能行业标准发布 →</span>
-                        </a>
-                        <a href="news_20260401.html" style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: #f5f5f7; border-radius: 8px; text-decoration: none; color: inherit; transition: all 0.2s;">
-                            <span>04月01日 星期三</span>
-                            <span style="color: #f97316; font-weight: 500;">智元万台量产；具身智能标准化 →</span>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- 2026年3月 -->
-                <div class="archive-month" style="margin-bottom: 32px;">
-                    <h2 style="font-size: 20px; color: #86868b; margin-bottom: 16px; border-bottom: 2px solid #f5f5f7; padding-bottom: 8px;">2026年3月</h2>
-                    <div style="display: grid; gap: 12px;">
-                        <a href="news_20260331.html" style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: #f5f5f7; border-radius: 8px; text-decoration: none; color: inherit; transition: all 0.2s;">
-                            <span>03月31日 星期一</span>
-                            <span style="color: #f97316; font-weight: 500;">智元万台量产；微软Critique系统；具身智能规模化落地 →</span>
-                        </a>
-                        <a href="news_20260330.html" style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: #f5f5f7; border-radius: 8px; text-decoration: none; color: inherit; transition: all 0.2s;">
-                            <span>03月30日 星期日</span>
-                            <span style="color: #f97316; font-weight: 500;">Token调用量爆发；人形机器人万台量产；Cursor套壳Kimi事件 →</span>
-                        </a>
-                        <a href="news_20260328.html" style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: #f5f5f7; border-radius: 8px; text-decoration: none; color: inherit; transition: all 0.2s;">
-                            <span>03月28日 星期六</span>
-                            <span style="color: #f97316; font-weight: 500;">黄仁勋宣告AI推理拐点；宇树科技冲刺科创板IPO →</span>
-                        </a>
-                        <a href="news_20260327.html" style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: #f5f5f7; border-radius: 8px; text-decoration: none; color: inherit; transition: all 0.2s;">
-                            <span>03月27日 星期五</span>
-                            <span style="color: #f97316; font-weight: 500;">GTC大会前瞻；腾讯元宝DAU破500万 →</span>
-                        </a>
-                        <a href="news_20260326.html" style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: #f5f5f7; border-radius: 8px; text-decoration: none; color: inherit; transition: all 0.2s;">
-                            <span>03月26日 星期四</span>
-                            <span style="color: #f97316; font-weight: 500;">DeepSeek R1推理性能突破；华为昇腾AI芯片产能爬坡 →</span>
-                        </a>
-                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: #f5f5f7; border-radius: 8px; color: inherit;">
-                            <span>03月25日 星期三</span>
-                            <span style="color: #86868b; font-weight: 500;">中国发展高层论坛聚焦AI普惠；具身智能融资狂飙</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: #f5f5f7; border-radius: 8px; color: inherit;">
-                            <span>03月24日 星期二</span>
-                            <span style="color: #86868b; font-weight: 500;">宇树科技IPO获受理；新华网发布AI产业创新赋能底座</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div id="emptyState" style="text-align: center; padding: 60px; color: #86868b; display: none;">
-                <div style="font-size: 48px; margin-bottom: 16px;">📭</div>
-                <p>暂无历史记录</p>
+    <main class="container">
+        <div class="archive-list">
+            <div class="archive-item">
+                <span class="archive-date">2026年4月7日</span>
+                <span class="archive-title">星海图估值突破200亿 | 智元万台下线 | K8s v1.34发布</span>
+                <a href="2026-04-07.html" class="archive-link">阅读 →</a>
             </div>
         </div>
     </main>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2026 OpenClaw Morning News. All rights reserved.</p>
-            <p style="margin-top: 8px; opacity: 0.8;">每日清晨7:17，为您推送前沿技术资讯</p>
-        </div>
+    <footer>
+        <p>AI DevOps晨报 · 历史归档</p>
     </footer>
 </body>
 </html>

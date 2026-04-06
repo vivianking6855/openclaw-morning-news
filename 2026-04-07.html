@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI DevOps晨报 - 2026年4月7日</title>
+    <style>
+        :root {
+            --primary: #1d1d1f;
+            --secondary: #86868b;
+            --accent: #0071e3;
+            --bg: #f5f5f7;
+            --card-bg: #ffffff;
+            --p0: #ff3b30;
+            --p1: #ff9500;
+            --p2: #34c759;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--primary);
+            line-height: 1.6;
+        }
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: var(--primary);
+            color: #fff;
+            padding: 30px 20px;
+            overflow-y: auto;
+            z-index: 100;
+        }
+        .sidebar .logo {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .sidebar .date {
+            font-size: 12px;
+            color: var(--secondary);
+            margin-bottom: 30px;
+        }
+        .sidebar .nav-section {
+            margin-bottom: 25px;
+        }
+        .sidebar .nav-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 10px;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent);
+        }
+        .sidebar .nav-links {
+            list-style: none;
+        }
+        .sidebar .nav-links li {
+            margin: 5px 0;
+        }
+        .sidebar .nav-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 13px;
+            display: block;
+            padding: 6px 10px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .sidebar .nav-links a:hover {
+            color: #fff;
+            background: rgba(255,255,255,0.1);
+        }
+        .main-content {
+            margin-left: 280px;
+            padding: 40px 50px;
+            max-width: 900px;
+        }
+        .header {
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+        .header .subtitle {
+            font-size: 18px;
+            color: var(--secondary);
+            font-weight: 400;
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .card h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .card h3 {
+            font-size: 18px;
+            margin: 20px 0 10px;
+            color: var(--primary);
+        }
+        .card p {
+            color: var(--secondary);
+            margin-bottom: 12px;
+        }
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        .tag-p0 { background: rgba(255,59,48,0.1); color: var(--p0); }
+        .tag-p1 { background: rgba(255,149,0,0.1); color: var(--p1); }
+        .tag-p2 { background: rgba(52,199,89,0.1); color: var(--p2); }
+        .news-item {
+            border-left: 3px solid var(--accent);
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+        .news-item h4 {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .news-item .source {
+            font-size: 12px;
+            color: var(--secondary);
+            margin-top: 8px;
+        }
+        .quote {
+            background: rgba(0,113,227,0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #e5e5e5;
+            color: var(--secondary);
+            font-size: 14px;
+        }
+        @media (max-width: 1024px) {
+            .sidebar { display: none; }
+            .main-content { margin-left: 0; padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">📰 AI DevOps晨报</div>
+        <div class="date">2026年4月7日 星期二</div>
+        
+        <div class="nav-section">
+            <div class="nav-title">今日概览</div>
+            <ul class="nav-links">
+                <li><a href="#summary">核心摘要</a></li>
+                <li><a href="#highlights">重点动态</a></li>
+            </ul>
+        </div>
+        
+        <div class="nav-section">
+            <div class="nav-title">第一章 AI人工智能</div>
+            <ul class="nav-links">
+                <li><a href="#ai-industry">产业动态</a></li>
+                <li><a href="#ai-model">模型突破</a></li>
+            </ul>
+        </div>
+        
+        <div class="nav-section">
+            <div class="nav-title">第二章 云原生DevOps</div>
+            <ul class="nav-links">
+                <li><a href="#k8s">Kubernetes</a></li>
+                <li><a href="#devops-tools">工具链</a></li>
+            </ul>
+        </div>
+        
+        <div class="nav-section">
+            <div class="nav-title">第三章 具身智能</div>
+            <ul class="nav-links">
+                <li><a href="#robot-funding">融资动态</a></li>
+                <li><a href="#robot-production">量产进展</a></li>
+            </ul>
+        </div>
+        
+        <div class="nav-section">
+            <div class="nav-title">第四章 项目管理</div>
+            <ul class="nav-links">
+                <li><a href="#pm-ai">AI赋能</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="header">
+            <h1>AI DevOps 晨报</h1>
+            <p class="subtitle">2026年4月7日 · 聚焦AI、云原生、机器人与项目管理</p>
+        </header>
+
+        <section id="summary" class="card">
+            <h2><span class="tag tag-p0">核心</span>今日摘要</h2>
+            <div class="quote">
+                "具身智能融资进入白热化阶段，星海图两个月融资30亿估值突破200亿；智元机器人第10000台下线标志量产元年真正到来。云原生领域Kubernetes v1.34带来DRA GA等重要更新。AI应用层面，ChatGPT Agent开启自主执行新时代。"
+            </div>
+            <p><strong>重点关注：</strong></p>
+            <p>1. <span class="tag tag-p0">重磅</span> 星海图B+轮融资20亿，估值超200亿元，两个月累计融资近30亿</p>
+            <p>2. <span class="tag tag-p0">重磅</span> 智元机器人第10000台通用具身机器人正式下线</p>
+            <p>3. <span class="tag tag-p1">重要</span> Kubernetes v1.34发布，DRA正式GA，AI负载调度能力大幅提升</p>
+            <p>4. <span class="tag tag-p1">重要</span> OpenAI发布ChatGPT Agent，AI从辅助向主动执行跨越</p>
+        </section>
+
+        <section id="ai-industry" class="card">
+            <h2><span class="tag tag-p1">AI</span> 产业动态</h2>
+            
+            <div class="news-item">
+                <h4>微软向日本投资100亿美元扩展AI基础设施</h4>
+                <p>微软宣布将向日本投资100亿美元用于AI基础设施扩展，这是微软在亚洲AI布局的重要一步。同时，壁仞科技营收突破10亿，但亏损仍在扩大。</p>
+                <p class="source">来源：亿欧网 | 2026-04-07</p>
+            </div>
+            
+            <div class="news-item">
+                <h4>OpenAI发布ChatGPT Agent：首个自主AI助手</h4>
+                <p>OpenAI推出革命性AI系统ChatGPT Agent，整合Operator网页交互、Deep Research信息整合与ChatGPT深度对话能力，可自主调用浏览器、终端、API等工具完成编程、PPT生成、行程规划等复杂任务。在HLE测试中以41.6%的pass@1得分刷新纪录。</p>
+                <p class="source">来源：AI前沿速递 | 2025-07-18</p>
+            </div>
+            
+            <div class="news-item">
+                <h4>量化派发布2025年度业绩：AI+消费战略成效显著</h4>
+                <p>量化派发布2025年度业绩报告，营收与净利润实现双增长，全面推进"AI+消费"战略升级，重点优化"量星球"AI技术平台，打造"技术赋能+场景深耕"的双轮驱动增长模式。</p>
+                <p class="source">来源：亿欧网 | 2026-04-07</p>
+            </div>
+        </section>
+
+        <section id="ai-model" class="card">
+            <h2><span class="tag tag-p2">模型</span> 模型突破</h2>
+            
+            <div class="news-item">
+                <h4>MiniMax Agent实现无代码30分钟生成全功能网站</h4>
+                <p>国产大模型MiniMax推出Agent全栈开发功能，用户通过自然语言描述需求即可无代码生成完整电商网站，涵盖前端页面、后端数据库、支付系统（Stripe集成）及定时任务，30分钟内完成从需求到部署的全流程。</p>
+                <p class="source">来源：AI前沿速递 | 2025-07-18</p>
+            </div>
+            
+            <div class="news-item">
+                <h4>谷歌Gemini 2.5 Flash-Lite正式商业化</h4>
+                <p>谷歌正式推出Gemini 2.5 Flash-Lite稳定版本，该轻量级AI模型结束预览阶段，全面进入商业化应用，为企业提供更具成本效益的AI解决方案。</p>
+                <p class="source">来源：AI视野 | 2025-07-24</p>
+            </div>
+        </section>
+
+        <section id="k8s" class="card">
+            <h2><span class="tag tag-p1">K8s</span> Kubernetes v1.34发布</h2>
+            
+            <div class="news-item">
+                <h4>代号"风与意志"，58项功能改进</h4>
+                <p>Kubernetes v1.34正式发布，包含58项功能改进，其中23项升级为稳定版、22项进入测试版、13项进入alpha阶段，且没有引入任何破坏性变更。</p>
+            </div>
+            
+            <h3>核心功能亮点</h3>
+            <p><strong>1. 动态资源分配（DRA）正式GA</strong></p>
+            <p>提供更灵活的GPU等设备管理，AI工作负载资源调度能力大幅提升。</p>
+            
+            <p><strong>2. ServiceAccount令牌用于镜像拉取认证进入Beta</strong></p>
+            <p>提升安全性，简化镜像拉取认证流程。</p>
+            
+            <p><strong>3. 容器级重启规则</strong></p>
+            <p>可为Pod内不同容器设置独立的restart策略，资源更精准分配，运维干预更高效。</p>
+            
+            <p><strong>4. OCI Artifact Volumes</strong></p>
+            <p>Pod可以直接从OCI Registry挂载artifact作为只读卷，模型迭代速度提升，CI/CD更轻量。</p>
+            
+            <p><strong>5. PreferSameZone/SameNode调度策略</strong></p>
+            <p>调度器新增的zone/node亲和策略让跨区部署更智能，降低跨区带宽成本。</p>
+            
+            <p class="source">来源：KubeSphere、运维狗工作日记 | 2025-08-28</p>
+        </section>
+
+        <section id="devops-tools" class="card">
+            <h2><span class="tag tag-p2">工具</span> 云原生工具链</h2>
+            
+            <div class="news-item">
+                <h4>Kagent：K8s原生AI代理框架</h4>
+                <p>Kagent是一个开源的K8s原生框架，旨在帮助DevOps和平台工程师在K8s环境中构建和运行AI代理。构建在Microsoft的AutoGen开源框架之上，支持Model Context Protocol（MCP），计划作为CNCF沙箱项目进行捐赠。</p>
+                <p class="source">来源：KubeSphere | 2025-04-22</p>
+            </div>
+            
+            <div class="news-item">
+                <h4>vLLM社区原生支持HAMi</h4>
+                <p>vLLM社区通过PR#579原生支持CNCF Sandbox & CNAI Project HAMi，提升大模型推理的GPU资源利用率和部署灵活性。</p>
+                <p class="source">来源：KubeSphere | 2025</p>
+            </div>
+            
+            <div class="news-item">
+                <h4>阿里云ACK 2025年4月更新</h4>
+                <p>容器服务Edge版发布1.32版本；云原生AI套件新增HistoryServer组件和KubeRay组件支持；构建多集群CD能力增强。</p>
+                <p class="source">来源：阿里云文档 | 2025-04</p>
+            </div>
+        </section>
+
+        <section id="robot-funding" class="card">
+            <h2><span class="tag tag-p0">融资</span> 具身智能融资狂潮</h2>
+            
+            <div class="news-item">
+                <h4>星海图B+轮融资20亿元，估值突破200亿</h4>
+                <p>星海图近日获20亿元B+轮融资，估值超200亿元，成为国内具身智能行业估值最高的公司。本轮融资阵容包括华登科技、蓝思科技、矽芯投资等。两个月内完成近30亿元融资。2025年其在轮式双臂机器人领域的全球市场占有率位居第一。</p>
+                <p class="source">来源：财新网、投中网 | 2026-04-02</p>
+            </div>
+            
+            <div class="news-item">
+                <h4>知行机器人完成近亿元B+及B++轮融资</h4>
+                <p>知行机器人已完成B+、B++轮融资，两轮融资累计近亿元，由山东威达领投。公司已成为智元机器人、腾讯、华为、智平方等企业数据采集配套硬件产品的独家或核心供应商。</p>
+                <p class="source">来源：36氪 | 2026-04-02</p>
+            </div>
+            
+            <div class="news-item">
+                <h4>鹰瞰智翼完成千万元天使轮融资</h4>
+                <p>仿生扑翼飞行机器人公司鹰瞰智翼完成千万元级别天使轮融资，由启高资本领投，奇绩创坛及上海交大母基金跟投。资金将主要用于产品量产、下一代具身智能飞行机器人研发，以及全球首个机器人流体仿真引擎搭建。</p>
+                <p class="source">来源：36氪 | 2026-04-02</p>
+            </div>
+            
+            <div class="quote">
+                <strong>资本数据：</strong>2025年具身智能赛道融资超511亿元（是前一年的3.5倍），2026年仅前三个月融资已近300亿元。目前已有13家企业估值突破百亿元。
+            </div>
+        </section>
+
+        <section id="robot-production" class="card">
+            <h2><span class="tag tag-p0">量产</span> 量产里程碑</h2>
+            
+            <div class="news-item">
+                <h4>智元机器人第10000台通用具身机器人下线</h4>
+                <p>3月30日，智元机器人第10000台通用具身机器人下线，其中远征系列（A1/A2/A3）2126台、灵犀系列（X1/X2）5008台、精灵系列（G1/G2）2909台。公司已建立标准化供应链体系，具备年产能超10万台的柔性交付能力。</p>
+                <p class="source">来源：凤凰网汽车 | 2026-04-05</p>
+            </div>
+            
+            <div class="news-item">
+                <h4>从"千台交付"到"万台量产"</h4>
+                <p>IDC报告显示，2025年全球人形机器人出货量约为1.8万台，同比增长约508%。在全球竞争格局中，中国企业占据主导地位，全球出货量排名前六位的厂商均为中国企业，其中宇树科技、智元机器人形成"双龙头"格局。</p>
+                <p class="source">来源：证券时报 | 2026-03-26</p>
+            </div>
+            
+            <div class="news-item">
+                <h4>行业焦点从"肢体"转向"大脑"</h4>
+                <p>为解决机器人通用泛化能力难题，2026年人形机器人行业竞争焦点正加速从"肢体"转向"大脑"，推动"认知—行动一体化"。自2025年12月至今，具身智能领域融资金额开始超越"人形"形态融资体量，资本重点押注于通用具身大脑、AI运动控制等上层智能技术。</p>
+                <p class="source">来源：证券时报 | 2026-03-26</p>
+            </div>
+        </section>
+
+        <section id="pm-ai" class="card">
+            <h2><span class="tag tag-p1">PM</span> AI赋能项目管理</h2>
+            
+            <div class="news-item">
+                <h4>腾讯TAPD联合中国信通院发布AI项目管理报告</h4>
+                <p>《2025年AI技术在项目管理中的应用洞察报告》正式发布，基于对全国400余位行业专家的调研，系统梳理了云为底座、AI为引擎的智能化项目管理现状与趋势。</p>
+                <p class="source">来源：腾讯TAPD | 2025-08-05</p>
+            </div>
+            
+            <div class="news-item">
+                <h4>AI项目管理工具趋势</h4>
+                <p>2025年AI项目管理工具已从简单自动化进化到主动决策支持阶段。禅道、Plutio、Trello、Monday.com等工具纷纷引入AI能力，实现智能任务分配、风险预测、需求分析等功能。据统计，使用智能预警系统的团队能将项目延期率降低37%。</p>
+                <p class="source">来源：项目管理软件网 | 2025-03-27</p>
+            </div>
+            
+            <div class="news-item">
+                <h4>PMI三层AI应用模型</h4>
+                <p>PMI将AI对项目工作的价值分成三个层级：<br>
+                • <strong>自动化(Automating)</strong>：速度-省时间，如会议纪要、周报<br>
+                • <strong>辅助(Assisting)</strong>：补盲区-降风险，如风险矩阵、成本分析<br>
+                • <strong>增强(Augmenting)</strong>：升维度-解难题，如商业论证、复杂决策</p>
+                <p class="source">来源：一刀的项目管理课 | 2025-07-31</p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p><strong>AI DevOps晨报</strong> · 每日精选AI、云原生、机器人与项目管理领域最新动态</p>
+            <p>生成时间：2026年4月7日 07:17 CST | 数据来源：公开网络信息</p>
+            <p>网站：<a href="https://vivianking6855.github.io/openclaw-morning-news/">https://vivianking6855.github.io/openclaw-morning-news/</a></p>
+        </footer>
+    </main>
+</body>
+</html>
