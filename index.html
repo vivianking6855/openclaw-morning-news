@@ -4,93 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI DevOps晨报 - 每日精选AI、云原生、机器人与项目管理动态</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #1d1d1f;
-            --secondary: #86868b;
-            --accent: #0071e3;
-            --bg: #f5f5f7;
-            --card-bg: #ffffff;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background: var(--bg);
-            color: var(--primary);
-            line-height: 1.6;
-        }
-        .hero {
+        .home-hero {
             background: linear-gradient(135deg, #1d1d1f 0%, #434344 100%);
             color: #fff;
-            padding: 80px 20px;
+            padding: 100px 20px;
             text-align: center;
         }
-        .hero h1 {
+        .home-hero h1 {
             font-size: 48px;
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
-        .hero p {
+        .home-hero p {
             font-size: 18px;
             color: #a1a1a6;
             max-width: 600px;
-            margin: 0 auto;
+            margin: 0 auto 30px;
         }
-        .container {
-            max-width: 1200px;
+        .latest-news {
+            max-width: 900px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 60px 20px;
         }
-        .section-title {
-            font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 30px;
+        .latest-news h2 {
             text-align: center;
+            margin-bottom: 40px;
+            font-size: 28px;
         }
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 25px;
-        }
-        .news-card {
-            background: var(--card-bg);
+        .news-card-home {
+            background: #fff;
             border-radius: 16px;
-            padding: 25px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             transition: transform 0.2s, box-shadow 0.2s;
         }
-        .news-card:hover {
+        .news-card-home:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
         }
-        .news-card .date {
-            font-size: 12px;
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        .news-card h3 {
-            font-size: 18px;
-            margin-bottom: 12px;
-        }
-        .news-card p {
-            color: var(--secondary);
+        .news-card-home .date {
             font-size: 14px;
+            color: #0071e3;
+            font-weight: 600;
             margin-bottom: 15px;
         }
-        .news-card a {
-            color: var(--accent);
+        .news-card-home h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #1d1d1f;
+        }
+        .news-card-home p {
+            color: #86868b;
+            font-size: 16px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .news-card-home a {
+            color: #0071e3;
             text-decoration: none;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 16px;
         }
         .archives-link {
             text-align: center;
             margin-top: 50px;
         }
-        .btn {
+        .btn-primary {
             display: inline-block;
-            background: var(--accent);
+            background: #0071e3;
             color: #fff;
             padding: 15px 30px;
             border-radius: 30px;
@@ -98,47 +82,56 @@
             font-weight: 600;
             transition: background 0.2s;
         }
-        .btn:hover {
+        .btn-primary:hover {
             background: #0051a3;
-        }
-        footer {
-            background: var(--primary);
-            color: #fff;
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 60px;
-        }
-        footer p {
-            color: #a1a1a6;
-            font-size: 14px;
         }
     </style>
 </head>
 <body>
-    <header class="hero">
-        <h1>AI DevOps 晨报</h1>
-        <p>每日精选人工智能、云原生、具身智能与项目管理领域的最新动态，助你把握技术脉搏</p>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">📰</span>
+                <span class="logo-text">每日晨报</span>
+            </a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">今日晨报</a>
+                <a href="archives.html" class="nav-link">历史归档</a>
+                <a href="about.html" class="nav-link">关于</a>
+            </nav>
+        </div>
     </header>
 
-    <main class="container">
-        <h2 class="section-title">📰 最新晨报</h2>
-        <div class="news-grid">
-            <div class="news-card">
-                <div class="date">2026年4月7日</div>
-                <h3>星海图估值突破200亿 | 智元万台下线</h3>
-                <p>具身智能头部格局加速形成，Kubernetes v1.34正式发布带来DRA GA，OpenAI发布ChatGPT Agent开启自主执行新时代...</p>
-                <a href="news_20260407.html">阅读完整晨报 →</a>
-            </div>
+    <!-- 首页大标题 -->
+    <section class="home-hero">
+        <h1>AI DevOps 晨报</h1>
+        <p>每日精选人工智能、云原生、具身智能与项目管理领域的最新动态，助你把握技术脉搏</p>
+        <a href="news_20260407.html" class="btn-primary">阅读今日晨报</a>
+    </section>
+
+    <!-- 最新晨报 -->
+    <section class="latest-news">
+        <h2>📰 最新晨报</h2>
+        
+        <div class="news-card-home">
+            <div class="date">2026年4月7日 星期二</div>
+            <h3>星海图估值突破200亿 | 智元万台下线 | K8s v1.34发布</h3>
+            <p>具身智能融资进入白热化阶段，星海图两个月融资30亿估值突破200亿；智元机器人第10000台下线标志量产元年真正到来。云原生领域Kubernetes v1.34带来DRA GA等重要更新...</p>
+            <a href="news_20260407.html">阅读完整晨报 →</a>
         </div>
 
         <div class="archives-link">
-            <a href="archives.html" class="btn">查看历史归档</a>
+            <a href="archives.html" class="btn-primary">查看历史归档</a>
         </div>
-    </main>
+    </section>
 
-    <footer>
-        <p>AI DevOps晨报 · 每日更新 · 聚焦技术前沿</p>
-        <p style="margin-top: 10px;">GitHub Pages托管</p>
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>AI DevOps晨报 · 每日更新 · 聚焦技术前沿</p>
+            <p style="margin-top: 10px;">Powered by <a href="https://github.com/vivianking6855/openclaw-morning-news" target="_blank" style="color: #0071e3;">OpenClaw</a></p>
+        </div>
     </footer>
 </body>
 </html>
