@@ -3,392 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI晨报 | 2026年4月2日</title>
+    <title>每日晨报 2026-04-02 | OpenClaw Morning News</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-            color: #333;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: #fff;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #fff;
-            padding: 40px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 2.5em;
-            font-weight: 700;
-            margin-bottom: 10px;
-            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .date-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.1);
-            padding: 10px 25px;
-            border-radius: 50px;
-            font-size: 1.1em;
-            margin-top: 15px;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        
-        .tagline {
-            margin-top: 15px;
-            color: #888;
-            font-size: 0.95em;
-        }
-        
-        .content {
-            padding: 40px;
-        }
-        
-        .section {
-            margin-bottom: 35px;
-        }
-        
-        .section-title {
-            font-size: 1.4em;
-            font-weight: 700;
-            color: #1a1a2e;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #667eea;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .section-icon {
-            font-size: 1.2em;
-        }
-        
-        .news-card {
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 20px;
-            border-left: 4px solid #667eea;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        
-        .news-card:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        
-        .news-card.highlight {
-            border-left-color: #e74c3c;
-            background: linear-gradient(135deg, #fff5f5 0%, #fff 100%);
-        }
-        
-        .news-card.tech {
-            border-left-color: #3498db;
-            background: linear-gradient(135deg, #f0f8ff 0%, #fff 100%);
-        }
-        
-        .news-card.money {
-            border-left-color: #27ae60;
-            background: linear-gradient(135deg, #f0fff4 0%, #fff 100%);
-        }
-        
-        .news-title {
-            font-size: 1.2em;
-            font-weight: 600;
-            color: #1a1a2e;
-            margin-bottom: 12px;
-            line-height: 1.4;
-        }
-        
-        .news-source {
-            display: inline-block;
-            background: #667eea;
-            color: #fff;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            margin-bottom: 12px;
-        }
-        
-        .news-source.highlight-tag {
-            background: #e74c3c;
-        }
-        
-        .news-source.tech-tag {
-            background: #3498db;
-        }
-        
-        .news-source.money-tag {
-            background: #27ae60;
-        }
-        
-        .news-content {
-            color: #555;
-            line-height: 1.8;
-            font-size: 0.95em;
-        }
-        
-        .news-content p {
-            margin-bottom: 10px;
-        }
-        
-        .stats-box {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-        
-        .stat-item {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #fff;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 2em;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-        
-        .stat-label {
-            font-size: 0.9em;
-            opacity: 0.9;
-        }
-        
-        .trend-indicator {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-weight: 600;
-        }
-        
-        .trend-up {
-            color: #27ae60;
-        }
-        
-        .trend-down {
-            color: #e74c3c;
-        }
-        
-        .footer {
-            background: #1a1a2e;
-            color: #888;
-            padding: 30px;
-            text-align: center;
-            font-size: 0.9em;
-        }
-        
-        .footer a {
-            color: #667eea;
-            text-decoration: none;
-        }
-        
-        .quick-news {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
-        }
-        
-        .quick-item {
-            background: #fff;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 15px;
-            font-size: 0.9em;
-        }
-        
-        .quick-item strong {
-            color: #1a1a2e;
-            display: block;
-            margin-bottom: 5px;
-        }
-        
-        @media (max-width: 600px) {
-            .header h1 {
-                font-size: 1.8em;
-            }
-            .content {
-                padding: 20px;
-            }
-        }
+        .news-meta { font-size: 11px; color: #86868b; margin-top: 4px; display: block; }
+        .news-meta .time { margin-right: 8px; }
+        .news-meta .source { color: #0071e3; }
+        .stats-box { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 20px 0; }
+        .stat-item { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; padding: 25px; border-radius: 12px; text-align: center; }
+        .stat-number { font-size: 2em; font-weight: 700; margin-bottom: 5px; }
+        .stat-label { font-size: 0.9em; opacity: 0.9; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <h1>🤖 AI 晨报</h1>
-            <div class="date-badge">📅 2026年4月2日 星期三</div>
-            <div class="tagline">聚焦人工智能 · 具身智能 · 机器人 · 大模型</div>
-        </header>
-        
-        <div class="content">
-            <!-- 市场动态 -->
-            <section class="section">
-                <h2 class="section-title">
-                    <span class="section-icon">📈</span>
-                    市场热点
-                </h2>
-                
-                <div class="stats-box">
-                    <div class="stat-item">
-                        <div class="stat-number">+31.94%</div>
-                        <div class="stat-label">智谱AI股价涨幅</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">+17.10%</div>
-                        <div class="stat-label">优必选股价涨幅</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">2.68%</div>
-                        <div class="stat-label">中证机器人指数涨幅</div>
-                    </div>
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo"><span class="logo-icon">📰</span><span class="logo-text">每日晨报</span></a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">今日晨报</a>
+                <a href="archives.html" class="nav-link">历史归档</a>
+                <a href="about.html" class="nav-link">关于</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="date-bar">
+        <div class="date-container">
+            <button class="date-btn" onclick="location.href='news_20260401.html'">← 前一天</button>
+            <span class="current-date">2026年4月2日 星期四</span>
+            <button class="date-btn" onclick="location.href='news_20260403.html'">后一天 →</button>
+        </div>
+    </div>
+
+    <main class="main">
+        <section class="hero-section">
+            <div class="hero-badge">💡 今日洞察</div>
+            <h1 class="hero-title">港股AI企业集体爆发，人形机器人概念持续火热</h1>
+            <p class="hero-summary">4月1日，港股市场AI概念股迎来爆发式上涨。智谱AI上涨31.94%，优必选上涨17.10%。市场分析认为，token价格上涨证明了大模型商业化的可行性，而优必选2025年财报业绩则证明人形机器人规模化将不再是故事。具身智能广东省工程研究中心获批组建，行业迎来政策利好。</p>
+            <div class="hero-meta">
+                <span>📅 2026-04-02</span>
+                <span>⏱️ 5分钟阅读</span>
+                <span>🔖 5个板块</span>
+            </div>
+        </section>
+
+        <div class="stats-box">
+            <div class="stat-item">
+                <div class="stat-number">+31.94%</div>
+                <div class="stat-label">智谱AI股价涨幅</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">+17.10%</div>
+                <div class="stat-label">优必选股价涨幅</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2.68%</div>
+                <div class="stat-label">中证机器人指数涨幅</div>
+            </div>
+        </div>
+
+        <section class="recommendations">
+            <h2 class="section-title">🛠️ 务实落地建议</h2>
+            <div class="rec-grid">
+                <div class="rec-card">
+                    <h4>关注行业展会</h4>
+                    <p>深圳人工智能展览会4月9日开幕，首次设立AI大模型/具身智能展区，建议关注华为昇腾、商汤科技等企业最新动态。</p>
                 </div>
-                
-                <div class="news-card money">
-                    <div class="news-title">港股AI企业集体爆发，人形机器人概念持续火热</div>
-                    <span class="news-source money-tag">新浪财经</span>
-                    <div class="news-content">
-                        <p>4月1日，港股市场AI概念股迎来爆发式上涨。AI大模型第一股<strong>智谱上涨31.94%</strong>，人形机器人第一股<strong>优必选上涨17.10%</strong>。市场分析认为，token价格的上涨证明了智谱等大模型商业化的可行性，而优必选的2025年财报业绩则证明人形机器人规模化将不再是故事。</p>
-                        <p>优必选在财报中主打营收、销量全球第一的标签，并标注了"非遥控非玩具"，显示出其在全尺寸具身智能人形机器人领域的领先地位。</p>
-                    </div>
+                <div class="rec-card">
+                    <h4>政策红利把握</h4>
+                    <p>具身智能广东省工程研究中心获批，力争2-3年内实现核心零部件国产化率超80%，建议关注国产替代机会。</p>
                 </div>
-                
-                <div class="news-card money">
-                    <div class="news-title">机器人ETF成交超1.6亿，头部企业即将集体亮相电博会</div>
-                    <span class="news-source money-tag">新浪财经</span>
-                    <div class="news-content">
-                        <p>截至2026年4月1日收盘，机器人ETF天弘(159770)成交<strong>1.60亿元</strong>，位居深市同标的第一。跟踪的中证机器人指数(H30590)强势上涨2.68%，成分股瑞松科技上涨14.00%，绿的谐波上涨7.92%。</p>
-                        <p>值得注意的是，具身智能板块头部企业包括宇树机器人、众擎机器人、智元机器人、越疆机器人、灵心巧手等将集体亮相即将举办的电博会。</p>
-                    </div>
+                <div class="rec-card">
+                    <h4>投资标的筛选</h4>
+                    <p>港股AI企业表现强劲，建议评估大模型商业化和人形机器人量产进展，关注业绩兑现能力。</p>
                 </div>
+                <div class="rec-card">
+                    <h4>标准落地跟进</h4>
+                    <p>首个具身智能行业标准发布，评测迈入"有标可依"新阶段，建议跟进标准对产业投资的影响。</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="content-grid">
+            <section class="content-card">
+                <h3><span class="card-icon">📈</span> 市场热点</h3>
+                <ul>
+                    <li>
+                        <strong>港股AI企业集体爆发，人形机器人概念持续火热</strong>，智谱AI上涨31.94%，优必选上涨17.10%，token价格上涨证明商业化可行性
+                        <span class="news-meta"><span class="time">2026-04-02</span><span class="source">@新浪财经</span></span>
+                    </li>
+                    <li>
+                        <strong>机器人ETF成交超1.6亿，头部企业将集体亮相电博会</strong>，机器人ETF天弘成交1.60亿元，宇树、众擎、智元、越疆、灵心巧手等将亮相
+                        <span class="news-meta"><span class="time">2026-04-02</span><span class="source">@新浪财经</span></span>
+                    </li>
+                </ul>
             </section>
-            
-            <!-- 政策与产业 -->
-            <section class="section">
-                <h2 class="section-title">
-                    <span class="section-icon">🏛️</span>
-                    政策与产业
-                </h2>
-                
-                <div class="news-card highlight">
-                    <div class="news-title">具身智能机器人广东省工程研究中心获批组建</div>
-                    <span class="news-source highlight-tag">深圳新闻网</span>
-                    <div class="news-content">
-                        <p>近日，依托<strong>深圳市人工智能与机器人研究院（AIRS）</strong>申报的"具身智能机器人广东省工程研究中心"获得广东省发展和改革委员会批复组建。</p>
-                        <p>这是AIRS在具身智能与机器人领域获批的<strong>第四个省级平台</strong>，标志着该研究院构建起覆盖产业服务、技术攻关、中试验证、工程应用的完整创新矩阵。该中心以推动具身智能机器人在电力、交通、医疗等领域的工程化应用与规模化推广为核心目标。</p>
-                        <p>行业层面，力争2-3年内实现核心零部件国产化率超80%；经济层面，预计每年为广东带来近亿元直接经济效益。</p>
-                    </div>
-                </div>
+
+            <section class="content-card">
+                <h3><span class="card-icon">🏛️</span> 政策与产业</h3>
+                <ul>
+                    <li>
+                        <strong>具身智能机器人广东省工程研究中心获批组建</strong>，依托深圳市人工智能与机器人研究院（AIRS）申报，是AIRS在具身智能领域获批的第四个省级平台
+                        <span class="news-meta"><span class="time">2026-04-02</span><span class="source">@深圳新闻网</span></span>
+                    </li>
+                    <li>
+                        <strong>力争2-3年内实现核心零部件国产化率超80%</strong>，预计每年为广东带来近亿元直接经济效益
+                        <span class="news-meta"><span class="time">2026-04-02</span><span class="source">@深圳新闻网</span></span>
+                    </li>
+                </ul>
             </section>
-            
-            <!-- 技术前沿 -->
-            <section class="section">
-                <h2 class="section-title">
-                    <span class="section-icon">🔬</span>
-                    技术前沿
-                </h2>
-                
-                <div class="news-card tech">
-                    <div class="news-title">首个具身智能行业标准正式发布，评测迈入"有标可依"新阶段</div>
-                    <span class="news-source tech-tag">行业动态</span>
-                    <div class="news-content">
-                        <p>《YD/T 6770-2026 人工智能 关键基础技术 具身智能基准测试方法》正式发布，标志着具身智能评测迈入"有标可依"的新阶段。这将加速我国具身智能产业从实验室走向真实场景，促进技术成果的工程化落地和产业化应用。</p>
-                        <p>长江证券指出，此次标准的发布或成为具身智能产业投资的重要催化剂。</p>
-                    </div>
-                </div>
-                
-                <div class="news-card">
-                    <div class="news-title">深圳人工智能展览会4月9日开幕，首次设立AI大模型/具身智能展区</div>
-                    <span class="news-source">展会预告</span>
-                    <div class="news-content">
-                        <p>2026第十四届深圳国际人工智能展览会将于<strong>4月9日至11日</strong>在深圳会展中心（福田）举办。本届展会以"智联万物·赋能未来"为主题，<strong>首次设立【AI大模型/具身智能展区】</strong>，预计吸引200余家国际头部企业参展。</p>
-                        <p>华为昇腾、商汤科技、智谱AI等企业将携千亿参数级大模型亮相。华为计划展示"盘古3.0"在工业质检领域的应用，缺陷识别准确率提升至99.7%；商汤将发布面向金融领域的"日日新"大模型升级版。</p>
-                    </div>
-                </div>
+
+            <section class="content-card">
+                <h3><span class="card-icon">🔬</span> 技术前沿</h3>
+                <ul>
+                    <li>
+                        <strong>首个具身智能行业标准正式发布</strong>，《YD/T 6770-2026 人工智能 关键基础技术 具身智能基准测试方法》发布，评测迈入"有标可依"新阶段
+                        <span class="news-meta"><span class="time">2026-04-02</span><span class="source">@行业动态</span></span>
+                    </li>
+                    <li>
+                        <strong>深圳人工智能展览会4月9日开幕</strong>，首次设立【AI大模型/具身智能展区】，华为昇腾、商汤科技、智谱AI等企业将携千亿参数级大模型亮相
+                        <span class="news-meta"><span class="time">2026-04-02</span><span class="source">@展会预告</span></span>
+                    </li>
+                </ul>
             </section>
-            
-            <!-- 融资动态 -->
-            <section class="section">
-                <h2 class="section-title">
-                    <span class="section-icon">💰</span>
-                    近期融资回顾
-                </h2>
-                
-                <div class="quick-news">
-                    <div class="quick-item">
-                        <strong>银河通用</strong>
-                        完成25亿元融资，专注具身智能机器人
-                    </div>
-                    <div class="quick-item">
-                        <strong>星动纪元</strong>
-                        获10亿元战略投资，研发高性能人形机器人
-                    </div>
-                    <div class="quick-item">
-                        <strong>自变量机器人</strong>
-                        完成数亿元Pre-B轮，2026年估值最高具身智能企业
-                    </div>
-                    <div class="quick-item">
-                        <strong>北京人形机器人创新中心</strong>
-                        获超7亿元融资，多家国资基金参与
-                    </div>
-                    <div class="quick-item">
-                        <strong>灵心巧手</strong>
-                        获15亿元B轮融资，专注高自由度灵巧手
-                    </div>
-                    <div class="quick-item">
-                        <strong>星海图</strong>
-                        完成B轮10亿人民币融资，全栈自研能力
-                    </div>
-                </div>
-            </section>
-            
-            <!-- 行业观点 -->
-            <section class="section">
-                <h2 class="section-title">
-                    <span class="section-icon">💡</span>
-                    行业观点
-                </h2>
-                
-                <div class="news-card">
-                    <div class="news-title">商汤王晓刚：人形机器人"ChatGPT时刻"将在2027年到来</div>
-                    <span class="news-source">财新网</span>
-                    <div class="news-content">
-                        <p>在博鳌亚洲论坛2026年年会上，商汤联合创始人、大晓机器人董事长王晓刚给出全场最乐观预测：人形机器人的"ChatGPT时刻"将在两年后，也就是<strong>2027年到来</strong>。</p>
-                        <p>届时透过环境式速采方式，机器人行业的数据量将由目前的10万小时级别提升至1000万小时。行业迎来"ChatGPT时刻"实际上是指技术路线有了确定性，沿着某条技术路线扩大数据规模就会增加模型规模，也一定能够得到收益。</p>
-                    </div>
-                </div>
+
+            <section class="content-card">
+                <h3><span class="card-icon">💰</span> 近期融资回顾</h3>
+                <ul>
+                    <li>
+                        <strong>银河通用</strong>完成25亿元融资，专注具身智能机器人
+                        <span class="news-meta"><span class="time">2026-04</span><span class="source">@融资动态</span></span>
+                    </li>
+                    <li>
+                        <strong>星动纪元</strong>获10亿元战略投资，研发高性能人形机器人
+                        <span class="news-meta"><span class="time">2026-04</span><span class="source">@融资动态</span></span>
+                    </li>
+                    <li>
+                        <strong>自变量机器人</strong>完成数亿元Pre-B轮，2026年估值最高具身智能企业
+                        <span class="news-meta"><span class="time">2026-04</span><span class="source">@融资动态</span></span>
+                    </li>
+                    <li>
+                        <strong>北京人形机器人创新中心</strong>获超7亿元融资，多家国资基金参与
+                        <span class="news-meta"><span class="time">2026-04</span><span class="source">@融资动态</span></span>
+                    </li>
+                    <li>
+                        <strong>灵心巧手</strong>获15亿元B轮融资，专注高自由度灵巧手
+                        <span class="news-meta"><span class="time">2026-04</span><span class="source">@融资动态</span></span>
+                    </li>
+                    <li>
+                        <strong>星海图</strong>完成B轮10亿人民币融资，全栈自研能力
+                        <span class="news-meta"><span class="time">2026-04</span><span class="source">@融资动态</span></span>
+                    </li>
+                </ul>
             </section>
         </div>
-        
-        <footer class="footer">
-            <p>🤖 AI晨报 · 每日精选人工智能领域重要资讯</p>
-            <p style="margin-top: 10px; font-size: 0.85em;">数据来源：深圳新闻网、新浪财经、财新网等 | Generated by AI</p>
-        </footer>
-    </div>
+
+        <!-- 行业观点 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">💡</span> 行业观点</h3>
+            <div style="margin-top: 20px; background: #f5f5f7; padding: 20px; border-radius: 12px; border-left: 4px solid #0071e3;">
+                <p style="font-size: 15px; line-height: 1.6; color: #333; margin-bottom: 12px;">"人形机器人的'ChatGPT时刻'将在两年后，也就是<strong>2027年到来</strong>。届时透过环境式速采方式，机器人行业的数据量将由目前的10万小时级别提升至1000万小时。"</p>
+                <div style="font-size: 12px; color: #86868b;">
+                    <span style="font-weight: 600; color: #1d1d1f;">🎓 商汤王晓刚</span> 商汤联合创始人、大晓机器人董事长 @ 博鳌亚洲论坛2026年年会
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>每日晨报 | 2026年4月2日归档</p>
+            <p>Powered by <a href="https://openclaw.ai" target="_blank">OpenClaw</a></p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
 </body>
 </html>

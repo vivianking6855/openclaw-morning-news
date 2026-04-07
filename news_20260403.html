@@ -3,369 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI晨报 | 2026年4月3日</title>
+    <title>每日晨报 2026-04-03 | OpenClaw Morning News</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-            color: #333;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: #fff;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #fff;
-            padding: 40px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 2.5em;
-            font-weight: 700;
-            margin-bottom: 10px;
-            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .date-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.1);
-            padding: 10px 25px;
-            border-radius: 50px;
-            font-size: 1.1em;
-            margin-top: 15px;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        
-        .tagline {
-            margin-top: 15px;
-            color: #888;
-            font-size: 0.95em;
-        }
-        
-        .content {
-            padding: 40px;
-        }
-        
-        .section {
-            margin-bottom: 35px;
-        }
-        
-        .section-title {
-            font-size: 1.4em;
-            font-weight: 700;
-            color: #1a1a2e;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #667eea;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .section-icon {
-            font-size: 1.2em;
-        }
-        
-        .news-card {
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 20px;
-            border-left: 4px solid #667eea;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        
-        .news-card:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        
-        .news-card.highlight {
-            border-left-color: #e74c3c;
-            background: linear-gradient(135deg, #fff5f5 0%, #fff 100%);
-        }
-        
-        .news-card.tech {
-            border-left-color: #3498db;
-            background: linear-gradient(135deg, #f0f8ff 0%, #fff 100%);
-        }
-        
-        .news-card.money {
-            border-left-color: #27ae60;
-            background: linear-gradient(135deg, #f0fff4 0%, #fff 100%);
-        }
-        
-        .news-title {
-            font-size: 1.2em;
-            font-weight: 600;
-            color: #1a1a2e;
-            margin-bottom: 12px;
-            line-height: 1.4;
-        }
-        
-        .news-source {
-            display: inline-block;
-            background: #667eea;
-            color: #fff;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            margin-bottom: 12px;
-        }
-        
-        .news-source.highlight-tag {
-            background: #e74c3c;
-        }
-        
-        .news-source.tech-tag {
-            background: #3498db;
-        }
-        
-        .news-source.money-tag {
-            background: #27ae60;
-        }
-        
-        .news-content {
-            color: #555;
-            line-height: 1.8;
-            font-size: 0.95em;
-        }
-        
-        .news-link {
-            display: inline-block;
-            margin-top: 12px;
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        
-        .news-link:hover {
-            color: #764ba2;
-        }
-        
-        .footer {
-            background: #f8f9fa;
-            padding: 30px;
-            text-align: center;
-            color: #666;
-            font-size: 0.9em;
-            border-top: 1px solid #eee;
-        }
-        
-        .footer a {
-            color: #667eea;
-            text-decoration: none;
-        }
-        
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.8em;
-            }
-            
-            .content {
-                padding: 25px;
-            }
-            
-            .news-card {
-                padding: 20px;
-            }
-        }
-        
-        .nav-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .nav-links a {
-            color: #00d4ff;
-            text-decoration: none;
-            padding: 8px 16px;
-            border: 1px solid #00d4ff;
-            border-radius: 20px;
-            transition: all 0.3s;
-            font-size: 0.9em;
-        }
-        
-        .nav-links a:hover {
-            background: #00d4ff;
-            color: #1a1a2e;
-        }
+        .news-meta { font-size: 11px; color: #86868b; margin-top: 4px; display: block; }
+        .news-meta .time { margin-right: 8px; }
+        .news-meta .source { color: #0071e3; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <h1>🌅 AI晨报</h1>
-            <div class="date-badge">2026年4月3日 星期五</div>
-            <div class="tagline">自动生成的人工智能、云原生与商业资讯摘要</div>
-            <div class="nav-links">
-                <a href="index.html">🏠 首页</a>
-                <a href="archives.html">📚 归档</a>
-                <a href="about.html">ℹ️ 关于</a>
-            </div>
-        </header>
-        
-        <main class="content">
-            <!-- AI动态 -->
-            <section class="section">
-                <h2 class="section-title">
-                    <span class="section-icon">🤖</span>
-                    AI动态
-                </h2>
-                
-                <article class="news-card highlight">
-                    <h3 class="news-title">GOPS全球运维大会深圳站即将开幕，聚焦AI+大模型</h3>
-                    <span class="news-source highlight-tag">行业大会</span>
-                    <p class="news-content">
-                        第25届GOPS全球运维大会将于4月25-26日在深圳湾万丽酒店举行，80%议题已确定。核心聚焦AI与大语言模型在运维领域的深度融合，特设大模型+运维/研发测试、银行/证券数字化转型、平台工程、DevOps/AIOps最佳实践等专场。这将是中国运维行业上半年最重要的技术盛会之一。
-                    </p>
-                </article>
-                
-                <article class="news-card">
-                    <h3 class="news-title">Gartner正式更名AIOps为"事件智能解决方案(EIS)"</h3>
-                    <span class="news-source"> paradigm shift</span>
-                    <p class="news-content">
-                        Gartner已将"AIOps"市场名称正式改为"事件智能解决方案"(EIS)，宣告传统AIOps时代落幕。新兴范式Agentic DevOps正在崛起——AI代理不仅能发现问题，更能自己动手解决问题。这标志着从"分析师"到"行动派"的根本性转变。
-                    </p>
-                </article>
-                
-                <article class="news-card">
-                    <h3 class="news-title">2025 DevOps与云原生十大趋势发布</h3>
-                    <span class="news-source">趋势报告</span>
-                    <p class="news-content">
-                        AI自动化全面融入DevOps流程（Copilot for DevOps）、平台工程标准化落地、GitOps成为部署标准范式。AI不再只是工具，而是DevOps的参与者——自动分析日志、识别异常、智能调度/修复生产问题。
-                    </p>
-                </article>
-            </section>
-            
-            <!-- 云原生与算力 -->
-            <section class="section">
-                <h2 class="section-title">
-                    <span class="section-icon">☁️</span>
-                    云原生与算力
-                </h2>
-                
-                <article class="news-card tech">
-                    <h3 class="news-title">Nacos 3.0重磅发布，全面支持MCP Server管理</h3>
-                    <span class="news-source tech-tag">云原生</span>
-                    <p class="news-content">
-                        阿里云微服务引擎Nacos自2018年开源以来已走过6年，Star数超3万。今年4月发布的Nacos 3.0围绕MCP Server管理，推出注册、编排、动态调试、动态发现等能力，成为AI时代服务治理的核心基础设施。
-                    </p>
-                </article>
-                
-                <article class="news-card tech">
-                    <h3 class="news-title">MCP协议重大升级：Streamable HTTP成为最佳选择</h3>
-                    <span class="news-source tech-tag">协议标准</span>
-                    <p class="news-content">
-                        MCP（Model Context Protocol）官方引入全新的Streamable HTTP传输层，对原有HTTP+SSE传输机制有重大改进。Spring AI Alibaba联合Higress发布业界首个Streamable HTTP实现方案，推动AI应用通信标准化。
-                    </p>
-                </article>
-                
-                <article class="news-card tech">
-                    <h3 class="news-title">火山引擎以49.2%份额位居中国大模型调用量第一</h3>
-                    <span class="news-source tech-tag">市场份额</span>
-                    <p class="news-content">
-                        IDC报告显示，2025年上半年中国公有云大模型调用量达536.7万亿Tokens。火山引擎以49.2%市场份额位居第一，阿里云、百度智能云分别占27%、17%。豆包大模型日均Tokens调用量已达50万亿。
-                    </p>
-                </article>
-            </section>
-            
-            <!-- 编程与开发工具 -->
-            <section class="section">
-                <h2 class="section-title">
-                    <span class="section-icon">💻</span>
-                    编程与开发工具
-                </h2>
-                
-                <article class="news-card">
-                    <h3 class="news-title">通义灵码入选"2025年值得关注的AIGC产品"</h3>
-                    <span class="news-source">产品荣誉</span>
-                    <p class="news-content">
-                        在量子位发布的《2025年值得关注的AIGC产品》榜单中，阿里云的通义灵码是唯一入选的AI编程产品。5月30日，阿里云发布通义灵码AI IDE，深度适配千问3大模型，全面集成智能编码助手能力。
-                    </p>
-                </article>
-                
-                <article class="news-card">
-                    <h3 class="news-title">阿里云发布AI就绪云原生数据库新标准</h3>
-                    <span class="news-source">技术发布</span>
-                    <p class="news-content">
-                        在2026 PolarDB开发者大会上，阿里云发布AI就绪（AI-Ready）云原生数据库新标准。让数据系统不仅能存储数据，更能主动理解数据、参与推理，标志着数据库进入AI原生时代。
-                    </p>
-                </article>
-            </section>
-            
-            <!-- 商业与投融资 -->
-            <section class="section">
-                <h2 class="section-title">
-                    <span class="section-icon">💼</span>
-                    商业与投融资
-                </h2>
-                
-                <article class="news-card money">
-                    <h3 class="news-title">DeepSeek再掀互联网入口战，科技股价值重估</h3>
-                    <span class="news-source money-tag">深度报道</span>
-                    <p class="news-content">
-                        DeepSeek开源大模型犹如一把加速AI产业化进程的钥匙。字节跳动CEO梁汝波反思称2024年跟进迟缓，2025年AI业务最重要的是探索智能上限、新UI交互和规模效应。豆包2C应用决定不接入DeepSeek，正测试自研深度思考模型。
-                    </p>
-                </article>
-                
-                <article class="news-card money">
-                    <h3 class="news-title">2025 XOps产业创新发展论坛将于9月在北京举办</h3>
-                    <span class="news-source money-tag">行业活动</span>
-                    <p class="news-content">
-                        由中国信通院主办的2025 XOps产业创新发展论坛定于9月16日在北京举行。将发布DevOps、FinOps及PilotOps多份产业现状调查报告，以及首届"AI领航杯"获奖名单。这是XOps领域年度权威盛会。
-                    </p>
-                </article>
-            </section>
-            
-            <!-- 深度思考 -->
-            <section class="section">
-                <h2 class="section-title">
-                    <span class="section-icon">💡</span>
-                    深度思考
-                </h2>
-                
-                <article class="news-card">
-                    <h3 class="news-title">Vibe Coding兴起：手写代码时代正在结束？</h3>
-                    <span class="news-source">趋势洞察</span>
-                    <p class="news-content">
-                        随着Agentic DevOps的兴起，开发者角色正在从"码农"变成"监工"。Gene Kim甚至断言："手写代码的时代已经结束了，我们可能是最后一代需要手动编写代码的开发者。"产品经理可能直接对AI提需求就能生成代码，开发者的核心竞争力将转向设计提示词和审查AI输出。
-                    </p>
-                </article>
-            </section>
-        </main>
-        
-        <footer class="footer">
-            <p>🤖 由 OpenClaw 自动生成 | 📅 2026年4月3日</p>
-            <p style="margin-top: 10px;">
-                <a href="news_20260402.html">← 上一期</a>
-                <span style="margin: 0 15px;">|</span>
-                <a href="index.html">返回首页</a>
-            </p>
-        </footer>
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo"><span class="logo-icon">📰</span><span class="logo-text">每日晨报</span></a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">今日晨报</a>
+                <a href="archives.html" class="nav-link">历史归档</a>
+                <a href="about.html" class="nav-link">关于</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="date-bar">
+        <div class="date-container">
+            <button class="date-btn" onclick="location.href='news_20260402.html'">← 前一天</button>
+            <span class="current-date">2026年4月3日 星期五</span>
+            <button class="date-btn" onclick="location.href='news_20260404.html'">后一天 →</button>
+        </div>
     </div>
+
+    <main class="main">
+        <section class="hero-section">
+            <div class="hero-badge">💡 今日洞察</div>
+            <h1 class="hero-title">Agentic DevOps崛起：AI从工具到参与者的范式转移</h1>
+            <p class="hero-summary">Gartner正式更名AIOps为"事件智能解决方案(EIS)"，宣告传统AIOps时代落幕。新兴范式Agentic DevOps正在崛起——AI代理不仅能发现问题，更能自己动手解决问题。Nacos 3.0重磅发布全面支持MCP Server管理，火山引擎以49.2%份额位居中国大模型调用量第一。</p>
+            <div class="hero-meta">
+                <span>📅 2026-04-03</span>
+                <span>⏱️ 5分钟阅读</span>
+                <span>🔖 5个板块</span>
+            </div>
+        </section>
+
+        <section class="recommendations">
+            <h2 class="section-title">🛠️ 务实落地建议</h2>
+            <div class="rec-grid">
+                <div class="rec-card">
+                    <h4>MCP协议跟进</h4>
+                    <p>Nacos 3.0支持MCP Server管理，建议关注MCP协议在AI服务治理中的应用，评估对现有架构的影响。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>大模型选型</h4>
+                    <p>火山引擎以49.2%份额位居大模型调用量第一，建议评估不同云厂商的大模型服务能力与成本。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>开发工具升级</h4>
+                    <p>通义灵码入选"2025年值得关注的AIGC产品"，建议评估AI编程助手对研发效率的提升。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>Vibe Coding实践</h4>
+                    <p>开发者角色从"码农"变成"监工"，建议团队建立AI生成代码的审查流程和质量标准。</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="content-grid">
+            <section class="content-card">
+                <h3><span class="card-icon">🤖</span> AI动态</h3>
+                <ul>
+                    <li>
+                        <strong>GOPS全球运维大会深圳站即将开幕</strong>，聚焦AI与大语言模型在运维领域的深度融合，4月25-26日举行
+                        <span class="news-meta"><span class="time">2026-04-03</span><span class="source">@行业大会</span></span>
+                    </li>
+                    <li>
+                        <strong>Gartner正式更名AIOps为"事件智能解决方案(EIS)"</strong>，宣告传统AIOps时代落幕，Agentic DevOps正在崛起
+                        <span class="news-meta"><span class="time">2026-04-03</span><span class="source">@paradigm shift</span></span>
+                    </li>
+                    <li>
+                        <strong>2025 DevOps与云原生十大趋势发布</strong>，AI自动化全面融入DevOps流程，平台工程标准化落地，GitOps成为部署标准范式
+                        <span class="news-meta"><span class="time">2026-04-03</span><span class="source">@趋势报告</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h3><span class="card-icon">☁️</span> 云原生与算力</h3>
+                <ul>
+                    <li>
+                        <strong>Nacos 3.0重磅发布，全面支持MCP Server管理</strong>，推出注册、编排、动态调试、动态发现等能力，成为AI时代服务治理核心基础设施
+                        <span class="news-meta"><span class="time">2026-04-03</span><span class="source">@云原生</span></span>
+                    </li>
+                    <li>
+                        <strong>MCP协议重大升级：Streamable HTTP成为最佳选择</strong>，Spring AI Alibaba联合Higress发布业界首个Streamable HTTP实现方案
+                        <span class="news-meta"><span class="time">2026-04-03</span><span class="source">@协议标准</span></span>
+                    </li>
+                    <li>
+                        <strong>火山引擎以49.2%份额位居中国大模型调用量第一</strong>，2025年上半年中国公有云大模型调用量达536.7万亿Tokens
+                        <span class="news-meta"><span class="time">2026-04-03</span><span class="source">@市场份额</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h3><span class="card-icon">💻</span> 编程与开发工具</h3>
+                <ul>
+                    <li>
+                        <strong>通义灵码入选"2025年值得关注的AIGC产品"</strong>，是唯一入选的AI编程产品，5月30日阿里云发布通义灵码AI IDE
+                        <span class="news-meta"><span class="time">2026-04-03</span><span class="source">@产品荣誉</span></span>
+                    </li>
+                    <li>
+                        <strong>阿里云发布AI就绪云原生数据库新标准</strong>，让数据系统不仅能存储数据，更能主动理解数据、参与推理
+                        <span class="news-meta"><span class="time">2026-04-03</span><span class="source">@技术发布</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h3><span class="card-icon">💼</span> 商业与投融资</h3>
+                <ul>
+                    <li>
+                        <strong>DeepSeek再掀互联网入口战，科技股价值重估</strong>，字节跳动CEO梁汝波反思2024年跟进迟缓，2025年重点探索智能上限
+                        <span class="news-meta"><span class="time">2026-04-03</span><span class="source">@深度报道</span></span>
+                    </li>
+                    <li>
+                        <strong>2025 XOps产业创新发展论坛将于9月在北京举办</strong>，将发布DevOps、FinOps及PilotOps多份产业现状调查报告
+                        <span class="news-meta"><span class="time">2026-04-03</span><span class="source">@行业活动</span></span>
+                    </li>
+                </ul>
+            </section>
+        </div>
+
+        <!-- 深度思考 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">💡</span> 深度思考：Vibe Coding兴起，手写代码时代正在结束？</h3>
+            <div style="margin-top: 20px; padding: 20px; background: #f5f5f7; border-radius: 12px;">
+                <p style="font-size: 15px; line-height: 1.8; color: #333; margin-bottom: 15px;">随着Agentic DevOps的兴起，开发者角色正在从"码农"变成"监工"。Gene Kim甚至断言：<strong>"手写代码的时代已经结束了，我们可能是最后一代需要手动编写代码的开发者。"</strong></p>
+                <p style="font-size: 15px; line-height: 1.8; color: #333;">产品经理可能直接对AI提需求就能生成代码，开发者的核心竞争力将转向设计提示词和审查AI输出。这一转变对整个软件行业的人才结构和技能要求将产生深远影响。</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>每日晨报 | 2026年4月3日归档</p>
+            <p>Powered by <a href="https://openclaw.ai" target="_blank">OpenClaw</a></p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
 </body>
 </html>
