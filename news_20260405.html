@@ -14,7 +14,14 @@
         .tag-p0 { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
         .tag-p1 { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
         .tag-p2 { background: rgba(16, 185, 129, 0.1); color: #10b981; }
-    </style>
+    
+        .fixed-voices-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
+        .fixed-voice-card { background: #f5f5f7; padding: 20px; border-radius: 12px; border-left: 4px solid #0071e3; }
+        .fixed-voice-card .voice-name { font-weight: 600; font-size: 14px; color: #1d1d1f; margin-bottom: 8px; }
+        .fixed-voice-card .voice-title { font-size: 12px; color: #86868b; margin-bottom: 10px; }
+        .fixed-voice-card .voice-text { font-size: 13px; line-height: 1.6; color: #333; margin-bottom: 10px; }
+        .fixed-voice-card .voice-meta { font-size: 11px; color: #86868b; }
+</style>
 </head>
 <body>
     <header class="header">
@@ -179,7 +186,93 @@
             </div>
         </section>
 
-    </main>
+    
+        <!-- 大咖声音-固定11人 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">🎯</span> 大咖声音 · 固定关注（近2年精华）</h3>
+            <div class="fixed-voices-grid">
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🎩 沃伦·巴菲特</div>
+                    <div class="voice-title">伯克希尔·哈撒韦 CEO</div>
+                    <p class="voice-text">"贸易不应成为武器。美国在过去250年的发展并非依靠惩罚性关税，而是得益于自由贸易。"</p>
+                    <div class="voice-meta">2025-05 @ 第60届股东大会</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🎩 查理·芒格</div>
+                    <div class="voice-title">伯克希尔·哈撒韦 前副董事长</div>
+                    <p class="voice-text">"理性是一种道德责任。AI就像核武器一样无法逆转，但我们要确保它被正确使用。"</p>
+                    <div class="voice-meta">2024-05 @ 股东大会</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🚀 埃隆·马斯克</div>
+                    <div class="voice-title">特斯拉/SpaceX/X CEO</div>
+                    <p class="voice-text">"未来10-15年，工作将变成可选项。AI和机器人将提供满足社会需求的全部商品与服务。"</p>
+                    <div class="voice-meta">2025-12 @ 印度访谈</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🤖 Sam Altman</div>
+                    <div class="voice-title">OpenAI CEO</div>
+                    <p class="voice-text">"我们正处于AGI时代的前夜。2025年有可能是关键一年，我们已知道如何构建AGI。"</p>
+                    <div class="voice-meta">2026-01 @ OpenAI博客</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🎮 黄仁勋</div>
+                    <div class="voice-title">英伟达 CEO</div>
+                    <p class="voice-text">"推理拐点正式到来。AI已从感知与生成迈入推理与智能体时代。2025年是英伟达的推理之年。"</p>
+                    <div class="voice-meta">2026-03 @ GTC大会</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🇨🇳 梁文锋</div>
+                    <div class="voice-title">DeepSeek 创始人</div>
+                    <p class="voice-text">"中国AI不能永远做跟随者，必须有人走在前沿，引领方向。开源是通往AGI的必由之路。"</p>
+                    <div class="voice-meta">2025-01 @ 总理座谈会</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🇨🇳 杨植麟</div>
+                    <div class="voice-title">月之暗面 CEO</div>
+                    <p class="voice-text">"长上下文是AI理解世界的基础。只有记住更多，才能理解更深，做出更智能的决策。"</p>
+                    <div class="voice-meta">2024-10 @ 产品发布会</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🇨🇳 王小川</div>
+                    <div class="voice-title">百川智能 CEO</div>
+                    <p class="voice-text">"医疗是大模型应用的制高点。AI医生不是替代人类医生，而是让优质医疗服务普惠更多人。"</p>
+                    <div class="voice-meta">2024-12 @ 医疗AI论坛</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">📱 雷军</div>
+                    <div class="voice-title">小米集团 CEO</div>
+                    <p class="voice-text">"小米希望用十年的努力，成为新一代全球硬核科技引领者。2025年研发投入预计达300亿元。"</p>
+                    <div class="voice-meta">2025-03 @ 中关村论坛</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🔧 任正非</div>
+                    <div class="voice-title">华为 创始人</div>
+                    <p class="voice-text">"芯片问题没必要担心，用叠加和集群等方法，计算结果上与最先进水平是相当的。"</p>
+                    <div class="voice-meta">2025-06 @ 人民日报专访</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">🔮 凯文·凯利</div>
+                    <div class="voice-title">《连线》杂志创始主编</div>
+                    <p class="voice-text">"AI将成为人类最强大的工具，也是终极平权工具。未来最成功的人，是最会和AI协作的人。"</p>
+                    <div class="voice-meta">2024-09 @ 中国行演讲</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 行业热力图 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">📊</span> 行业热力图</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+                <div style="background: #ffebee; padding: 15px; border-radius: 10px; border-left: 4px solid #f44336;"><div style="display: flex; justify-content: space-between;"><span><strong>AI推理芯片</strong></span><span style="color: #f44336;">🔥🔥🔥🔥🔥</span></div></div>
+                <div style="background: #fff3e0; padding: 15px; border-radius: 10px; border-left: 4px solid #ff9800;"><div style="display: flex; justify-content: space-between;"><span><strong>具身智能</strong></span><span style="color: #ff9800;">🔥🔥🔥🔥🔥</span></div></div>
+                <div style="background: #e8f5e9; padding: 15px; border-radius: 10px; border-left: 4px solid #4caf50;"><div style="display: flex; justify-content: space-between;"><span><strong>AI Agent</strong></span><span style="color: #4caf50;">🔥🔥🔥🔥</span></div></div>
+                <div style="background: #e3f2fd; padding: 15px; border-radius: 10px; border-left: 4px solid #2196f3;"><div style="display: flex; justify-content: space-between;"><span><strong>云原生AI</strong></span><span style="color: #2196f3;">🔥🔥🔥🔥</span></div></div>
+                <div style="background: #f3e5f5; padding: 15px; border-radius: 10px; border-left: 4px solid #9c27b0;"><div style="display: flex; justify-content: space-between;"><span><strong>AI应用落地</strong></span><span style="color: #9c27b0;">🔥🔥🔥🔥</span></div></div>
+            </div>
+        </section>
+
+</main>
 
     <footer class="footer">
         <div class="footer-content">
