@@ -114,6 +114,14 @@ body {
     border-color: var(--primary);
 }
 
+.date-btn:disabled {
+    background: #e5e5e5;
+    color: #999;
+    border-color: #d2d2d7;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
 .current-date {
     font-size: 18px;
     font-weight: 600;
