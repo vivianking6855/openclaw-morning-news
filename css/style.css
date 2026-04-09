@@ -122,6 +122,45 @@ body {
     opacity: 0.6;
 }
 
+/* ===== 关键数据区 ===== */
+.data-section {
+    margin-bottom: 40px;
+}
+
+.data-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.data-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 24px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    transition: transform 0.2s;
+}
+
+.data-card:hover {
+    transform: translateY(-4px);
+}
+
+.data-number {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 8px;
+}
+
+.data-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
 .current-date {
     font-size: 18px;
     font-weight: 600;
