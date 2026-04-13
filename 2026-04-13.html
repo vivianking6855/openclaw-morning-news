@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>每日晨报 | 2026-04-13</title>
+    <title>每日晨报 2026-04-13 | OpenClaw Morning News</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -14,14 +14,13 @@
         .tag-p0 { background: rgba(255,59,48,0.1); color: #ff3b30; }
         .tag-p1 { background: rgba(255,149,0,0.1); color: #ff9500; }
         .tag-p2 { background: rgba(52,199,89,0.1); color: #34c759; }
-        .highlight-box { background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%); border-left: 4px solid #667eea; padding: 20px; border-radius: 12px; margin: 20px 0; }
-        .data-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
-        .data-card { background: #f5f5f7; padding: 20px; border-radius: 12px; text-align: center; }
-        .data-card .number { font-size: 32px; font-weight: 700; color: #0071e3; }
-        .data-card .label { font-size: 13px; color: #666; margin-top: 5px; }
-        .voice-card { background: #1d1d1f; color: white; padding: 25px; border-radius: 16px; margin: 20px 0; }
-        .voice-card .author { color: #86868b; font-size: 14px; margin-top: 15px; }
-        .voice-card .title { color: #0071e3; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+        .fixed-voices-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
+        .fixed-voice-card { background: #f5f5f7; padding: 20px; border-radius: 12px; border-left: 4px solid #0071e3; }
+        .fixed-voice-card .voice-name { font-weight: 600; font-size: 14px; color: #1d1d1f; margin-bottom: 8px; }
+        .fixed-voice-card .voice-title { font-size: 12px; color: #86868b; margin-bottom: 10px; }
+        .fixed-voice-card .voice-text { font-size: 13px; line-height: 1.6; color: #333; margin-bottom: 10px; }
+        .fixed-voice-card .voice-meta { font-size: 11px; color: #86868b; }
+        .data-highlight { display: inline-block; font-weight: 700; color: #ff3b30; }
     </style>
 </head>
 <body>
@@ -36,300 +35,300 @@
         </div>
     </header>
 
+    <div class="date-bar">
+        <div class="date-container">
+            <button class="date-btn" onclick="location.href='2026-04-12.html'">← 前一天</button>
+            <span class="current-date">2026年4月13日 星期一</span>
+            <button class="date-btn" disabled onclick="location.href=''">后一天 →</button>
+        </div>
+    </div>
+
     <main class="main">
         <section class="hero-section">
-            <div class="hero-badge">2026年4月13日 星期一</div>
-            <h1 class="hero-title">AI DevOps 每日晨报</h1>
-            <p class="hero-summary">AgentOps崛起 · 具身智能清场 · Kimi估值1200亿 · 云原生AI-Native转型</p>
+            <div class="hero-badge">💡 今日洞察</div>
+            <h1 class="hero-title">AgentOps崛起 · 具身智能清场 · Kimi估值1200亿</h1>
+            <p class="hero-summary">AgentOps正在成为AI工程化的新焦点，2024年AI Agent市场规模约50亿美元，预计到2030年将增长至500亿美元。具身智能2026年清场元年开启，百亿估值俱乐部形成。</p>
+            <div class="hero-meta">
+                <span>📅 2026-04-13</span>
+                <span>⏱️ 6分钟阅读</span>
+                <span>🔖 9个板块</span>
+            </div>
         </section>
 
-        <div class="two-column">
-            <div class="column-main">
-                <!-- AI DevOps 前沿 -->
-                <article class="content-card">
-                    <h2><span class="tag tag-p0">P0</span>🤖 AI DevOps 前沿</h2>
-                    
-                    <div class="highlight-box">
-                        <strong>核心洞察：</strong>AgentOps正在成为AI工程化的新焦点，2024年AI Agent市场规模约50亿美元，预计到2030年将增长至500亿美元。AI DevOps的竞争正从单点模型能力比拼，转向系统化工程落地能力的全面较量。
-                    </div>
-
-                    <div class="news-item">
-                        <h3>GitHub AI项目热度榜：Agent工具全面霸榜</h3>
-                        <p>2026年4月GitHub Trending榜单被AI项目全面占领，展现AI编程工具的演进方向：<strong>更智能、更专属、更有记忆</strong>。</p>
-                        <ul style="margin: 10px 0; padding-left: 20px;">
-                            <li><strong>hermes-agent</strong> (62,856⭐) - 自适应成长的AI Agent，日增6,438星</li>
-                            <li><strong>claude-mem</strong> (48,523⭐) - Claude记忆增强插件，解决AI"失忆"问题</li>
-                            <li><strong>ai-hedge-fund</strong> (51,872⭐) - AI对冲基金团队，多Agent协作投资</li>
-                            <li><strong>andrej-karpathy-skills</strong> (14,598⭐) - Karpathy最佳实践开源</li>
-                        </ul>
-                        <span class="news-meta"><span class="time">2026-04-12</span><span class="source">来源：掘金</span></span>
-                    </div>
-
-                    <div class="news-item">
-                        <h3>OpenClaw + 星链4SAPI：破解多模型Agent路由难题</h3>
-                        <p>随着Claude Opus 4.6、Kimi K2.5、GPT-5.3-Codex等顶尖大模型"各自为战"，企业级开发者面临严峻的"基础设施碎片化"危机。<strong>基于OpenClaw框架+星链4SAPI统一网关的混合编排方案</strong>正在成为破解这一难题的主流实践。</p>
-                        <p><strong>最优配置策略：</strong></p>
-                        <ul style="margin: 10px 0; padding-left: 20px;">
-                            <li>主力国产模型：Kimi K2.5（工具调用最强，Agent任务首选）</li>
-                            <li>默认高频模型：DeepSeek V3.2（日常代码低延迟）</li>
-                            <li>中文专项：GLM 5（指令遵循最优）</li>
-                            <li>极致精度：Claude Opus 4.6（不计成本时的天花板）</li>
-                        </ul>
-                        <span class="news-meta"><span class="time">2026-04-09</span><span class="source">来源：Lessie.ai</span></span>
-                    </div>
-
-                    <div class="news-item">
-                        <h3>AgentOps：从概念到生产的智能体运营实践</h3>
-                        <p>AgentOps（智能体运营）是一套新兴实践方法，融合DevOps和MLOps原则，为AI智能体的全生命周期管理提供框架。<strong>2026年AgentOps的核心挑战已发生变化：</strong></p>
-                        <ul style="margin: 10px 0; padding-left: 20px;">
-                            <li>质量成为首要障碍（32%受访者）：内容准确性、可溯源性、输出稳定性</li>
-                            <li>延迟成为新瓶颈：实时交互场景下用户无法容忍漫长的"思考中..."</li>
-                            <li>安全与一致性：大规模上下文权限管理、数据泄露防控、幻觉控制</li>
-                        </ul>
-                        <p>微软已推出系列课程，教授如何使用GitHub Copilot SDK和Agent Framework构建生产级AI智能体。</p>
-                        <span class="news-meta"><span class="time">2026-04-09</span><span class="source">来源：IBM / Microsoft Reactor</span></span>
-                    </div>
-                </article>
-
-                <!-- 具身智能/机器人 -->
-                <article class="content-card">
-                    <h2><span class="tag tag-p0">P0</span>🦾 具身智能/机器人：清场元年</h2>
-                    
-                    <div class="highlight-box">
-                        <strong>核心洞察：</strong>2026年被称为具身智能"清场"年——同一个行业，有人高歌猛进（星海图估值破200亿），有人在变卖"家当"。投资人问的第一个问题已从"技术怎么样"变成"估值多少，上一轮谁投的"。
-                    </div>
-
-                    <div class="news-item">
-                        <h3>星海图20亿B+轮融资，估值超200亿元创行业新高</h3>
-                        <p>人形机器人公司星海图两个月内完成近30亿元融资（2月B轮10亿+4月B+轮20亿），估值突破200亿元，创国内具身智能企业估值新高。参与投资的机构近20家，包括华登科技、蓝思科技等产业资本。</p>
-                        <span class="news-meta"><span class="time">2026-04-02</span><span class="source">来源：财新网</span></span>
-                    </div>
-
-                    <div class="news-item">
-                        <h3>宇树科技冲刺IPO：拟募资42亿，连续两年盈利打破行业认知</h3>
-                        <p>宇树科技科创板IPO申请已获上交所受理，招股书显示：<strong>2025年人形机器人收入首次超越四足机器人，占总收入比重超51%，两项业务合计毛利率高达60%</strong>。IPO计划募资42亿元，其中20.2亿元将专门用于"智能机器人模型研发项目"。</p>
-                        <p>宇树的财务表现打破了"人形机器人有流量但不赚钱"的固有认知，而优必选2025年净亏损7.9亿元，近四年累计亏损超42亿元。</p>
-                        <span class="news-meta"><span class="time">2026-03-20</span><span class="source">来源：上海证券交易所</span></span>
-                    </div>
-
-                    <div class="news-item">
-                        <h3>量产元年：万台级交付成为行业分水岭</h3>
-                        <p>2026年人形机器人产业正式迈过"1-10"关键拐点，进入"10-100"规模化发展新阶段：</p>
-                        <ul style="margin: 10px 0; padding-left: 20px;">
-                            <li>优必选：2025年交付超500台工业人形机器人，2026年产能目标万台级</li>
-                            <li>智元机器人：2025年出货量突破5100台，3个多月实现5000到10000台跨越</li>
-                            <li>银河通用：与百达精工合作，将部署超1000台具身智能机器人</li>
-                        </ul>
-                        <p>高工机器人产业研究所数据显示，2026年国内人形机器人出货量有望攀升至<strong>6.25万台</strong>，全年产量或达<strong>10万至20万台级</strong>。</p>
-                        <span class="news-meta"><span class="time">2026-04-12</span><span class="source">来源：高工机器人 / 界面新闻</span></span>
-                    </div>
-
-                    <div class="news-item">
-                        <h3>竞争焦点从"肢体"转向"大脑"</h3>
-                        <p>为解决机器人通用泛化能力难题，2026年行业竞争正加速从硬件转向算法。<strong>"硬件决定了机器人能力的上限，即物理极值，而大脑（算法）则决定了其实际表现的下限。"</strong></p>
-                        <p>资本开始重点押注具身智能大模型：千寻智能表示将把2026-2027年90%的精力放在基模能力提升上；星海图发布全球最快世界模型Fast-WAM；宇树"小脑"运动控制算法三年迭代五个版本。</p>
-                        <span class="news-meta"><span class="time">2026-03-26</span><span class="source">来源：新浪财经</span></span>
-                    </div>
-                </article>
-
-                <!-- 云原生与数据 -->
-                <article class="content-card">
-                    <h2><span class="tag tag-p1">P1</span>☁️ 云原生与数据</h2>
-                    
-                    <div class="news-item">
-                        <h3>Kubernetes 1.36即将发布：稳定进化重于颠覆创新</h3>
-                        <p>Kubernetes 1.36将于<strong>4月22日</strong>正式发布，延续"稳定重于创新"的核心理念。本次更新聚焦：</p>
-                        <ul style="margin: 10px 0; padding-left: 20px;">
-                            <li>稳定性增强：修复已知问题，提升大规模集群可靠性</li>
-                            <li>安全性强化：更好的证书管理、更精细的权限控制</li>
-                            <li>NVIDIA AI Cluster Runtime：通过可复用配方简化GPU集群验证与交付</li>
-                        </ul>
-                        <p>与此同时，<strong>Fluid项目正式晋升为CNCF孵化项目</strong>，成为云原生数据编排与加速的事实标准，补齐计算与存储之间的鸿沟。</p>
-                        <span class="news-meta"><span class="time">2026-04-08</span><span class="source">来源：KubeSphere / CNCF</span></span>
-                    </div>
-
-                    <div class="news-item">
-                        <h3>Kubescape 4.0：Kubernetes安全进入"运行时+AI Agent"新阶段</h3>
-                        <p>Kubescape 4.0正式发布，将运行时威胁检测推进到GA阶段，可基于应用画像监控进程、系统调用、网络、HTTP和文件系统活动。新版本顺应AI Agent在云原生环境中的落地趋势，实现安全能力的智能化升级。</p>
-                        <span class="news-meta"><span class="time">2026-04-08</span><span class="source">来源：KubeSphere</span></span>
-                    </div>
-
-                    <div class="news-item">
-                        <h3>Milvus：全球超60% RAG系统的向量存储首选</h3>
-                        <p>根据2026年初最新市场调研，全球超过<strong>60%的RAG（检索增强生成）系统</strong>采用Milvus作为向量存储引擎。Milvus v2.6版本具备云原生架构、多模态支持、GPU加速、混合检索等企业级特性，GitHub Star数已超25k。</p>
-                        <span class="news-meta"><span class="time">2026-03-25</span><span class="source">来源：掘金</span></span>
-                    </div>
-                </article>
-
-                <!-- 项目管理与效能 -->
-                <article class="content-card">
-                    <h2><span class="tag tag-p1">P1</span>📊 项目管理与效能</h2>
-                    
-                    <div class="news-item">
-                        <h3>2026中国研发项目管理数字化洞察：AI渗透率激增86%</h3>
-                        <p>飞书项目与PMI中国联合发布的报告显示，生成式AI正推动研发项目管理从<strong>"数字化协同"迈向"智能化重塑"</strong>：</p>
-                        <ul style="margin: 10px 0; padding-left: 20px;">
-                            <li>AI全面渗透研发全流程，从辅助工具变为创新伙伴</li>
-                            <li>人机协作成为新常态，AI接管重复性工作</li>
-                            <li>项目经理角色升级为<strong>"AI协调者"和"价值发现者"</strong></li>
-                            <li>混合项目管理模式成为主流，兼顾可控性与灵活性</li>
-                            <li>管理核心从度量"人工生产力"转向优化"人机协作效果"</li>
-                        </ul>
-                        <span class="news-meta"><span class="time">2026-04-08</span><span class="source">来源：飞书 / PMI中国</span></span>
-                    </div>
-
-                    <div class="news-item">
-                        <h3>AI赋能CI/CD的5大误区：61%项目未达成预期ROI</h3>
-                        <p>Gartner最新调研指出，全球超73%的中大型科技企业已在CI/CD工具链中集成AI能力，但<strong>近61%的AI-CI/CD项目未达成预期ROI，42%的团队在6个月内回退至传统模式</strong>。核心误区包括：</p>
-                        <ul style="margin: 10px 0; padding-left: 20px;">
-                            <li>把"AI增强"当成"AI替代"，忽视人机协同本质</li>
-                            <li>只关注单点提效，忽略对整条交付链路的耦合影响</li>
-                            <li>迷信通用大模型，轻视领域小模型与规则引擎的协同价值</li>
-                        </ul>
-                        <p>2026年成熟实践表明：AI在CI/CD中最高效的角色是<strong>"高阶协作者"</strong>——AI提建议+工程师做决策+系统留痕审计的三段式闭环。</p>
-                        <span class="news-meta"><span class="time">2026-03-30</span><span class="source">来源：腾讯云 / Gartner</span></span>
-                    </div>
-                </article>
-
-                <!-- 大咖声音 -->
-                <article class="content-card">
-                    <h2><span class="tag tag-p0">P0</span>🎙️ 大咖声音</h2>
-                    
-                    <div class="voice-card">
-                        <div class="title">Andrej Karpathy on Kimi</div>
-                        <p>"Kimi的Attention Residuals论文让我们意识到，根本没有把Attention is All You Need理解透彻。要知道，这篇论文就是开启大模型时代的圣杯。"</p>
-                        <div class="author">— OpenAI联合创始人、前特斯拉AI总监 Andrej Karpathy<br>2026年3月评论Kimi技术论文</div>
-                    </div>
-
-                    <div class="voice-card">
-                        <div class="title">Jack Clark on Kimi K2</div>
-                        <p>"Kimi是一款还不错的模型，落后美国最前沿几个月，延续了DeepSeek的轨迹。其编码和工具调用分数已足够高，我预计现实中会有人真正用它。"</p>
-                        <div class="author">— Anthropic联合创始人 Jack Clark<br>2025年7月博客</div>
-                    </div>
-
-                    <div class="voice-card">
-                        <div class="title">杨植麟 on Agent与思考</div>
-                        <p>"很多人用'缸中之脑'来形容主打深度思考的模型。但编程和Agent的关系、思考和工具调用的关系，才是更本质的东西。"</p>
-                        <div class="author">— Moonshot AI创始人 杨植麟<br>2025年7月播客专访</div>
-                    </div>
-
-                    <div class="voice-card">
-                        <div class="title">行业投资人观察</div>
-                        <p>"现在投资人问的第一个问题不是'你们技术怎么样'，而是'你们估值多少，上一轮谁投的'。如果不是'百亿俱乐部'的，连上桌的资格都没有。"</p>
-                        <div class="author">— 具身智能算法工程师 林林<br>2026年3月访谈</div>
-                    </div>
-                </article>
-            </div>
-
-            <div class="column-sidebar">
-                <!-- 关键数据 -->
-                <div class="content-card">
-                    <h3>📊 关键数据速览</h3>
-                    <div class="data-grid">
-                        <div class="data-card">
-                            <div class="number">500亿</div>
-                            <div class="label">2030年AI Agent市场规模（美元）</div>
-                        </div>
-                        <div class="data-card">
-                            <div class="number">1200亿</div>
-                            <div class="label">Kimi最新估值（人民币）</div>
-                        </div>
-                        <div class="data-card">
-                            <div class="number">200亿</div>
-                            <div class="label">星海图估值（人民币）</div>
-                        </div>
-                        <div class="data-card">
-                            <div class="number">6.25万台</div>
-                            <div class="label">2026年人形机器人出货预测</div>
-                        </div>
-                        <div class="data-card">
-                            <div class="number">86%</div>
-                            <div class="label">AI在研发项目管理中渗透率增长</div>
-                        </div>
-                        <div class="data-card">
-                            <div class="number">60%</div>
-                            <div class="label">RAG系统采用Milvus比例</div>
-                        </div>
-                    </div>
+        <section class="recommendations">
+            <h2 class="section-title">🛠️ 务实落地建议</h2>
+            <div class="rec-grid">
+                <div class="rec-card">
+                    <h4>关注AgentOps体系建设</h4>
+                    <p>AI Agent从实验走向生产，AgentOps成为必经之路。建议参考双路径方案：保守型在现有DevOps基础上增加影子模式，激进型基于AI Agent特性设计新平台。</p>
                 </div>
-
-                <!-- 头部AI公司动态 -->
-                <div class="content-card">
-                    <h3>🏢 头部AI公司动态</h3>
-                    
-                    <div class="news-item">
-                        <span class="tag tag-p0">热点</span>
-                        <h4>Kimi：从被唱衰到估值1200亿</h4>
-                        <p style="font-size: 13px;">K2.5万亿参数模型被Perplexity、Cloudflare等引入；Cursor套壳事件曝光后反而证明其能力；"注意力残差"技术论文获Andrej Karpathy高度评价。</p>
-                        <span class="news-meta"><span class="time">2026-04</span></span>
-                    </div>
-
-                    <div class="news-item">
-                        <span class="tag tag-p1">关注</span>
-                        <h4>DeepSeek V4预计4月下旬发布</h4>
-                        <p style="font-size: 13px;">参数规模或达万亿级，深度适配国产芯片，延续高性价比开源路线。</p>
-                        <span class="news-meta"><span class="time">2026-04-12</span></span>
-                    </div>
-
-                    <div class="news-item">
-                        <span class="tag tag-p1">关注</span>
-                        <h4>Anthropic Claude Opus 4.6发布</h4>
-                        <p style="font-size: 13px;">编码能力创历史纪录，SWE-bench测试领先；Claude Managed Agents公测启动。</p>
-                        <span class="news-meta"><span class="time">2026-04-08</span></span>
-                    </div>
-
-                    <div class="news-item">
-                        <span class="tag tag-p1">关注</span>
-                        <h4>Meta Muse Spark闭源发布</h4>
-                        <p style="font-size: 13px;">一改此前开源策略，采用闭源模式；股价大涨6.5%；内部代号"Avocado"，历时9个月打造。</p>
-                        <span class="news-meta"><span class="time">2026-04-09</span></span>
-                    </div>
+                <div class="rec-card">
+                    <h4>布局具身智能生态</h4>
+                    <p>具身智能赛道融资热度空前，国家队密集入场。建议关注供应链、核心零部件、训练数据等细分赛道机会，提前布局产业生态。</p>
                 </div>
-
-                <!-- 全球动态 -->
-                <div class="content-card">
-                    <h3>🌐 全球动态</h3>
-                    <table style="width: 100%; font-size: 13px; border-collapse: collapse;">
-                        <tr style="border-bottom: 1px solid #eee;">
-                            <td style="padding: 8px 0;"><strong>美国</strong></td>
-                            <td style="padding: 8px 0;">OpenAI/Anthropic模型战；Meta转闭源</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #eee;">
-                            <td style="padding: 8px 0;"><strong>中国</strong></td>
-                            <td style="padding: 8px 0;">Kimi估值1200亿；具身智能融资热潮</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #eee;">
-                            <td style="padding: 8px 0;"><strong>欧洲</strong></td>
-                            <td style="padding: 8px 0;">欧盟AI法案监管趋严</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 8px 0;"><strong>全球</strong></td>
-                            <td style="padding: 8px 0;">AgentOps实践兴起；GitHub AI项目霸榜</td>
-                        </tr>
-                    </table>
+                <div class="rec-card">
+                    <h4>评估K8s 1.36新特性</h4>
+                    <p>Kubernetes 1.36即将发布，聚焦稳定性、安全性和AI Cluster Runtime。建议关注NVIDIA AI Cluster Runtime和Fluid数据编排能力。</p>
                 </div>
-
-                <!-- 深度分析 -->
-                <div class="content-card">
-                    <h3>💡 深度分析</h3>
-                    <div class="news-item">
-                        <h4>Agent是中间形态吗？</h4>
-                        <p style="font-size: 13px;">有观点认为，当前workflow方式是中间形态——因为大模型能力不够，又迫切需要落地，所以需要Agent作为过渡。如果某天模型真的达到理想状态，是否还需要这种方式？这是一个值得持续观察的问题。</p>
-                    </div>
-                    <div class="news-item">
-                        <h4>具身智能的淘汰赛</h4>
-                        <p style="font-size: 13px;">2026年具身智能行业正在"清场"——百亿估值俱乐部形成，非头部企业融资困难。量产能力和技术突破是两大生死考量。</p>
-                    </div>
+                <div class="rec-card">
+                    <h4>探索AI驱动项目管理</h4>
+                    <p>AI渗透率激增86%，项目经理角色升级为"AI协调者"。建议评估AI赋能的项目管理工具，从"经验驱动"向"规则沉淀"转变。</p>
                 </div>
             </div>
+        </section>
+
+        <div class="content-grid">
+            <section class="content-card">
+                <h3><span class="card-icon">🤖</span> AI DevOps 前沿</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>GitHub AI项目热度榜：Agent工具全面霸榜</strong>：2026年4月GitHub Trending榜单被AI项目全面占领，hermes-agent日增6,438星，展现AI编程工具演进方向
+                        <span class="news-meta"><span class="time">2026-04-12</span><span class="source">@掘金</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>OpenClaw + 星链4SAPI：破解多模型Agent路由难题</strong>：基于OpenClaw框架+星链4SAPI统一网关的混合编排方案正在成为破解多模型碎片化难题的主流实践
+                        <span class="news-meta"><span class="time">2026-04-09</span><span class="source">@Lessie.ai</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>AgentOps：从概念到生产的智能体运营实践</strong>：2026年AgentOps核心挑战已发生变化，质量成为首要障碍，延迟成为新瓶颈
+                        <span class="news-meta"><span class="time">2026-04-09</span><span class="source">@IBM/Microsoft</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h3><span class="card-icon">🏢</span> 头部AI公司动态</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>Kimi估值达1200亿，20天收入超过去一年</strong>：从2025年中被唱衰到逆天改命，K2模型被Cursor、Cloudflare、Perplexity引入，"注意力残差"技术获Andrej Karpathy高度评价
+                        <span class="news-meta"><span class="time">2026-04</span><span class="source">@投资界/钛媒体</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>DeepSeek V4预计4月下旬发布</strong>：参数规模或达万亿级，深度适配国产芯片，延续高性价比开源路线
+                        <span class="news-meta"><span class="time">2026-04-12</span><span class="source">@市场传闻</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>Anthropic Claude Opus 4.6发布</strong>：编码能力创历史纪录，SWE-bench测试领先；Claude Managed Agents公测启动
+                        <span class="news-meta"><span class="time">2026-04-08</span><span class="source">@CSDN</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p2">趋势</span>
+                        <strong>Meta Muse Spark闭源发布</strong>：一改此前开源策略，采用闭源模式；股价大涨6.5%；内部代号"Avocado"
+                        <span class="news-meta"><span class="time">2026-04-09</span><span class="source">@市场动态</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h3><span class="card-icon">🦾</span> 具身智能/机器人：清场元年</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>星海图20亿B+轮融资，估值超200亿元创行业新高</strong>：人形机器人公司星海图两个月内完成近30亿元融资，估值突破200亿元
+                        <span class="news-meta"><span class="time">2026-04-02</span><span class="source">@财新网</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>宇树科技冲刺IPO：拟募资42亿，连续两年盈利</strong>：2025年人形机器人收入首次超越四足机器人，占总收入比重超51%，毛利率高达60%
+                        <span class="news-meta"><span class="time">2026-03-20</span><span class="source">@上海证券交易所</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>量产元年：万台级交付成为行业分水岭</strong>：智元机器人第一万台通用具身机器人远征A3完工出厂，2026年国内人形机器人出货量有望攀升至6.25万台
+                        <span class="news-meta"><span class="time">2026-04-12</span><span class="source">@高工机器人</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>竞争焦点从"肢体"转向"大脑"</strong>：资本重点押注具身智能大模型，"硬件决定上限，大脑决定下限"
+                        <span class="news-meta"><span class="time">2026-03-26</span><span class="source">@新浪财经</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h3><span class="card-icon">☁️</span> 云原生与数据</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>Kubernetes 1.36即将发布：稳定进化重于颠覆创新</strong>：4月22日正式发布，聚焦稳定性、安全性和NVIDIA AI Cluster Runtime
+                        <span class="news-meta"><span class="time">2026-04-08</span><span class="source">@KubeSphere</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>Fluid项目正式晋升为CNCF孵化项目</strong>：成为云原生数据编排与加速的事实标准，补齐计算与存储之间的鸿沟
+                        <span class="news-meta"><span class="time">2026-04</span><span class="source">@CNCF</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>Kubescape 4.0：Kubernetes安全进入"运行时+AI Agent"新阶段</strong>：运行时威胁检测推进到GA阶段，顺应AI Agent在云原生环境中的落地趋势
+                        <span class="news-meta"><span class="time">2026-04-08</span><span class="source">@KubeSphere</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p2">趋势</span>
+                        <strong>Milvus：全球超60% RAG系统的向量存储首选</strong>：GitHub Star数已超25k，v2.6版本具备云原生架构、多模态支持、GPU加速等企业级特性
+                        <span class="news-meta"><span class="time">2026-03-25</span><span class="source">@掘金</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h3><span class="card-icon">📊</span> 项目管理与效能</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>2026中国研发项目管理数字化洞察：AI渗透率激增86%</strong>：生成式AI正推动研发项目管理从"数字化协同"迈向"智能化重塑"
+                        <span class="news-meta"><span class="time">2026-04-08</span><span class="source">@飞书/PMI中国</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>AI赋能CI/CD的5大误区：61%项目未达成预期ROI</strong>：Gartner调研指出，73%企业已集成AI到CI/CD，但61%未达成预期ROI，42%团队在6个月内回退
+                        <span class="news-meta"><span class="time">2026-03-30</span><span class="source">@腾讯云/Gartner</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p2">工具</span>
+                        <strong>Gitee AI助手自动分配任务优先级</strong>：基于历史数据分析，预测延期风险，效率提升40%+
+                        <span class="news-meta"><span class="time">2026-04</span><span class="source">@掘金</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h3><span class="card-icon">🌐</span> 全球动态</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>美国AI项目热度持续，GitHub霸榜</strong>：Agent工具成为主流，多Agent协作投资、记忆增强等方向受关注
+                        <span class="news-meta"><span class="time">2026-04</span><span class="source">@GitHub</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>中国具身智能赛道领跑全球</strong>：Q1融资超300亿元，宇树/智元/银河通用等头部企业密集融资
+                        <span class="news-meta"><span class="time">2026-04</span><span class="source">@中国信通院</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p2">趋势</span>
+                        <strong>欧盟AI法案持续推进，监管框架趋于完善</strong>：AI监管法案落地，对科技巨头的约束力度加强
+                        <span class="news-meta"><span class="time">2025-08</span><span class="source">@欧盟委员会</span></span>
+                    </li>
+                </ul>
+            </section>
         </div>
+
+        <!-- 大咖声音 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">🎙️</span> 大咖声音</h3>
+            <div class="fixed-voices-grid">
+                <div class="fixed-voice-card">
+                    <div class="voice-name">Andrej Karpathy</div>
+                    <div class="voice-title">OpenAI联合创始人、前特斯拉AI总监</div>
+                    <div class="voice-text">"Kimi的Attention Residuals论文让我们意识到，根本没有把Attention is All You Need理解透彻。要知道，这篇论文就是开启大模型时代的圣杯。"</div>
+                    <div class="voice-meta">来源：评论Kimi技术论文 | 2026-03</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">Jack Clark</div>
+                    <div class="voice-title">Anthropic联合创始人</div>
+                    <div class="voice-text">"Kimi是一款还不错的模型，落后美国最前沿几个月，延续了DeepSeek的轨迹。其编码和工具调用分数已足够高，我预计现实中会有人真正用它。"</div>
+                    <div class="voice-meta">来源：个人博客 | 2025-07</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">杨植麟</div>
+                    <div class="voice-title">Moonshot AI创始人</div>
+                    <div class="voice-text">"很多人用'缸中之脑'来形容主打深度思考的模型。但编程和Agent的关系、思考和工具调用的关系，才是更本质的东西。"</div>
+                    <div class="voice-meta">来源：播客专访 | 2025-07</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">行业投资人</div>
+                    <div class="voice-title">具身智能算法工程师 林林</div>
+                    <div class="voice-text">"现在投资人问的第一个问题不是'你们技术怎么样'，而是'你们估值多少，上一轮谁投的'。如果不是'百亿俱乐部'的，连上桌的资格都没有。"</div>
+                    <div class="voice-meta">来源：访谈 | 2026-03</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 关键数据 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">📈</span> 关键数据速览</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 20px;">
+                <div style="background: linear-gradient(135deg, #ff6b6b20 0%, #ee5a5a20 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #ff3b30;">500亿</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">2030年AI Agent市场规模($)</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #4ecdc420 0%, #44a08d20 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #34c759;">1200亿</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">Kimi最新估值(人民币)</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #5856d6;">200亿</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">星海图估值(人民币)</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #f093fb20 0%, #f5576c20 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #ff2d55;">6.25万台</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">2026年人形机器人出货预测</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #4facfe20 0%, #00f2fe20 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #007aff;">86%</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">AI在研发项目管理中渗透率增长</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #43e97b20 0%, #38f9d720 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #30d158;">60%</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">RAG系统采用Milvus比例</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 深度分析 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">💡</span> 深度分析</h3>
+            <div style="margin-top: 20px; padding: 20px; background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%); border-radius: 12px; border-left: 4px solid #667eea;">
+                <p style="font-size: 15px; line-height: 1.8; color: #333; margin-bottom: 15px;"><strong>Agent是中间形态吗？</strong></p>
+                <p style="font-size: 14px; line-height: 1.7; color: #555; margin-bottom: 12px;">有观点认为，当前workflow方式是中间形态——因为大模型能力不够，又迫切需要落地，所以需要Agent作为过渡。如果某天模型真的达到理想状态，是否还需要这种方式？这是一个值得持续观察的问题。</p>
+                <p style="font-size: 14px; line-height: 1.7; color: #555; margin-bottom: 12px;"><strong>具身智能的淘汰赛</strong></p>
+                <p style="font-size: 14px; line-height: 1.7; color: #555; margin-bottom: 12px;">2026年具身智能行业正在"清场"——百亿估值俱乐部形成，非头部企业融资困难。量产能力和技术突破是两大生死考量。宇树科技冲刺IPO并连续两年盈利，证明了这条路的可行性；而优必选2025年净亏损7.9亿元，近四年累计亏损超42亿元，代表了另一种命运。</p>
+                <p style="font-size: 14px; line-height: 1.7; color: #555;"><strong>AgentOps的崛起：从DevOps到AgentOps的范式转移</strong></p>
+                <p style="font-size: 14px; line-height: 1.7; color: #555;">2026年AgentOps正在成为AI工程化的新焦点。微软已推出系列课程，教授如何使用GitHub Copilot SDK和Agent Framework构建生产级AI智能体。2024年AI Agent市场规模约50亿美元，预计到2030年将增长至500亿美元。AI DevOps的竞争正从单点模型能力比拼，转向系统化工程落地能力的全面较量。</p>
+            </div>
+        </section>
+
+        <!-- 行业热力图 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">🔥</span> 行业热力图</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+                <div style="background: #ffebee; padding: 15px; border-radius: 10px; border-left: 4px solid #f44336;"><div style="display: flex; justify-content: space-between;"><span><strong>具身智能</strong></span><span style="color: #f44336;">🔥🔥🔥🔥🔥</span></div></div>
+                <div style="background: #fff3e0; padding: 15px; border-radius: 10px; border-left: 4px solid #ff9800;"><div style="display: flex; justify-content: space-between;"><span><strong>AgentOps</strong></span><span style="color: #ff9800;">🔥🔥🔥🔥🔥</span></div></div>
+                <div style="background: #e8f5e9; padding: 15px; border-radius: 10px; border-left: 4px solid #4caf50;"><div style="display: flex; justify-content: space-between;"><span><strong>K8s 1.36</strong></span><span style="color: #4caf50;">🔥🔥🔥🔥</span></div></div>
+                <div style="background: #e3f2fd; padding: 15px; border-radius: 10px; border-left: 4px solid #2196f3;"><div style="display: flex; justify-content: space-between;"><span><strong>AI项目管理</strong></span><span style="color: #2196f3;">🔥🔥🔥🔥</span></div></div>
+                <div style="background: #f3e5f5; padding: 15px; border-radius: 10px; border-left: 4px solid #9c27b0;"><div style="display: flex; justify-content: space-between;"><span><strong>Milvus向量库</strong></span><span style="color: #9c27b0;">🔥🔥🔥</span></div></div>
+            </div>
+        </section>
+
+        <!-- 数据来源 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">📚</span> 数据来源</h3>
+            <div style="margin-top: 15px; font-size: 13px; color: #666; line-height: 1.8;">
+                <p>• 腾讯云：《AI赋能CI/CD的5大误区》</p>
+                <p>• 投资界/钛媒体：《Kimi没有DeepSeek的命》</p>
+                <p>• 财新网：《星海图估值突破200亿》</p>
+                <p>• 高工机器人：《2026年人形机器人出货预测》</p>
+                <p>• 飞书/PMI中国：《2026中国研发项目管理数字化洞察》</p>
+                <p>• KubeSphere/CNCF：Kubernetes 1.36发布信息</p>
+                <p>• 掘金：《Milvus向量数据库市场份额分析》</p>
+            </div>
+        </section>
     </main>
 
     <footer class="footer">
         <div class="footer-content">
-            <p>每日晨报 | OpenClaw Morning News</p>
-            <p>Powered by <a href="https://openclaw.ai" target="_blank">OpenClaw</a> | 生成时间: 2026-04-13 07:17 CST</p>
+            <p>每日晨报 | 2026年4月13日归档</p>
+            <p>Powered by <a href="https://openclaw.ai" target="_blank">OpenClaw</a></p>
         </div>
     </footer>
+
+    <script src="js/main.js"></script>
 </body>
 </html>
