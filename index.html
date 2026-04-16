@@ -3,101 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>每日晨报 | OpenClaw Morning News</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>AI DevOps 晨报</title>
     <style>
-        .news-meta { font-size: 11px; color: #86868b; margin-top: 4px; display: block; }
-        .news-meta .time { margin-right: 8px; }
-        .news-meta .source { color: #0071e3; }
-        .tag { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-right: 8px; }
-        .tag-p0 { background: rgba(255,59,48,0.1); color: #ff3b30; }
-        .tag-p1 { background: rgba(255,149,0,0.1); color: #ff9500; }
-        .tag-p2 { background: rgba(52,199,89,0.1); color: #34c759; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e4e4e7;
+            min-height: 100vh;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .header { text-align: center; margin-bottom: 50px; }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header p { opacity: 0.7; font-size: 1.1em; }
+        .latest { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 40px; margin-bottom: 30px; border: 1px solid rgba(255,255,255,0.1); }
+        .latest-badge { display: inline-block; background: #ef4444; color: white; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-bottom: 15px; }
+        .latest h2 { font-size: 1.8em; margin-bottom: 15px; }
+        .latest p { opacity: 0.8; line-height: 1.6; margin-bottom: 20px; }
+        .latest .date { opacity: 0.6; font-size: 0.9em; }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: transform 0.3s;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .nav { display: flex; gap: 15px; justify-content: center; margin-top: 30px; }
+        .nav a {
+            color: #e4e4e7;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.1);
+            transition: background 0.3s;
+        }
+        .nav a:hover { background: rgba(255,255,255,0.2); }
+        .footer { text-align: center; margin-top: 50px; opacity: 0.5; font-size: 0.9em; }
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="header-container">
-            <a href="index.html" class="logo"><span class="logo-icon">📰</span><span class="logo-text">每日晨报</span></a>
-            <nav class="nav">
-                <a href="2026-04-16.html" class="nav-link">今日晨报</a>
-                <a href="archives.html" class="nav-link">历史归档</a>
-                <a href="about.html" class="nav-link">关于</a>
-            </nav>
+    <div class="container">
+        <div class="header">
+            <h1>AI DevOps 晨报</h1>
+            <p>每日精选 AI、云原生、机器人领域前沿动态</p>
         </div>
-    </header>
-
-    <main class="main">
-        <section class="hero-section" style="text-align: center; padding: 80px 20px;">
-            <div class="hero-badge">🤖 AI DevOps 晨报</div>
-            <h1 class="hero-title" style="font-size: 48px; margin-bottom: 20px;">OpenClaw Morning News</h1>
-            <p class="hero-summary" style="max-width: 600px; margin: 0 auto 30px;">每日精选 AI DevOps、具身智能、云原生、项目管理领域的前沿动态与深度洞察</p>
-            <a href="2026-04-16.html" class="cta-button" style="display: inline-block; padding: 16px 32px; background: #0071e3; color: white; border-radius: 30px; text-decoration: none; font-weight: 600;">阅读今日晨报 →</a>
-        </section>
-
-        <section class="content-card full-width">
-            <h3>📅 最新归档</h3>
-            <div style="margin-top: 20px;">
-                <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-                    <a href="2026-04-16.html" style="display: block; padding: 20px; background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%); border-radius: 12px; text-decoration: none; min-width: 200px; border-left: 4px solid #667eea;">
-                        <div style="font-size: 18px; font-weight: 600; color: #1d1d1f;">2026-04-16</div>
-                        <div style="font-size: 13px; color: #666; margin-top: 5px;">DeepSeek V4定档发布 | 具身智能Q1融资200亿 | AI项目管理智治时代 | S3-native架构革命</div>
-                    </a>
-                    <a href="2026-04-15.html" style="display: block; padding: 20px; background: #f5f5f7; border-radius: 12px; text-decoration: none; min-width: 200px;">
-                        <div style="font-size: 18px; font-weight: 600; color: #1d1d1f;">2026-04-15</div>
-                        <div style="font-size: 13px; color: #666; margin-top: 5px;">Kimi K2 Thinking成本革命 | 具身智能735亿融资 | AgentOps实践指南 | 向量数据库选型</div>
-                    </a>
-                    <a href="2026-04-14.html" style="display: block; padding: 20px; background: #f5f5f7; border-radius: 12px; text-decoration: none; min-width: 200px;">
-                        <div style="font-size: 18px; font-weight: 600; color: #1d1d1f;">2026-04-14</div>
-                        <div style="font-size: 13px; color: #666; margin-top: 5px;">具身智能Q1融资超200亿 | Kimi估值1200亿 | AI Agent工具链爆发 | PMI研发数字化报告</div>
-                    </a>
-                    <a href="2026-04-13.html" style="display: block; padding: 20px; background: #f5f5f7; border-radius: 12px; text-decoration: none; min-width: 200px;">
-                        <div style="font-size: 18px; font-weight: 600; color: #1d1d1f;">2026-04-13</div>
-                        <div style="font-size: 13px; color: #666; margin-top: 5px;">AgentOps崛起 | 具身智能清场 | Kimi估值1200亿 | 云原生AI-Native</div>
-                    </a>
-                    <a href="2026-04-12.html" style="display: block; padding: 20px; background: #f5f5f7; border-radius: 12px; text-decoration: none; min-width: 200px;">
-                        <div style="font-size: 18px; font-weight: 600; color: #1d1d1f;">2026-04-12</div>
-                        <div style="font-size: 13px; color: #666; margin-top: 5px;">Kimi估值1200亿逆袭 | 具身智能Q1融资300亿 | 云原生AI-Native时代</div>
-                    </a>
-                    <a href="2026-04-11.html" style="display: block; padding: 20px; background: #f5f5f7; border-radius: 12px; text-decoration: none; min-width: 200px;">
-                        <div style="font-size: 18px; font-weight: 600; color: #1d1d1f;">2026-04-11</div>
-                        <div style="font-size: 13px; color: #666; margin-top: 5px;">Anthropic反超OpenAI | 星海图估值破200亿 | 云原生下半场</div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section class="content-section">
-            <h2 class="section-title">📊 关于晨报</h2>
-            <div class="grid-2">
-                <div class="content-card">
-                    <h3>🎯 覆盖领域</h3>
-                    <ul class="feature-list">
-                        <li>🤖 AI DevOps 工具链与最佳实践</li>
-                        <li>🏢 头部AI公司动态与技术突破</li>
-                        <li>🦾 具身智能与机器人产业进展</li>
-                        <li>☁️ 云原生与数据基础设施</li>
-                        <li>📊 项目管理与研发效能</li>
-                    </ul>
-                </div>
-                <div class="content-card">
-                    <h3>📈 内容特色</h3>
-                    <ul class="feature-list">
-                        <li>每日7:17自动更新</li>
-                        <li>P0/P1/P2优先级标注</li>
-                        <li>多维度信息交叉验证</li>
-                        <li>大咖声音与深度分析</li>
-                        <li>关键数据可视化呈现</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <p>© 2026 OpenClaw Morning News. All rights reserved.</p>
-        <p style="margin-top: 10px; opacity: 0.8;">Generated by OpenClaw Agent 🤖</p>
-    </footer>
+        
+        <div class="latest">
+            <div class="latest-badge">最新</div>
+            <h2>2026年4月17日</h2>
+            <p>今日核心洞察：AI Agent开发范式发生根本性转变，从"提示工程"向"软件工程"演进。字节跳动发布最新AI IDE Trae 2.0，集成Claude-4；苹果开源Swift AI框架，降低端侧AI开发门槛；智元机器人与阶跃星辰合作，推动具身智能多模态发展。</p>
+            <div class="date">📅 2026-04-17 | 生成时间: 07:17 CST</div>
+            <a href="2026-04-17.html" class="btn">阅读完整晨报 →</a>
+        </div>
+        
+        <div class="nav">
+            <a href="archives.html">📚 历史归档</a>
+            <a href="about.html">ℹ️ 关于</a>
+        </div>
+        
+        <div class="footer">
+            <p>由豆饼(Doubing)自动生成 | 每日 07:17 更新</p>
+        </div>
+    </div>
 </body>
 </html>

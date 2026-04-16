@@ -3,215 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>历史归档 - AI DevOps晨报</title>
+    <title>历史归档 - AI DevOps 晨报</title>
     <style>
-        :root {
-            --primary: #1d1d1f;
-            --secondary: #86868b;
-            --accent: #0071e3;
-            --bg: #f5f5f7;
-            --card-bg: #ffffff;
-        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background: var(--bg);
-            color: var(--primary);
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e4e4e7;
+            min-height: 100vh;
         }
-        .header {
-            background: var(--primary);
-            color: #fff;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        .header h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
-        .header a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-        .container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-        .month-section {
-            margin-bottom: 30px;
-        }
-        .month-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 15px;
-            padding-left: 10px;
-            border-left: 4px solid var(--accent);
-        }
-        .archive-list {
-            background: var(--card-bg);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-        }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .header h1 { font-size: 2em; margin-bottom: 10px; }
+        .back { display: inline-block; margin-bottom: 20px; color: #667eea; text-decoration: none; }
+        .archive-list { display: grid; gap: 15px; }
         .archive-item {
-            padding: 20px 25px;
-            border-bottom: 1px solid #eee;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: background 0.2s;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: background 0.3s;
         }
-        .archive-item:hover {
-            background: #f9f9f9;
-        }
-        .archive-item:last-child {
-            border-bottom: none;
-        }
-        .archive-date {
-            font-weight: 600;
-            font-size: 16px;
-            min-width: 120px;
-        }
-        .archive-title {
-            color: var(--secondary);
-            font-size: 14px;
-            flex: 1;
-            margin-left: 20px;
-        }
-        .archive-link {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 600;
-        }
-        footer {
-            background: var(--primary);
-            color: #fff;
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 60px;
-        }
-        footer p {
-            color: #a1a1a6;
-            font-size: 14px;
-        }
+        .archive-item:hover { background: rgba(255,255,255,0.1); }
+        .archive-item a { color: #e4e4e7; text-decoration: none; font-weight: 500; }
+        .archive-item .date { opacity: 0.6; font-size: 0.9em; }
+        .footer { text-align: center; margin-top: 50px; opacity: 0.5; font-size: 0.9em; }
     </style>
 </head>
 <body>
-    <header class="header">
-        <h1>📚 历史归档</h1>
-        <p><a href="index.html">← 返回首页</a></p>
-    </header>
-
-    <main class="container">
-        <!-- 2026年4月 -->
-        <div class="month-section">
-            <h2 class="month-title">2026年4月</h2>
-            <div class="archive-list">
-                <div class="archive-item">
-                    <span class="archive-date">4月16日</span>
-                    <span class="archive-title">DeepSeek V4定档发布 | 具身智能Q1融资200亿 | AI项目管理智治时代 | S3-native架构革命</span>
-                    <a href="2026-04-16.html" class="archive-link">阅读 →</a>
-                </div>
-                <div class="archive-item">
-                    <span class="archive-date">4月15日</span>
-                    <span class="archive-title">Kimi K2 Thinking成本革命 | 具身智能735亿融资 | AgentOps实践指南 | 向量数据库选型</span>
-                    <a href="2026-04-15.html" class="archive-link">阅读 →</a>
-                </div>
-                <div class="archive-item">
-                    <span class="archive-date">4月14日</span>
-                    <span class="archive-title">具身智能Q1融资超200亿 | Kimi估值1200亿 | AI Agent工具链爆发 | PMI研发数字化报告</span>
-                    <a href="2026-04-14.html" class="archive-link">阅读 →</a>
-                </div>
-                <div class="archive-item">
-                    <span class="archive-date">4月13日</span>
-                    <span class="archive-title">AgentOps崛起 | 具身智能清场 | Kimi估值1200亿 | 云原生AI-Native</span>
-                    <a href="2026-04-13.html" class="archive-link">阅读 →</a>
-                </div>
-                <div class="archive-item">
-                    <span class="archive-date">4月12日</span>
-                    <span class="archive-title">Kimi估值1200亿逆袭 | 具身智能Q1融资300亿 | 云原生AI-Native时代</span>
-                    <a href="2026-04-12.html" class="archive-link">阅读 →</a>
-                </div>
-                <div class="archive-item">
-                    <span class="archive-date">4月11日</span>
-                    <span class="archive-title">Anthropic反超OpenAI | 星海图估值破200亿 | 云原生下半场</span>
-                    <a href="2026-04-11.html" class="archive-link">阅读 →</a>
-                </div>
-                <div class="archive-item">
-                    <span class="archive-date">4月10日</span>
-                    <span class="archive-title">具身智能日吸金超3亿 | Kimi估值1200亿 | MLOps市场899亿</span>
-                    <a href="2026-04-10.html" class="archive-link">阅读 →</a>
-                </div>
-                <div class="archive-item">
-                    <span class="archive-date">4月9日</span>
-                    <span class="archive-title">阿里通义千问登顶开源榜 | Anthropic年化收入破300亿</span>
-                    <a href="2026-04-09.html" class="archive-link">阅读 →</a>
-                </div>
-                <div class="archive-item">
-                    <span class="archive-date">4月8日</span>
-                    <span class="archive-title">Amazon DevOps Agent上线 | 千寻智能10亿融资 | Kimi成编程新基座</span>
-                    <a href="2026-04-08.html" class="archive-link">阅读 →</a>
-                </div>
-                <div class="archive-item">
-                    <span class="archive-date">4月7日</span>
-                    <span class="archive-title">星海图估值突破200亿 | 智元万台下线 | K8s v1.34发布</span>
-                    <a href="news_20260407.html" class="archive-link">阅读 →</a>
-                </div>
-                <div class="archive-item">
-                    <span class="archive-date">4月6日</span>
-                    <span class="archive-title">Claude Code爆发式增长 | Cursor组织变革 | 具身智能新融资</span>
-                    <a href="news_20260406.html" class="archive-link">阅读 →</a>
-                </div>
-                <div class="archive-item">
-                    <span class="archive-date">4月5日</span>
-                    <span class="archive-title">AI编程助手竞争白热化 | Kimi IPO加速 | 具身智能市场格局</span>
-                    <a href="news_20260405.html" class="archive-link">阅读 →</a>
-                </div>
-                <div class="archive-item">
-                    <span class="archive-date">4月4日</span>
-                    <span class="archive-title">Agentic AI重塑DevOps | Knative毕业 | 星海图融资</span>
-                    <a href="news_20260404.html" class="archive-link">阅读 →</a>
-                </div>
-                <div class="archive-item">
-                    <span class="archive-date">4月3日</span>
-                    <span class="archive-title">GOPS大会倒计时 | AIOps进化论 | DevOps技能图谱更新</span>
-                    <a href="news_20260403.html" class="archive-link">阅读 →</a>
-                </div>
-                <div class="archive-item">
-                    <span class="archive-date">4月2日</span>
-                    <span class="archive-title">港股AI爆发 | 具身智能量产加速 | 数据要素政策</span>
-                    <a href="news_20260402.html" class="archive-link">阅读 →</a>
-                </div>
-                <div class="archive-item">
-                    <span class="archive-date">4月1日</span>
-                    <span class="archive-title">Anthropic源码泄露 | 智元万台下线 | 字节Seed计划</span>
-                    <a href="news_20260401.html" class="archive-link">阅读 →</a>
-                </div>
+    <div class="container">
+        <a href="index.html" class="back">← 返回首页</a>
+        <div class="header">
+            <h1>📚 历史归档</h1>
+        </div>
+        <div class="archive-list">
+            <div class="archive-item">
+                <a href="2026-04-17.html">2026年4月17日 - AI Agent开发范式演进，Kimi融资300亿美元</a>
+                <span class="date">2026-04-17</span>
+            </div>
+            <div class="archive-item">
+                <a href="2026-04-16.html">2026年4月16日</a>
+                <span class="date">2026-04-16</span>
+            </div>
+            <div class="archive-item">
+                <a href="2026-04-15.html">2026年4月15日</a>
+                <span class="date">2026-04-15</span>
+            </div>
+            <div class="archive-item">
+                <a href="2026-04-14.html">2026年4月14日</a>
+                <span class="date">2026-04-14</span>
+            </div>
+            <div class="archive-item">
+                <a href="2026-04-13.html">2026年4月13日</a>
+                <span class="date">2026-04-13</span>
             </div>
         </div>
-
-        <!-- 2026年3月 -->
-        <div class="month-section">
-            <h2 class="month-title">2026年3月</h2>
-            <div class="archive-list">
-                <div class="archive-item">
-                    <span class="archive-date">3月31日</span>
-                    <span class="archive-title">智元机器人万台下线 | 微软Critique系统 | 具身智能融资热</span>
-                    <a href="news_20260331.html" class="archive-link">阅读 →</a>
-                </div>
-                <div class="archive-item">
-                    <span class="archive-date">3月30日</span>
-                    <span class="archive-title">智元机器人量产突破 | 具身智能生态 | AI开发者大会</span>
-                    <a href="news_20260330.html" class="archive-link">阅读 →</a>
-                </div>
-            </div>
+        <div class="footer">
+            <p>由豆饼(Doubing)自动生成</p>
         </div>
-    </main>
-
-    <footer>
-        <p>AI DevOps晨报 · 历史归档</p>
-    </footer>
+    </div>
 </body>
 </html>
