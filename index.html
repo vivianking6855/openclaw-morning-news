@@ -8,182 +8,197 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
-            background: #f5f5f7;
+            background: #fff;
             color: #1d1d1f;
             min-height: 100vh;
             display: flex;
         }
 
-        /* ===== 左侧导航栏 ===== */
+        /* ===== Notion风格左侧导航栏 ===== */
         .sidebar {
             width: 260px;
-            background: #1d1d1f;
-            color: #f5f5f7;
+            background: #f7f7f5;
+            border-right: 1px solid #e5e5e5;
             height: 100vh;
             position: fixed;
             left: 0;
             top: 0;
             overflow-y: auto;
-            padding: 24px 0;
+            padding: 20px 0;
             z-index: 100;
         }
         .sidebar-header {
-            padding: 0 20px 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            margin-bottom: 16px;
+            padding: 0 16px 20px;
+            margin-bottom: 8px;
         }
         .sidebar-header h1 {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
+            color: #1d1d1f;
             margin-bottom: 4px;
+            letter-spacing: -0.3px;
         }
         .sidebar-header p {
             font-size: 12px;
-            opacity: 0.5;
+            color: #9ca3af;
+            font-weight: 400;
         }
         .nav-section {
-            padding: 12px 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 8px 0;
         }
         .nav-section-title {
             font-size: 11px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            opacity: 0.5;
-            margin-bottom: 10px;
+            letter-spacing: 0.6px;
+            color: #9ca3af;
+            padding: 0 16px;
+            margin-bottom: 6px;
         }
         .nav-list {
             list-style: none;
         }
         .nav-list li {
-            margin-bottom: 2px;
+            position: relative;
         }
         .nav-list a {
             display: block;
-            padding: 6px 12px;
-            border-radius: 8px;
-            color: rgba(255,255,255,0.8);
+            padding: 5px 16px;
+            color: #6b7280;
             text-decoration: none;
-            font-size: 13px;
-            transition: all 0.2s;
+            font-size: 14px;
+            transition: color 0.15s;
+            position: relative;
         }
         .nav-list a:hover {
-            background: rgba(255,255,255,0.1);
-            color: #fff;
+            color: #1d1d1f;
         }
         .nav-list a.active {
-            background: #0071e3;
-            color: #fff;
+            color: #1d1d1f;
             font-weight: 600;
         }
+        .nav-list a.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 18px;
+            background: #0071e3;
+            border-radius: 0 2px 2px 0;
+        }
         .nav-footer {
-            padding: 20px;
+            padding: 20px 16px;
             font-size: 11px;
-            opacity: 0.4;
-            text-align: center;
-            margin-top: 20px;
+            color: #9ca3af;
+            margin-top: 16px;
+            line-height: 1.6;
         }
 
         /* ===== 主内容区 ===== */
         .main-content {
             margin-left: 260px;
             flex: 1;
-            padding: 40px;
+            padding: 48px 64px;
             max-width: calc(100% - 260px);
+            min-height: 100vh;
         }
         .header-bar {
-            margin-bottom: 32px;
+            margin-bottom: 36px;
         }
         .header-bar h1 {
-            font-size: 2em;
+            font-size: 2.2em;
+            font-weight: 700;
             margin-bottom: 8px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #1d1d1f;
+            letter-spacing: -0.5px;
         }
         .header-bar p {
-            color: #86868b;
+            color: #6b7280;
             font-size: 1.1em;
+            line-height: 1.5;
         }
 
         /* 最新内容卡片 */
         .latest-card {
             background: #fff;
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-            margin-bottom: 24px;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 36px;
+            margin-bottom: 28px;
         }
         .latest-badge {
             display: inline-block;
-            background: #ef4444;
-            color: white;
-            padding: 6px 14px;
-            border-radius: 20px;
+            background: #fef2f2;
+            color: #dc2626;
+            padding: 4px 12px;
+            border-radius: 4px;
             font-size: 12px;
             font-weight: 600;
             margin-bottom: 16px;
+            letter-spacing: 0.3px;
         }
         .latest-card h2 {
-            font-size: 1.8em;
-            margin-bottom: 16px;
+            font-size: 1.6em;
+            margin-bottom: 14px;
             color: #1d1d1f;
+            font-weight: 600;
         }
         .latest-card .summary {
-            color: #555;
+            color: #4b5563;
             line-height: 1.7;
             margin-bottom: 20px;
             font-size: 15px;
         }
         .latest-card .meta {
-            color: #86868b;
-            font-size: 14px;
+            color: #9ca3af;
+            font-size: 13px;
             margin-bottom: 20px;
         }
         .btn {
             display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #1d1d1f;
             color: white;
-            padding: 12px 28px;
-            border-radius: 8px;
+            padding: 10px 24px;
+            border-radius: 6px;
             text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 500;
+            font-size: 14px;
+            transition: background 0.2s;
         }
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102,126,234,0.4);
+            background: #374151;
         }
 
         /* 快捷入口 */
         .quick-links {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             margin-top: 24px;
+            flex-wrap: wrap;
         }
         .quick-links a {
-            color: #86868b;
+            color: #6b7280;
             text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            background: #fff;
-            border: 1px solid #d2d2d7;
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid #e5e5e5;
             transition: all 0.2s;
-            font-size: 14px;
+            font-size: 13px;
         }
         .quick-links a:hover {
-            background: #f5f5f7;
+            background: #f7f7f5;
             color: #1d1d1f;
+            border-color: #d1d5db;
         }
 
         .footer {
-            margin-top: 40px;
+            margin-top: 48px;
             padding-top: 24px;
-            border-top: 1px solid #d2d2d7;
-            color: #86868b;
-            font-size: 14px;
-            text-align: center;
+            border-top: 1px solid #e5e5e5;
+            color: #9ca3af;
+            font-size: 13px;
         }
 
         /* 响应式 */
@@ -191,6 +206,7 @@
             .sidebar {
                 transform: translateX(-100%);
                 transition: transform 0.3s;
+                box-shadow: 2px 0 8px rgba(0,0,0,0.1);
             }
             .sidebar.open {
                 transform: translateX(0);
@@ -198,7 +214,7 @@
             .main-content {
                 margin-left: 0;
                 max-width: 100%;
-                padding: 20px;
+                padding: 24px;
             }
         }
     </style>
@@ -207,11 +223,11 @@
     <!-- 左侧导航栏 -->
     <aside class="sidebar">
         <div class="sidebar-header">
-            <h1>📰 每日晨报</h1>
+            <h1>每日晨报</h1>
             <p>OpenClaw Morning News</p>
         </div>
         <div class="nav-section">
-            <div class="nav-section-title">📅 历史报告</div>
+            <div class="nav-section-title">历史报告</div>
             <ul class="nav-list">
                 <li><a href="2026-04-23.html" class="active">04-23 最新</a></li>
                 <li><a href="2026-04-22.html">04-22</a></li>
@@ -225,18 +241,17 @@
             </ul>
         </div>
         <div class="nav-section">
-            <div class="nav-section-title">📂 分类浏览</div>
+            <div class="nav-section-title">分类浏览</div>
             <ul class="nav-list">
-                <li><a href="#">🤖 AI DevOps</a></li>
-                <li><a href="#">🏢 头部AI公司</a></li>
-                <li><a href="#">🦾 具身智能</a></li>
-                <li><a href="#">☁️ 云原生</a></li>
-                <li><a href="#">📊 项目管理</a></li>
+                <li><a href="#">AI DevOps</a></li>
+                <li><a href="#">头部AI公司</a></li>
+                <li><a href="#">具身智能</a></li>
+                <li><a href="#">云原生</a></li>
+                <li><a href="#">项目管理</a></li>
             </ul>
         </div>
         <div class="nav-footer">
-            <p>每日 07:17 自动更新</p>
-            <p>由 OpenClaw 生成</p>
+            每日 07:17 自动更新<br>由 OpenClaw 生成
         </div>
     </aside>
 
@@ -253,18 +268,18 @@
             <p class="summary">
                 今日核心洞察：小米MiMo-V2.5深夜发布，4款新模型由前DeepSeek核心成员罗福莉领衔，旗舰推理模型比Kimi K2.6省42% Token。具身智能Q1融资556亿元创纪录，它石智航4.55亿美金Pre-A轮创中国具身智能最高单笔融资。DeepSeek首次开放外部融资估值100亿美元。Anthropic完成300亿美元G轮融资估值3800亿。
             </p>
-            <div class="meta">📅 2026-04-23 | 生成时间: 07:17 CST | 14个板块</div>
+            <div class="meta">2026-04-23 | 生成时间: 07:17 CST | 14个板块</div>
             <a href="2026-04-23.html" class="btn">阅读完整晨报 →</a>
         </div>
 
         <div class="quick-links">
             <a href="2026-04-22.html">← 前一天（4月22日）</a>
-            <a href="archives.html">📚 历史归档</a>
-            <a href="about.html">ℹ️ 关于</a>
+            <a href="archives.html">历史归档</a>
+            <a href="about.html">关于</a>
         </div>
 
         <div class="footer">
-            <p>由豆饼(Doubing)自动生成 | 每日 07:17 更新</p>
+            由豆饼(Doubing)自动生成 | 每日 07:17 更新
         </div>
     </main>
 </body>
