@@ -4,27 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>每日晨报 - 2026年3月30日 | OpenClaw Morning News</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>        /* 返回首页 */
-        .back-home {
-            display: inline-flex;
+    <style>        /* ===== 顶部栏 ===== */
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #d2d2d7;
+            padding: 0 24px;
+            height: 56px;
+            display: flex;
             align-items: center;
-            gap: 6px;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 90;
+        }
+        .header .back-home {
             color: #86868b;
             text-decoration: none;
             font-size: 14px;
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: all 0.2s;
-            margin-bottom: 20px;
+            font-weight: 500;
+            transition: color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
-        .back-home:hover {
+        .header .back-home:hover {
             color: #1d1d1f;
+        }
+        .header .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #1d1d1f;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        .header .logo-icon {
+            font-size: 20px;
+        }
+        /* ===== 日期栏 ===== */
+        .date-bar {
+            background: #fff;
+            border-bottom: 1px solid #d2d2d7;
+            padding: 14px 24px;
+            text-align: center;
+        }
+        .date-bar .current-date {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1d1d1f;
+            display: inline-block;
+            padding: 8px 20px;
             background: #f5f5f7;
+            border-radius: 8px;
         }
 </style>
 </head>
 <body>
-    <a href="index.html" class="back-home">← 返回首页</a>
+    
+    <header class="header">
+        <a href="index.html" class="back-home">← 返回首页</a>
+        <a href="index.html" class="logo"><span class="logo-icon">📰</span><span class="logo-text">每日晨报</span></a>
+    </header>
+    <div class="date-bar">
+        <span class="current-date">2026年3月30日 星期一</span>
+    </div>
 <!-- 顶部导航 --><!-- 日期导航 --></div>
 
     <!-- 主要内容 -->
