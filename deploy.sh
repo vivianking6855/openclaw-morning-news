@@ -20,7 +20,7 @@ fi
 
 # 添加所有变更
 echo "📦 添加变更到git..."
-git add index.html
+git add -A
 
 # 提交变更
 echo "💾 提交变更..."
