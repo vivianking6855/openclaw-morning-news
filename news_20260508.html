@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日晨报 2026-05-08 | OpenClaw Morning News</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .news-meta { font-size: 11px; color: #86868b; margin-top: 4px; display: block; }
+        .news-meta .time { margin-right: 8px; }
+        .news-meta .source { color: #0071e3; }
+        .tag { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-right: 8px; }
+        .tag-p0 { background: rgba(255,59,48,0.1); color: #ff3b30; }
+        .tag-p1 { background: rgba(255,149,0,0.1); color: #ff9800; }
+        .tag-p2 { background: rgba(52,199,89,0.1); color: #34c759; }
+        
+        .fixed-voices-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
+        .fixed-voice-card { background: #f5f5f7; padding: 20px; border-radius: 12px; border-left: 4px solid #0071e3; }
+        .fixed-voice-card .voice-name { font-weight: 600; font-size: 14px; color: #1d1d1f; margin-bottom: 8px; }
+        .fixed-voice-card .voice-title { font-size: 12px; color: #86868b; margin-bottom: 10px; }
+        .fixed-voice-card .voice-text { font-size: 13px; line-height: 1.6; color: #333; margin-bottom: 10px; }
+        .fixed-voice-card .voice-meta { font-size: 11px; color: #86868b; }
+        
+        .term-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 20px; }
+        .term-card { background: #f5f5f7; padding: 16px; border-radius: 10px; }
+        .term-card .term-name { font-weight: 600; font-size: 14px; color: #1d1d1f; margin-bottom: 6px; }
+        .term-card .term-desc { font-size: 13px; color: #555; line-height: 1.5; }
+        
+        .heatmap-container { margin-top: 20px; }
+        .heatmap-row { display: flex; align-items: center; margin-bottom: 12px; }
+        .heatmap-label { width: 140px; font-size: 13px; font-weight: 500; }
+        .heatmap-bar { flex: 1; height: 24px; border-radius: 12px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; color: white; font-size: 11px; font-weight: 600; }
+        .heatmap-hot { background: linear-gradient(90deg, #ff3b30, #ff9500); }
+        .heatmap-warm { background: linear-gradient(90deg, #ff9500, #ffcc00); color: #333 !important; }
+        .heatmap-mild { background: linear-gradient(90deg, #34c759, #30d158); }
+        .heatmap-cool { background: linear-gradient(90deg, #0071e3, #5ac8fa); }
+        
+        .data-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 20px; }
+        .data-card { background: linear-gradient(135deg, #1d1d1f, #2d2d2f); color: white; padding: 20px; border-radius: 12px; text-align: center; }
+        .data-card .data-number { font-size: 32px; font-weight: 700; color: #5ac8fa; margin-bottom: 8px; }
+        .data-card .data-label { font-size: 13px; opacity: 0.8; }
+        .data-card .data-trend { font-size: 11px; margin-top: 6px; }
+        .data-trend.up { color: #34c759; }
+        .data-trend.down { color: #ff3b30; }
+        
+        .source-list { margin-top: 20px; }
+        .source-item { padding: 12px; border-bottom: 1px solid #eee; font-size: 13px; }
+        .source-item .source-time { color: #86868b; margin-right: 8px; }
+        .source-item .source-author { color: #0071e3; font-weight: 500; }
+        .source-item .source-title { color: #1d1d1f; margin-left: 8px; }
+        .source-item .source-link { color: #0071e3; margin-left: 8px; font-size: 11px; }
+        
+        /* ===== 侧边栏布局 ===== */
+        .page-wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+        .sidebar-nav-panel {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 260px;
+            height: 100vh;
+            background: #1d1d1f;
+            color: #f5f5f7;
+            overflow-y: auto;
+            z-index: 100;
+            padding: 24px 0;
+        }
+        .sidebar-nav-panel .nav-header {
+            padding: 0 20px 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .sidebar-nav-panel .nav-header h2 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .sidebar-nav-panel .nav-header p {
+            font-size: 12px;
+            opacity: 0.5;
+        }
+        .sidebar-nav-panel .nav-section {
+            padding: 16px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .sidebar-nav-panel .nav-section-title {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.5;
+            margin-bottom: 12px;
+        }
+        .sidebar-nav-panel ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar-nav-panel li {
+            margin-bottom: 4px;
+        }
+        .sidebar-nav-panel a {
+            display: block;
+            padding: 6px 12px;
+            border-radius: 8px;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+        .sidebar-nav-panel a:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+        .sidebar-nav-panel a.active {
+            background: #0071e3;
+            color: #fff;
+            font-weight: 600;
+        }
+        .sidebar-nav-panel .badge {
+            display: inline-block;
+            background: #ff3b30;
+            color: #fff;
+            padding: 1px 6px;
+            border-radius: 10px;
+            font-size: 10px;
+            margin-left: 6px;
+            font-weight: 600;
+        }
+        .sidebar-nav-panel .category-tag {
+            display: inline-block;
+            margin-right: 6px;
+            font-size: 14px;
+        }
+        .sidebar-nav-panel .nav-footer {
+            padding: 20px;
+            font-size: 11px;
+            opacity: 0.4;
+            text-align: center;
+        }
+        /* ===== 主内容区偏移 ===== */
+        .main-content-area {
+            margin-left: 260px;
+            width: calc(100% - 260px);
+            min-height: 100vh;
+        }
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .sidebar-nav-panel {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+            .sidebar-nav-panel.open {
+                transform: translateX(0);
+            }
+            .main-content-area {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 左侧侧边栏 -->
+    <aside class="sidebar-nav-panel">
+        <div class="nav-header">
+            <h2>📰 每日晨报</h2>
+            <p>OpenClaw Morning News</p>
+        </div>
+        <div class="nav-section">
+            <div class="nav-section-title">📅 历史报告</div>
+            <ul>
+                    <li><a href="news_20260507.html">05-07</a></li>
+                    <li><a href="news_20260506.html">05-06</a></li>
+                    <li><a href="news_20260505.html">05-05</a></li>
+                    <li><a href="news_20260504.html">05-04</a></li>
+                    <li><a href="news_20260430.html">04-30</a></li>
+                    <li><a href="news_20260429.html">04-29</a></li>
+                    <li><a href="news_20260428.html">04-28</a></li>
+                    <li><a href="news_20260427.html">04-27</a></li>
+                    <li><a href="news_20260426.html">04-26</a></li>
+                    <li><a href="news_20260425.html">04-25</a></li>
+                    <li><a href="news_20260424.html">04-24</a></li>
+                    <li><a href="news_20260423.html">04-23</a></li>
+                    <li><a href="news_20260422.html">04-22</a></li>
+                    <li><a href="news_20260421.html">04-21</a></li>
+                    <li><a href="news_20260420.html">04-20</a></li>
+            </ul>
+        </div>
+        <div class="nav-section">
+            <div class="nav-section-title">📂 分类浏览</div>
+            <ul>
+                <li><a href="#"><span class="category-tag">🤖</span> AI DevOps</a></li>
+                <li><a href="#"><span class="category-tag">🏢</span> 头部AI公司</a></li>
+                <li><a href="#"><span class="category-tag">🦾</span> 具身智能</a></li>
+                <li><a href="#"><span class="category-tag">☁️</span> 云原生</a></li>
+                <li><a href="#"><span class="category-tag">📊</span> 项目管理</a></li>
+                <li><a href="#"><span class="category-tag">🌐</span> 全球动态</a></li>
+            </ul>
+        </div>
+        <div class="nav-footer">
+            <p>每日 07:17 自动更新</p>
+            <p>由 OpenClaw 生成</p>
+        </div>
+    </aside>
+
+    <!-- 主内容区 -->
+    <div class="main-content-area">
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo"><span class="logo-icon">📰</span><span class="logo-text">每日晨报</span></a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">今日晨报</a>
+                <a href="archives.html" class="nav-link">历史归档</a>
+                <a href="about.html" class="nav-link">关于</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="date-bar">
+        <div class="date-container">
+            <button class="date-btn" onclick="location.href='news_20260507.html'">← 前一天</button>
+            <span class="current-date">2026年5月8日 星期五</span>
+            <button class="date-btn" disabled>后一天 →</button>
+        </div>
+    </div>
+
+    <main class="main">
+        <section class="hero-section">
+            <div class="hero-badge">💡 今日洞察</div>
+            <h1 class="hero-title">DeepSeek V4开源引爆百万上下文革命，AI Agent分层生态成型，地缘政治搅动技术栈之争</h1>
+            <p class="hero-summary">DeepSeek V4正式发布并开源，1.6T参数旗舰版标配百万token上下文，混合注意力机制将长文本处理成本降低75%；Kimi K2.6以300子Agent集群和4000步协作挑战闭源巨头；全球AI算力军备竞赛升级，SpaceX与特斯拉宣布550亿美元共建芯片工厂。中美AI竞争从技术层面延伸至投资监管与稀土供应链，各国加速布局"主权AI"。</p>
+            <div class="hero-meta">
+                <span>📅 2026-05-08</span>
+                <span>⏱️ 7分钟阅读</span>
+                <span>🔖 14个板块</span>
+            </div>
+        </section>
+
+        <section class="recommendations">
+            <h2 class="section-title">🛠️ 务实落地建议</h2>
+            <div class="rec-grid">
+                <div class="rec-card">
+                    <h4>拥抱DeepSeek V4的百万上下文能力</h4>
+                    <p>100万token上下文（约15-20本长篇小说）让整库代码分析、全文档法律审查成为可能。建议优先在代码审查、长文档分析、多轮对话场景中替换现有128K模型，成本仅为闭源模型的1/10。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>评估Multi-Agent架构的工程化 readiness</h4>
+                    <p>2026年AI Agent从单Agent向分层协同演进（执行层+编排层+协议层）。选型时重点考察编排框架的容错恢复、状态管理和人机协作能力，而非仅看Agent数量。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>为"主权AI"技术栈分化做准备</h4>
+                    <p>中美欧三方技术栈之争加剧，美国推出口管制+技术捆绑，中国推进国产替代（昇腾/华为/阿里），欧盟建设AI超级工厂。跨国企业需建立多技术栈并行能力，避免单一依赖。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>向量数据库选型转向"原生优先"</h4>
+                    <p>存算分离架构可将存储成本降低75%以上。新项目中直接采用原生向量数据库（Milvus、Qdrant），旧系统迁移时分阶段替换外挂引擎，RAG系统性能将有质的飞跃。</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="content-grid">
+            <section class="content-card">
+                <h3><span class="card-icon">🤖</span> AI DevOps 前沿</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p0">P0</span>
+                        <strong>GitHub Copilot 2026 Agent Mode全面上线</strong>，支持自主跨文件编码、终端命令建议和运行时错误自修复，PR周转时间从9.6天降至2.4天，覆盖2000万开发者
+                        <span class="news-meta"><span class="time">2026-04-28</span><span class="source">@Full Stack Techies</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p0">P0</span>
+                        <strong>DeepClaude开源项目爆火</strong>，用DeepSeek V4 Pro替换Claude，API成本从$15/百万token骤降至$0.87/百万token，成本降幅达17倍
+                        <span class="news-meta"><span class="time">2026-05-04</span><span class="source">@DeepSeek技术社区</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">P1</span>
+                        <strong>AI Agent架构实现三层清晰分层</strong>：执行层（工具调用）+ 编排层（任务调度）+ 协议层（通信标准），Harness类项目约3万个，但真正可生产化的仅约200个
+                        <span class="news-meta"><span class="time">2026-04-17</span><span class="source">@CSDN</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">P1</span>
+                        <strong>Harness AI CI/CD平台实现部署自修复</strong>，AI代理从自然语言构建流水线、运行测试、异常时自动回滚，部署验证模块构建健康画像
+                        <span class="news-meta"><span class="time">2026-05-06</span><span class="source">@ThinkCloudly</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p2">P2</span>
+                        <strong>Gitar免费AI代码审查上线</strong>，自动修复CI失败，MTTR降低80%，20人团队年省约$375K，与CodeRabbit、Greptile形成竞争格局
+                        <span class="news-meta"><span class="time">2026-02-04</span><span class="source">@Gitar.ai</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h3><span class="card-icon">🏢</span> 头部AI公司动态</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p0">P0</span>
+                        <strong>DeepSeek V4正式发布并开源</strong>，Pro版1.6T参数/49B激活、Flash版284B/13B激活，标配100万token上下文，混合注意力降低长文本成本75%
+                        <span class="news-meta"><span class="time">2026-04-24</span><span class="source">@新浪财经/DeepSeek官方</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p0">P0</span>
+                        <strong>Kimi K2.6开源发布</strong>，300子Agent并行、4000步协作，可连续编码13小时/4000+行代码，API定价$0.74/1M tokens，挑战GPT-5.4/Claude Opus 4.6
+                        <span class="news-meta"><span class="time">2026-04-20</span><span class="source">@财新网/钛媒体</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p0">P0</span>
+                        <strong>谷歌承诺5年向Anthropic投入2000亿美元</strong>，Anthropic年化收入增速80倍，企业自动化市场占有率超越GPT-4
+                        <span class="news-meta"><span class="time">2026-05-07</span><span class="source">@掘金/HackerNews</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">P1</span>
+                        <strong>OpenAI GPT-5.5发布</strong>，Terminal-Bench 2.0达82.7%，Agentic coding大幅提升，每token延迟与GPT-5.4相当但Codex任务用token更少
+                        <span class="news-meta"><span class="time">2026-04-24</span><span class="source">@掘金</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">P1</span>
+                        <strong>Claude Sonnet 4.6 & Haiku更新</strong>，聚焦Agentic orchestration，接近Opus级别性能但成本更低，修复推理和缓存问题
+                        <span class="news-meta"><span class="time">2026-04-27</span><span class="source">@掘金</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">P1</span>
+                        <strong>Moonshot AI估值达180亿美元</strong>，最新融资5亿美元，Kimi Code Review声称节省88%编码成本，正从模型提供商向Agent生态基础设施商转型
+                        <span class="news-meta"><span class="time">2026-04-21</span><span class="source">@South China Morning Post</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h3><span class="card-icon">🦾</span> 具身智能/机器人</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p0">P0</span>
+                        <strong>SpaceX与特斯拉宣布550亿美元共建芯片工厂</strong>，Anthropic与SpaceX达成300兆瓦算力协议，AI算力军备竞赛全面升级
+                        <span class="news-meta"><span class="time">2026-05-07</span><span class="source">@掘金</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p0">P0</span>
+                        <strong>2026年被视为具身智能量产元年</strong>，IDC预测全球智能机器人硬件市场规模接近300亿美元，中国突破110亿美元
+                        <span class="news-meta"><span class="time">2026-04-29</span><span class="source">@财新网</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p0">P0</span>
+                        <strong>中国人形机器人产量年增高达94%</strong>，TrendForce预估全年产量激增，工业场景成为首个突破口
+                        <span class="news-meta"><span class="time">2026-04-29</span><span class="source">@TrendForce</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">P1</span>
+                        <strong>华为乾昆智驾ADS 5亮相</strong>（4月24日），智能驾驶系统升级，国产自动驾驶方案持续迭代
+                        <span class="news-meta"><span class="time">2026-04-24</span><span class="source">@新浪财经</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">P1</span>
+                        <strong>宇树科技营收同比增长335%至17.08亿元</strong>，人形机器人出货量超5500台，稳居全球第一
+                        <span class="news-meta"><span class="time">2026-04-16</span><span class="source">@证券时报</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h3><span class="card-icon">☁️</span> 云原生与数据</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p0">P0</span>
+                        <strong>向量数据库从"外挂"到"原生"演进</strong>，存算分离架构成为2026年标准，存储成本降低75%以上，金仓数据库发布双引擎架构
+                        <span class="news-meta"><span class="time">2026-04-22</span><span class="source">@金仓数据库白皮书</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">P1</span>
+                        <strong>Milvus成为全球60% RAG系统首选向量存储</strong>，2026年v2.6版本支持GPU加速、混合检索、多租户
+                        <span class="news-meta"><span class="time">2026-03-25</span><span class="source">@掘金</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">P1</span>
+                        <strong>S3原生架构革命席卷数据基础设施</strong>，TurboPuffer、Quickwit、InfluxDB等全面转向对象存储，整体降本95%
+                        <span class="news-meta"><span class="time">2026-03-12</span><span class="source">@EMQ</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p2">P2</span>
+                        <strong>DeepSeek V4深度适配华为昇腾算力</strong>，工程师团队重写核心代码完成CUDA到CANN迁移，实现FP4量化精度深度优化
+                        <span class="news-meta"><span class="time">2026-04-24</span><span class="source">@腾讯云开发者社区</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h3><span class="card-icon">📊</span> 项目管理与效能</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p1">P1</span>
+                        <strong>AI重塑项目管理全链路</strong>，Asana Intelligence生成草稿状态更新、推荐负责人、分析工作负载；ClickUp Brain自动化任务创建
+                        <span class="news-meta"><span class="time">2026-04-24</span><span class="source">@Lark/Monday.com</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">P1</span>
+                        <strong>Orangescrum内置AI功能全面上线</strong>，智能工作负载管理、自定义状态工作流、自托管选项，支持Slack/GitHub/Zapier集成
+                        <span class="news-meta"><span class="time">2026-04-13</span><span class="source">@Orangescrum Blog</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p2">P2</span>
+                        <strong>Jira仍主导敏捷项目管理市场</strong>，Scrum/Kanban板、高级报告、DevOps工具集成，适合大型企业和敏捷开发团队
+                        <span class="news-meta"><span class="time">2026-04-24</span><span class="source">@Zaigo Infotech</span></span>
+                    </li>
+                </ul>
+            </section>
+        </div>
+
+        <section class="global-section">
+            <h2 class="section-title">🌐 全球动态</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>地区/领域</th>
+                        <th>核心动态</th>
+                        <th>影响评估</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="region-tag">🇺🇸 美国</span></td>
+                        <td>谷歌5年2000亿美元投资Anthropic；SpaceX+特斯拉550亿美元共建芯片厂；酝酿AI平台强制报备制度</td>
+                        <td>🔴 高</td>
+                    </tr>
+                    <tr>
+                        <td><span class="region-tag">🇨🇳 中国</span></td>
+                        <td>DeepSeek V4开源百万上下文；Kimi K2.6开源Agent集群；否决Meta-Manus交易；推进国产算力替代</td>
+                        <td>🔴 高</td>
+                    </tr>
+                    <tr>
+                        <td><span class="region-tag">🌏 全球</span></td>
+                        <td>中美AI竞争延伸至投资监管；关键矿产争夺战升温；开源模型加速追赶闭源巨头</td>
+                        <td>🔴 高</td>
+                    </tr>
+                    <tr>
+                        <td><span class="region-tag">🇪🇺 欧洲</span></td>
+                        <td>欧盟投资数十亿欧元建设AI超级工厂（爱沙尼亚至西班牙），呼吁打造欧洲"本土技术栈"</td>
+                        <td>🟡 中高</td>
+                    </tr>
+                    <tr>
+                        <td><span class="region-tag">🇮🇳 印度</span></td>
+                        <td>将在AI影响力峰会发布主权大语言模型，美国科技巨头承诺投入数十亿美元</td>
+                        <td>🟡 中</td>
+                    </tr>
+                    <tr>
+                        <td><span class="region-tag">💰 资本</span></td>
+                        <td>AI商业化进入"收割季"，Anthropic ARR增速80倍触发系统保护；豆包开始付费订阅</td>
+                        <td>🔴 高</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="voices-section">
+            <h2 class="section-title">🎙️ 大咖声音</h2>
+            <div class="fixed-voices-grid">
+                <div class="fixed-voice-card">
+                    <div class="voice-name">杨植麟 · 月之暗面CEO</div>
+                    <div class="voice-title">开源战略</div>
+                    <div class="voice-text">"不诱于誉，不恐于诽，率道而行，端然正己。"——DeepSeek V4发布稿引用荀子名言，回应外界对发布时间的质疑，体现国产AI公司的定力。</div>
+                    <div class="voice-meta">2026-04-24 · 新浪财经</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">魏哲家 · 台积电董事长兼CEO</div>
+                    <div class="voice-title">芯片制造</div>
+                    <div class="voice-text">看到中国大陆机器人"跳来跳去"，直言"没用，好看而已"，点出具身智能表演型能力与实用型能力的根本差异。</div>
+                    <div class="voice-meta">2026-04-21 · 虎嗅</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">黄仁勋 · 英伟达CEO</div>
+                    <div class="voice-title">AI基础设施</div>
+                    <div class="voice-text">"具身人工智能是AI之后的下一个浪潮，未来人形机器人将像汽车般普及。"英伟达市值已突破5万亿美元。</div>
+                    <div class="voice-meta">2025-08 · 司库财经</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">大西洋理事会 · 智库专家合集</div>
+                    <div class="voice-title">地缘政治</div>
+                    <div class="voice-text">"2026年AI将成为国际竞争的核心。各国普遍认为，必须在AI形成主导性影响之前掌握其控制权。"主权AI布局加速。</div>
+                    <div class="voice-meta">2026-01-15 · 北京智源人工智能研究院</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="terms-section">
+            <h2 class="section-title">📖 名字解释</h2>
+            <div class="term-grid">
+                <div class="term-card">
+                    <div class="term-name">混合注意力机制 (DSA/NSA)</div>
+                    <div class="term-desc">DeepSeek V4采用的稀疏注意力架构，DSA专注生成优质答案，NSA确保超长文本处理速度快、成本低，二者结合将百万token上下文成本降低75%。</div>
+                </div>
+                <div class="term-card">
+                    <div class="term-name">Agent Swarm (Agent集群)</div>
+                    <div class="term-desc">Kimi K2.6的核心架构，300个子Agent并行协作、4000步协调执行，实现从深度搜索到文档生成再到网页构建的端到端交付，代表群体智能的工程化实现。</div>
+                </div>
+                <div class="term-card">
+                    <div class="term-name">MoE (Mixture of Experts)</div>
+                    <div class="term-desc">混合专家架构，DeepSeek V4 Pro总参数1.6T但每次推理仅激活49B参数，兼顾海量知识储备与高效推理速度，是当前大模型主流架构范式。</div>
+                </div>
+                <div class="term-card">
+                    <div class="term-name">存算分离</div>
+                    <div class="term-desc">计算节点与存储节点解耦的架构设计，支持独立弹性扩容，面对AI推理高峰期可秒级扩展计算资源，存储成本降低75%以上。</div>
+                </div>
+                <div class="term-card">
+                    <div class="term-name">S3原生架构</div>
+                    <div class="term-desc">以对象存储为唯一数据持久化层的架构范式，搜索引擎、向量数据库、时序数据库等全面采用，实现无状态、弹性、低成本，整体降本可达95%。</div>
+                </div>
+                <div class="term-card">
+                    <div class="term-name">主权AI (Sovereign AI)</div>
+                    <div class="term-desc">各国为增强经济竞争力、维护国家安全而布局的自主AI能力，涵盖算力、模型、数据全链条控制。2026年印度、欧盟、中东等纷纷发布主权AI计划。</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="data-section">
+            <h2 class="section-title">📊 关键数据速览</h2>
+            <div class="data-grid">
+                <div class="data-card">
+                    <div class="data-number">1.6T</div>
+                    <div class="data-label">DeepSeek V4 Pro总参数</div>
+                    <div class="data-trend up">↑ 49B激活参数</div>
+                </div>
+                <div class="data-card">
+                    <div class="data-number">100万</div>
+                    <div class="data-label">token · V4标配上下文长度</div>
+                    <div class="data-trend up">↑ 约15-20本长篇小说</div>
+                </div>
+                <div class="data-card">
+                    <div class="data-number">75%</div>
+                    <div class="data-label">混合注意力降低的长文本成本</div>
+                    <div class="data-trend up">↑ DeepSeek V4突破</div>
+                </div>
+                <div class="data-card">
+                    <div class="data-number">300</div>
+                    <div class="data-label">个子Agent · Kimi K2.6集群规模</div>
+                    <div class="data-trend up">↑ K2.5的3倍</div>
+                </div>
+                <div class="data-card">
+                    <div class="data-number">$0.74</div>
+                    <div class="data-label">Kimi K2.6每百万token API定价</div>
+                    <div class="data-trend up">↑ 比K2.5贵58%</div>
+                </div>
+                <div class="data-card">
+                    <div class="data-number">550亿</div>
+                    <div class="data-label">美元 · SpaceX+特斯拉芯片工厂</div>
+                    <div class="data-trend up">↑ 算力军备竞赛升级</div>
+                </div>
+                <div class="data-card">
+                    <div class="data-number">2000亿</div>
+                    <div class="data-label">美元 · 谷歌5年投资Anthropic</div>
+                    <div class="data-trend up">↑ AI资本密度创新高</div>
+                </div>
+                <div class="data-card">
+                    <div class="data-number">38亿</div>
+                    <div class="data-label">全球大模型用户总数</div>
+                    <div class="data-trend up">↑ 2026Q1突破</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="analysis-section">
+            <h2 class="section-title">💡 深度分析</h2>
+            <div class="content-card">
+                <h3>百万上下文：从"奢侈品"到"标配"的范式转移</h3>
+                <p>DeepSeek V4将100万token上下文从"高端功能"变为"全系标配"，这不仅是数字游戏，而是从根本上改变了开发者与AI协作的方式。过去，处理整库代码或整本法律文档需要复杂的分块检索和上下文拼接；现在，开发者可以直接将整个代码仓库、数年聊天记录或完整法律卷宗交给模型。DSA与NSA混合注意力机制将处理成本降低75%，意味着长文本不再昂贵。</p>
+                <p>更深远的影响在于Agent生态——当Agent可以一次性"读完"整个项目文档、企业知识库或竞品分析报告，其自主决策质量将呈指数级提升。Kimi K2.6的300子Agent集群已展示出这种潜力：一个Agent读取论文，100个子Agent并行匹配岗位，300个Agent各自构建落地页。百万上下文是群体智能的基础设施。</p>
+            </div>
+            <div class="content-card">
+                <h3>开源vs闭源：天平正在倾斜</h3>
+                <p>2026年4月的密集发布窗口揭示了一个结构性转变：开源模型正在系统性地侵蚀闭源模型的护城河。DeepSeek V4在代码评测中全球第一，世界知识储备仅次于Gemini-Pro-3.1；Kimi K2.6在SWE-Bench Pro和DeepSearchQA上持平或超越GPT-5.4和Claude Opus 4.6。二者的API定价分别为$0.87和$0.74/百万token，远低于闭源竞品。</p>
+                <p>闭源模型的反击是资本密度的极端化——谷歌5年2000亿美元绑定Anthropic，OpenAI加速B端布局，Anthropic年化收入增速80倍。但开源社区的Star数爆发式增长（Llama 4系列全面围攻GPT-5）表明，开发者生态的投票权重正在上升。未来的竞争可能不是"开源or闭源"，而是"谁能在开源生态中建立可持续的商业飞轮"。</p>
+            </div>
+            <div class="content-card">
+                <h3>主权AI与技术栈分化：全球化退潮，区块化兴起</h3>
+                <p>大西洋理事会《Eight ways AI will shape geopolitics in 2026》报告准确预判了当前趋势：AI技术栈之争已从商业竞争升级为地缘政治博弈。美国通过出口管制（H200芯片批准对华出口实为战略捆绑）和技术捆绑（商务部资助他国采购微软/OpenAI/英伟达产品）推广美国标准；欧盟投资数十亿欧元建设AI超级工厂；中国号召企业采用华为/阿里等本土方案。</p>
+                <p>这一分化对企业的直接影响是：跨国技术架构必须建立多栈并行能力。DeepSeek V4已完成华为昇腾CANN生态迁移，意味着"CUDA唯一"时代正在终结。对于技术决策者而言，2026年的关键问题不再是"选哪个模型"，而是"如何设计不依赖单一技术主权的技术架构"。</p>
+            </div>
+        </section>
+
+        <section class="heatmap-section">
+            <h2 class="section-title">🔥 行业热力图</h2>
+            <div class="heatmap-container">
+                <div class="heatmap-row">
+                    <div class="heatmap-label">长上下文大模型</div>
+                    <div class="heatmap-bar heatmap-hot" style="width: 95%">95% · 爆发期</div>
+                </div>
+                <div class="heatmap-row">
+                    <div class="heatmap-label">AI Agent工具链</div>
+                    <div class="heatmap-bar heatmap-hot" style="width: 92%">92% · 爆发期</div>
+                </div>
+                <div class="heatmap-row">
+                    <div class="heatmap-label">开源模型生态</div>
+                    <div class="heatmap-bar heatmap-hot" style="width: 90%">90% · 加速期</div>
+                </div>
+                <div class="heatmap-row">
+                    <div class="heatmap-label">AI算力军备</div>
+                    <div class="heatmap-bar heatmap-hot" style="width: 88%">88% · 狂热期</div>
+                </div>
+                <div class="heatmap-row">
+                    <div class="heatmap-label">向量数据库</div>
+                    <div class="heatmap-bar heatmap-warm" style="width: 78%">78% · 成长期</div>
+                </div>
+                <div class="heatmap-row">
+                    <div class="heatmap-label">具身智能融资</div>
+                    <div class="heatmap-bar heatmap-warm" style="width: 75%">75% · 竞争期</div>
+                </div>
+                <div class="heatmap-row">
+                    <div class="heatmap-label">云原生基础设施</div>
+                    <div class="heatmap-bar heatmap-warm" style="width: 70%">70% · 演进期</div>
+                </div>
+                <div class="heatmap-row">
+                    <div class="heatmap-label">具身智能量产</div>
+                    <div class="heatmap-bar heatmap-mild" style="width: 48%">48% · 验证期</div>
+                </div>
+                <div class="heatmap-row">
+                    <div class="heatmap-label">AI项目管理</div>
+                    <div class="heatmap-bar heatmap-mild" style="width: 55%">55% · 渗透期</div>
+                </div>
+            </div>
+            <p style="font-size: 12px; color: #86868b; margin-top: 16px;">
+                <strong>状态说明：</strong>
+                <span style="color: #ff3b30">🔴 爆发期/狂热期/加速期</span> — 资本、技术、舆论高度集中，建议高度关注但警惕泡沫；
+                <span style="color: #ff9500">🟡 成长期/竞争期/演进期</span> — 技术路线明确，市场格局未定，适合布局；
+                <span style="color: #34c759">🟢 渗透期/验证期</span> — 早期阶段，风险较高但潜在回报大，适合跟踪研究。
+            </p>
+        </section>
+
+        <section class="sources-section">
+            <h2 class="section-title">📚 权威来源</h2>
+            <div class="source-list">
+                <div class="source-item">
+                    <span class="source-time">2026-04-24</span>
+                    <span class="source-author">DeepSeek官方 · 国产AI实验室</span>
+                    <span class="source-title">《DeepSeek-V4：迈入百万上下文普惠智能时代》技术报告</span>
+                    <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/blob/main/DeepSeek_V4.pdf" class="source-link">[原文链接]</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-time">2026-04-21</span>
+                    <span class="source-author">财新网 · 刘沛林（资深科技记者）</span>
+                    <span class="source-title">《月之暗面新模型主攻长程代码和智能体 挑战国外多款闭源模型》</span>
+                    <a href="https://m.caixin.com/m/2026-04-21/102436250.html" class="source-link">[原文链接]</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-time">2026-04-21</span>
+                    <span class="source-author">钛媒体 · AGI Signal（AI产业观察者）</span>
+                    <span class="source-title">《Kimi K2.6 开源直逼 GPT-5.4：涨 58% 的 API 定价，暴露了月之暗面的真实意图》</span>
+                    <a href="https://www.tmtpost.com/7961404.html" class="source-link">[原文链接]</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-time">2026-05-07</span>
+                    <span class="source-author">掘金 · HackerNews精选</span>
+                    <span class="source-title">《2026年5月7日科技AI资讯日报》</span>
+                    <a href="https://juejin.cn/post/7636697637253316618" class="source-link">[原文链接]</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-time">2026-04-28</span>
+                    <span class="source-author">Full Stack Techies · DevOps技术媒体</span>
+                    <span class="source-title">《AI In DevOps: How Generative AI Is Transforming Developer Workflows In 2026》</span>
+                    <a href="https://fullstacktechies.com/ai-in-devops-generative-ai-workflows/" class="source-link">[原文链接]</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-time">2026-05-06</span>
+                    <span class="source-author">ThinkCloudly · 技术评测媒体</span>
+                    <span class="source-title">《Top 10 AI Tools for DevOps in 2026 (Free + Paid)》</span>
+                    <a href="https://thinkcloudly.com/blog/ai-tools-devops/" class="source-link">[原文链接]</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-time">2026-04-24</span>
+                    <span class="source-author">腾讯云开发者社区 · 技术博客</span>
+                    <span class="source-title">《DeepSeek V4终于发布，很强！》</span>
+                    <a href="https://cloud.tencent.com/developer/article/2661237" class="source-link">[原文链接]</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-time">2026-04-29</span>
+                    <span class="source-author">财新网 · 权威财经媒体</span>
+                    <span class="source-title">《具身智能人才需求爆发式增长，9所高校获批开设相关专业》</span>
+                    <a href="https://www.caixin.com/2026-04-29/102439000.html" class="source-link">[原文链接]</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-time">2026-01-24</span>
+                    <span class="source-author">大西洋理事会 · 国际智库</span>
+                    <span class="source-title">《Eight ways AI will shape geopolitics in 2026》</span>
+                    <a href="https://www.atlanticcouncil.org/dispatches/eight-ways-ai-will-shape-geopolitics-in-2026/" class="source-link">[原文链接]</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-time">2026-05-06</span>
+                    <span class="source-author">DeepSeek技术社区 · AI开发者社区</span>
+                    <span class="source-title">《从论文到落地：2026年5月7日深度解析DeepSeek-V4-Pro核心技术》</span>
+                    <a href="https://deepseek.csdn.net/69fad91b54b52172bc7201d8.html" class="source-link">[原文链接]</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>📰 OpenClaw Morning News · 每日晨报</p>
+        <p>每日 07:17 自动更新 | 由 OpenClaw 智能生成</p>
+        <p style="margin-top: 8px; opacity: 0.6;">数据来源：公开网络信息整理，仅供学习参考</p>
+    </footer>
+    </div>
+
+    <script>
+        // 移动端菜单切换
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const sidebar = document.querySelector('.sidebar-nav-panel');
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('open');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
