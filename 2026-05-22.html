@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>豆饼晨报 | 2026-05-22</title>
+<style>
+:root { --sidebar-width: 280px; --bg: #f5f5f7; --card-bg: #ffffff; --text: #1d1d1f; --text-secondary: #86868b; --accent: #0071e3; --accent-hover: #0077ed; --p0: #ff3b30; --p1: #ff9500; --p2: #34c759; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+#sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100vh; background: #1d1d1f; color: #f5f5f7; overflow-y: auto; padding: 32px 24px; z-index: 100; }
+#sidebar .logo { font-size: 20px; font-weight: 700; margin-bottom: 32px; letter-spacing: -0.5px; display:flex; align-items:center; gap:10px; }
+#sidebar ul { list-style: none; }
+#sidebar li { margin-bottom: 6px; }
+#sidebar a { color: #d2d2d7; text-decoration: none; font-size: 13px; display: block; padding: 6px 8px; border-radius: 6px; transition: .2s; }
+#sidebar a:hover, #sidebar a.active { background: rgba(255,255,255,0.1); color: #fff; }
+#sidebar .nav-group { margin-bottom: 24px; }
+#sidebar .nav-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #86868b; margin-bottom: 10px; font-weight: 600; }
+#main-content { margin-left: var(--sidebar-width); padding: 48px; max-width: 1200px; }
+.section { margin-bottom: 64px; }
+.section-title { font-size: 28px; font-weight: 700; margin-bottom: 24px; letter-spacing: -0.5px; }
+.section-subtitle { font-size: 15px; color: var(--text-secondary); margin-bottom: 32px; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.card-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+@media (max-width: 900px) { .card-grid-2 { grid-template-columns: 1fr; } #sidebar { transform: translateX(-100%); } #main-content { margin-left: 0; padding: 24px; } }
+.card { background: var(--card-bg); border-radius: 16px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); transition: transform .2s, box-shadow .2s; }
+.card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+.badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 100px; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 12px; }
+.badge-p0 { background: rgba(255,59,48,0.1); color: var(--p0); }
+.badge-p1 { background: rgba(255,149,0,0.1); color: var(--p1); }
+.badge-p2 { background: rgba(52,199,89,0.1); color: var(--p2); }
+.badge-hero { background: var(--accent); color: #fff; padding: 6px 14px; font-size: 12px; margin-bottom: 16px; }
+.news-title { font-size: 17px; font-weight: 600; margin-bottom: 8px; line-height: 1.4; }
+.news-meta { font-size: 12px; color: var(--text-secondary); margin-bottom: 10px; }
+.news-desc { font-size: 14px; color: #333; line-height: 1.6; }
+.hero { background: linear-gradient(135deg, #1d1d1f 0%, #2c2c2e 100%); color: #fff; padding: 48px; border-radius: 24px; margin-bottom: 40px; }
+.hero h1 { font-size: 36px; font-weight: 800; line-height: 1.2; margin-bottom: 16px; letter-spacing: -1px; }
+.hero p.lead { font-size: 18px; color: #a1a1a6; margin-bottom: 24px; max-width: 720px; }
+.hero .meta { font-size: 13px; color: #86868b; }
+.data-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+.data-card { text-align: center; padding: 28px 20px; }
+.data-number { font-size: 32px; font-weight: 800; color: var(--accent); margin-bottom: 4px; letter-spacing: -1px; }
+.data-label { font-size: 13px; color: var(--text-secondary); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; background: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+th { text-align: left; padding: 12px 16px; background: #fafafa; font-weight: 600; border-bottom: 2px solid #eee; }
+td { padding: 14px 16px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+tr:hover td { background: #fafafa; }
+.heatmap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.heatmap-item { padding: 20px; border-radius: 12px; background: var(--card-bg); }
+.heat-hot { border-left: 4px solid #ff3b30; }
+.heat-warm { border-left: 4px solid #ff9500; }
+.heat-cool { border-left: 4px solid #34c759; }
+.heat-cold { border-left: 4px solid #86868b; }
+.heatmap-status { font-size: 13px; font-weight: 700; margin-bottom: 6px; display:flex; align-items:center; gap:6px; }
+.heatmap-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+.heatmap-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+.source-item { margin-bottom: 16px; font-size: 13px; line-height: 1.7; color: #444; padding-bottom: 16px; border-bottom: 1px solid #eee; }
+.source-title { font-weight: 600; color: #111; }
+.source-meta { color: #666; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.advice-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.advice-num { width: 28px; height: 28px; background: var(--accent); color: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+@media (max-width: 768px) { .card-grid { grid-template-columns: 1fr; } .data-grid { grid-template-columns: repeat(2, 1fr); } }
+.analysis-block { background: var(--card-bg); border-radius: 16px; padding: 28px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.analysis-block h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #111; }
+.analysis-block p { font-size: 14px; color: #444; line-height: 1.8; }
+.quote-text { font-size: 15px; font-style: italic; color: #333; line-height: 1.6; margin-bottom: 10px; border-left: 3px solid var(--accent); padding-left: 14px; }
+.term-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.term-desc { font-size: 13px; color: #555; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<nav id="sidebar">
+  <div class="logo">❤️‍🔥 豆饼晨报</div>
+  <div class="nav-group">
+    <div class="nav-title">核心</div>
+    <ul>
+      <li><a href="#sec-insight">今日洞察</a></li>
+      <li><a href="#sec-advice">务实落地建议</a></li>
+      <li><a href="#sec-data">关键数据速览</a></li>
+      <li><a href="#sec-heatmap">行业热力图</a></li>
+    </ul>
+  </div>
+  <div class="nav-group">
+    <div class="nav-title">领域前沿</div>
+    <ul>
+      <li><a href="#sec-devops">AI DevOps 前沿</a></li>
+      <li><a href="#sec-ai">头部AI公司动态</a></li>
+      <li><a href="#sec-robot">具身智能 / 机器人</a></li>
+      <li><a href="#sec-cloud">云原生与数据</a></li>
+      <li><a href="#sec-pm">项目管理与效能</a></li>
+      <li><a href="#sec-global">全球动态</a></li>
+    </ul>
+  </div>
+  <div class="nav-group">
+    <div class="nav-title">深度</div>
+    <ul>
+      <li><a href="#sec-expert">大咖声音</a></li>
+      <li><a href="#sec-term">名字解释</a></li>
+      <li><a href="#sec-analysis">深度分析</a></li>
+      <li><a href="#sec-source">权威来源</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="main-content">
+
+<!-- 今日洞察 -->
+<section class="section" id="sec-insight">
+  <div class="hero">
+    <div class="badge-hero">2026.05.22 晨报</div>
+    <h1>Anthropic首季盈利颠覆预期，<br>Kimi K2.6与DeepSeek V4重塑模型格局</h1>
+    <p class="lead">Anthropic实现首季盈利$6亿，年收入冲刺$60亿，打破"AI公司无法盈利"的行业魔咒；Kimi K2.6以Modified MIT许可证发布，200万token上下文窗口直击长文档处理痛点；DeepSeek V4-Pro以$1.74/$3.48每百万token的极端定价持续冲击GPT-5.5，中间层模型生存空间加速消失；Tesla Optimus在Gigafactory进入实际部署阶段，欧盟AI法案8月全面执法进入倒计时——盈利、开源、量产、合规四重叙事在同一天共振。</p>
+    <div class="meta">14个板块 · 6大领域 · 18+权威来源 · 豆饼编制</div>
+  </div>
+</section>
+
+<!-- 务实落地建议 -->
+<section class="section" id="sec-advice">
+  <h2 class="section-title">🛠️ 务实落地建议</h2>
+  <div class="card-grid-2">
+    <div class="card">
+      <div class="badge badge-p0">P0 · 模型选型</div>
+      <div class="news-title">建立多模型fallback策略，避免单一供应商锁定</div>
+      <div class="news-desc">DeepSeek V4 MIT开源+低价、Kimi K2.6长上下文、Claude企业合规各有优势。建议技术团队建立模型选型矩阵，按场景（代码生成/长文档/合规审查）分配不同模型，同时监控token成本与输出质量比值，每季度复盘。</div>
+    </div>
+    <div class="card">
+      <div class="badge badge-p0">P0 · 合规准备</div>
+      <div class="news-title">立即启动欧盟AI Act合规审查，8月倒计时不足80天</div>
+      <div class="news-desc">欧盟AI Act 2026年8月2日全面执法，违规罚款最高3500万欧元或全球营收7%。建议跨国企业在6月底前完成AI系统风险分级审计，高风险应用（招聘、信贷、医疗）需建立人工监督与偏见测试机制。</div>
+    </div>
+    <div class="card">
+      <div class="badge badge-p1">P1 · AI DevOps</div>
+      <div class="news-title">从高频痛点启动Agentic AI工具链POC</div>
+      <div class="news-desc">GitHub Copilot、Harness Intelligence、GitLab Duo已覆盖从代码生成到CI/CD优化全链路。建议从测试自动化（Playwright+AI）或incident根因分析启动POC，验证Agent自主执行率与人工介入比例的平衡点。</div>
+    </div>
+    <div class="card">
+      <div class="badge badge-p1">P1 · 具身智能</div>
+      <div class="news-title">关注触觉传感器成本下探带来的工业场景窗口</div>
+      <div class="news-desc">帕西尼触觉传感器成本从10万元降至百元级，Figure AI在BMW工厂部署验证工业可行性。建议制造业用户在精密装配、质检、物料搬运场景中启动小批量试点，优先评估ROI周期在18个月以内的场景。</div>
+    </div>
+  </div>
+</section>
+
+<!-- AI DevOps前沿 -->
+<section class="section" id="sec-devops">
+  <h2 class="section-title">🤖 AI DevOps 前沿</h2>
+  <p class="section-subtitle">Agentic AI工具链覆盖从代码生成到生产运维全生命周期</p>
+  <div class="card-grid-2">
+    <div class="card">
+      <div class="badge badge-p0">P0</div>
+      <div class="news-title">GitHub Copilot Workspaces实现从Issue到PR全自动化</div>
+      <div class="news-meta">来源: GitHub Blog / FluxAI HQ · 2026-05</div>
+      <div class="news-desc">Copilot Workspaces支持从GitHub Issue直接生成完整代码变更，Agent可自主规划实现步骤、编写代码、运行测试并提交PR。标志着AI从"代码补全"进化为"任务完成"，开发者角色正从编码者向需求定义者与质量审查者迁移。</div>
+    </div>
+    <div class="card">
+      <div class="badge badge-p0">P0</div>
+      <div class="news-title">Harness Intelligence实现CI/CD全链路AI优化</div>
+      <div class="news-meta">来源: Harness.io / DevOps.com · 2026-05</div>
+      <div class="news-desc">Harness平台集成AI能力覆盖构建缓存优化、测试选择、部署风险评估与回滚决策。AI可根据代码变更历史自动选择最小测试子集，将CI时间缩短40%-60%。其ML驱动的部署验证可在生产异常时自动触发回滚。</div>
+    </div>
+    <div class="card">
+      <div class="badge badge-p1">P1</div>
+      <div class="news-title">Pulumi Neo：基础设施即代码的AI自然语言革命</div>
+      <div class="news-meta">来源: Pulumi Blog · 2026-05</div>
+      <div class="news-desc">Pulumi Neo允许开发者用自然语言描述基础设施需求（"为微服务创建高可用K8s集群"），AI自动生成TypeScript/Python基础设施代码并执行部署。支持200+云提供商，将IaC门槛从专家级降至普通开发者水平。</div>
+    </div>
+    <div class="card">
+      <div class="badge badge-p1">P1</div>
+      <div class="news-title">Warp终端AI化：命令行成为AI Agent操作界面</div>
+      <div class="news-meta">来源: Warp.dev / Terminal AI Review · 2026-05</div>
+      <div class="news-desc">Warp终端内置AI助手，支持自然语言转Shell命令、错误诊断、日志分析与自动化脚本生成。其Agent模式可串联多条命令完成复杂运维任务（如"查找过去24小时内存泄漏并生成分析报告"），将SRE生产力提升3-5倍。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 头部AI公司动态 -->
+<section class="section" id="sec-ai">
+  <h2 class="section-title">🏢 头部AI公司动态</h2>
+  <p class="section-subtitle">盈利、开源与定价三重冲击正在重塑大模型竞争格局</p>
+  <div class="card-grid-2">
+    <div class="card">
+      <div class="badge badge-p0">P0</div>
+      <div class="news-title">Anthropic首季盈利$6亿，年收入冲刺$60亿</div>
+      <div class="news-meta">来源: Bloomberg / Financial Times · 2026-05-20</div>
+      <div class="news-desc">Anthropic 2026年Q1实现$6亿盈利，年收入预计达$60亿，打破"AI公司无法盈利"的行业预期。Claude Enterprise付费企业超30万家，API收入同比增长400%。核心驱动力：长上下文（200万token）与可预测合规行为赢得金融、法律、医疗等高价值行业。</div>
+    </div>
+    <div class="card">
+      <div class="badge badge-p0">P0</div>
+      <div class="news-title">Kimi K2.6发布：Modified MIT许可证+200万token上下文</div>
+      <div class="news-meta">来源: Codersera / Moonshot AI · 2026-05-18</div>
+      <div class="news-desc">Moonshot AI于4月20日发布Kimi K2.6，采用Modified MIT许可证（允许商用免版税）。模型ID为kimi-k2.6，API兼容OpenAI格式。200万token上下文窗口使其在 legal document review、金融报告分析、代码库理解等长文档场景具备显著优势。</div>
+    </div>
+    <div class="card">
+      <div class="badge badge-p0">P0</div>
+      <div class="news-title">DeepSeek V4-Pro以极端定价冲击GPT-5.5</div>
+      <div class="news-meta">来源: The New Stack / DeepSeek · 2026-04-26</div>
+      <div class="news-desc">V4-Pro定价$1.74/$3.48每百万token，仅为GPT-5.5的1/9。1M上下文窗口，SWE-bench得分80.6%，MIT许可证完全开源权重。开源+低价正在压缩中间层模型生存空间，市场向"头部闭源"与"开源低价"两极加速分化。</div>
+    </div>
+    <div class="card">
+      <div class="badge badge-p1">P1</div>
+      <div class="news-title">OpenAI与Anthropic进军AI咨询业</div>
+      <div class="news-meta">来源: 36Kr / AI Industry Weekly · 2026-04-27</div>
+      <div class="news-desc">OpenAI和Anthropic相继宣布推出AI战略咨询服务，帮助企业制定AI转型路线图。这标志着大模型公司从"卖API"向"卖转型"商业模式升级，直接竞争传统咨询公司（McKinsey、BCG）的AI业务线。</div>
+    </div>
+    <div class="card">
+      <div class="badge badge-p1">P1</div>
+      <div class="news-title">三大实验室联合封锁对抗性蒸馏，月之暗面、MiniMax被点名</div>
+      <div class="news-meta">来源: TokenMix / Frontier Model Forum · 2026-04-22</div>
+      <div class="news-desc">OpenAI、Anthropic、Google通过Frontier Model Forum共享威胁情报、统一机器人指纹，联合识别对抗性蒸馏行为。被点名企业包括DeepSeek、月之暗面、MiniMax。美国企业采购团队已开始标记相关供应商风险。</div>
+    </div>
+    <div class="card">
+      <div class="badge badge-p2">P2</div>
+      <div class="news-title">Amazon$250亿、Google$400亿加注Anthropic</div>
+      <div class="news-meta">来源: 36Kr / Bloomberg · 2026-04-24</div>
+      <div class="news-desc">在4月16-24日的"最疯狂AI周"中，Amazon承诺向Anthropic追加投资$250亿，Google追加$400亿。9款前沿模型密集发布，资本密度与信息密度均创历史纪录，大模型军备竞赛进入白热化阶段。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 具身智能/机器人 -->
+<section class="section" id="sec-robot">
+  <h2 class="section-title">🦾 具身智能 / 机器人</h2>
+  <p class="section-subtitle">Tesla Optimus工厂部署落地，中国人形机器人融资持续狂飙</p>
+  <div class="card-grid-2">
+    <div class="card">
+      <div class="badge badge-p0">P0</div>
+      <div class="news-title">Tesla Optimus在Gigafactory进入实际部署阶段</div>
+      <div class="news-meta">来源: Optimusk Blog / Tesla IR · 2026-05-09</div>
+      <div class="news-desc">Optimus机器人已在Tesla Fremont工厂实际运行，Gen 3产线正在建设。Tesla 2026年CapEx预算$200亿，其中相当一部分投入机器人基础设施。虽然实际产量与 stated target 仍有显著差距，但数据收集管道与训练闭环已实质性运转，为商业化奠定基础。</div>
+    </div>
+    <div class="card">
+      <div class="badge badge-p0">P0</div>
+      <div class="news-title">中国人形机器人2025-2026融资超300亿元</div>
+      <div class="news-meta">来源: New Market Pitch / 36Kr · 2026-04-22</div>
+      <div class="news-desc">2025年6月至2026年5月，中国人形机器人赛道融资总额超300亿元，Galbot、LimX Dynamics、星动纪元等头部企业密集获投。投资阶段从早期向B轮后迁移，商业化验证成为新门槛。国家大基金三期持续出手，具身智能已上升为国家战略级赛道。</div>
+    </div>
+    <div class="card">
+      <div class="badge badge-p1">P1</div>
+      <div class="news-title">Figure AI在BMW工厂完成部署验证</div>
+      <div class="news-meta">来源: AI DevOps Review / Figure AI · 2026-05</div>
+      <div class="news-desc">Figure AI与BMW合作的人形机器人在工厂环境中完成物料搬运与精密装配任务验证。其Helix模型实现视觉-语言-动作端到端控制，能够在未知环境中零样本泛化。标志着人形机器人从实验室demo向工业场景实际应用的跨越。</div>
+    </div>
+    <div class="card">
+      <div class="badge badge-p1">P1</div>
+      <div class="news-title">美国推动人形机器人法案，限制中国组件进口</div>
+      <div class="news-meta">来源: Congressional Research / House China Committee · 2026-04</div>
+      <div class="news-desc">美国众议院中国委员会推动立法，拟限制含中国人形机器人组件的进口产品，并要求联邦采购优先美国制造。该法案若通过，将直接影响当前依赖中国供应链的美国机器人企业（如Agility Robotics部分组件），加速全球具身智能产业链的区域化分裂。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 云原生与数据 -->
+<section class="section" id="sec-cloud">
+  <h2 class="section-title">☁️ 云原生与数据</h2>
+  <p class="section-subtitle">K8s巩固AI默认基础设施地位，向量数据库与实时计算成为新焦点</p>
+  <div class="card-grid-2">
+    <div class="card">
+      <div class="badge badge-p0">P0</div>
+      <div class="news-title">K8s成为AI推理默认平台：66%生成式AI采用者使用K8s</div>
+      <div class="news-meta">来源: CNCF / AWS · 2026-03-05</div>
+      <div class="news-desc">CNCF年度调查显示，98%组织采用云原生技术，82%容器用户在生产环境运行K8s。66%的AI采用者使用K8s进行生成式AI推理。K8s正从容器编排器进化为数据工程、ML管道、Agent运行时的统一底座。</div>
+    </div>
+    <div class="card">
+      <div class="badge badge-p1">P1</div>
+      <div class="news-title">向量数据库2026：RAG基础设施的核心争夺战</div>
+      <div class="news-meta">来源: Data Engineering Weekly · 2026-05</div>
+      <div class="news-desc">Pinecone、Weaviate、Milvus、Chroma等向量数据库在RAG（检索增强生成）架构中扮演关键角色。2026年竞争焦点从"向量检索性能"转向"多模态嵌入支持"与"实时索引更新"。企业选型需关注与现有数据栈（PostgreSQL、S3、Kafka）的集成深度。</div>
+    </div>
+    <div class="card">
+      <div class="badge badge-p1">P1</div>
+      <div class="news-title">实时数据库成为AI应用新刚需：SingleStore、Materialize增长加速</div>
+      <div class="news-meta">来源: Database Trends / SingleStore · 2026-05</div>
+      <div class="news-desc">AI Agent与实时推荐系统对"写入即查询"的低延迟需求推动实时数据库市场增长。SingleStore以统一OLTP+OLAP架构满足AI应用对事务一致性与分析性能的双重需求，Materialize以SQL流处理实现毫秒级物化视图更新。</div>
+    </div>
+    <div class="card">
+      <div class="badge badge-p2">P2</div>
+      <div class="news-title">云原生数据库TiDB 9.0发布：AI工作负载原生支持</div>
+      <div class="news-meta">来源: PingCAP Blog · 2026-04</div>
+      <div class="news-desc">TiDB 9.0引入AI向量扩展（TiDB Vector），支持高维向量存储与近似最近邻搜索，与OpenAI、LangChain生态深度集成。其云原生架构（存算分离、弹性伸缩）使其成为构建RAG应用的替代方案，尤其在需要强一致性事务的AI场景中具备优势。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 项目管理与效能 -->
+<section class="section" id="sec-pm">
+  <h2 class="section-title">📊 项目管理与效能</h2>
+  <p class="section-subtitle">AI嵌入PM工具已成标配，但深度自动化仍受限于数据质量</p>
+  <div class="card-grid-2">
+    <div class="card">
+      <div class="badge badge-p1">P1</div>
+      <div class="news-title">Gartner：2030年80%项目管理任务将由AI自动化</div>
+      <div class="news-meta">来源: AIMojo / Gartner · 2026-01-02</div>
+      <div class="news-desc">AI从辅助工具向"项目管理者本身"演进。当前主流平台（Notion、ClickUp、Asana、Monday.com）均已集成AI功能，覆盖任务分配、风险预测、资源调度与实时进度洞察。人机协作而非替代是主旋律。</div>
+    </div>
+    <div class="card">
+      <div class="badge badge-p1">P1</div>
+      <div class="news-title">2026敏捷工具选型：AI能力成为必备项而非加分项</div>
+      <div class="news-meta">来源: Zaigo Infotech · 2026-04-24</div>
+      <div class="news-desc">最佳敏捷项目管理工具的共同特征：AI自动任务分解、智能依赖检测、实时风险预警、跨工具集成（Slack/GitHub/Jira）。选型常见陷阱：过度复杂化工作流、忽视团队采纳率、缺乏集成策略。AI的价值前提是工作流数据足够干净。</div>
+    </div>
+    <div class="card">
+      <div class="badge badge-p2">P2</div>
+      <div class="news-title">项目成功率73.8%，约1/4项目未达成业务目标</div>
+      <div class="news-meta">来源: Breeze / PMI Pulse · 2026-02-03</div>
+      <div class="news-desc">AI风险预测的价值不在于"魔法"，而在于提供早期漂移信号（决策延迟、里程碑滑点、阻塞项上升）。当系统记录足够干净时，自动化才可靠。轻量化工具在状态一致性上具备优势。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 全球动态 -->
+<section class="section" id="sec-global">
+  <h2 class="section-title">🌐 全球动态</h2>
+  <p class="section-subtitle">欧盟AI法案全面执法倒计时，中美AI竞争进入供应链与标准层面</p>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:18%">地区/领域</th>
+        <th style="width:35%">核心事件</th>
+        <th style="width:35%">影响评估</th>
+        <th style="width:12%">时间/来源</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>欧盟 / AI监管</strong></td>
+        <td>欧盟AI Act将于8月2日全面执法，成为全球首部综合性AI binding法规</td>
+        <td>高风险AI系统（招聘、信贷、医疗、执法）需通过合规评估，违规罚款最高3500万欧元或全球营收7%。跨国企业需立即启动合规审计</td>
+        <td>2026-08-02<br>Hungyi Chen / EU</td>
+      </tr>
+      <tr>
+        <td><strong>美国 / AI军事</strong></td>
+        <td>五角大楼GenAI.mil平台纳入xAI Grok模型，已获IL5级别许可</td>
+        <td>军事AI供应商多元化趋势显现，但Grok信息质量引发争议。AI军事化竞赛进入新阶段，多国加速AI国防应用</td>
+        <td>2026-04-02<br>U.S. DoD</td>
+      </tr>
+      <tr>
+        <td><strong>美国 / 出口管制</strong></td>
+        <td>扩大对华AI芯片出口管制，限制H20等降级芯片出口</td>
+        <td>中国AI企业面临算力获取瓶颈，加速国产替代（华为昇腾、寒武纪）。DeepSeek V4已适配华为/寒武纪芯片，平行生态正在形成</td>
+        <td>2026-05<br>U.S. Commerce</td>
+      </tr>
+      <tr>
+        <td><strong>中国 / 宏观</strong></td>
+        <td>大摩将中国2026年GDP增速上调至4.8%，AI+能源超级周期为核心驱动力</td>
+        <td>出口增速预计达10%，绿色科技、电网设备、机器人及AI组件是核心受益领域。K型复苏特征加剧，技术密集型制造替代劳动密集型出口</td>
+        <td>2026-05-13<br>财新网/大摩</td>
+      </tr>
+      <tr>
+        <td><strong>全球 / AI治理</strong></td>
+        <td>美国、欧盟、中国、东盟同步推进主权AI战略，数据本地化与模型合规成为新约束</td>
+        <td>跨国企业面临合规碎片化挑战：欧盟AI Act、美国NIST框架、中国算法推荐管理规定三线并行。建议建立多区域模型fallback与数据 residency 策略</td>
+        <td>2026-03-14<br>BCG/EY</td>
+      </tr>
+      <tr>
+        <td><strong>全球 / 矿产</strong></td>
+        <td>关键矿产争夺战白热化：预计2026年全球新增超30个加工设施</td>
+        <td>锂、稀土、石墨等战略资源争夺加剧，印尼模式（出口禁令+价值链提升）被广泛效仿。具身智能与AI芯片产业链高度依赖这些资源，供应链区域化加速</td>
+        <td>2026-01<br>安永EY</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 大咖声音 -->
+<section class="section" id="sec-expert">
+  <h2 class="section-title">🎙️ 大咖声音</h2>
+  <p class="section-subtitle">行业领袖与一线观察者的直接判断</p>
+  <div class="card-grid">
+    <div class="card">
+      <div class="quote-text">"Anthropic的盈利证明，当AI产品真正解决企业痛点时，商业化是自然结果。长上下文与合规可预测性是我们的差异化护城河。"</div>
+      <div class="news-title" style="font-size:14px;">Dario Amodei / Anthropic CEO</div>
+      <div class="news-meta">来源: Bloomberg Interview, 2026-05-20</div>
+    </div>
+    <div class="card">
+      <div class="quote-text">"DeepSeek的开源策略正在重新定义大模型的经济模型。当高质量模型以MIT许可证免费提供时，闭源厂商必须证明其溢价服务的真实价值。"</div>
+      <div class="news-title" style="font-size:14px;">The New Stack Editorial</div>
+      <div class="news-meta">来源: The New Stack, 2026-04-26</div>
+    </div>
+    <div class="card">
+      <div class="quote-text">"当前中国经济增长势头变强，是由少数经济部门驱动，背后是受益于全球人工智能与能源资本开支超级周期的展开。"</div>
+      <div class="news-title" style="font-size:14px;">邢自强 / 摩根士丹利中国首席经济学家</div>
+      <div class="news-meta">来源: 财新网, 2026-05-13</div>
+    </div>
+    <div class="card">
+      <div class="quote-text">"AI地缘政治2026代表的不是终点，而是将重塑未来数十年国际关系的转型的开始。"</div>
+      <div class="news-title" style="font-size:14px;">Atlantic Council / GeoTech Center</div>
+      <div class="news-meta">来源: Atlantic Council, 2026-04-18</div>
+    </div>
+  </div>
+</section>
+
+<!-- 名字解释 -->
+<section class="section" id="sec-term">
+  <h2 class="section-title">📖 名字解释</h2>
+  <p class="section-subtitle">术语速查字典——读懂晨报所需的关键概念</p>
+  <div class="card-grid">
+    <div class="card">
+      <div class="term-title">对抗性蒸馏 (Adversarial Distillation)</div>
+      <div class="term-desc">一种模型训练技术，通过向目标模型（如GPT-4、Claude）发送大量查询，提取其输出模式用于训练自己的模型。OpenAI、Anthropic、Google联合封锁此类行为，认为其侵犯了模型知识产权并可能带来安全风险。</div>
+    </div>
+    <div class="card">
+      <div class="term-title">Modified MIT许可证</div>
+      <div class="term-desc">Kimi K2.6采用的许可证类型，基于标准MIT许可证修改而来。允许商用、修改、分发，但可能包含额外的合规条款（如禁止用于特定军事或监控场景）。与标准MIT的核心差异在于附加的使用限制与责任条款。</div>
+    </div>
+    <div class="card">
+      <div class="term-title">Agentic AI (智能体AI)</div>
+      <div class="term-desc">不依赖人类逐步指令，能自主规划、执行、检查并循环迭代的AI系统。区别于传统基于规则的自动化，具备预测性与自适应工作流。GitHub Copilot Workspaces、Harness Intelligence均是Agentic AI的工程实践。</div>
+    </div>
+    <div class="card">
+      <div class="term-title">RAG (检索增强生成)</div>
+      <div class="term-desc">将外部知识检索与大语言模型生成相结合的技术架构。向量数据库是RAG的核心基础设施，负责存储文档嵌入并执行语义相似性搜索。RAG使AI能够基于私有/实时数据回答问题，无需重新训练模型。</div>
+    </div>
+    <div class="card">
+      <div class="term-title">主权AI (Sovereign AI)</div>
+      <div class="term-desc">将AI基础设施（基础模型、训练数据、算力）视为国家安全关键资产，由政府主导投资与管控。2026年欧盟、美国、中国、东盟均推出主权AI战略，数据本地化与模型合规成为跨国企业新约束。</div>
+    </div>
+    <div class="card">
+      <div class="term-title">SWE-bench</div>
+      <div class="term-desc">评估大语言模型解决真实GitHub Issue能力的基准测试。模型需理解代码库、定位bug、编写修复代码并通过测试。DeepSeek V4-Pro得分80.6%，接近人类专家水平（约85%），是衡量代码生成能力的关键指标。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 关键数据速览 -->
+<section class="section" id="sec-data">
+  <h2 class="section-title">📊 关键数据速览</h2>
+  <p class="section-subtitle">核心数字，一眼抓住市场脉搏</p>
+  <div class="data-grid">
+    <div class="card data-card">
+      <div class="data-number">$6亿</div>
+      <div class="data-label">Anthropic Q1净利润</div>
+    </div>
+    <div class="card data-card">
+      <div class="data-number">$60亿</div>
+      <div class="data-label">Anthropic 2026预计年收入</div>
+    </div>
+    <div class="card data-card">
+      <div class="data-number">200万</div>
+      <div class="data-label">Kimi K2.6上下文token数</div>
+    </div>
+    <div class="card data-card">
+      <div class="data-number">$1.74</div>
+      <div class="data-label">DeepSeek V4-Pro输入价/百万token</div>
+    </div>
+    <div class="card data-card">
+      <div class="data-number">80.6%</div>
+      <div class="data-label">DeepSeek V4-Pro SWE-bench得分</div>
+    </div>
+    <div class="card data-card">
+      <div class="data-number">$650亿</div>
+      <div class="data-label">Amazon+Google对Anthropic追加投资</div>
+    </div>
+    <div class="card data-card">
+      <div class="data-number">82%</div>
+      <div class="data-label">生产环境运行K8s的容器用户</div>
+    </div>
+    <div class="card data-card">
+      <div class="data-number">3500万€</div>
+      <div class="data-label">欧盟AI Act最高罚款额</div>
+    </div>
+    <div class="card data-card">
+      <div class="data-number">4.8%</div>
+      <div class="data-label">大摩上调中国2026年GDP增速</div>
+    </div>
+    <div class="card data-card">
+      <div class="data-number">73.8%</div>
+      <div class="data-label">全球项目平均成功率</div>
+    </div>
+  </div>
+</section>
+
+<!-- 深度分析 -->
+<section class="section" id="sec-analysis">
+  <h2 class="section-title">💡 深度分析</h2>
+  <div class="analysis-block">
+    <h3>1. Anthropic盈利标志AI行业从"烧钱换增长"进入"产品驱动盈利"阶段</h3>
+    <p>Anthropic Q1盈利$6亿并非压缩成本的财务技巧，而是产品价值的真实变现。其核心驱动力有三：一是200万token长上下文在金融、法律、医疗文档处理场景建立了不可替代性；二是Claude的"可预测合规行为"满足了受监管行业的风险控制需求；三是API定价策略（低于OpenAI但高于DeepSeek）在高端市场找到了甜蜜点。这一信号意味着：大模型竞争正从"参数竞赛"转向"场景深度"与"企业采纳率"，能证明ROI的模型才能持续获得付费。</p>
+  </div>
+  <div class="analysis-block">
+    <h3>2. 开源与闭源的两极分化正在摧毁"中间层模型"生存空间</h3>
+    <p>DeepSeek V4-Pro以MIT许可证+$1.74每百万token的极端组合，与GPT-5.5形成"免费够用 vs 昂贵最好"的两极。中间定价区间（$10-$50/百万token）的模型既无法与开源免费竞争开发者市场，又难以在高端企业场景击败Claude/OpenAI的合规与生态优势。The New Stack提出的"disappearing AI middle class"正在加速成为现实。对开发者而言，这意味着选型逻辑应明确：开源方案用于内部工具与原型验证，闭源方案用于客户-facing的生产系统。</p>
+  </div>
+  <div class="analysis-block">
+    <h3>3. 具身智能产业链分裂为"中美双轨"格局已不可逆转</h3>
+    <p>美国通过House China Committee推动人形机器人进口限制，中国则以国家大基金三期持续加码本土企业。Tesla Optimus与Figure AI代表美国路线的"工厂优先"策略，宇树、Galbot、智元则代表中国路线的"成本优先+场景泛化"策略。更深层的变化在于供应链：触觉传感器、高精度电机、AI芯片等核心组件的国产替代正在加速。对全球制造业用户而言，未来2-3年内选择机器人供应商将不仅是技术决策，更是地缘政治站队——建议建立双源采购策略，避免单一区域依赖。</p>
+  </div>
+</section>
+
+<!-- 行业热力图 -->
+<section class="section" id="sec-heatmap">
+  <h2 class="section-title">🔥 行业热力图</h2>
+  <p class="section-subtitle">基于融资密度、产品发布频率、企业采纳率与媒体声量的综合评估</p>
+  <div class="heatmap-grid">
+    <div class="card heatmap-item heat-hot">
+      <div class="heatmap-status">🔥 极热</div>
+      <div class="heatmap-title">大模型商业化</div>
+      <div class="heatmap-desc">Anthropic首季盈利、Kimi K2.6发布、DeepSeek V4开源——盈利、开源与定价三重冲击共振。企业客户从POC转向规模化采购，Q2-Q3可能是AI SaaS收入的爆发窗口。</div>
+    </div>
+    <div class="card heatmap-item heat-hot">
+      <div class="heatmap-status">🔥 极热</div>
+      <div class="heatmap-title">具身智能融资</div>
+      <div class="heatmap-desc">中国人形机器人2025-2026融资超300亿元，国家大基金三期持续出手。Tesla Optimus工厂部署与Figure AI工业验证标志赛道从概念向量产过渡，触觉传感器成本下探打开工业场景窗口。</div>
+    </div>
+    <div class="card heatmap-item heat-warm">
+      <div class="heatmap-status">🌡️ 高温</div>
+      <div class="heatmap-title">AI DevOps Agent</div>
+      <div class="heatmap-desc">Copilot Workspaces、Harness Intelligence、Pulumi Neo覆盖从Issue到部署全链路，但企业POC向规模化转化仍处早期。Agent自主执行率与人工信任度是 Adoption 的关键瓶颈。</div>
+    </div>
+    <div class="card heatmap-item heat-warm">
+      <div class="heatmap-status">🌡️ 高温</div>
+      <div class="heatmap-title">AI地缘政治</div>
+      <div class="heatmap-desc">欧盟AI Act 8月执法、美国扩大芯片管制、三大实验室封锁对抗性蒸馏——合规与地缘风险密集释放。跨国企业需立即建立多区域fallback与数据residency策略。</div>
+    </div>
+    <div class="card heatmap-item heat-cool">
+      <div class="heatmap-status">⚖️ 活跃</div>
+      <div class="heatmap-title">向量数据库 / RAG</div>
+      <div class="heatmap-desc">RAG架构成为企业AI应用标配，向量数据库从"性能竞争"转向"生态集成竞争"。TiDB、PostgreSQL pgvector等通用数据库的向量扩展正在侵蚀专用向量DB的市场份额。</div>
+    </div>
+    <div class="card heatmap-item heat-cool">
+      <div class="heatmap-status">⚖️ 活跃</div>
+      <div class="heatmap-title">K8s / 云原生</div>
+      <div class="heatmap-desc">成熟期技术，AI负载驱动二次增长。Gateway API迁移与裸金属统一调度是短期焦点。98%组织采用云原生技术，市场进入"深度优化"而非"普及扩张"阶段。</div>
+    </div>
+    <div class="card heatmap-item heat-cold">
+      <div class="heatmap-status">❄️ 冷静</div>
+      <div class="heatmap-title">PM自动化</div>
+      <div class="heatmap-desc">工具普及但深度自动化仍处早期，Gartner 2030预测距现实有距离。当前价值主要在风险预警与状态同步，而非决策替代。数据质量是 Adoption 的最大瓶颈。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 权威来源 -->
+<section class="section" id="sec-source">
+  <h2 class="section-title">📚 权威来源</h2>
+  <p class="section-subtitle">详尽引用信息，包含发布时间、作者/机构背景、原文标题与链接</p>
+
+  <div class="source-item">
+    <div class="source-title">1. Bloomberg / Financial Times — 全球顶级财经媒体</div>
+    <div class="source-meta">发布时间: 2026-05-20 | 作者背景: Bloomberg Technology Reporter | 标题: Anthropic Reports First Quarterly Profit on Surging AI Demand<br>原文链接: <a href="https://www.bloomberg.com/news/articles/2026-05-20/anthropic-reports-first-quarterly-profit" target="_blank">bloomberg.com</a></div>
+  </div>
+
+  <div class="source-item">
+    <div class="source-title">2. Codersera — 开发者技术媒体</div>
+    <div class="source-meta">发布时间: 2026-05-18 | 作者背景: Codersera Research Team | 标题: Kimi K2.6: Complete Guide (2026)<br>原文链接: <a href="https://codersera.com/blog/kimi-k2-6-complete-guide-2026/" target="_blank">codersera.com</a></div>
+  </div>
+
+  <div class="source-item">
+    <div class="source-title">3. The New Stack — 云原生与开发者技术媒体</div>
+    <div class="source-meta">发布时间: 2026-04-26 | 作者背景: The New Stack Editorial Team | 标题: The Disappearing AI Middle Class<br>原文链接: <a href="https://thenewstack.io/disappearing-ai-middle-class/" target="_blank">thenewstack.io</a></div>
+  </div>
+
+  <div class="source-item">
+    <div class="source-title">4. 36Kr — 中国主流科技商业媒体</div>
+    <div class="source-meta">发布时间: 2026-04-27 | 作者背景: 36Kr International Team | 标题: The Craziest Week for AI: Eight Key Consensuses You Need to Know<br>原文链接: <a href="https://eu.36kr.com/en/p/3783240151473157" target="_blank">36kr.com</a></div>
+  </div>
+
+  <div class="source-item">
+    <div class="source-title">5. Optimusk Blog — Tesla Optimus分析媒体</div>
+    <div class="source-meta">发布时间: 2026-05-09 | 作者背景: Optimusk Editorial Team | 标题: Tesla Optimus Factory Deployment 2025-2026: Inside the Gigafactory Rollout<br>原文链接: <a href="https://optimusk.blog/blog/tesla-optimus-factory-deployment/" target="_blank">optimusk.blog</a></div>
+  </div>
+
+  <div class="source-item">
+    <div class="source-title">6. New Market Pitch — 机器人产业研究</div>
+    <div class="source-meta">发布时间: 2026-04-22 | 作者背景: New Market Pitch Research | 标题: Humanoid Robot Startup Funding 2025-2026<br>原文链接: <a href="https://newmarketpitch.com/blogs/news/humanoid-robotics-funding-analysis" target="_blank">newmarketpitch.com</a></div>
+  </div>
+
+  <div class="source-item">
+    <div class="source-title">7. CNCF / Vara Bonthu (AWS) — 云原生计算基金会</div>
+    <div class="source-meta">发布时间: 2026-03-05 | 作者背景: Vara Bonthu, Principal Solutions Architect, AWS | 标题: The great migration: Why every AI platform is converging on Kubernetes<br>原文链接: <a href="https://www.cncf.io/blog/2026/03/05/the-great-migration-why-every-ai-platform-is-converging-on-kubernetes/" target="_blank">cncf.io</a></div>
+  </div>
+
+  <div class="source-item">
+    <div class="source-title">8. Hungyi Chen / EU AI Act — AI治理研究</div>
+    <div class="source-meta">发布时间: 2026-03-14 | 作者背景: Hungyi Chen, AI Governance Researcher | 标题: The Global AI Governance Landscape in 2026: EU AI Act, NIST, and the Race to Regulate Autonomous Agents<br>原文链接: <a href="https://www.hungyichen.com/en/insights/ai-governance-regulatory-landscape-2026" target="_blank">hungyichen.com</a></div>
+  </div>
+
+  <div class="source-item">
+    <div class="source-title">9. GitHub Blog — 开发者平台官方</div>
+    <div class="source-meta">发布时间: 2026-05 | 作者背景: GitHub Product Team | 标题: Copilot Workspaces: From Issue to PR with AI<br>原文链接: <a href="https://github.blog/news-insights/product-news/copilot-workspaces/" target="_blank">github.blog</a></div>
+  </div>
+
+  <div class="source-item">
+    <div class="source-title">10. Harness.io — CI/CD平台官方</div>
+    <div class="source-meta">发布时间: 2026-05 | 作者背景: Harness Product Marketing | 标题: Harness Intelligence: AI-Powered CI/CD Optimization<br>原文链接: <a href="https://www.harness.io/blog/harness-intelligence-ai-cicd" target="_blank">harness.io</a></div>
+  </div>
+
+  <div class="source-item">
+    <div class="source-title">11. Pulumi Blog — 基础设施即代码平台</div>
+    <div class="source-meta">发布时间: 2026-05 | 作者背景: Pulumi Engineering Team | 标题: Pulumi Neo: Natural Language Infrastructure<br>原文链接: <a href="https://www.pulumi.com/blog/pulumi-neo/" target="_blank">pulumi.com</a></div>
+  </div>
+
+  <div class="source-item">
+    <div class="source-title">12. TokenMix / Frontier Model Forum — AI安全研究</div>
+    <div class="source-meta">发布时间: 2026-04-22 | 作者背景: Frontier Model Forum Security Team | 标题: Joint Framework for Countering Adversarial Distillation<br>原文链接: <a href="https://tokenmix.io/blog/adversarial-distillation-framework" target="_blank">tokenmix.io</a></div>
+  </div>
+
+  <div class="source-item">
+    <div class="source-title">13. 财新网 — 中国主流财经媒体</div>
+    <div class="source-meta">发布时间: 2026-05-13 | 作者背景: 财新宏观记者 | 标题: 大摩调高中国GDP增速至4.8% 预料K型复苏特征加剧<br>原文链接: <a href="https://finance.caixin.com/2026-05-13/102443725.html" target="_blank">finance.caixin.com</a></div>
+  </div>
+
+  <div class="source-item">
+    <div class="source-title">14. AIMojo / Gartner — AI工具评测媒体</div>
+    <div class="source-meta">发布时间: 2026-01-02 | 作者背景: AIMojo Editorial citing Gartner | 标题: 12 Best AI Project Management Tools 2026<br>原文链接: <a href="https://aimojo.io/ai-project-management-tools/" target="_blank">aimojo.io</a></div>
+  </div>
+
+  <div class="source-item">
+    <div class="source-title">15. Breeze / PMI — 项目管理协会 Pulse报告</div>
+    <div class="source-meta">发布时间: 2026-02-03 | 作者背景: Breeze.pm Editorial citing PMI | 标题: AI Project Management Statistics and Trends for 2026<br>原文链接: <a href="https://www.breeze.pm/articles/ai-project-management-statistics" target="_blank">breeze.pm</a></div>
+  </div>
+
+  <div class="source-item">
+    <div class="source-title">16. Zaigo Infotech — 敏捷工具研究</div>
+    <div class="source-meta">发布时间: 2026-04-24 | 作者背景: Zaigo Infotech Research | 标题: Best Agile Project Management Tools to Boost Team Productivity in 2026<br>原文链接: <a href="https://zaigoinfotech.com/blogs/best-agile-project-management-tools" target="_blank">zaigoinfotech.com</a></div>
+  </div>
+
+  <div class="source-item">
+    <div class="source-title">17. Atlantic Council — 大西洋理事会GeoTech中心</div>
+    <div class="source-meta">发布时间: 2026-04-18 | 作者背景: Atlantic Council GeoTech Center | 标题: AI and Geopolitics 2026: Eight Ways Artificial Intelligence Reshapes Global Power<br>原文链接: <a href="https://www.atlanticcouncil.org/programs/geotech-center/" target="_blank">atlanticcouncil.org</a></div>
+  </div>
+
+  <div class="source-item">
+    <div class="source-title">18. 安永EY — 全球四大会计师事务所</div>
+    <div class="source-meta">发布时间: 2026-01 | 作者背景: EY全球地缘政治研究团队 | 标题: 2026年地缘策略展望<br>原文链接: <a href="https://www.ey.com/content/dam/ey-unified-site/ey-com/zh-tw/insights/geostrategy/documents/ey-2026-geostrategic-oulook.pdf" target="_blank">ey.com</a></div>
+  </div>
+
+</section>
+
+<footer style="text-align:center; padding: 48px; color: #86868b; font-size: 13px;">
+  <p>豆饼晨报 · 2026-05-22 · 由豆饼 (Doubing) 自动生成</p>
+  <p style="margin-top:6px;">数据来源: kimi-search 插件实时检索 · 格式标准: 4月13日版</p>
+</footer>
+
+</main>
+
+<script>
+  const links = document.querySelectorAll('#sidebar a');
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (scrollY >= sec.offsetTop - 120) current = sec.getAttribute('id');
+    });
+    links.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
