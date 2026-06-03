@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI晨报 | 2026-06-04</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f7; color: #1d1d1f; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .hero { background: linear-gradient(135deg, #1d1d1f 0%, #2d2d2f 100%); color: #fff; padding: 48px 40px; border-radius: 24px; margin-bottom: 32px; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%); border-radius: 50%; }
+        .hero-badge { display: inline-block; background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; margin-bottom: 20px; text-transform: uppercase; }
+        .hero h1 { font-size: 42px; font-weight: 700; margin-bottom: 16px; line-height: 1.2; }
+        .hero-subtitle { font-size: 18px; color: rgba(255,255,255,0.7); margin-bottom: 24px; }
+        .hero-meta { display: flex; gap: 24px; font-size: 14px; color: rgba(255,255,255,0.5); flex-wrap: wrap; }
+        .hero-meta span { display: flex; align-items: center; gap: 6px; }
+        .section { background: #fff; border-radius: 20px; padding: 32px; margin-bottom: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+        .section-icon { font-size: 24px; }
+        .section h2 { font-size: 24px; font-weight: 700; color: #1d1d1f; }
+        .section-subtitle { font-size: 14px; color: #86868b; margin-top: 4px; }
+        .content-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+        .card { background: #fafafa; border-radius: 16px; padding: 24px; border: 1px solid #f0f0f0; transition: all 0.2s; }
+        .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); transform: translateY(-2px); }
+        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+        .card-tag { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px; text-transform: uppercase; }
+        .tag-p0 { background: #fff2f2; color: #d32f2f; }
+        .tag-p1 { background: #fff8e1; color: #f57c00; }
+        .tag-p2 { background: #e8f5e9; color: #388e3c; }
+        .card h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; line-height: 1.4; }
+        .card p { font-size: 14px; color: #666; line-height: 1.6; }
+        .card-source { font-size: 12px; color: #999; margin-top: 12px; display: flex; justify-content: space-between; }
+        .advice-card { background: linear-gradient(135deg, #fafafa 0%, #f5f5f7 100%); border-left: 4px solid #007aff; }
+        .advice-card:nth-child(2) { border-left-color: #34c759; }
+        .advice-card:nth-child(3) { border-left-color: #ff9500; }
+        .advice-card:nth-child(4) { border-left-color: #af52de; }
+        .advice-number { font-size: 32px; font-weight: 700; color: #007aff; opacity: 0.3; margin-bottom: 8px; }
+        .advice-card:nth-child(2) .advice-number { color: #34c759; }
+        .advice-card:nth-child(3) .advice-number { color: #ff9500; }
+        .advice-card:nth-child(4) .advice-number { color: #af52de; }
+        .advice-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+        .advice-card p { font-size: 14px; color: #666; }
+        .data-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+        .data-table th { background: #f5f5f7; text-align: left; padding: 12px 16px; font-size: 13px; font-weight: 600; color: #666; border-bottom: 2px solid #e0e0e0; }
+        .data-table td { padding: 12px 16px; font-size: 14px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+        .data-table tr:hover { background: #fafafa; }
+        .voice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .voice-card { background: #fafafa; border-radius: 16px; padding: 24px; border: 1px solid #f0f0f0; }
+        .voice-card .quote { font-size: 16px; font-style: italic; color: #333; margin-bottom: 16px; line-height: 1.6; border-left: 3px solid #007aff; padding-left: 16px; }
+        .voice-author { display: flex; align-items: center; gap: 12px; }
+        .voice-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #007aff, #5856d6); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 600; font-size: 16px; }
+        .voice-name { font-weight: 600; font-size: 14px; }
+        .voice-title { font-size: 12px; color: #999; }
+        .term-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+        .term-card { background: #fafafa; border-radius: 12px; padding: 20px; }
+        .term-card h4 { font-size: 16px; font-weight: 600; color: #1d1d1f; margin-bottom: 8px; }
+        .term-card p { font-size: 13px; color: #666; line-height: 1.5; }
+        .data-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .data-item { text-align: center; padding: 24px; background: #fafafa; border-radius: 16px; }
+        .data-number { font-size: 36px; font-weight: 700; color: #007aff; margin-bottom: 8px; }
+        .data-label { font-size: 14px; color: #666; }
+        .data-source { font-size: 11px; color: #999; margin-top: 4px; }
+        .heatmap { display: flex; gap: 8px; flex-wrap: wrap; }
+        .heatmap-item { padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; }
+        .heat-high { background: #fff2f2; color: #c62828; }
+        .heat-med { background: #fff8e1; color: #f57c00; }
+        .heat-low { background: #e8f5e9; color: #2e7d32; }
+        .heatmap-note { font-size: 13px; color: #666; margin-top: 16px; padding: 12px; background: #f5f5f7; border-radius: 8px; }
+        .source-list { font-size: 13px; color: #666; }
+        .source-item { margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #f0f0f0; }
+        .source-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .source-title { font-weight: 600; color: #1d1d1f; }
+        .source-meta { color: #999; font-size: 12px; margin-top: 2px; }
+        .source-link { color: #007aff; text-decoration: none; }
+        .source-link:hover { text-decoration: underline; }
+        .analysis-block { margin-bottom: 24px; }
+        .analysis-block:last-child { margin-bottom: 0; }
+        .analysis-block h3 { font-size: 18px; font-weight: 600; margin-bottom: 12px; color: #1d1d1f; }
+        .analysis-block p { font-size: 14px; color: #666; line-height: 1.8; }
+        .analysis-block ul { margin-left: 20px; margin-top: 8px; }
+        .analysis-block li { font-size: 14px; color: #666; margin-bottom: 6px; line-height: 1.6; }
+        .footer { text-align: center; padding: 32px; color: #999; font-size: 13px; }
+        @media (max-width: 768px) {
+            .hero { padding: 32px 24px; }
+            .hero h1 { font-size: 28px; }
+            .section { padding: 24px; }
+            .content-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="hero-badge">2026-06-04 晨报</div>
+            <h1>ComputeX引爆具身智能量产潮，中国AI模型调用量五周连超美国</h1>
+            <p class="hero-subtitle">AI CLI工具进入多Agent编排时代，NIST收紧前沿模型评估，中美AI规则博弈升级</p>
+            <div class="hero-meta">
+                <span>📅 2026-06-04</span>
+                <span>⏱️ 阅读约 8 分钟</span>
+                <span>🔥 16 条精选动态</span>
+            </div>
+        </div>
+
+        <!-- Practical Advice -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🛠️</span>
+                <div>
+                    <h2>务实落地建议</h2>
+                    <p class="section-subtitle">基于今日动态的可操作建议</p>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="card advice-card">
+                    <div class="advice-number">01</div>
+                    <h3>评估具身智能量产供应链机会</h3>
+                    <p>ComputeX 2026上英伟达、AMD、Intel全面展示机器人专用计算平台，高盛预测2026年全球具身智能市场突破120亿美元。制造业企业应优先评估协作机器人与AGV/AMR的部署ROI，关注减速器、传感器等国产化率已超70%的核心零部件供应链。</p>
+                </div>
+                <div class="card advice-card">
+                    <div class="advice-number">02</div>
+                    <h3>建立AI CLI工具多Agent选型策略</h3>
+                    <p>Claude Code、Kimi Code CLI、OpenAI Codex、GitHub Copilot CLI等工具正从单Agent向多Agent编排演进。开发团队应评估工具的session forking、sub-agent策略和YOLO模式支持，优先选择与企业现有DevOps流水线深度集成的方案。</p>
+                </div>
+                <div class="card advice-card">
+                    <div class="advice-number">03</div>
+                    <h3>利用中国大模型API兼容格式降低迁移成本</h3>
+                    <p>DeepSeek API已支持OpenAI/Anthropic兼容格式，腾讯混元Hy3 preview采用295B参数MoE架构并支持256K上下文。建议企业建立模型路由层，按任务类型（编码→Claude/DeepSeek，长文本→GPT/Hy3，轻量→MiniMax）动态选择最优模型。</p>
+                </div>
+                <div class="card advice-card">
+                    <div class="advice-number">04</div>
+                    <h3>跟踪AI治理合规风向变化</h3>
+                    <p>美国NIST CAISI与Google DeepMind、Microsoft、xAI签署前沿模型部署前评估协议；欧盟简化AI Act实施时序；教皇利奥十四世发布首份AI通谕呼吁"解除AI武装"。企业应提前建立AI系统的可追溯、可审计、可干预机制，尤其关注金融、医疗等高风险领域。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI DevOps -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🤖</span>
+                <div>
+                    <h2>AI DevOps 前沿</h2>
+                    <p class="section-subtitle">工具链、Agent、最佳实践</p>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag tag-p0">P0</span>
+                    </div>
+                    <h3>AI CLI工具生态白热化：多Agent编排成标配</h3>
+                    <p>Claude Code、Kimi Code CLI、OpenAI Codex、GitHub Copilot CLI、Gemini CLI、Qwen Code等8款主流工具正经历从"基础代码补全"向"智能开发代理"的范式跃迁。当前竞争焦点集中在三大维度：计费透明度（session limits、token drain）、多模态工作流集成（SSH、移动端、图像粘贴）和多Agent编排（Agent Teams、sub-agent策略、YOLO模式）。Gemini CLI最新推出Episodic Context Manager重构上下文管理，Kimi CLI新增/thinkback命令回顾会话决策时间线。</p>
+                    <div class="card-source">
+                        <span>GitHub / agents-radar</span>
+                        <span>2026-04-06 / 2026-06</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag tag-p1">P1</span>
+                    </div>
+                    <h3>终端UX成为产品差异化竞争焦点</h3>
+                    <p>AI CLI工具不再只是功能竞赛，终端交互体验成为关键差异化因素。Kimi CLI推出/thinkback命令和可自定义状态栏；Qwen Code实现Ctrl+O切换简洁/详细模式；Gemini CLI修复CJK字符表格渲染。这些改进反映出CLI工具正在与GUI竞争信息密度，TUI（终端用户界面）模式的快速创新将持续。企业选型时应关注团队日常使用效率，而非仅比较模型能力。</p>
+                    <div class="card-source">
+                        <span>big_model_radar / GitHub社区</span>
+                        <span>2026-04-06</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag tag-p2">P2</span>
+                    </div>
+                    <h3>Windows/企业部署仍是 underserved 市场</h3>
+                    <p>尽管AI CLI工具在Mac/Linux开发者中普及迅速，Windows平台仍被普遍视为"二等公民"——存在静默退出、子进程无stdout、防火墙代理阻断等问题。企业级需求（SSO、审计日志、策略引擎同步）也未被充分满足。这为优先支持企业部署的工具提供了市场机会，当前领导者正在错失这部分收入。</p>
+                    <div class="card-source">
+                        <span>agents-radar</span>
+                        <span>2026-04-06</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top AI Companies -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🏢</span>
+                <div>
+                    <h2>头部AI公司动态</h2>
+                    <p class="section-subtitle">Kimi、DeepSeek、Anthropic、OpenAI等</p>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag tag-p0">P0</span>
+                    </div>
+                    <h3>中国AI模型周调用量五周连超美国，差距扩大至3935亿Token</h3>
+                    <p>据OpenRouter最新数据，上周全球AI大模型总调用量27万亿Token（环比+18.9%）。中国AI模型周调用量12.96万亿Token（环比+31.48%），美国3.03万亿Token（环比+0.76%）。中国模型连续五周增长且超越美国，差距扩大至约3935亿Token。国内腾讯混元Hy3 preview采用295B参数MoE架构、21B激活参数，支持256K上下文窗口，重点强化复杂推理、代码和Agent任务能力。</p>
+                    <div class="card-source">
+                        <span>36氪 / 每日经济新闻 / 中国银河证券</span>
+                        <span>2026-04-07 / 2026-05-12</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag tag-p0">P0</span>
+                    </div>
+                    <h3>月之暗面（Moonshot/Kimi）完成约20亿美元融资</h3>
+                    <p>2026年5月，月之暗面完成约20亿美元融资，资本继续向头部大模型公司集中。Kimi系列在国内大模型赛道持续巩固头部地位，K2.6版本在多项基准测试中刷新行业领先成绩。此轮融资反映了资本市场对国产大模型长期价值的认可，也加剧了头部公司与中小模型厂商的资源分化。</p>
+                    <div class="card-source">
+                        <span>中国银河证券 / 新浪财经</span>
+                        <span>2026-05-12</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag tag-p1">P1</span>
+                    </div>
+                    <h3>DeepSeek API兼容OpenAI/Anthropic格式，降低开发者迁移门槛</h3>
+                    <p>DeepSeek官方API文档显示，已支持OpenAI/Anthropic兼容格式，并将deepseek-v4-pro、deepseek-v4-flash列为可调用模型，同时支持接入Claude Code等Agent和编程助手工具。这意味着开发者可以几乎零成本从OpenAI/Anthropic生态迁移至DeepSeek，进一步降低国产模型的使用门槛。DeepSeek拟募资最高500亿元人民币，估值持续攀升。</p>
+                    <div class="card-source">
+                        <span>中国银河证券数字经济周报</span>
+                        <span>2026-05-12</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag tag-p1">P1</span>
+                    </div>
+                    <h3>Anthropic组建企业AI服务公司，推动Claude进入中型企业核心运营</h3>
+                    <p>Anthropic宣布与Blackstone、Hellman & Friedman、Goldman Sachs共同组建企业AI服务公司，推动Claude进入中型企业核心运营流程。此举体现Anthropic正通过企业级场景强化长期调用粘性，而非仅依赖开发者个人用户。同时，Anthropic在AI伦理方面坚持拒绝在武器系统中排除人类干预，与美国国防部产生摩擦。</p>
+                    <div class="card-source">
+                        <span>中国银河证券 / 财新</span>
+                        <span>2026-05-12 / 2026-05-27</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag tag-p1">P1</span>
+                    </div>
+                    <h3>OpenAI推出GPT-5.5 Instant，强调日常任务准确性</h3>
+                    <p>OpenAI推出GPT-5.5 Instant，强调默认模型在准确性、个性化和日常任务中的表现提升。虽然GPT-5.5在编码和复杂推理方面仍落后于Claude Opus 4.7，但在长文本检索（1M tokens达74.0%）和终端操作（Terminal-Bench 2.0达82.7%）上保持优势。OpenAI正通过产品化优化巩固企业工作流和高价值场景中的市场地位。</p>
+                    <div class="card-source">
+                        <span>buildthisnow.com / 中国银河证券</span>
+                        <span>2026-04-23 / 2026-05-12</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Embodied Intelligence -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🦾</span>
+                <div>
+                    <h2>具身智能 / 机器人</h2>
+                    <p class="section-subtitle">量产进展、融资、行业标准</p>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag tag-p0">P0</span>
+                    </div>
+                    <h3>ComputeX 2026开幕：芯片巨头全面布局具身智能计算平台</h3>
+                    <p>2026年6月1日台北ComputeX 2026开幕首日，具身智能成为全场焦点。英伟达、AMD到Intel，所有芯片巨头都在展示面向人形机器人及机器狗的专用计算平台。与此同时，理想汽车宣布新增3个具身智能相关部门，宇树科技在上海开设亚洲首家体验馆门前排起长队。这些信号共同指向：具身智能正以前所未有的速度从实验室走向量产线。</p>
+                    <div class="card-source">
+                        <span>派旗纳米 / ComputeX官方</span>
+                        <span>2026-06-01</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag tag-p0">P0</span>
+                    </div>
+                    <h3>高盛：2026年全球具身智能市场突破120亿美元，人形机器人出货8-12万台</h3>
+                    <p>据高盛最新研究报告，2026年全球具身智能市场预计突破120亿美元，复合年增长率超过65%。其中，人形机器人整机出货量预计达到8万至12万台，较2025年增长约4倍。推动增长的核心力量：全球AI相关资本开支超8050亿美元（约15%流向具身智能）、家庭服务/仓储物流/智能制造三大场景实现商业闭环、核心零部件国产化率突破70%推动整机成本下降40%以上。</p>
+                    <div class="card-source">
+                        <span>高盛 / 派旗纳米</span>
+                        <span>2026-06</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag tag-p1">P1</span>
+                    </div>
+                    <h3>小鹏IRON机器人2026年底量产，全栈自研供应链突破</h3>
+                    <p>小鹏集团宣布人形机器人IRON将于2026年底实现量产交付，预计2027年一季度进入门店导购。这是国产具身智能供应链从实验室走向规模化量产的关键节点。IRON采用全栈自研模式，搭载3颗自研图灵AI芯片，沿用XNGP AI鹰眼视觉方案，目标月产能上千台。广州天河量产基地已启动建设，复刻了小鹏G3从定点到量产交付的完整路径。</p>
+                    <div class="card-source">
+                        <span>auto.news18a.com</span>
+                        <span>2026-05-31</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag tag-p1">P1</span>
+                    </div>
+                    <h3>理想汽车新增3个具身智能部门，广汽GoMate推进2026量产</h3>
+                    <p>理想汽车在2026年Q1进行组织架构重大调整，新增3个与具身智能直接相关的部门：家庭服务机器人平台开发、机器狗运动控制算法、具身智能供应链管理。广汽集团第三代具身智能人形机器人GoMate采用可变轮足移动结构，续航6小时，核心零部件全部自研，计划2026年完成小批量生产并逐步扩展至大规模量产。</p>
+                    <div class="card-source">
+                        <span>派旗纳米 / 新闻18A</span>
+                        <span>2026-06-01 / 2026-05-31</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag tag-p2">P2</span>
+                    </div>
+                    <h3>CES Asia 2026将于6月10日北京举办，聚焦量产落地</h3>
+                    <p>CES Asia 2026将于6月10-12日在北京亦创国际会展中心举办，本届展会直击具身智能机器人"从技术到产品、从样机到量产"的行业痛点。展会聚焦工业制造、智慧养老、特种作业三大高价值赛道，部分机型已实现99%+作业成功率、3分钟自主换电、7×24小时连续作业。工业展区将展示新能源汽车精密装配、3C柔性制造等成熟案例。</p>
+                    <div class="card-source">
+                        <span>网易 / CES Asia</span>
+                        <span>2026-03-31</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cloud Native & Data -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">☁️</span>
+                <div>
+                    <h2>云原生与数据</h2>
+                    <p class="section-subtitle">K8s、数据库、向量存储、基础设施</p>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag tag-p1">P1</span>
+                    </div>
+                    <h3>17款向量数据库选型：云原生架构与AI搜索适配</h3>
+                    <p>Weaviate（6.7k stars）、Deep Lake（6.4k stars）等17款向量数据库对比评估持续更新。2026年选型核心维度已扩展至：云原生架构与Kubernetes Operator支持、多模态嵌入能力、混合搜索（向量+关键词）、实时更新延迟。随着RAG和AI搜索应用普及，企业向量数据库选型进入深水区，兼容性评估比功能全面性更重要。</p>
+                    <div class="card-source">
+                        <span>lakefs.io</span>
+                        <span>2026-01-21</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag tag-p2">P2</span>
+                    </div>
+                    <h3>Kubernetes AI工作负载调度优化持续演进</h3>
+                    <p>随着GPU密集型AI训练/推理工作负载增长，Kubernetes社区正加速推进AI调度相关特性：Device Plugin增强、GPU共享（MIG/Time Slicing）、拓扑感知调度、批处理队列（Kueue）。云原生基础设施正从通用容器编排向AI专用基础设施演进，但企业落地仍面临资源碎片化和多租户隔离挑战。</p>
+                    <div class="card-source">
+                        <span>综合整理</span>
+                        <span>2026-06</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Management -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">📊</span>
+                <div>
+                    <h2>项目管理与效能</h2>
+                    <p class="section-subtitle">AI驱动的人机协作、PM工具、效能度量</p>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag tag-p1">P1</span>
+                    </div>
+                    <h3>2026年AI项目管理工具：从任务自动化到智能协同中枢</h3>
+                    <p>2026年项目管理软件已不再是简单任务清单或甘特图工具。随着AI Agent、NLP和多模态数据分析的深度集成，它们正演变为覆盖项目全生命周期的智能协同中枢。禅道2026版引入智能需求优先级排序引擎和AI辅助缺陷预测；Jira通过Advanced Roadmaps实现战略目标六级分解，Atlassian Intelligence支持自然语言生成报告；Asana智能工作流根据历史数据自动建议关键路径缓冲时间。</p>
+                    <div class="card-source">
+                        <span>博客园 / 36氪</span>
+                        <span>2026-02-27 / 2026-05-22</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag tag-p2">P2</span>
+                    </div>
+                    <h3>AI项目管理工具分裂：任务自动化 vs 框架引导</h3>
+                    <p>2026年AI项目管理工具分化为两大阵营：任务自动化型（ClickUp、Asana、monday.com、飞书多维表格）擅长调度、资源分配和跨团队协作，AI可减少40%手动工作量；框架引导型（禅道、Storyflow）专注方法论传授，将专家框架内嵌到项目规划流程中。效能差异取决于"用AI管理任务"还是"用AI指导思考"。</p>
+                    <div class="card-source">
+                        <span>storyflow.so / 博客园</span>
+                        <span>2026-01-25 / 2026-02-27</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Global Dynamics -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🌐</span>
+                <div>
+                    <h2>全球动态</h2>
+                    <p class="section-subtitle">按地区/领域汇总</p>
+                </div>
+            </div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th style="width:15%">地区/领域</th>
+                        <th style="width:10%">热度</th>
+                        <th style="width:75%">核心动态</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>🇺🇸 美国</strong></td>
+                        <td><span class="card-tag tag-p0">P0</span></td>
+                        <td>NIST CAISI与Google DeepMind、Microsoft、xAI签署协议，对前沿AI模型开展部署前评估，重点围绕国家安全；AI监管从"去障碍促创新"转向收紧；OpenAI GPT-5.5 Instant发布</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🇨🇳 中国</strong></td>
+                        <td><span class="card-tag tag-p0">P0</span></td>
+                        <td>AI模型周调用量12.96万亿Token连续五周超越美国；月之暗面完成约20亿美元融资；DeepSeek拟募资最高500亿元；AI治理从"敏捷响应"向"持续审计"体系化升级</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🇪🇺 欧洲</strong></td>
+                        <td><span class="card-tag tag-p1">P1</span></td>
+                        <td>欧盟委员会就简化AI Act规则达成协议，明确高风险AI系统实施时序，降低合规复杂度；成为全球电信联盟（GCOT）首个战略伙伴，推动6G/云/卫星/AI融合网络</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🤖 具身智能</strong></td>
+                        <td><span class="card-tag tag-p0">P0</span></td>
+                        <td>ComputeX 2026芯片巨头全面布局；高盛预测2026市场120亿美元+；小鹏IRON年底量产；理想/广汽加速组织架构调整；2026年融资超345亿元</td>
+                    </tr>
+                    <tr>
+                        <td><strong>⚖️ AI治理</strong></td>
+                        <td><span class="card-tag tag-p1">P1</span></td>
+                        <td>教皇利奥十四世发布首份AI通谕呼吁"解除AI武装"；Walter Isaacson称这是确立技术伦理边界的强烈信号；中国可能在金融/医疗领域率先建立AI系统可靠性评估体系</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🔬 模型竞赛</strong></td>
+                        <td><span class="card-tag tag-p0">P0</span></td>
+                        <td>中美模型调用量差距扩大至3935亿Token；中国模型依托高性价比/开源/本土场景快速放量，美国模型凭借闭源旗舰/企业服务体系保持技术纵深；双方呈动态追赶格局</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Expert Voices -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🎙️</span>
+                <div>
+                    <h2>大咖声音</h2>
+                    <p class="section-subtitle">行业领袖观点</p>
+                </div>
+            </div>
+            <div class="voice-grid">
+                <div class="voice-card">
+                    <p class="quote">"AI应该被'解除武装'，以保护人类免受其危险影响。这项技术需摆脱垄断性控制，不再用它来谋求地缘政治或商业利益。"</p>
+                    <div class="voice-author">
+                        <div class="voice-avatar">P</div>
+                        <div>
+                            <div class="voice-name">教皇利奥十四世</div>
+                            <div class="voice-title">首份AI通谕发布者</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="voice-card">
+                    <p class="quote">"罗马教皇就AI议题发声，释放出确立技术伦理边界的强烈信号。必须明确区分AI与人类的本质差异，根本权利不应被技术所篡夺。"</p>
+                    <div class="voice-author">
+                        <div class="voice-avatar">W</div>
+                        <div>
+                            <div class="voice-name">Walter Isaacson</div>
+                            <div class="voice-title">美国知名媒体人 / CNBC采访</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="voice-card">
+                    <p class="quote">"标准是全球化的隐形架构。通过在ITU等标准机构早期布局，中国旨在确保其技术被全球'锁定'。"</p>
+                    <div class="voice-author">
+                        <div class="voice-avatar">T</div>
+                        <div>
+                            <div class="voice-name">Liza Tobin</div>
+                            <div class="voice-title">AI地缘政治分析师</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="voice-card">
+                    <p class="quote">"88%的组织在至少一个业务功能中使用AI，但广泛采用不等于深度应用。真正的价值来自嵌入工作流程，而非孤立工具。"</p>
+                    <div class="voice-author">
+                        <div class="voice-avatar">M</div>
+                        <div>
+                            <div class="voice-name">McKinsey & Company</div>
+                            <div class="voice-title">2025 State of AI Research</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Term Dictionary -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">📖</span>
+                <div>
+                    <h2>名字解释</h2>
+                    <p class="section-subtitle">术语速查字典</p>
+                </div>
+            </div>
+            <div class="term-grid">
+                <div class="term-card">
+                    <h4>MoE（混合专家）</h4>
+                    <p>Mixture of Experts，一种神经网络架构，将模型划分为多个专家子网络，每个输入只激活部分专家，以更低计算成本实现更大参数规模。腾讯混元Hy3采用295B参数MoE架构。</p>
+                </div>
+                <div class="term-card">
+                    <h4>CAISI</h4>
+                    <p>NIST人工智能标准与创新中心（Center for AI Standards and Innovation），美国商务部下属机构，负责前沿AI模型的部署前评估和安全测试，近期与Google DeepMind、Microsoft、xAI签署合作协议。</p>
+                </div>
+                <div class="term-card">
+                    <h4>具身智能</h4>
+                    <p>赋予AI物理身体（机器人）并与环境实时交互的能力，强调感知-行动闭环。区别于纯软件AI，2026年正从实验室走向量产，预计市场突破120亿美元。</p>
+                </div>
+                <div class="term-card">
+                    <h4>Token</h4>
+                    <p>AI模型处理文本的最小单位，约0.75个英文单词或0.5个汉字。API定价按输入/输出tokens数量计费。全球上周总调用量27万亿Token。</p>
+                </div>
+                <div class="term-card">
+                    <h4>RAG</h4>
+                    <p>检索增强生成（Retrieval-Augmented Generation），将外部知识检索与语言模型生成结合，减少幻觉并增强时效性，依赖向量数据库作为核心基础设施。</p>
+                </div>
+                <div class="term-card">
+                    <h4>ComputeX</h4>
+                    <p>全球规模最大的ICT产业展会之一，每年6月在台北举办。2026年ComputeX上具身智能成为全场焦点，所有芯片巨头展示机器人专用计算平台。</p>
+                </div>
+                <div class="term-card">
+                    <h4>SWE-bench</h4>
+                    <p>评估AI模型在真实GitHub代码库上修复软件工程问题的基准测试，Pro版难度更高。Claude Opus 4.7在该项得分64.3%，领先GPT-5.5的58.6%。</p>
+                </div>
+                <div class="term-card">
+                    <h4>YOLO Mode</h4>
+                    <p>AI CLI工具中的"自动执行模式"（You Only Live Once），允许Agent在无人工确认的情况下直接执行工具操作。当前安全策略和权限疲劳仍是未解决的问题。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Data -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">📊</span>
+                <div>
+                    <h2>关键数据速览</h2>
+                    <p class="section-subtitle">核心数字一览</p>
+                </div>
+            </div>
+            <div class="data-grid">
+                <div class="data-item">
+                    <div class="data-number">27万亿</div>
+                    <div class="data-label">全球AI模型上周总调用量（Token）</div>
+                    <div class="data-source">OpenRouter / 每日经济新闻</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-number">31.48%</div>
+                    <div class="data-label">中国AI模型周调用量环比增幅</div>
+                    <div class="data-source">36氪 / 2026-04-07</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-number">120亿$</div>
+                    <div class="data-label">2026年全球具身智能市场规模预测</div>
+                    <div class="data-source">高盛 / 2026-06</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-number">8-12万台</div>
+                    <div class="data-label">2026年人形机器人预计出货量</div>
+                    <div class="data-source">高盛 / 2026-06</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-number">345亿+</div>
+                    <div class="data-label">2026年具身智能领域融资总额（人民币）</div>
+                    <div class="data-source">alatexpo.com / ofweek.com</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-number">20亿$</div>
+                    <div class="data-label">月之暗面（Kimi）最新融资金额</div>
+                    <div class="data-source">中国银河证券 / 2026-05-12</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-number">70%</div>
+                    <div class="data-label">机器人核心零部件国产化率</div>
+                    <div class="data-source">高盛 / 派旗纳米</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-number">88%</div>
+                    <div class="data-label">组织在至少1个业务功能中使用AI</div>
+                    <div class="data-source">McKinsey 2025</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Deep Analysis -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">💡</span>
+                <div>
+                    <h2>深度分析</h2>
+                    <p class="section-subtitle">趋势、数据、观察</p>
+                </div>
+            </div>
+            <div class="analysis-block">
+                <h3>1. AI CLI工具竞争进入"多Agent编排"时代，单一Agent将被淘汰</h3>
+                <p>2026年AI CLI工具生态（Claude Code、Kimi CLI、Codex、Copilot CLI、Gemini CLI、Qwen Code）的竞争已从"模型能力比拼"转向"Agent协作架构"比拼。关键趋势：多Agent编排（Agent Teams、sub-agent策略）正成为table stakes；上下文管理（Gemini的Episodic Context Manager、Kimi的/thinkback）成为差异化竞争点；终端UX（TUI模式、CJK渲染、自定义状态栏）成为产品护城河。企业选型建议：不应仅比较模型能力，而应评估团队实际工作流中多Agent协作、session管理和工具集成的匹配度。Windows/企业部署仍是 underserved 市场，为后发工具提供了机会窗口。</p>
+                <ul>
+                    <li><strong>编码任务：</strong>优先Claude Code（Agent Teams最成熟）或Kimi CLI（CJK体验最佳）</li>
+                    <li><strong>跨平台团队：</strong>优先评估Windows稳定性而非仅看Mac体验</li>
+                    <li><strong>高并发自动化：</strong>优先Gemini CLI（--fast模式跳过预检）</li>
+                </ul>
+            </div>
+            <div class="analysis-block">
+                <h3>2. 具身智能量产拐点：ComputeX信号与"车企造机器人"模式</h3>
+                <p>ComputeX 2026的具身智能爆发不是孤立事件，而是多重信号共振：芯片巨头（NVIDIA、AMD、Intel）提供专用计算平台→解决"大脑"问题；核心零部件国产化率突破70%→解决"成本"问题；小鹏/理想/广汽等车企入场→解决"量产"问题。"车企造机器人"模式具有独特优势：车规级供应链复用（传感器、芯片、EEA架构）、成本控制经验、大规模制造能力。小鹏IRON全栈自研（3颗图灵芯片、XNGP视觉）和广汽GoMate可变轮足结构，代表了两种不同的技术路线。风险在于：人形机器人单价仍高（50-100万元），场景落地速度可能滞后于资本预期。建议关注供应链而非整机品牌。</p>
+            </div>
+            <div class="analysis-block">
+                <h3>3. 中美AI模型调用量差距扩大：从"能力竞争"到"生态竞争"</h3>
+                <p>中国AI模型周调用量12.96万亿Token（+31.48%），美国3.03万亿Token（+0.76%），差距扩大至3935亿Token。这不仅是模型能力的比拼，更是生态竞争的结果：中国模型依托高性价比（DeepSeek、MiniMax）、开源友好（HuggingFace发布）和本土应用场景（腾讯混元Hy3的MoE架构适配复杂推理和Agent任务）快速放量；美国模型则凭借闭源旗舰能力（GPT-5.5、Claude Opus 4.7）、企业服务体系（Anthropic与Blackstone/Goldman Sachs合作）和高价值场景沉淀保持技术纵深。DeepSeek API支持OpenAI/Anthropic兼容格式，进一步降低了开发者迁移成本。未来竞争将越来越体现为"监管适配能力"——谁能在保证安全可控的同时降低制度摩擦、缩短创新落地周期，谁就更有机会占据主动。</p>
+            </div>
+        </div>
+
+        <!-- Heatmap -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🔥</span>
+                <div>
+                    <h2>行业热力图</h2>
+                    <p class="section-subtitle">各领域热度与状态</p>
+                </div>
+            </div>
+            <div class="heatmap">
+                <span class="heatmap-item heat-high">具身智能/机器人 🔥🔥🔥</span>
+                <span class="heatmap-item heat-high">大模型/API竞争 🔥🔥🔥</span>
+                <span class="heatmap-item heat-high">AI CLI工具 🔥🔥🔥</span>
+                <span class="heatmap-item heat-med">AI治理/监管 🔥🔥</span>
+                <span class="heatmap-item heat-med">AI项目管理 🔥🔥</span>
+                <span class="heatmap-item heat-med">向量数据库 🔥🔥</span>
+                <span class="heatmap-item heat-low">云原生K8s 🔥</span>
+                <span class="heatmap-item heat-low">欧洲AI监管 🔥</span>
+            </div>
+            <div class="heatmap-note">
+                <strong>状态说明：</strong>
+                <span class="heat-high">🔥🔥🔥 高热度</span> = 资本密集、重大发布、行业拐点；
+                <span class="heat-med">🔥🔥 中热度</span> = 持续增长、工具成熟、应用扩散；
+                <span class="heat-low">🔥 低热度</span> = 基础设施稳定、监管推进、长期布局。
+                当前<strong>具身智能</strong>和<strong>AI CLI工具</strong>处于最高热度区间，ComputeX 2026和OpenAI/Claude/Kimi密集更新是主要催化剂。
+            </div>
+        </div>
+
+        <!-- Sources -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">📚</span>
+                <div>
+                    <h2>权威来源</h2>
+                    <p class="section-subtitle">详尽引用信息</p>
+                </div>
+            </div>
+            <div class="source-list">
+                <div class="source-item">
+                    <div class="source-title">AI CLI Tools Digest 2026-04-06</div>
+                    <div class="source-meta">发布时间：2026-04-06 | 作者/来源：agents-radar / duanyytop | 原文链接：<a class="source-link" href="https://github.com/duanyytop/agents-radar/issues/432">GitHub</a> | 引用位置：AI DevOps前沿板块</div>
+                </div>
+                <div class="source-item">
+                    <div class="source-title">AI CLI 工具社区动态日报 2026-04-06</div>
+                    <div class="source-meta">发布时间：2026-04-06 | 作者/来源：big_model_radar / gsscsd | 原文链接：<a class="source-link" href="https://github.com/gsscsd/big_model_radar/issues/141">GitHub</a> | 引用位置：AI DevOps前沿板块</div>
+                </div>
+                <div class="source-item">
+                    <div class="source-title">具身智能从实验室走向量产：人形机器人电子防护涂层的市场机遇</div>
+                    <div class="source-meta">发布时间：2026-06-01 | 作者/来源：派旗纳米 | 原文链接：<a class="source-link" href="https://www.paiqinano.com/?p=35618">paiqinano.com</a> | 引用位置：具身智能/机器人板块</div>
+                </div>
+                <div class="source-item">
+                    <div class="source-title">小鹏IRON机器人2026年量产，全栈自研供应链对具身智能行业意味着什么？</div>
+                    <div class="source-meta">发布时间：2026-05-31 | 作者/来源：新闻18A / auto.news18a.com | 原文链接：<a class="source-link" href="http://auto.news18a.com/news/storys_260971.html">auto.news18a.com</a> | 引用位置：具身智能/机器人板块</div>
+                </div>
+                <div class="source-item">
+                    <div class="source-title">中国AI大模型周调用量增31.48%，连续五周超美国</div>
+                    <div class="source-meta">发布时间：2026-04-07 | 作者/来源：36氪 / 每日经济新闻 | 原文链接：<a class="source-link" href="https://www.36kr.com/newsflashes/3754746077921799">36kr.com</a> | 引用位置：头部AI公司动态板块</div>
+                </div>
+                <div class="source-item">
+                    <div class="source-title">【CGS-NDI跟踪】AI监管新风向：美国强调国家安全，欧盟释放简化信号</div>
+                    <div class="source-meta">发布时间：2026-05-12 | 作者/来源：中国银河证券新发展研究院 | 原文链接：<a class="source-link" href="https://finance.sina.com.cn/wm/2026-05-12/doc-inhxqzkm1404570.shtml">sina.com.cn</a> | 引用位置：头部AI公司/全球动态板块</div>
+                </div>
+                <div class="source-item">
+                    <div class="source-title">2026项目管理新范式：AI如何重塑18款主流工具的协同与决策</div>
+                    <div class="source-meta">发布时间：2026-02-27 | 作者/来源：博客园 / jzssuanfa | 原文链接：<a class="source-link" href="https://www.cnblogs.com/jzssuanfa/p/19648171">cnblogs.com</a> | 引用位置：项目管理与效能板块</div>
+                </div>
+                <div class="source-item">
+                    <div class="source-title">2026年值得关注的6款项目管理工具：从企业级研发到轻量协作的选型参考</div>
+                    <div class="source-meta">发布时间：2026-05-22 | 作者/来源：SegmentFault | 原文链接：<a class="source-link" href="https://segmentfault.com/a/1190000047809665">segmentfault.com</a> | 引用位置：项目管理与效能板块</div>
+                </div>
+                <div class="source-item">
+                    <div class="source-title">规则重构：2026年全球科技治理进入"评估时代"</div>
+                    <div class="source-meta">发布时间：2026-01-05 | 作者/来源：搜狐 / 科技政策分析 | 原文链接：<a class="source-link" href="https://www.sohu.com/a/972867193_120287836">sohu.com</a> | 引用位置：全球动态板块</div>
+                </div>
+                <div class="source-item">
+                    <div class="source-title">【华尔街原声】分析人士：教皇释放确立AI技术伦理边界的强烈信号</div>
+                    <div class="source-meta">发布时间：2026-05-27 | 作者/来源：CNBC / Walter Isaacson / 财新 | 原文链接：<a class="source-link" href="https://database.caixin.com/2026-05-27/102448219.html">caixin.com</a> | 引用位置：全球动态/大咖声音板块</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>AI晨报 | 2026-06-04 | 由 豆饼 (Doubing) 自动生成</p>
+            <p>数据来源：公开网络信息 | 仅供研究参考</p>
+        </div>
+    </div>
+</body>
+</html>
