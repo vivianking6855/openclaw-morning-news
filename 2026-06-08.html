@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日晨报 2026-06-08 | OpenClaw Morning News</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f7;
+            color: #1d1d1f;
+            line-height: 1.6;
+        }
+        /* ===== 顶部栏 ===== */
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #d2d2d7;
+            padding: 0 24px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 90;
+        }
+        .header .back-home {
+            color: #86868b;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .header .back-home:hover { color: #1d1d1f; }
+        .header .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #1d1d1f;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        .header .logo-icon { font-size: 20px; }
+        /* ===== 日期栏 ===== */
+        .date-bar {
+            background: #fff;
+            border-bottom: 1px solid #d2d2d7;
+            padding: 14px 24px;
+            text-align: center;
+        }
+        .date-bar .current-date {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1d1d1f;
+            display: inline-block;
+            padding: 8px 20px;
+            background: #f5f5f7;
+            border-radius: 8px;
+        }
+        /* ===== 主内容 ===== */
+        .main {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+        /* ===== 英雄区 ===== */
+        .hero-section {
+            background: #fff;
+            padding: 32px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: #0071e3;
+            color: #fff;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .hero-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin: 16px 0 12px;
+            line-height: 1.3;
+        }
+        .hero-summary {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+        .hero-meta {
+            font-size: 13px;
+            color: #86868b;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        /* ===== 务实建议 ===== */
+        .recommendations { margin-bottom: 24px; }
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 20px;
+        }
+        .rec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+        .rec-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #0071e3;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        .rec-card h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin: 0 0 8px;
+        }
+        .rec-card p {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.5;
+            margin: 0;
+        }
+        /* ===== 内容网格 ===== */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        @media (max-width: 768px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .rec-grid { grid-template-columns: 1fr; }
+            .hero-title { font-size: 22px; }
+        }
+        .content-card {
+            background: #fff;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        .content-card.full-width { grid-column: 1 / -1; }
+        .content-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin: 0 0 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-icon { font-size: 20px; }
+        .content-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .content-card li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .content-card li:last-child { border-bottom: none; }
+        .news-meta {
+            font-size: 11px;
+            color: #86868b;
+            margin-top: 4px;
+            display: block;
+        }
+        .news-meta .time { margin-right: 8px; }
+        .news-meta .source { color: #0071e3; }
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        .tag-p0 { background: rgba(255,59,48,0.1); color: #ff3b30; }
+        .tag-p1 { background: rgba(255,149,0,0.1); color: #ff9500; }
+        .tag-p2 { background: rgba(52,199,89,0.1); color: #34c759; }
+        /* ===== 大咖声音 ===== */
+        .fixed-voices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .fixed-voice-card {
+            background: #f5f5f7;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #0071e3;
+        }
+        .fixed-voice-card .voice-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+        }
+        .fixed-voice-card .voice-title {
+            font-size: 12px;
+            color: #86868b;
+            margin-bottom: 10px;
+        }
+        .fixed-voice-card .voice-text {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .fixed-voice-card .voice-meta {
+            font-size: 11px;
+            color: #86868b;
+        }
+        /* ===== 数据高亮 ===== */
+        .data-highlight {
+            display: inline-block;
+            font-weight: 700;
+            color: #ff3b30;
+        }
+        /* ===== 术语卡片 ===== */
+        .term-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .term-card {
+            background: #f5f5f7;
+            padding: 16px;
+            border-radius: 12px;
+            border-left: 4px solid #34c759;
+        }
+        .term-card .term-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: #1d1d1f;
+            margin-bottom: 6px;
+        }
+        .term-card .term-desc {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.5;
+        }
+        /* ===== 表格 ===== */
+        .global-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            font-size: 14px;
+        }
+        .global-table th {
+            background: #f5f5f7;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #1d1d1f;
+            border-bottom: 2px solid #d2d2d7;
+        }
+        .global-table td {
+            padding: 12px;
+            border-bottom: 1px solid #f0f0f0;
+            color: #333;
+        }
+        .global-table tr:hover td { background: #fafafa; }
+        /* ===== 权威来源 ===== */
+        .source-list {
+            margin-top: 16px;
+            font-size: 13px;
+            color: #555;
+            line-height: 1.8;
+        }
+        .source-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .source-item:last-child { border-bottom: none; }
+        .source-time { color: #86868b; font-size: 12px; }
+        .source-author { color: #0071e3; font-weight: 500; }
+        .source-link { color: #0071e3; text-decoration: none; word-break: break-all; }
+        .source-link:hover { text-decoration: underline; }
+        /* ===== 页脚 ===== */
+        .footer {
+            background: #1d1d1f;
+            color: #fff;
+            padding: 40px 24px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .footer-content {
+            max-width: 960px;
+            margin: 0 auto;
+            font-size: 14px;
+        }
+        .footer a { color: #86868b; text-decoration: none; }
+        .footer a:hover { color: #fff; }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <a href="index.html" class="back-home">← 返回首页</a>
+    <a href="index.html" class="logo"><span class="logo-icon">📰</span><span class="logo-text">每日晨报</span></a>
+</header>
+<div class="date-bar">
+    <span class="current-date">2026年6月8日 星期一</span>
+</div>
+
+<main class="main">
+    <!-- 1. 今日洞察 -->
+    <section class="hero-section">
+        <div class="hero-badge">💡 今日洞察</div>
+        <h1 class="hero-title">Kimi冲刺20亿美元 · 宇树科创板过会 · 具身智能量产竞赛全面开启</h1>
+        <p class="hero-summary">中国AI头部公司进入"IPO+超级融资"双轨时代。Kimi新一轮20亿美元融资接近完成，估值逼近180亿美元；宇树科技6月1日科创板顺利过会；MiniMax市值升至2983亿港元并启动回A上市辅导。具身智能从"融资竞赛"转向"量产竞赛"，2026年成为行业清场与分水岭之年。</p>
+        <div class="hero-meta">
+            <span>📅 2026-06-08</span>
+            <span>⏱️ 8分钟阅读</span>
+            <span>🔖 14个板块</span>
+        </div>
+    </section>
+
+    <!-- 2. 务实落地建议 -->
+    <section class="recommendations">
+        <h2 class="section-title">🛠️ 务实落地建议</h2>
+        <div class="rec-grid">
+            <div class="rec-card">
+                <h4>评估AI编程工具选型</h4>
+                <p>Trae以98%代码准确率成为国产首选，Copilot企业生态最成熟，Cursor项目级理解最强。建议根据团队规模、技术栈和预算选择最优组合，而非单一工具。</p>
+            </div>
+            <div class="rec-card">
+                <h4>关注具身智能供应链机会</h4>
+                <p>核心零部件（减速器、传感器、丝杠）国产替代窗口期已至。宇树过会、智元5000台下线，量产需求将拉动上游供应链订单爆发。</p>
+            </div>
+            <div class="rec-card">
+                <h4>布局云原生AI基础设施</h4>
+                <p>K8s+向量数据库+推理服务弹性扩缩成为新刚需。PostgreSQL 17向量能力爆发，Milvus成60% RAG系统首选，建议提前评估技术栈适配。</p>
+            </div>
+            <div class="rec-card">
+                <h4>建立AgentOps运营体系</h4>
+                <p>AI Agent从实验走向生产，系统化运营能力决定成败。参考微软AgentOps课程，从影子模式起步，逐步构建生产级智能体运营平台。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3-8. 内容网格 -->
+    <div class="content-grid">
+        <!-- 3. AI DevOps前沿 -->
+        <section class="content-card">
+            <h3><span class="card-icon">🤖</span> AI DevOps 前沿</h3>
+            <ul>
+                <li>
+                    <span class="tag tag-p0">重磅</span>
+                    <strong>GitHub Copilot企业级AI代理年收入超50亿美元</strong>：全球46%新增代码由AI生成，企业级AI采纳率突破80%。Copilot在HumanEval中得分87.6%，接近人类高级工程师水平。
+                    <span class="news-meta"><span class="time">2026-05</span><span class="source">@GitHub Octoverse 2025 / IDC</span></span>
+                </li>
+                <li>
+                    <span class="tag tag-p1">重要</span>
+                    <strong>Trae以98%代码生成准确率站稳国产AI编程第一梯队</strong>：截至2025年底注册用户突破600万，中文适配度和性价比维度近乎满分，综合评分9.5/10。
+                    <span class="news-meta"><span class="time">2026-05</span><span class="source">@CSDN/掘金实测</span></span>
+                </li>
+                <li>
+                    <span class="tag tag-p1">重要</span>
+                    <strong>2025年DevOps工具链呈现平台化、智能化、安全化三大趋势</strong>：Gitee+Jenkins混合方案成为主流，Gitee Pipelines将测试环境构建时间从23分钟压缩至4分钟。
+                    <span class="news-meta"><span class="time">2025-10</span><span class="source">@掘金/51CTO</span></span>
+                </li>
+                <li>
+                    <span class="tag tag-p2">趋势</span>
+                    <strong>AI编程工具三国杀格局形成</strong>：Copilot（生态首选）vs Claude Code（极客首选）vs Trae（国产首选）。Cursor选择Kimi开源模型作为底座，估值目标500亿美元。
+                    <span class="news-meta"><span class="time">2026-03</span><span class="source">@品玩/投资界</span></span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 4. 头部AI公司动态 -->
+        <section class="content-card">
+            <h3><span class="card-icon">🏢</span> 头部AI公司动态</h3>
+            <ul>
+                <li>
+                    <span class="tag tag-p0">重磅</span>
+                    <strong>Kimi新一轮约20亿美元融资接近完成，估值逼近180亿美元</strong>：美团龙珠、水木资本、中国移动、CPE源峰等确认投资。K2.5发布后近20天累计收入超过2025年全年。
+                    <span class="news-meta"><span class="time">2026-05</span><span class="source">@财新周刊/钛媒体</span></span>
+                </li>
+                <li>
+                    <span class="tag tag-p0">重磅</span>
+                    <strong>MiniMax市值升至2983亿港元，启动回A上市辅导</strong>：2025全年收入同比增长159%，毛利率从12.2%提升至25.4%。超过70%收入来自海外，服务覆盖200+国家和地区。
+                    <span class="news-meta"><span class="time">2026-04</span><span class="source">@CMBI招银国际/港交所</span></span>
+                </li>
+                <li>
+                    <span class="tag tag-p1">重要</span>
+                    <strong>阶跃星辰完成近25亿美元融资，拆除红筹架构推进赴港上市</strong>：投资者包括华勤、龙旗、豪威、中兴等产业投资者及香港投资管理有限公司（HKIC）。
+                    <span class="news-meta"><span class="time">2026-05</span><span class="source">@财新周刊</span></span>
+                </li>
+                <li>
+                    <span class="tag tag-p1">重要</span>
+                    <strong>智谱提出科创板上市计划，港股上市后市值一度达500亿港元</strong>：2026年初成功挂牌港交所（02513.HK），与MiniMax争夺"AI基础大模型第一股"。
+                    <span class="news-meta"><span class="time">2026-01</span><span class="source">@新浪财经/港交所</span></span>
+                </li>
+                <li>
+                    <span class="tag tag-p2">趋势</span>
+                    <strong>DeepSeek V3.2持续迭代，R2/V4备受期待</strong>：采用创新稀疏Attention架构（DSA），推理能力达到与GPT-5、Gemini-3.0-Pro相媲美高度。社区期待已久的V4/R2尚未发布。
+                    <span class="news-meta"><span class="time">2025-12</span><span class="source">@知乎技术专栏</span></span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 5. 具身智能/机器人 -->
+        <section class="content-card">
+            <h3><span class="card-icon">🦾</span> 具身智能/机器人</h3>
+            <ul>
+                <li>
+                    <span class="tag tag-p0">重磅</span>
+                    <strong>宇树科技6月1日科创板顺利过会，拟募资42亿元</strong>：2025年人形机器人收入首次超越四足机器人，占比超51%，毛利率高达60%。连续两年盈利，成为科创板明星项目。
+                    <span class="news-meta"><span class="time">2026-06-01</span><span class="source">@上海证券交易所/财新</span></span>
+                </li>
+                <li>
+                    <span class="tag tag-p0">重磅</span>
+                    <strong>博银合创完成近3亿元Pre-A轮融资，首款工业具身智能机器人量产在即</strong>：博世与银河通用合资公司，累计意向订单金额达数亿美元，客户覆盖汽车及物流分拣行业。
+                    <span class="news-meta"><span class="time">2026-05-15</span><span class="source">@IT之家</span></span>
+                </li>
+                <li>
+                    <span class="tag tag-p1">重要</span>
+                    <strong>智元机器人第5000台通用具身机器人量产下线</strong>：远征A1/A2下线1742台，灵犀X1/X2下线1846台，精灵G1/G2下线1412台。从试产到渐成规模，供应链能力持续升级。
+                    <span class="news-meta"><span class="time">2025-12</span><span class="source">@上海证券报/东海证券</span></span>
+                </li>
+                <li>
+                    <span class="tag tag-p1">重要</span>
+                    <strong>2025年Q1具身智能赛道50+企业获超60亿元融资，天使轮门槛升至5000万美元</strong>：头部VC（红杉、高瓴、启明）和产业资本（蚂蚁、腾讯、宁德时代）密集入场，前10%初创吸纳70%资金。
+                    <span class="news-meta"><span class="time">2025-03</span><span class="source">@硅星人/IT桔子</span></span>
+                </li>
+                <li>
+                    <span class="tag tag-p2">趋势</span>
+                    <strong>2025年人形机器人市场规模约53亿元，2029年预计达750亿元</strong>：全球市场2035年预计达1540亿美元。中国已成为全球领先的人形机器人生产国，产业链配套优势全球独有。
+                    <span class="news-meta"><span class="time">2025-04</span><span class="source">@中国人形机器人产业大会/财新</span></span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 6. 云原生与数据 -->
+        <section class="content-card">
+            <h3><span class="card-icon">☁️</span> 云原生与数据</h3>
+            <ul>
+                <li>
+                    <span class="tag tag-p1">重要</span>
+                    <strong>K8s在AI Native时代面临异构算力调度与推理服务弹性扩缩新挑战</strong>：传统云原生实践无法满足AI工作负载需求，K8s地位可能从战略核心变为"背景管道"。
+                    <span class="news-meta"><span class="time">2025-09</span><span class="source">@CNCF/云原生社区</span></span>
+                </li>
+                <li>
+                    <span class="tag tag-p1">重要</span>
+                    <strong>向量数据库成为AI基础设施"新水电煤"</strong>：Pinecone、Weaviate、Qdrant等厂商估值飙升。Milvus GitHub Star超26.2k，全球超60% RAG系统采用。腾讯云VDB达2000万QPS、35ms延迟。
+                    <span class="news-meta"><span class="time">2025-12</span><span class="source">@腾讯云/掘金</span></span>
+                </li>
+                <li>
+                    <span class="tag tag-p1">重要</span>
+                    <strong>PostgreSQL 17+向量能力爆发，连续8季度稳居DB-Engines第四</strong>：向量数据库细分赛道冲进前三，完全开源、云原生适配性拉满，成为AI时代"全能选手"。
+                    <span class="news-meta"><span class="time">2025-12</span><span class="source">@DB-Engines/腾讯云</span></span>
+                </li>
+                <li>
+                    <span class="tag tag-p2">趋势</span>
+                    <strong>KubeBlocks：5分钟构建云原生数据基础设施</strong>：支持RDBMS、NoSQL、Streaming、向量数据库统一管理。ReplicationSet和ConsensusSet自动修复复制错误，降低运维风险。
+                    <span class="news-meta"><span class="time">2023-06</span><span class="source">@KubeBlocks开源社区</span></span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 7. 项目管理与效能 -->
+        <section class="content-card">
+            <h3><span class="card-icon">📊</span> 项目管理与效能</h3>
+            <ul>
+                <li>
+                    <span class="tag tag-p1">重要</span>
+                    <strong>AI渗透率激增，项目经理角色升级为"人机协同"领导者</strong>：AI承担70%事务性工作，项目经理聚焦战略对齐、敏捷决策和团队赋能。商业价值转化率提升40%。
+                    <span class="news-meta"><span class="time">2025-11</span><span class="source">@腾讯云/PMI中国</span></span>
+                </li>
+                <li>
+                    <span class="tag tag-p1">重要</span>
+                    <strong>GitHub Copilot在微软内部300个项目贡献近千个PR</strong>：代码生成速度提升55%，响应延迟缩短13%，Java代码接受率高达61%。支持200万Token长上下文窗口。
+                    <span class="news-meta"><span class="time">2025-06</span><span class="source">@GitHub/Microsoft</span></span>
+                </li>
+                <li>
+                    <span class="tag tag-p1">重要</span>
+                    <strong>Gitee AI助手基于历史数据自动分配优先级，预测延期风险</strong>：效率提升40%+，支持语音创建任务和语义解析邮件自动生成待办事项，打破信息孤岛。
+                    <span class="news-meta"><span class="time">2025-07</span><span class="source">@掘金/飞书</span></span>
+                </li>
+                <li>
+                    <span class="tag tag-p2">工具</span>
+                    <strong>2025年项目管理工具十大排名：ONES、Jira、PingCode领先</strong>：AI功能从"噱头"变为"刚需"，自动化提效、预测分析、智能辅助成为三大核心价值场景。
+                    <span class="news-meta"><span class="time">2025-11</span><span class="source">@品玩/飞书</span></span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 8. 全球动态（表格） -->
+        <section class="content-card full-width">
+            <h3><span class="card-icon">🌐</span> 全球动态</h3>
+            <table class="global-table">
+                <thead>
+                    <tr>
+                        <th style="width:18%">地区/领域</th>
+                        <th style="width:52%">核心动态</th>
+                        <th style="width:15%">热度</th>
+                        <th style="width:15%">来源</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>🇺🇸 美国</strong></td>
+                        <td>"星门项目"5000亿美元AI超级计算机计划推进，OpenAI+软银+甲骨文合作；美国AI战略提升至国家安全核心</td>
+                        <td><span style="color:#ff3b30">🔥🔥🔥🔥🔥</span></td>
+                        <td>2026-01</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🇨🇳 中国</strong></td>
+                        <td>AI专利占全球61%，机器人安装量世界首位；宇树/智谱/MiniMax密集IPO，Kimi融资20亿美元</td>
+                        <td><span style="color:#ff3b30">🔥🔥🔥🔥🔥</span></td>
+                        <td>2026-05</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🇭🇰 香港</strong></td>
+                        <td>2026年新股市场预计集资3500-4000亿港元，重回全球第一；智谱/MiniMax已挂牌，阶跃星辰推进赴港</td>
+                        <td><span style="color:#ff9500">🔥🔥🔥🔥</span></td>
+                        <td>2026-06</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🇯🇵🇰🇷 日韩</strong></td>
+                        <td>AI需求提振亚洲市场，日经创新高；SK海力士HBM市场占比61%，台积电Q1营收同比增35%</td>
+                        <td><span style="color:#ff9500">🔥🔥🔥🔥</span></td>
+                        <td>2026-06</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🇪🇺 欧盟</strong></td>
+                        <td>AI法案持续推进，监管框架趋于完善；对科技巨头约束力度加强，数据合规要求提升</td>
+                        <td><span style="color:#34c759">🔥🔥🔥</span></td>
+                        <td>2025-08</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🌍 全球资本</strong></td>
+                        <td>亚洲PE新周期开启：EQT完成156亿美元亚洲并购基金，贝恩105亿美元，黑石131亿美元</td>
+                        <td><span style="color:#ff9500">🔥🔥🔥🔥</span></td>
+                        <td>2026-06</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- 9. 大咖声音 -->
+    <section class="content-card full-width" style="margin-top: 30px;">
+        <h3><span class="card-icon">🎙️</span> 大咖声音</h3>
+        <div class="fixed-voices-grid">
+            <div class="fixed-voice-card">
+                <div class="voice-name">Jack Clark</div>
+                <div class="voice-title">Anthropic联合创始人</div>
+                <div class="voice-text">"Kimi K2是全球最好的开源权重模型。"K2在Hugging Face上线首日下载量超过平台上所有其他模型，延续了中国开源大模型的全球影响力。</div>
+                <div class="voice-meta">来源：个人博客评价Kimi K2 | 2025-07</div>
+            </div>
+            <div class="fixed-voice-card">
+                <div class="voice-name">冷晓琨</div>
+                <div class="voice-title">乐聚机器人创始人、哈工大研究员</div>
+                <div class="voice-text">"中国机器人产业链是最齐全的，全球其他任何地方都没有。全尺寸人形机器人'夸父'一季度交付订单已达250台左右，核心就是让机器人真正产生商业价值。"</div>
+                <div class="voice-meta">来源：央视/财新访谈 | 2025-03</div>
+            </div>
+            <div class="fixed-voice-card">
+                <div class="voice-name">闫俊杰</div>
+                <div class="voice-title">MiniMax创始人、CEO</div>
+                <div class="voice-text">"AI是更强的生产力与创意。AI领域会有多个玩家持续存在，因为多Agent系统使单一模型优势变弱，开源模型影响力也在增强。"</div>
+                <div class="voice-meta">来源：2025世界人工智能大会主论坛演讲 | 2025-07</div>
+            </div>
+            <div class="fixed-voice-card">
+                <div class="voice-name">黄仁勋 / Clément Delangue</div>
+                <div class="voice-title">NVIDIA CEO / Hugging Face联合创始人</div>
+                <div class="voice-text">"中国开源现在是塑造全球AI技术栈的最大力量。"黄仁勋多次公开站台Kimi，Cursor选择Kimi作为底座模型，标志着中国开源模型已成为全球顶级产品的核心依赖。</div>
+                <div class="voice-meta">来源：GTC 2026 / 社交媒体 | 2026-03</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. 名字解释（术语卡片） -->
+    <section class="content-card full-width" style="margin-top: 30px;">
+        <h3><span class="card-icon">📖</span> 名字解释</h3>
+        <div class="term-grid">
+            <div class="term-card">
+                <div class="term-name">AgentOps</div>
+                <div class="term-desc">AI智能体的运营实践体系，涵盖部署、监控、调试、优化全生命周期。2026年成为AI工程化新焦点，质量与延迟是核心挑战。</div>
+            </div>
+            <div class="term-card">
+                <div class="term-name">MoE（混合专家）</div>
+                <div class="term-desc">Mixture of Experts架构，每次任务仅动态激活部分参数（如Kimi K2激活320亿/1万亿参数），显著降低算力成本并保持性能。</div>
+            </div>
+            <div class="term-card">
+                <div class="term-name">RAG</div>
+                <div class="term-desc">检索增强生成（Retrieval-Augmented Generation），结合向量数据库实现语义检索+大模型生成，是当前企业AI应用落地的首选架构。</div>
+            </div>
+            <div class="term-card">
+                <div class="term-name">SWE-bench</div>
+                <div class="term-desc">软件工程基准测试，衡量AI模型解决真实GitHub issue的能力。Kimi K2在该测试中通过率达71.6%，超越DeepSeek-V3和Qwen3。</div>
+            </div>
+            <div class="term-card">
+                <div class="term-name">具身智能</div>
+                <div class="term-desc">具备物理身体、能与环境实时交互的AI系统，区别于纯软件智能体。2025年被视为"人形机器人量产元年"，核心竞争从"肢体"转向"大脑"。</div>
+            </div>
+            <div class="term-card">
+                <div class="term-name">Vibe Coding</div>
+                <div class="term-desc">基于自然语言描述自动生成完整应用的开发模式，由Lynx AI等工具推动。开发者仅需描述需求，AI自动生成架构到代码的全栈解决方案。</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. 关键数据速览 -->
+    <section class="content-card full-width" style="margin-top: 30px;">
+        <h3><span class="card-icon">📈</span> 关键数据速览</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 20px;">
+            <div style="background: linear-gradient(135deg, #ff6b6b20 0%, #ee5a5a20 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                <div style="font-size: 32px; font-weight: 700; color: #ff3b30;">180亿</div>
+                <div style="font-size: 13px; color: #666; margin-top: 5px;">Kimi最新估值（美元）</div>
+            </div>
+            <div style="background: linear-gradient(135deg, #4ecdc420 0%, #44a08d20 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                <div style="font-size: 32px; font-weight: 700; color: #34c759;">2983亿</div>
+                <div style="font-size: 13px; color: #666; margin-top: 5px;">MiniMax市值（港元）</div>
+            </div>
+            <div style="background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                <div style="font-size: 32px; font-weight: 700; color: #5856d6;">42亿</div>
+                <div style="font-size: 13px; color: #666; margin-top: 5px;">宇树科技拟募资（人民币）</div>
+            </div>
+            <div style="background: linear-gradient(135deg, #f093fb20 0%, #f5576c20 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                <div style="font-size: 32px; font-weight: 700; color: #ff2d55;">46%</div>
+                <div style="font-size: 13px; color: #666; margin-top: 5px;">全球新增代码由AI生成</div>
+            </div>
+            <div style="background: linear-gradient(135deg, #4facfe20 0%, #00f2fe20 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                <div style="font-size: 32px; font-weight: 700; color: #007aff;">60亿+</div>
+                <div style="font-size: 13px; color: #666; margin-top: 5px;">Q1具身智能融资（人民币）</div>
+            </div>
+            <div style="background: linear-gradient(135deg, #43e97b20 0%, #38f9d720 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                <div style="font-size: 32px; font-weight: 700; color: #30d158;">750亿</div>
+                <div style="font-size: 13px; color: #666; margin-top: 5px;">2029年人形机器人市场预测（人民币）</div>
+            </div>
+            <div style="background: linear-gradient(135deg, #ff9a9e20 0%, #fecfef20 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                <div style="font-size: 32px; font-weight: 700; color: #ff6b6b;">5000亿</div>
+                <div style="font-size: 13px; color: #666; margin-top: 5px;">美国"星门项目"投资（美元）</div>
+            </div>
+            <div style="background: linear-gradient(135deg, #a18cd120 0%, #fbc2eb20 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                <div style="font-size: 32px; font-weight: 700; color: #8e44ad;">61%</div>
+                <div style="font-size: 13px; color: #666; margin-top: 5px;">中国AI专利占全球比例</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. 深度分析 -->
+    <section class="content-card full-width" style="margin-top: 30px;">
+        <h3><span class="card-icon">💡</span> 深度分析</h3>
+        <div style="margin-top: 20px; padding: 20px; background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%); border-radius: 12px; border-left: 4px solid #667eea;">
+            <p style="font-size: 15px; line-height: 1.8; color: #333; margin-bottom: 15px;"><strong>中国开源模型重塑全球AI技术栈</strong></p>
+            <p style="font-size: 14px; line-height: 1.7; color: #555; margin-bottom: 12px;">从DeepSeek到Kimi，中国开源大模型正在被全球顶级产品（Cursor、Cloudflare、Perplexity）采纳。Hugging Face联合创始人评价"中国开源现在是塑造全球AI技术栈的最大力量"。这不仅是技术突破，更是中国AI从"跟随者"到"规则制定者"的质变。Cursor估值冲向500亿美元，其核心模型底座却来自中国开源社区——这一事实本身比任何估值叙事都更具颠覆性。</p>
+            <p style="font-size: 15px; line-height: 1.8; color: #333; margin-bottom: 15px;"><strong>具身智能"融资竞赛"转向"量产竞赛"</strong></p>
+            <p style="font-size: 14px; line-height: 1.7; color: #555; margin-bottom: 12px;">2025年Q1天使轮门槛已升至5000万美元，但资本市场开始追问"月度产能""产线自动化率""单台边际成本"。宇树科技过会、智元5000台下线、优必选获大额订单，标志着行业从"讲故事"进入"拼交付"阶段。二级市场对具身智能公司的估值模型已从PS叙事彻底转向制造业标准——供应链管理能力、规模效应和盈利能力成为核心指标。</p>
+            <p style="font-size: 15px; line-height: 1.8; color: #333; margin-bottom: 15px;"><strong>AI DevOps的"三化"演进：平台化、智能化、安全化</strong></p>
+            <p style="font-size: 14px; line-height: 1.7; color: #555;">DevOps工具链正从"功能拼接"走向"智能协同"。Gitee DevOps一体化平台、Jenkins+Gitee Pipelines混合方案、Prometheus+Grafana监控体系构成国产替代+AI增强的双重驱动力。向量数据库成为AI基础设施"新水电煤"，K8s从Cloud Native迈向AI Native，推理服务弹性扩缩成为新刚需。2025年工具链选型需破解两大核心命题：本土环境适配和智能化工作流。</p>
+        </div>
+    </section>
+
+    <!-- 13. 行业热力图 -->
+    <section class="content-card full-width" style="margin-top: 30px;">
+        <h3><span class="card-icon">🔥</span> 行业热力图</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+            <div style="background: #ffebee; padding: 15px; border-radius: 10px; border-left: 4px solid #f44336;">
+                <div style="display: flex; justify-content: space-between;"><span><strong>头部AI公司融资/IPO</strong></span><span style="color: #f44336;">🔥🔥🔥🔥🔥</span></div>
+                <div style="font-size: 12px; color: #666; margin-top: 6px;">Kimi/阶跃星辰巨额融资，智谱/MiniMax/宇树密集IPO，清场加速</div>
+            </div>
+            <div style="background: #fff3e0; padding: 15px; border-radius: 10px; border-left: 4px solid #ff9800;">
+                <div style="display: flex; justify-content: space-between;"><span><strong>具身智能量产</strong></span><span style="color: #ff9800;">🔥🔥🔥🔥🔥</span></div>
+                <div style="font-size: 12px; color: #666; margin-top: 6px;">从融资到交付的关键转折，宇树过会、智元5000台下线</div>
+            </div>
+            <div style="background: #e8f5e9; padding: 15px; border-radius: 10px; border-left: 4px solid #4caf50;">
+                <div style="display: flex; justify-content: space-between;"><span><strong>AI编程/AgentOps</strong></span><span style="color: #4caf50;">🔥🔥🔥🔥🔥</span></div>
+                <div style="font-size: 12px; color: #666; margin-top: 6px;">46%代码由AI生成，AgentOps从概念走向生产实践</div>
+            </div>
+            <div style="background: #e3f2fd; padding: 15px; border-radius: 10px; border-left: 4px solid #2196f3;">
+                <div style="display: flex; justify-content: space-between;"><span><strong>云原生AI基础设施</strong></span><span style="color: #2196f3;">🔥🔥🔥🔥</span></div>
+                <div style="font-size: 12px; color: #666; margin-top: 6px;">K8s+向量数据库+推理弹性扩缩成为新刚需</div>
+            </div>
+            <div style="background: #f3e5f5; padding: 15px; border-radius: 10px; border-left: 4px solid #9c27b0;">
+                <div style="display: flex; justify-content: space-between;"><span><strong>港股硬科技IPO</strong></span><span style="color: #9c27b0;">🔥🔥🔥🔥</span></div>
+                <div style="font-size: 12px; color: #666; margin-top: 6px;">2026年预计集资3500-4000亿港元，重回全球第一</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 14. 权威来源 -->
+    <section class="content-card full-width" style="margin-top: 30px;">
+        <h3><span class="card-icon">📚</span> 权威来源</h3>
+        <div class="source-list">
+            <div class="source-item">
+                <strong>《Cursor套壳、黄仁勋坐上宾，DeepSeek的光环现在都是Kimi的了》</strong><br>
+                <span class="source-author">品玩 / 李京亚</span> · 
+                <span class="source-time">2026年3月23日</span> · 
+                <a class="source-link" href="https://www.pingwest.com/a/312331" target="_blank">https://www.pingwest.com/a/312331</a>
+            </div>
+            <div class="source-item">
+                <strong>《2026年6月亚洲科技赢家：人工智能基础设施层发展速度超炒作热度》</strong><br>
+                <span class="source-author">新浪财经 / 小浪快报</span> · 
+                <span class="source-time">2026年6月4日</span> · 
+                <a class="source-link" href="https://finance.sina.com.cn/stock/usstock/summary/2026-06-04/doc-iniafmmv2687104.shtml" target="_blank">https://finance.sina.com.cn/stock/usstock/summary/2026-06-04/...</a>
+            </div>
+            <div class="source-item">
+                <strong>《亚洲PE新周期：MiniMax和智谱市值迭创新高，宇树冲刺科创板》</strong><br>
+                <span class="source-author">财新周刊 / 王小青（发自香港）</span> · 
+                <span class="source-time">2026年6月6日</span> · 
+                <a class="source-link" href="https://weekly.caixin.com/2026-06-06/102451576.html" target="_blank">https://weekly.caixin.com/2026-06-06/102451576.html</a>
+            </div>
+            <div class="source-item">
+                <strong>《MiniMax(100HK，未评级):模型+应用产品矩阵清晰，关注营收成长空间》</strong><br>
+                <span class="source-author">CMBI招银国际 / 行业研究</span> · 
+                <span class="source-time">2026年4月15日</span> · 
+                <a class="source-link" href="https://www.cmbi.com.hk/upload/202604/20260415324700.pdf" target="_blank">https://www.cmbi.com.hk/upload/202604/20260415324700.pdf</a>
+            </div>
+            <div class="source-item">
+                <strong>《机械设备行业周报：关注具身智能机器人商业化进展，期待行业标准与生态共建》</strong><br>
+                <span class="source-author">东海证券 / 行业研究</span> · 
+                <span class="source-time">2025年12月17日</span> · 
+                <a class="source-link" href="https://www.sdyanbao.com/detail/938420" target="_blank">https://www.sdyanbao.com/detail/938420</a>
+            </div>
+            <div class="source-item">
+                <strong>《向量数据库哪家强？2025年实测对比与腾讯云解决方案全解析》</strong><br>
+                <span class="source-author">腾讯云开发者社区</span> · 
+                <span class="source-time">2025年12月12日</span> · 
+                <a class="source-link" href="https://cloud.tencent.com/developer/article/2600406" target="_blank">https://cloud.tencent.com/developer/article/2600406</a>
+            </div>
+            <div class="source-item">
+                <strong>《2025年AI代码生成工具横评：GitHub Copilot vs. Claude Code vs. 字节Trae》</strong><br>
+                <span class="source-author">CSDN / 开发者社区实测</span> · 
+                <span class="source-time">2025年9月26日</span> · 
+                <a class="source-link" href="https://blog.csdn.net/2501_92849183/article/details/152128927" target="_blank">https://blog.csdn.net/2501_92849183/...</a>
+            </div>
+            <div class="source-item">
+                <strong>《2025一级市场回顾：智谱、MiniMax争上市，月之暗面再融5亿美元》</strong><br>
+                <span class="source-author">新浪财经 / 创业投资</span> · 
+                <span class="source-time">2026年1月9日</span> · 
+                <a class="source-link" href="https://finance.sina.com.cn/stock/vcpe/yc/2026-01-09/doc-inhfssrt5959093.shtml" target="_blank">https://finance.sina.com.cn/stock/vcpe/yc/2026-01-09/...</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="footer-content">
+        <p>每日晨报 | 2026年6月8日归档</p>
+        <p>Powered by <a href="https://openclaw.ai" target="_blank">OpenClaw</a></p>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
