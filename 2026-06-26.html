@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日晨报 2026-06-26 | OpenClaw Morning News</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f7;
+            color: #1d1d1f;
+            line-height: 1.6;
+        }
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #d2d2d7;
+            padding: 0 24px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 90;
+        }
+        .header .back-home {
+            color: #86868b;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .header .back-home:hover { color: #1d1d1f; }
+        .header .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #1d1d1f;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        .header .logo-icon { font-size: 20px; }
+        .date-bar {
+            background: #fff;
+            border-bottom: 1px solid #d2d2d7;
+            padding: 14px 24px;
+            text-align: center;
+        }
+        .date-bar .current-date {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1d1d1f;
+            display: inline-block;
+            padding: 8px 20px;
+            background: #f5f5f7;
+            border-radius: 8px;
+        }
+        .main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #1d1d1f 0%, #434344 100%);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .hero-title {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+        .hero-summary {
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 16px;
+        }
+        .hero-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+        }
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #1d1d1f;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+        .content-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        .content-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .content-card h3 .card-icon { font-size: 18px; }
+        .content-card ul { list-style: none; }
+        .content-card ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f5f5f7;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        .content-card ul li:last-child { border-bottom: none; }
+        .content-card.full-width { grid-column: 1 / -1; }
+        .rec-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .rec-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            border-left: 4px solid #0071e3;
+        }
+        .rec-card h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1d1d1f;
+        }
+        .rec-card p {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.6;
+        }
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        .tag-p0 { background: rgba(255,59,48,0.1); color: #ff3b30; }
+        .tag-p1 { background: rgba(255,149,0,0.1); color: #ff9500; }
+        .tag-p2 { background: rgba(52,199,89,0.1); color: #34c759; }
+        .news-meta {
+            font-size: 11px;
+            color: #86868b;
+            margin-top: 4px;
+            display: block;
+        }
+        .news-meta .time { margin-right: 8px; }
+        .news-meta .source { color: #0071e3; }
+        .fixed-voices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .fixed-voice-card {
+            background: #f5f5f7;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #0071e3;
+        }
+        .fixed-voice-card .voice-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: #1d1d1f;
+            margin-bottom: 4px;
+        }
+        .fixed-voice-card .voice-title {
+            font-size: 12px;
+            color: #86868b;
+            margin-bottom: 10px;
+        }
+        .fixed-voice-card .voice-text {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .fixed-voice-card .voice-meta {
+            font-size: 11px;
+            color: #86868b;
+        }
+        .term-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .term-card {
+            background: #f5f5f7;
+            padding: 16px;
+            border-radius: 12px;
+        }
+        .term-card .term-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: #0071e3;
+            margin-bottom: 6px;
+        }
+        .term-card .term-desc {
+            font-size: 12px;
+            color: #555;
+            line-height: 1.5;
+        }
+        .data-highlight { display: inline-block; font-weight: 700; color: #ff3b30; }
+        .footer {
+            text-align: center;
+            padding: 40px 24px;
+            color: #86868b;
+            font-size: 13px;
+            border-top: 1px solid #d2d2d7;
+            margin-top: 40px;
+            background: #fff;
+        }
+        .footer a { color: #0071e3; text-decoration: none; }
+        @media (max-width: 768px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .rec-grid { grid-template-columns: 1fr; }
+            .term-grid { grid-template-columns: 1fr; }
+            .fixed-voices-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="back-home">&#8592; 返回首页</a>
+        <a href="index.html" class="logo"><span class="logo-icon">&#128240;</span><span class="logo-text">每日晨报</span></a>
+    </header>
+    <div class="date-bar">
+        <span class="current-date">2026年6月26日 星期五</span>
+    </div>
+
+    <main class="main">
+        <!-- 1. 今日洞察 -->
+        <section class="hero-section">
+            <div class="hero-badge">&#128161; 今日洞察</div>
+            <h1 class="hero-title">AgentOps生产化加速 · 具身智能融资创纪录 · 全球大模型竞赛白热化</h1>
+            <p class="hero-summary">2026年6月，企业级AI Agent从概念验证进入规模化生产阶段，AgentOps成为AI工程化新焦点。具身智能赛道融资狂热，Q1全行业累计融资681亿元超过2025全年。Kimi、DeepSeek、Anthropic等头部厂商模型迭代加速，全球AI竞争进入"并跑"阶段。</p>
+            <div class="hero-meta">
+                <span>&#128197; 2026-06-26</span>
+                <span>&#9201; 8分钟阅读</span>
+                <span>&#128278; 14个板块</span>
+            </div>
+        </section>
+
+        <!-- 2. 务实落地建议 -->
+        <section class="recommendations">
+            <h2 class="section-title">&#128736; 务实落地建议</h2>
+            <div class="rec-grid">
+                <div class="rec-card">
+                    <h4>建立AgentOps观测体系</h4>
+                    <p>企业级AI Agent上线后，质量成为首要障碍，延迟成为新瓶颈。建议从Day 1就建立完整trace、token预算上限和per-session成本追踪，避免"账单爆炸"。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>评估AI Coding Agent落地路径</h4>
+                    <p>Claude Code、Codex CLI等AI编程工具已可自主完成Nature级别论文的代码复现。建议团队从内部代码库RAG开始，逐步引入AI辅助编码，设定人机协作边界。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>关注具身智能量产供应链窗口</h4>
+                    <p>2026年人形机器人出货量预期6.25万台，同比增长247%。谐波减速器、无框力矩电机、六维力传感器等核心部件国产化率正在提升，供应链提前布局窗口开启。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>构建多模型分层路由策略</h4>
+                    <p>面对Kimi、DeepSeek、Claude等模型能力分化，建议按任务分层路由：高频日常用DeepSeek，Agent任务用Kimi，极致精度用Claude，避免单一模型依赖。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 内容网格 -->
+        <div class="content-grid">
+            <!-- 3. AI DevOps前沿 -->
+            <section class="content-card">
+                <h3><span class="card-icon">&#129302;</span> AI DevOps 前沿</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>沙丘智库发布《2026年企业级AI Agent应用最佳实践报告》</strong>：全面调研国内企业AI Agent真实采纳现状，涵盖深度研究Agent、AI Coding Agent、数据分析Agent三大方向，收录南方基金、招商银行、宝马等10个实践案例
+                        <span class="news-meta"><span class="time">2026-06-04</span><span class="source">@沙丘智库</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>AgentOps从MLOps到生产化：5大挑战框架</strong>：到2026年底40%企业应用将整合task-specific AI Agent，较2025年不到5%增长约8倍。AgentOps最佳情景下2035年可驱动超4500亿美元
+                        <span class="news-meta"><span class="time">2026-02-20</span><span class="source">@iDataAgent</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>IBM推出AgentOps可观测性方案</strong>：基于OpenTelemetry标准构建，支持自动和手动监测埋点，提供多轨迹工作流视图和轨迹探索，已集成至Instana、Concert等产品
+                        <span class="news-meta"><span class="time">2026-06</span><span class="source">@IBM Think</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>腾讯云发布"Agent产品全景图"</strong>：构建涵盖模型、云基础设施、Harness的全链路智能体解决方案，开源Cube Sandbox沙箱服务，单台服务器可承载2000+沙箱实例
+                        <span class="news-meta"><span class="time">2026-05-14</span><span class="source">@36氪/腾讯云</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p2">趋势</span>
+                        <strong>AI Agent开发十大最佳实践总结</strong>：聚焦业务痛点、MVA快速验证、模块化分层架构、优先RAG、LoRA微调、工具安全控制、持续学习闭环等核心原则
+                        <span class="news-meta"><span class="time">2025-08-30</span><span class="source">@微信公众号</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 4. 头部AI公司动态 -->
+            <section class="content-card">
+                <h3><span class="card-icon">&#127963;</span> 头部AI公司动态</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>Kimi K2.6开源：SWE-bench Verified 80.2%，代码能力全球第一</strong>：2026年4月20日发布，被Cursor套壳实锤、Cloudflare引入为主力模型、Perplexity唯一引入的开源中国模型
+                        <span class="news-meta"><span class="time">2026-04-20</span><span class="source">@Moonshot AI</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>Kimi估值达1200亿元，20天收入超过去一年</strong>：杨植麟成为英伟达GTC 2026唯一受邀演讲的全球独立大模型公司代表，"注意力残差"论文获Andrej Karpathy高度评价
+                        <span class="news-meta"><span class="time">2026-03</span><span class="source">@虎嗅/投资界</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>DeepSeek V4-Pro / V4-Flash开源发布</strong>：2026年4月24日开源，上下文128K，华为昇腾量化版同步上线，延续高性价比开源路线
+                        <span class="news-meta"><span class="time">2026-04-24</span><span class="source">@DeepSeek-AI</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>Anthropic Claude Opus 4.7发布</strong>：3.75兆像素视觉能力，取代Opus 4.6；Mythos Preview同步限制发布。编码能力持续领跑
+                        <span class="news-meta"><span class="time">2026-04-16</span><span class="source">@Anthropic</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>OpenAI GPT-5.5发布：Instant成为ChatGPT默认模型</strong>：2026年4月24日发布，包含Instant/Pro/Thinking三个版本，GPT-5.3已退役
+                        <span class="news-meta"><span class="time">2026-04-24</span><span class="source">@OpenAI</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p2">趋势</span>
+                        <strong>智谱GLM-5.1开源：754B MoE，全球开源模型综合第一</strong>：2026年4月8日开源发布，在多项评测中超越同期开源模型
+                        <span class="news-meta"><span class="time">2026-04-08</span><span class="source">@智谱AI</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 5. 具身智能/机器人 -->
+            <section class="content-card">
+                <h3><span class="card-icon">&#129470;</span> 具身智能/机器人</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>昆仑行成立3个月完成3轮系列融资，累计数十亿元</strong>：创始人任庚（前阿里云中国区总裁）+ 联合创始人郎咸朋（前理想汽车高级副总裁），提出昆仑世界模型（KWM）双系统架构
+                        <span class="news-meta"><span class="time">2026-06-23</span><span class="source">@财新网</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>2026年Q1具身智能全行业融资681亿元，超2025全年</strong>：3月单月融资事件50起，赛道资本热度处于历史最高位。2025年国内人形机器人出货1.8万台，2026年预期6.25万台（+247%）
+                        <span class="news-meta"><span class="time">2026-05-28</span><span class="source">@News18a/高工机器人</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>小鹏机器人量产冲刺：2026年底交付，2027年Q1门店导购</strong>：芯片、操作系统、关节、灵巧手全线自研。何小鹏类比"8年前的小鹏汽车"，从量产到毛利率转正需2-3年
+                        <span class="news-meta"><span class="time">2026-05-28</span><span class="source">@小鹏汽车/News18a</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>天工3.0将搭载地瓜机器人旭日S600芯片，计划年内量产</strong>：北京人形机器人创新中心与地瓜机器人联合发布，面向3D场景作业、商业服务、工业制造等场景规模化交付
+                        <span class="news-meta"><span class="time">2026-06-05</span><span class="source">@证券时报/搜狐</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>星海图估值超200亿元，两个月融资近30亿元</strong>：2026年4月获20亿元B+轮融资，G0.5 VLA模型宣布开源，获英伟达、李飞飞实验室及美国REMY/SERVO7应用
+                        <span class="news-meta"><span class="time">2026-06-16</span><span class="source">@财新网</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p2">趋势</span>
+                        <strong>深圳具身智能企业加速上市：乐聚/越疆/卧安/乐动排队IPO</strong>：2025年深圳融资事件76起、总金额110.6亿元，到2027年关联产业规模目标突破1000亿元
+                        <span class="news-meta"><span class="time">2026-03-26</span><span class="source">@深圳新闻网</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 6. 云原生与数据 -->
+            <section class="content-card">
+                <h3><span class="card-icon">&#9729;</span> 云原生与数据</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>腾讯云ToB营收598.85亿元，企业服务增长20%</strong>：发布Agent Storage原生存储底座和Agent Memory数据库服务，向量存储成本降低，跨会话长任务准确率提升近六成
+                        <span class="news-meta"><span class="time">2026-05-14</span><span class="source">@36氪/腾讯财报</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>Google AlloyDB AI全面推出：向量嵌入数据库深层架构</strong>：保留PostgreSQL兼容性，支持百万级向量毫秒级检索，已用于Regnology监管报告聊天机器人
+                        <span class="news-meta"><span class="time">2026-04</span><span class="source">@Google Cloud</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>AWS零ETL蓝图：Transform SQL自动迁移SQL Server到Aurora</strong>：2025年12月re:Invent发布，利用LLM自动迁移数据库，Aurora与SageMaker零ETL集成实现数据秒级同步
+                        <span class="news-meta"><span class="time">2025-12</span><span class="source">@AWS re:Invent</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>微软SQL Server 2025原生支持向量搜索</strong>：引入原生向量数据类型和DiskANN近似最近邻搜索，支持T-SQL定义AI模型，兼容Azure OpenAI、Ollama等
+                        <span class="news-meta"><span class="time">2025-05-20</span><span class="source">@微软Build</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p2">趋势</span>
+                        <strong>主流开源向量数据库推荐：Milvus、Weaviate、Qdrant</strong>：Milvus支持万亿级向量毫秒搜索；Weaviate内置AI模块；Qdrant基于Rust高性能开发，适合推荐系统
+                        <span class="news-meta"><span class="time">2025-02</span><span class="source">@CSDN</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 7. 项目管理与效能 -->
+            <section class="content-card">
+                <h3><span class="card-icon">&#128202;</span> 项目管理与效能</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>全球AI项目管理市场预计2030年达526.2亿美元，CAGR 46.3%</strong>：Gartner预测到2030年传统项目经理80%日常繁琐工作将被AI替代，44%从业者认为AI辅助下团队能完成更多项目
+                        <span class="news-meta"><span class="time">2025-12-29</span><span class="source">@8Manage/Gartner</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>2026中国研发项目管理数字化洞察：AI渗透率激增86%</strong>：全球范围内超半数项目应用AI的组织数量激增86%，"人机协作效果"取代"人工生产力"成为管理新标尺
+                        <span class="news-meta"><span class="time">2026</span><span class="source">@飞书/PMI中国</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>雅迪集团引入AI项目管理：减少40%资源浪费，节省42%重复工时</strong>：深度嵌入飞书项目AI能力，构建IPD智能项目助手，实现从"人力驱动"向"AI辅助决策"转型
+                        <span class="news-meta"><span class="time">2026</span><span class="source">@飞书/PMI中国</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p2">趋势</span>
+                        <strong>AI赋能项目管理：团队沟通效率提升40%，商业价值转化率提升40%</strong>：AI承担70%事务性工作，项目经理聚焦战略对齐、创新孵化和团队赋能
+                        <span class="news-meta"><span class="time">2025-11-12</span><span class="source">@腾讯云</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 8. 全球动态（表格） -->
+            <section class="content-card full-width">
+                <h3><span class="card-icon">&#127760;</span> 全球动态</h3>
+                <div style="overflow-x: auto; margin-top: 14px;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                        <thead>
+                            <tr style="background: #f5f5f7;">
+                                <th style="padding: 10px; text-align: left; border-bottom: 2px solid #d2d2d7; font-weight: 600;">地区/领域</th>
+                                <th style="padding: 10px; text-align: left; border-bottom: 2px solid #d2d2d7; font-weight: 600;">核心动态</th>
+                                <th style="padding: 10px; text-align: left; border-bottom: 2px solid #d2d2d7; font-weight: 600;">优先级</th>
+                                <th style="padding: 10px; text-align: left; border-bottom: 2px solid #d2d2d7; font-weight: 600;">来源</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid #f5f5f7;"><strong>美国</strong></td>
+                                <td style="padding: 10px; border-bottom: 1px solid #f5f5f7;">AI行动计划+星门项目5000亿美元+创世计划，举国体制确保AI主导地位</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #f5f5f7;"><span class="tag tag-p1">P1</span></td>
+                                <td style="padding: 10px; border-bottom: 1px solid #f5f5f7;">@量子国际问题研究院</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid #f5f5f7;"><strong>中国</strong></td>
+                                <td style="padding: 10px; border-bottom: 1px solid #f5f5f7;">具身智能Q1融资681亿超去年全年；GDP突破20万亿美元占美国69%</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #f5f5f7;"><span class="tag tag-p0">P0</span></td>
+                                <td style="padding: 10px; border-bottom: 1px solid #f5f5f7;">@财新/高工</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid #f5f5f7;"><strong>欧洲</strong></td>
+                                <td style="padding: 10px; border-bottom: 1px solid #f5f5f7;">SAFE计划1500亿欧元国防贸易基金；AI大陆行动计划推动超算工厂投资</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #f5f5f7;"><span class="tag tag-p1">P1</span></td>
+                                <td style="padding: 10px; border-bottom: 1px solid #f5f5f7;">@EY安永</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid #f5f5f7;"><strong>全球投资</strong></td>
+                                <td style="padding: 10px; border-bottom: 1px solid #f5f5f7;">K型分化：AI产业决定分化"零点"，中美投资涨幅与其他国家拉开差距</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #f5f5f7;"><span class="tag tag-p1">P1</span></td>
+                                <td style="padding: 10px; border-bottom: 1px solid #f5f5f7;">@财新/Preqin</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid #f5f5f7;"><strong>半导体</strong></td>
+                                <td style="padding: 10px; border-bottom: 1px solid #f5f5f7;">2025年全球IC设计产值7823亿美元，同比增长21%。先进制程成长28%</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #f5f5f7;"><span class="tag tag-p1">P1</span></td>
+                                <td style="padding: 10px; border-bottom: 1px solid #f5f5f7;">@TrendForce</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid #f5f5f7;"><strong>并购</strong></td>
+                                <td style="padding: 10px; border-bottom: 1px solid #f5f5f7;">AI变革性影响+K型两极分化+地缘政治。未来5年全球需5-8万亿美元AI基建</td>
+                                <td style="padding: 10px; border-bottom: 1px solid #f5f5f7;"><span class="tag tag-p2">P2</span></td>
+                                <td style="padding: 10px; border-bottom: 1px solid #f5f5f7;">@PwC</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <!-- 9. 大咖声音 -->
+        <section class="content-card full-width" style="margin-top: 24px;">
+            <h3><span class="card-icon">&#127908;</span> 大咖声音</h3>
+            <div class="fixed-voices-grid">
+                <div class="fixed-voice-card">
+                    <div class="voice-name">Andrej Karpathy</div>
+                    <div class="voice-title">OpenAI联合创始人、前特斯拉AI总监</div>
+                    <div class="voice-text">"Kimi的Attention Residuals论文让我们意识到，根本没有把Attention is All You Need理解透彻。要知道，这篇论文就是开启大模型时代的圣杯。"</div>
+                    <div class="voice-meta">来源：评论Kimi技术论文 | 2026-03-16</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">Anthropic工程团队</div>
+                    <div class="voice-title">Claude核心开发团队</div>
+                    <div class="voice-text">"从简单prompts开始，通过全面评估进行优化。只在简单方案不足时才加入multi-step agentic systems。最成功的实施使用简单、可组合的模式。"</div>
+                    <div class="voice-meta">来源：Anthropic大规模部署实践总结 | 2026-02</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">杨植麟</div>
+                    <div class="voice-title">Moonshot AI创始人</div>
+                    <div class="voice-text">"很多人用'缸中之脑'来形容主打深度思考的模型。但编程和Agent的关系、思考和工具调用的关系，才是更本质的东西。"</div>
+                    <div class="voice-meta">来源：播客专访 | 2025-07</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">高继扬</div>
+                    <div class="voice-title">星海图创始人</div>
+                    <div class="voice-text">"行业赢家能在泡沫膨胀与破裂两次周期中获益。现在处于泡沫比较顶峰的阶段，刚好可以获取优质的资源和注意力。"</div>
+                    <div class="voice-meta">来源：财新专访 | 2026-06-16</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. 名字解释（术语卡片） -->
+        <section class="content-card full-width" style="margin-top: 24px;">
+            <h3><span class="card-icon">&#128214;</span> 名字解释</h3>
+            <div class="term-grid">
+                <div class="term-card">
+                    <div class="term-name">AgentOps</div>
+                    <div class="term-desc">AI智能体运营体系，类比DevOps/MLOps，覆盖Agent开发、测试、监控、反馈、治理全生命周期，确保企业级AI Agent可靠生产化。</div>
+                </div>
+                <div class="term-card">
+                    <div class="term-name">VLA模型</div>
+                    <div class="term-desc">Vision-Language-Action（视觉-语言-动作）模型，具身智能核心架构，让机器人理解视觉场景、接收语言指令并执行物理动作。</div>
+                </div>
+                <div class="term-card">
+                    <div class="term-name">SWE-bench</div>
+                    <div class="term-desc">软件工程基准测试，评估AI模型在真实GitHub代码库中自动修复bug的能力，是当前衡量AI Coding Agent能力的金标准。</div>
+                </div>
+                <div class="term-card">
+                    <div class="term-name">MoE</div>
+                    <div class="term-desc">Mixture of Experts（混合专家模型），通过稀疏激活机制，仅调用部分参数处理每个输入，实现大模型能力与小模型推理成本的最佳平衡。</div>
+                </div>
+                <div class="term-card">
+                    <div class="term-name">RAG</div>
+                    <div class="term-desc">Retrieval-Augmented Generation（检索增强生成），将外部知识检索与LLM生成结合，使模型无需微调即可利用最新、私有领域知识。</div>
+                </div>
+                <div class="term-card">
+                    <div class="term-name">MVA</div>
+                    <div class="term-desc">Minimum Viable Agent（最小可行Agent），将复杂流程拆解为可独立执行的原子任务，聚焦单一核心路径快速验证，避免"大而全"失败。</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 11. 关键数据速览 -->
+        <section class="content-card full-width" style="margin-top: 24px;">
+            <h3><span class="card-icon">&#128200;</span> 关键数据速览</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 20px;">
+                <div style="background: linear-gradient(135deg, #ff6b6b20 0%, #ee5a5a20 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #ff3b30;">681亿</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">2026 Q1具身智能融资(元)</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #4ecdc420 0%, #44a08d20 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #34c759;">1200亿</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">Kimi最新估值(人民币)</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #5856d6;">526亿</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">2030年AI项目管理市场(美元)</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #f093fb20 0%, #f5576c20 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #ff2d55;">6.25万台</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">2026年人形机器人出货预测</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #4facfe20 0%, #00f2fe20 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #007aff;">80.2%</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">Kimi K2.6 SWE-bench得分</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #43e97b20 0%, #38f9d720 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #30d158;">247%</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">2026人形机器人出货增长</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 12. 深度分析 -->
+        <section class="content-card full-width" style="margin-top: 24px;">
+            <h3><span class="card-icon">&#128161;</span> 深度分析</h3>
+            <div style="margin-top: 20px; padding: 20px; background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%); border-radius: 12px; border-left: 4px solid #667eea;">
+                <p style="font-size: 15px; line-height: 1.8; color: #333; margin-bottom: 15px;"><strong>从MLOps到AgentOps：范式转移的本质</strong></p>
+                <p style="font-size: 14px; line-height: 1.7; color: #555; margin-bottom: 12px;">AgentOps不是DevOps的简单延伸，而是面对非确定性多步骤推理路径、工具调用序列、Agent间通信的全新运维范式。传统APM追踪的是确定性request-response路径；Agent observability需要追踪语义层面的输出品质——这些都无法用简单HTTP状态码衡量。IBM在OpenTelemetry上构建方案，微软Azure HorizonDB专为AI工作负载设计，腾讯云发布Agent全景图——云厂商正在集体入局。</p>
+                <p style="font-size: 15px; line-height: 1.8; color: #333; margin-bottom: 15px;"><strong>具身智能的"泡沫"辩证法</strong></p>
+                <p style="font-size: 14px; line-height: 1.7; color: #555; margin-bottom: 12px;">2026年具身智能融资创纪录，但质疑声同样高涨。星海图高继扬的回应颇有启发：赢家能在泡沫膨胀与破裂两次周期中获益。当前处于泡沫顶峰阶段，头部企业正获取优质资源和注意力。但2025年已有明星创业公司量产前夜倒塌，协作机器人先驱二次死亡。2026年的分化将更剧烈：获得持续融资+工业重复订单，是"活下去"和"活得好"的两个硬条件。</p>
+                <p style="font-size: 15px; line-height: 1.8; color: #333; margin-bottom: 15px;"><strong>开源模型的"算力主权"之争</strong></p>
+                <p style="font-size: 14px; line-height: 1.7; color: #555;">2025-2026年开源模型揭示三大趋势："思维"成为标配（CoT内置）、智能体化设计（Agentic）、算力与主权。国产大模型在受限算力下崛起，算法优化弥补硬件代差。Kimi K2.6开源代码能力第一、DeepSeek V4-Pro开源延续高性价比、智谱GLM-5.1全球开源综合第一——开源正成为地缘政治与商业博弈的工具。任何具备适度硬件资源的开发者，都可以拥有一台具备世界顶级软件工程能力的私人AGI。</p>
+            </div>
+        </section>
+
+        <!-- 13. 行业热力图 -->
+        <section class="content-card full-width" style="margin-top: 24px;">
+            <h3><span class="card-icon">&#128293;</span> 行业热力图</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+                <div style="background: #ffebee; padding: 15px; border-radius: 10px; border-left: 4px solid #f44336;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span><strong>具身智能</strong></span>
+                        <span style="color: #f44336;">&#128293;&#128293;&#128293;&#128293;&#128293;</span>
+                    </div>
+                    <div style="font-size: 12px; color: #666; margin-top: 6px;">Q1融资681亿超去年全年，量产元年开启</div>
+                </div>
+                <div style="background: #fff3e0; padding: 15px; border-radius: 10px; border-left: 4px solid #ff9800;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span><strong>AgentOps</strong></span>
+                        <span style="color: #ff9800;">&#128293;&#128293;&#128293;&#128293;&#128293;</span>
+                    </div>
+                    <div style="font-size: 12px; color: #666; margin-top: 6px;">企业级AI Agent生产化，质量与延迟成瓶颈</div>
+                </div>
+                <div style="background: #e8f5e9; padding: 15px; border-radius: 10px; border-left: 4px solid #4caf50;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span><strong>AI Coding Agent</strong></span>
+                        <span style="color: #4caf50;">&#128293;&#128293;&#128293;&#128293;</span>
+                    </div>
+                    <div style="font-size: 12px; color: #666; margin-top: 6px;">Kimi/Claude/GPT-5.5编码能力竞赛白热化</div>
+                </div>
+                <div style="background: #e3f2fd; padding: 15px; border-radius: 10px; border-left: 4px solid #2196f3;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span><strong>AI项目管理</strong></span>
+                        <span style="color: #2196f3;">&#128293;&#128293;&#128293;&#128293;</span>
+                    </div>
+                    <div style="font-size: 12px; color: #666; margin-top: 6px;">渗透率激增86%，人机协作成为新常态</div>
+                </div>
+                <div style="background: #f3e5f5; padding: 15px; border-radius: 10px; border-left: 4px solid #9c27b0;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span><strong>向量数据库</strong></span>
+                        <span style="color: #9c27b0;">&#128293;&#128293;&#128293;</span>
+                    </div>
+                    <div style="font-size: 12px; color: #666; margin-top: 6px;">AI原生数据库兴起，Google/AWS/微软集体入局</div>
+                </div>
+                <div style="background: #fff8e1; padding: 15px; border-radius: 10px; border-left: 4px solid #ffc107;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span><strong>全球地缘政治</strong></span>
+                        <span style="color: #ffc107;">&#128293;&#128293;&#128293;</span>
+                    </div>
+                    <div style="font-size: 12px; color: #666; margin-top: 6px;">AI成为地缘政治核心，主权AI与关键矿产争夺加剧</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 14. 权威来源 -->
+        <section class="content-card full-width" style="margin-top: 24px;">
+            <h3><span class="card-icon">&#128218;</span> 权威来源</h3>
+            <div style="margin-top: 15px; font-size: 13px; color: #555; line-height: 1.8;">
+                <p><strong>[1]</strong> 沙丘智库，《2026年企业级AI Agent应用最佳实践报告》，2026-06-04，48页PDF，覆盖国内企业AI Agent真实采纳现状与10个实践案例。<a href="https://www.shaqiu.cn/article/zZM5V483VRxb" style="color: #0071e3;" target="_blank">原文链接</a></p>
+                <p><strong>[2]</strong> iDataAgent，陈开文，《从MLOps到AgentOps：AI Agent生产化完整指南——5大挑战》，2026-02-20，包含失败案例分析与CLEAR评估框架。<a href="https://www.idataagent.com/2026/02/20/from-mlops-to-agentops-ai-agent-production-guideline-5-main-challenges-practical-frameworks/" style="color: #0071e3;" target="_blank">原文链接</a></p>
+                <p><strong>[3]</strong> 财新网，《具身智能公司星海图：现在追求销量意义不大，机器人生产尚未规模化》，2026-06-16，记者深度专访高继扬。<a href="https://www.caixin.com/2026-06-16/102454806.html" style="color: #0071e3;" target="_blank">原文链接</a></p>
+                <p><strong>[4]</strong> 财新网，《具身智能融资狂热 昆仑行成立3个月融资数十亿元》，2026-06-23。<a href="https://www.caixin.com/2026-06-23/102456814.html" style="color: #0071e3;" target="_blank">原文链接</a></p>
+                <p><strong>[5]</strong> 虎嗅/投资界，《Kimi从被唱衰到估值1200亿：2026年中国AI模型的逆袭之路》，2026-03-30，梳理Kimi 2025-2026完整逆袭时间线。<a href="https://www.huxiu.com/article/4846656.html" style="color: #0071e3;" target="_blank">原文链接</a></p>
+                <p><strong>[6]</strong> 36氪，《腾讯Q1收入1965亿，马化腾：一年前上的AI船漏水了，乱抢地盘会失败》，2026-05-14，含腾讯云ToB业务详细数据。<a href="http://www.36kr.com/p/3807808467754755" style="color: #0071e3;" target="_blank">原文链接</a></p>
+                <p><strong>[7]</strong> 8Manage，《2026年项目管理AI智能体趋势：工具、应用案例与未来展望》，2025-12-29，引用Gartner、PMI、Capterra数据。<a href="https://www.8manage.cn/blog/202512/ai-agents-for-projects.html" style="color: #0071e3;" target="_blank">原文链接</a></p>
+                <p><strong>[8]</strong> 量子国际问题研究院，《回顾2025·展望2026｜全球地缘政治十大关键词》，2026-01-06，分析美国AI行动计划、星门项目、创世计划。<a href="https://www.qiia.org/zh-hans/node/1762" style="color: #0071e3;" target="_blank">原文链接</a></p>
+                <p><strong>[9]</strong> EY安永，《2026年地缘策略展望》，分析国家干预主义、主权AI与网络冲突、关键材料争夺战。<a href="https://www.ey.com/content/dam/ey-unified-site/ey-com/zh-tw/insights/geostrategy/documents/ey-2026-geostrategic-oulook.pdf" style="color: #0071e3;" target="_blank">原文链接</a></p>
+                <p><strong>[10]</strong> PwC，《2026年全球并购趋势报告》，2026-02-13，分析AI资本支出超级周期与K型市场分化。<a href="https://naipnews.naipo.com/39821/" style="color: #0071e3;" target="_blank">原文链接</a></p>
+                <p><strong>[11]</strong> 财新网，《全球创业投资市场的K型增长和衍生问题》，2026-06-23，基于Preqin全球创投数据分析。<a href="https://opinion.caixin.com/2026-06-23/102456440.html" style="color: #0071e3;" target="_blank">原文链接</a></p>
+                <p><strong>[12]</strong> IBM，《什么是AgentOps？》，2025-08-14，IBM Think大会AgentOps方法论详解。<a href="https://www.ibm.com/cn-zh/think/topics/agentops" style="color: #0071e3;" target="_blank">原文链接</a></p>
+                <p><strong>[13]</strong> 腾讯云，《AI赋能项目管理：工具如何重塑效率边界》，2025-11-12。<a href="https://cloud.tencent.com/developer/article/2586131" style="color: #0071e3;" target="_blank">原文链接</a></p>
+                <p><strong>[14]</strong> 深圳新闻网，《具身智能赛道迎来上市潮 深圳人形机器人企业加速登陆资本市场》，2026-03-26。<a href="https://www.sznews.com/news/content/2026-03/26/content_31993171.htm" style="color: #0071e3;" target="_blank">原文链接</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>每日晨报 | 2026年6月26日归档</p>
+            <p>Powered by <a href="https://openclaw.ai" target="_blank">OpenClaw</a></p>
+        </div>
+    </footer>
+</body>
+</html>
