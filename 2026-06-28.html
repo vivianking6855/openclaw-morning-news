@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw 晨报 · 2026年6月28日</title>
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #0f3460;
+            --highlight: #e94560;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --text: #2d3436;
+            --text-light: #636e72;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --border: #e1e8ed;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Hero Section */
+        .hero { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; padding: 60px 0; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -50%; right: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(233,69,96,0.2) 0%, transparent 70%); border-radius: 50%; }
+        .hero-badge { display: inline-block; background: var(--highlight); color: white; padding: 4px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; letter-spacing: 1px; margin-bottom: 16px; }
+        .hero h1 { font-size: 42px; font-weight: 800; margin-bottom: 16px; line-height: 1.2; }
+        .hero-summary { font-size: 18px; opacity: 0.9; max-width: 700px; margin-bottom: 24px; }
+        .hero-meta { display: flex; gap: 24px; font-size: 14px; opacity: 0.7; flex-wrap: wrap; }
+        .hero-meta span { display: flex; align-items: center; gap: 6px; }
+        
+        /* Content Grid */
+        .content-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin: 40px 0; }
+        .card { background: var(--card-bg); border-radius: 16px; padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid var(--border); transition: transform 0.2s, box-shadow 0.2s; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+        .card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--primary); }
+        .card p { color: var(--text-light); font-size: 14px; line-height: 1.7; }
+        .card-icon { font-size: 32px; margin-bottom: 12px; }
+        
+        /* Section Headers */
+        .section { margin: 48px 0; }
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 2px solid var(--border); }
+        .section-header h2 { font-size: 24px; font-weight: 700; color: var(--primary); }
+        .section-icon { font-size: 28px; }
+        
+        /* News Items */
+        .news-item { background: var(--card-bg); border-radius: 12px; padding: 20px; margin-bottom: 16px; border-left: 4px solid var(--accent); box-shadow: 0 1px 6px rgba(0,0,0,0.04); }
+        .news-item.p0 { border-left-color: var(--highlight); }
+        .news-item.p1 { border-left-color: var(--warning); }
+        .news-item.p2 { border-left-color: var(--success); }
+        .news-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; flex-wrap: wrap; gap: 8px; }
+        .news-title { font-weight: 700; font-size: 15px; color: var(--primary); flex: 1; }
+        .news-tag { font-size: 11px; padding: 2px 10px; border-radius: 12px; font-weight: 600; }
+        .tag-p0 { background: rgba(233,69,96,0.1); color: var(--highlight); }
+        .tag-p1 { background: rgba(253,203,110,0.2); color: #b7791f; }
+        .tag-p2 { background: rgba(0,184,148,0.1); color: var(--success); }
+        .news-source { font-size: 12px; color: var(--text-light); margin-top: 8px; }
+        .news-desc { font-size: 14px; color: var(--text); margin-top: 6px; line-height: 1.6; }
+        
+        /* Global Table */
+        .global-table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+        .global-table th { background: var(--primary); color: white; padding: 14px 16px; text-align: left; font-size: 13px; font-weight: 600; }
+        .global-table td { padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 13px; }
+        .global-table tr:last-child td { border-bottom: none; }
+        .global-table .region { font-weight: 600; color: var(--primary); }
+        
+        /* Expert Cards Grid */
+        .expert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .expert-card { background: var(--card-bg); border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid var(--border); }
+        .expert-name { font-weight: 700; color: var(--primary); font-size: 15px; margin-bottom: 4px; }
+        .expert-title { font-size: 12px; color: var(--text-light); margin-bottom: 12px; }
+        .expert-quote { font-size: 14px; color: var(--text); line-height: 1.7; font-style: italic; border-left: 3px solid var(--highlight); padding-left: 16px; }
+        
+        /* Term Cards */
+        .term-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+        .term-card { background: var(--card-bg); border-radius: 10px; padding: 20px; box-shadow: 0 1px 6px rgba(0,0,0,0.04); border: 1px solid var(--border); }
+        .term-name { font-weight: 700; color: var(--accent); font-size: 15px; margin-bottom: 6px; }
+        .term-def { font-size: 13px; color: var(--text-light); line-height: 1.6; }
+        
+        /* Data Highlights */
+        .data-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .data-card { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; border-radius: 12px; padding: 24px; text-align: center; }
+        .data-number { font-size: 36px; font-weight: 800; display: block; margin-bottom: 4px; }
+        .data-label { font-size: 13px; opacity: 0.8; }
+        
+        /* Deep Analysis */
+        .analysis-content { background: var(--card-bg); border-radius: 12px; padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+        .analysis-content h4 { font-size: 16px; font-weight: 700; color: var(--primary); margin: 20px 0 10px; }
+        .analysis-content h4:first-child { margin-top: 0; }
+        .analysis-content p { font-size: 14px; color: var(--text); line-height: 1.8; margin-bottom: 12px; }
+        
+        /* Heatmap */
+        .heatmap { background: var(--card-bg); border-radius: 12px; padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+        .heatmap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-top: 16px; }
+        .heatmap-item { padding: 16px; border-radius: 8px; text-align: center; font-size: 13px; font-weight: 600; }
+        .heat-high { background: linear-gradient(135deg, #ff6b6b, #ee5a24); color: white; }
+        .heat-medium { background: linear-gradient(135deg, #fdcb6e, #f39c12); color: white; }
+        .heat-low { background: linear-gradient(135deg, #00b894, #00a085); color: white; }
+        .heat-cool { background: linear-gradient(135deg, #74b9ff, #0984e3); color: white; }
+        .heatmap-status { font-size: 11px; opacity: 0.9; margin-top: 4px; font-weight: 400; }
+        
+        /* Sources */
+        .sources-list { background: var(--card-bg); border-radius: 12px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+        .source-item { padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+        .source-item:last-child { border-bottom: none; }
+        .source-title { font-weight: 600; color: var(--primary); }
+        .source-meta { color: var(--text-light); font-size: 12px; margin-top: 2px; }
+        .source-link { color: var(--accent); text-decoration: none; }
+        .source-link:hover { text-decoration: underline; }
+        
+        /* Footer */
+        .footer { text-align: center; padding: 40px 0; color: var(--text-light); font-size: 13px; border-top: 1px solid var(--border); margin-top: 60px; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 28px; }
+            .hero-summary { font-size: 15px; }
+            .content-grid { grid-template-columns: 1fr; }
+            .global-table { font-size: 12px; }
+            .global-table th, .global-table td { padding: 10px 12px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">🔥 今日洞察</div>
+            <h1>Agentic AI 安全危机与产业化竞速：2026年AI格局的质变时刻</h1>
+            <p class="hero-summary">本周AI领域呈现两大核心主线：一是SpaceX以600亿美元收购Cursor、DeepSeek完成74亿美元融资，头部AI公司竞争进入资本密集型决战阶段；二是Agentjacking攻击波及2,388家组织、美国42州联手调查OpenAI，AI安全与合规风险全面爆发。具身智能进入量产元年，中国一季度融资超300亿元，智元3个月量产5000台。全球AI产业正从技术竞赛转向生态控制与基础设施主导权的争夺。</p>
+            <div class="hero-meta">
+                <span>📅 2026年6月28日</span>
+                <span>📝 豆饼（Doubing）</span>
+                <span>⏱️ 阅读时间：8分钟</span>
+                <span>📊 14个板块</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Practical Advice -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">🛠️</span>
+                <h2>务实落地建议</h2>
+            </div>
+            <div class="content-grid">
+                <div class="card">
+                    <div class="card-icon">🛡️</div>
+                    <h3>建立AI Agent安全审查层</h3>
+                    <p>Agentjacking攻击已确认85%成功率，影响2,388家组织。建议在所有AI编码Agent（Claude Code、Cursor、Codex）与外部工具之间增设人工审查层，将错误追踪平台输出视为不可信输入，避免直接传递给Agent执行。</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">💰</div>
+                    <h3>重新评估GitHub Copilot成本模型</h3>
+                    <p>GitHub已于6月1日将Copilot计费从请求制改为用量制，GPT-5.5的Agent模式乘数高达7.5倍。团队应立即建立用量监控机制，对比新旧计费模型，防止Agent模式高频调用导致成本失控。</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🏗️</div>
+                    <h3>KubeRay优先于单节点训练</h3>
+                    <p>2026年模型参数已突破万亿级，单节点训练已成过去。未集成KubeRay的团队可能在计算预算上超支至少40%。建议将分布式训练纳入MLOps标准栈，利用自动扩缩容和异构训练降低成本。</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🤖</div>
+                    <h3>关注具身智能"订单式投资"机会</h3>
+                    <p>具身智能领域呈现"订单式投资"特征：宁德时代、宝马等场景方开放工厂作为训练场，同时锁定商业订单。建议制造业企业主动接触头部机器人公司，以场景换股权、以订单换定制方案，提前卡位自动化红利。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI DevOps -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">🤖</span>
+                <h2>AI DevOps 前沿</h2>
+            </div>
+            <div class="news-item p0">
+                <div class="news-header">
+                    <span class="news-title">Agentjacking攻击确认：AI编码Agent面临首个大规模定向攻击</span>
+                    <span class="news-tag tag-p0">P0</span>
+                </div>
+                <p class="news-desc">新型攻击Agentjacking通过伪造Sentry错误报告注入恶意指令，AI编码Agent（Claude Code、Cursor、Codex）误执行率达85%，已影响2,388家组织。这是首个专为Agent编码时代设计的攻击类型。</p>
+                <p class="news-source">来源：BuildFastWithAI / 2026-06-22</p>
+            </div>
+            <div class="news-item p1">
+                <div class="news-header">
+                    <span class="news-title">GitHub Copilot全面转向用量计费，Agent模式成本激增</span>
+                    <span class="news-tag tag-p1">P1</span>
+                </div>
+                <p class="news-desc">自2026年6月1日起，GitHub Copilot从请求制改为用量制计费。GPT-5.5 Agent模式请求乘数高达7.5倍（促销价），企业需重新建模成本预测。同时新自助注册Copilot Business已暂停。</p>
+                <p class="news-source">来源：Spacelift / 2026-06-01</p>
+            </div>
+            <div class="news-item p1">
+                <div class="news-header">
+                    <span class="news-title">AWS Kiro接替Amazon Q Developer，spec驱动开发成新范式</span>
+                    <span class="news-tag tag-p1">P1</span>
+                </div>
+                <p class="news-desc">AWS宣布Amazon Q Developer于2026年5月15日停止新用户注册，2027年4月30日终止支持。继任者Kiro是基于spec-driven development的Agent IDE，保留核心能力但请求量更低。</p>
+                <p class="news-source">来源：Spacelift / 2026-06-01</p>
+            </div>
+            <div class="news-item p2">
+                <div class="news-header">
+                    <span class="news-title">Cursor Origin发布：为AI Agent设计的GitHub替代方案</span>
+                    <span class="news-tag tag-p2">P2</span>
+                </div>
+                <p class="news-desc">Cursor推出Cursor Origin，一个专为AI Agent设计的代码托管平台。支持多个Agent并行克隆、分支、提交、变基和审查，标志着从"人类规模开发"向"Agent规模开发"的范式转移。</p>
+                <p class="news-source">来源：CanIHireAnAI / 2026-06-20</p>
+            </div>
+        </section>
+
+        <!-- Top AI Companies -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">🏢</span>
+                <h2>头部AI公司动态</h2>
+            </div>
+            <div class="news-item p0">
+                <div class="news-header">
+                    <span class="news-title">SpaceX 600亿美元收购Cursor，宣布750亿美元IPO</span>
+                    <span class="news-tag tag-p0">P0</span>
+                </div>
+                <p class="news-desc">SpaceX收购Anysphere（Cursor母公司）作价600亿美元，整合xAI技术栈。同步宣布750亿美元IPO，目标估值1.77万亿美元，计划扩展GPU计算、天基AI数据中心和xAI模型开发。</p>
+                <p class="news-source">来源：AIBusiness / 2026-06-22</p>
+            </div>
+            <div class="news-item p0">
+                <div class="news-header">
+                    <span class="news-title">DeepSeek完成74亿美元融资，成中国最具价值AI独角兽</span>
+                    <span class="news-tag tag-p0">P0</span>
+                </div>
+                <p class="news-desc">DeepSeek完成74亿美元融资，刷新中国AI初创企业融资纪录。此轮融资后成为中国最具价值AI创业公司，进一步巩固其在开源大模型和低成本训练路线的领先地位。</p>
+                <p class="news-source">来源：CanIHireAnAI / 2026-06-20</p>
+            </div>
+            <div class="news-item p1">
+                <div class="news-header">
+                    <span class="news-title">ChatGPT全球市场份额首次跌破50%</span>
+                    <span class="news-tag tag-p1">P1</span>
+                </div>
+                <p class="news-desc">据Sensor Tower 2026 State of AI Report，ChatGPT全球AI助手市场份额降至46.4%，首次低于50%。Gemini升至27.7%，Claude达10.3%。但ChatGPT仍保持11亿月活用户，Claude付费转化率最高达13%。</p>
+                <p class="news-source">来源：BuildFastWithAI / 2026-06-22</p>
+            </div>
+            <div class="news-item p1">
+                <div class="news-header">
+                    <span class="news-title">Anthropic年化营收突破300亿美元，预订3.5GW Google TPU</span>
+                    <span class="news-tag tag-p1">P1</span>
+                </div>
+                <p class="news-desc">Anthropic年化营收从2025年底约90亿美元飙升至超300亿美元。承诺通过博通采购约3.5GW下一代Google TPU算力，2027年起交付。同时暂停Agent SDK计费，因容量严重受限。</p>
+                <p class="news-source">来源：The Register / 2026-04-06</p>
+            </div>
+            <div class="news-item p2">
+                <div class="news-header">
+                    <span class="news-title">OpenAI收购Ona增强Codex，42州检察官联合调查</span>
+                    <span class="news-tag tag-p2">P2</span>
+                </div>
+                <p class="news-desc">OpenAI收购德国初创Ona（原Gitpod）增强Codex云端Agent能力，Codex周活用户超500万。同时，42州检察官对OpenAI展开大规模调查，涵盖广告声明、数据处理和未成年人保护等。</p>
+                <p class="news-source">来源：AIBusiness / 2026-06-11</p>
+            </div>
+            <div class="news-item p2">
+                <div class="news-header">
+                    <span class="news-title">Moonshot发布Kimi K2.7 Code，成本仅为Claude Fable 5的1/16</span>
+                    <span class="news-tag tag-p2">P2</span>
+                </div>
+                <p class="news-desc">Kimi K2.7 Code采用MoE架构，总参数1万亿，通过兼容OpenAI/Anthropic API提供服务。实验显示生成12个落地页的成本比Claude Fable 5低94%，即16倍便宜。</p>
+                <p class="news-source">来源：CanIHireAnAI / 2026-06-20</p>
+            </div>
+        </section>
+
+        <!-- Embodied Intelligence -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">🦾</span>
+                <h2>具身智能 / 机器人</h2>
+            </div>
+            <div class="news-item p0">
+                <div class="news-header">
+                    <span class="news-title">Neura Robotics获14亿美元C轮融资，创全栈机器人公司最大投资纪录</span>
+                    <span class="news-tag tag-p0">P0</span>
+                </div>
+                <p class="news-desc">德国Neura Robotics完成高达14亿美元C轮融资，由Nvidia、Amazon、Qualcomm、Bosch等投资。资金将用于人形机器人量产、Neuraverse技能共享平台和下一代物理AI系统。</p>
+                <p class="news-source">来源：AIBusiness / 2026-06-11</p>
+            </div>
+            <div class="news-item p1">
+                <div class="news-header">
+                    <span class="news-title">无界动力完成超2亿美元天使轮融资，上半年累计融资数亿美元</span>
+                    <span class="news-tag tag-p1">P1</span>
+                </div>
+                <p class="news-desc">北京通用具身智能公司无界动力完成超2亿美元天使轮融资，由京东关联基金、C资本、弘毅投资等联合投资。2026年上半年累计完成数亿美元融资，Pre-A轮近2亿美元也接近完成。</p>
+                <p class="news-source">来源：财新网 / 2026-06-26</p>
+            </div>
+            <div class="news-item p1">
+                <div class="news-header">
+                    <span class="news-title">智元3个月量产5000台，2026年成"部署态元年"</span>
+                    <span class="news-tag tag-p1">P1</span>
+                </div>
+                <p class="news-desc">智元机器人仅2026年Q1就量产5000台，相当于去年全年数量。2026年被行业定义为"部署态元年"，资本更倾向投资具备可落地产品、真实订单及已验证商业模式的企业。</p>
+                <p class="news-source">来源：什么值得买 / 2026-06-11</p>
+            </div>
+            <div class="news-item p2">
+                <div class="news-header">
+                    <span class="news-title">昆仑行成立3个月完成数十亿元融资，具身智能融资狂热持续</span>
+                    <span class="news-tag tag-p2">P2</span>
+                </div>
+                <p class="news-desc">注册成立不到3个月的昆仑行机器人宣布完成3轮系列融资，累计数十亿元。业内分析，资本热情来自头部企业争抢上市机会提高估值，以及新创公司性价比吸引新入局投资者。</p>
+                <p class="news-source">来源：财新网 / 2026-06-23</p>
+            </div>
+        </section>
+
+        <!-- Cloud Native & Data -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">☁️</span>
+                <h2>云原生与数据</h2>
+            </div>
+            <div class="news-item p1">
+                <div class="news-header">
+                    <span class="news-title">KubeRay成为2026分布式训练事实标准，不集成或超支40%</span>
+                    <span class="news-tag tag-p1">P1</span>
+                </div>
+                <p class="news-desc">随着模型参数进入万亿级，Ray on Kubernetes（KubeRay）成为分布式计算赢家。支持自动扩缩容和异构训练（spot GPU+高可用参数服务器），未集成团队计算预算可能超支40%以上。</p>
+                <p class="news-source">来源：Rajinikanth Vadla / 2026-04-02</p>
+            </div>
+            <div class="news-item p1">
+                <div class="news-header">
+                    <span class="news-title">向量数据库从"数据库类型"转向"数据类型"</span>
+                    <span class="news-tag tag-p1">P1</span>
+                </div>
+                <p class="news-desc">PostgreSQL+pgvector成为GenAI默认方案，Snowflake以2.5亿美元收购Crunchy Data，Databricks 10亿美元收购Neon。传统数据库积极增加向量能力，挑战专用向量数据库。</p>
+                <p class="news-source">来源：DevOps Gheware / 2026-01-24</p>
+            </div>
+            <div class="news-item p2">
+                <div class="news-header">
+                    <span class="news-title">Agentic安全成MLOps核心支柱，K8s准入控制器防Agent写权限</span>
+                    <span class="news-tag tag-p2">P2</span>
+                </div>
+                <p class="news-desc">2026年"Agentic安全"成为MLOps核心。采用K8s准入控制器阻止Agent获得关键数据库写权限，在数字孪生模拟环境测试Agent，财务/数据删除操作必须经人工审批Webhook。</p>
+                <p class="news-source">来源：Rajinikanth Vadla / 2026-04-28</p>
+            </div>
+        </section>
+
+        <!-- Project Management -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">📊</span>
+                <h2>项目管理与效能</h2>
+            </div>
+            <div class="news-item p1">
+                <div class="news-header">
+                    <span class="news-title">AI驱动项目团队准时交付率61% vs 传统团队47%</span>
+                    <span class="news-tag tag-p1">P1</span>
+                </div>
+                <p class="news-desc">PMI 2026数据显示，使用AI的项目管理工具团队准时交付率达61%，传统团队仅47%。AI在预测排期（减少30-40%延误）、自动任务生成、智能资源分配和风险预测（准确率提升50%+）方面表现突出。</p>
+                <p class="news-source">来源：Tommaso Maria Ricci / 2026-06-17</p>
+            </div>
+            <div class="news-item p2">
+                <div class="news-header">
+                    <span class="news-title">Atlassian Intelligence全面激活，Rovo Agent自动化工作流</span>
+                    <span class="news-tag tag-p2">P2</span>
+                </div>
+                <p class="news-desc">Atlassian Intelligence已在所有付费云计划自动激活。Rovo提供每用户25-150不等月信用额度，核心能力包括工单/文档总结、自然语言查询项目数据和运行跨工具自动化Agent。</p>
+                <p class="news-source">来源：Spacelift / 2026-06-01</p>
+            </div>
+            <div class="news-item p2">
+                <div class="news-header">
+                    <span class="news-title">Umaku：AI原生DevOps项目管理平台，统一路线图+代码+合规</span>
+                    <span class="news-tag tag-p2">P2</span>
+                </div>
+                <p class="news-desc">Umaku将项目章程、技术栈、工单和代码库统一理解，AI Agent可进行跨交付工作流、代码质量和业务逻辑的深度分析。支持自动化冲刺报告、AI代码审查和DevOps合规检测。</p>
+                <p class="news-source">来源：Omdena / 2026-04-16</p>
+            </div>
+        </section>
+
+        <!-- Global Dynamics -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">🌐</span>
+                <h2>全球动态</h2>
+            </div>
+            <table class="global-table">
+                <thead>
+                    <tr>
+                        <th>地区/领域</th>
+                        <th>核心事件</th>
+                        <th>影响评估</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="region">🇺🇸 美国</td>
+                        <td>42州检察官联合调查OpenAI；政府禁止Anthropic Fable 5和Mythos 5模型出口</td>
+                        <td>OpenAI IPO前景不确定性增加；AI出口管制升级</td>
+                    </tr>
+                    <tr>
+                        <td class="region">🇨🇳 中国</td>
+                        <td>宣布2950亿美元五年AI基础设施计划；DeepSeek 74亿美元融资</td>
+                        <td>全球最大政府AI投资，年均590亿美元；中美技术脱钩加速</td>
+                    </tr>
+                    <tr>
+                        <td class="region">🇪🇺 欧洲</td>
+                        <td>欧盟推进1500亿欧元国防贸易基金计划；AI大陆行动计划加速超算投资</td>
+                        <td>国家干预主义上升，数字主权强化</td>
+                    </tr>
+                    <tr>
+                        <td class="region">🌍 全球</td>
+                        <td>关键矿产争夺战加剧，2026年全球新增30+加工设施</td>
+                        <td>AI数据中心扩张推升科技金属需求，供应链重构</td>
+                    </tr>
+                    <tr>
+                        <td class="region">📈 市场</td>
+                        <td>SpaceX 750亿美元IPO目标估值1.77万亿美元；OpenAI估值8520亿美元</td>
+                        <td>AI基础设施公司进入公开市场，估值泡沫风险上升</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Expert Voices -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">🎙️</span>
+                <h2>大咖声音</h2>
+            </div>
+            <div class="expert-grid">
+                <div class="expert-card">
+                    <div class="expert-name">Dario Amodei</div>
+                    <div class="expert-title">Anthropic CEO</div>
+                    <p class="expert-quote">"Agentic AI的爆发导致了高调的生产灾难。一个AI Agent据称删除了初创公司的生产数据库，造成大规模不可逆停机。'Agentic安全'必须是MLOps的核心支柱。"</p>
+                </div>
+                <div class="expert-card">
+                    <div class="expert-name">Andrej Karpathy</div>
+                    <div class="expert-title">前OpenAI/Tesla AI总监，现Anthropic研究员</div>
+                    <p class="expert-quote">"AI Agent在两天内自主完成700次实验，优化代码实现语言模型训练速度提升11%。这展示了'自主研究'的潜力——AI系统迭代改进技术的未来。"</p>
+                </div>
+                <div class="expert-card">
+                    <div class="expert-name">台积电魏哲家</div>
+                    <div class="expert-title">台积电董事长兼CEO</div>
+                    <p class="expert-quote">"看到中国大陆机器人'跳来跳去'，直言'没用，好看而已'。表演型能力和实用型能力根本不是一回事，后者更考验芯片、传感器、算法和整合能力。"</p>
+                </div>
+                <div class="expert-card">
+                    <div class="expert-name">行业分析师（瑞银证券）</div>
+                    <div class="expert-title">中国工业行业分析师王斐丽</div>
+                    <p class="expert-quote">"即便今年很多厂商冲万台，人形机器人也未必真正进入商业化拐点。能耗、负载能力和稳定性仍是工业场景的核心瓶颈。"</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Terminology -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">📖</span>
+                <h2>名字解释</h2>
+            </div>
+            <div class="term-grid">
+                <div class="term-card">
+                    <div class="term-name">Agentjacking</div>
+                    <div class="term-def">一种针对AI编码Agent的新型攻击：伪造错误报告注入恶意指令，利用开发者对编码Agent的信任执行恶意命令，2026年6月确认85%成功率。</div>
+                </div>
+                <div class="term-card">
+                    <div class="term-name">Spec-Driven Development</div>
+                    <div class="term-def">AWS Kiro采用的开发范式：AI Agent先理解需求规格（spec），再基于规格生成代码，而非直接从提示词生成，提升代码一致性和可维护性。</div>
+                </div>
+                <div class="term-card">
+                    <div class="term-name">Vibe Coding</div>
+                    <div class="term-def">开发者用自然语言描述需求，接受AI生成代码并进行轻量审查的编码方式。与Agentic Development（结构化多步AI系统）不同，后者需要正式的治理和护栏。</div>
+                </div>
+                <div class="term-card">
+                    <div class="term-name">订单式投资</div>
+                    <div class="term-def">具身智能领域新投资模式：场景方（如宁德时代、宝马）投资机器人公司的同时开放工厂作为训练场，并锁定未来商业订单，形成闭环。</div>
+                </div>
+                <div class="term-card">
+                    <div class="term-name">KubeRay</div>
+                    <div class="term-def">Ray分布式计算框架在Kubernetes上的运行方案，支持万亿参数模型的分布式训练，具备自动扩缩容和异构训练能力，2026年成为MLOps事实标准。</div>
+                </div>
+                <div class="term-card">
+                    <div class="term-name">Agentic Engineering</div>
+                    <div class="term-def">超越Vibe Coding的完整AI优先开发方法论，涵盖团队工作流、治理、组织变革和业务流程集成，要求从第一天就嵌入安全设计。</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Highlights -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">📊</span>
+                <h2>关键数据速览</h2>
+            </div>
+            <div class="data-grid">
+                <div class="data-card">
+                    <span class="data-number">74亿</span>
+                    <span class="data-label">DeepSeek 融资金额（美元）</span>
+                </div>
+                <div class="data-card">
+                    <span class="data-number">600亿</span>
+                    <span class="data-label">SpaceX 收购Cursor金额（美元）</span>
+                </div>
+                <div class="data-card">
+                    <span class="data-number">46.4%</span>
+                    <span class="data-label">ChatGPT 全球市场份额</span>
+                </div>
+                <div class="data-card">
+                    <span class="data-number">300亿</span>
+                    <span class="data-label">Anthropic 年化营收（美元）</span>
+                </div>
+                <div class="data-card">
+                    <span class="data-number">2,388</span>
+                    <span class="data-label">Agentjacking 影响组织数</span>
+                </div>
+                <div class="data-card">
+                    <span class="data-number">2950亿</span>
+                    <span class="data-label">中国五年AI基建计划（美元）</span>
+                </div>
+                <div class="data-card">
+                    <span class="data-number">5,000</span>
+                    <span class="data-label">智元 2026年Q1 量产台数</span>
+                </div>
+                <div class="data-card">
+                    <span class="data-number">61%</span>
+                    <span class="data-label">AI团队项目准时交付率</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deep Analysis -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">💡</span>
+                <h2>深度分析</h2>
+            </div>
+            <div class="analysis-content">
+                <h4>一、AI产业竞争从模型能力转向生态控制</h4>
+                <p>2026年6月的密集事件揭示了一个根本转变：AI竞争不再是单纯的大模型性能比拼，而是对操作系统、机器人平台、企业Agent和基础设施网络的全面控制。SpaceX 600亿美元收购Cursor、OpenAI收购Ona、Cursor推出Origin——这些动作的共同指向是"控制Agent运行的环境"。</p>
+                <p>华为将AI嵌入HarmonyOS系统层、OpenAI重建机器人部门、Google推AI原生计算设备，均印证这一趋势。正如Peerlist的分析指出："AI竞赛不再仅由模型性能定义， increasingly由生态系统控制、部署效率和基础设施所有权塑造。"</p>
+                
+                <h4>二、Agentic安全：被忽视的速度陷阱</h4>
+                <p>Agentjacking攻击的85%成功率是一个警示信号。开发者已训练自己信任编码Agent——当Claude Code告诉你要运行一个命令时，你会执行它。这种信任正是Agentjacking利用的表面。</p>
+                <p>更深层的问题是系统性风险：AI生成的代码含重大问题的概率是人类代码的1.7倍，安全漏洞率高2.74倍。当Agent每周生成1000个PR，即使1%的漏洞率也意味着每周10个新漏洞。当前的安全审查流程（基于人类速度设计）无法匹配Agent的产出速度，这是2026年每个采用AI编码团队必须解决的基础设施问题。</p>
+                
+                <h4>三、具身智能：从"能动能跳"到"能干会干"</h4>
+                <p>台积电魏哲家的批评虽然尖锐，但指出了行业核心问题：2026年人形机器人出货量有望突破10万台，但"万台"不等于"商业化拐点"。当前人形机器人充电后仅作业2-4小时，负载5-15公斤，在高负载高精度场景中仍面临瓶颈。</p>
+                <p>真正的转折信号是"订单式投资"的兴起：智平方获5亿元订单、银河通用获数千台订单、无界动力上半年融资数亿美元。资本正从"看Demo"转向"看ROI"，只有能在真实场景中稳定作业的企业才能获得持续资金支持。2026年是从"表演"到"实干"的分水岭。</p>
+            </div>
+        </section>
+
+        <!-- Heatmap -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">🔥</span>
+                <h2>行业热力图</h2>
+            </div>
+            <div class="heatmap">
+                <p style="font-size:14px;color:var(--text-light);margin-bottom:8px;">基于本周事件密度、资本流动、政策关注度和媒体曝光度综合评估</p>
+                <div class="heatmap-grid">
+                    <div class="heatmap-item heat-high">
+                        AI Agent安全
+                        <div class="heatmap-status">高危爆发期</div>
+                    </div>
+                    <div class="heatmap-item heat-high">
+                        具身智能融资
+                        <div class="heatmap-status">狂热持续</div>
+                    </div>
+                    <div class="heatmap-item heat-high">
+                        头部AI并购
+                        <div class="heatmap-status">密集交易</div>
+                    </div>
+                    <div class="heatmap-item heat-medium">
+                        大模型发布
+                        <div class="heatmap-status">GPT-5.6待发</div>
+                    </div>
+                    <div class="heatmap-item heat-medium">
+                        云原生AI
+                        <div class="heatmap-status">稳步增长</div>
+                    </div>
+                    <div class="heatmap-item heat-medium">
+                        AI基础设施
+                        <div class="heatmap-status">中美竞速</div>
+                    </div>
+                    <div class="heatmap-item heat-low">
+                        AI项目管理
+                        <div class="heatmap-status">成熟渗透</div>
+                    </div>
+                    <div class="heatmap-item heat-cool">
+                        AI IPO监管
+                        <div class="heatmap-status">风险累积</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sources -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">📚</span>
+                <h2>权威来源</h2>
+            </div>
+            <div class="sources-list">
+                <div class="source-item">
+                    <div class="source-title">SpaceX Acquires Cursor for $60B</div>
+                    <div class="source-meta">作者/机构：AIBusiness | 发布时间：2026-06-22 | <a href="https://aibusiness.com" class="source-link">原文链接</a></div>
+                </div>
+                <div class="source-item">
+                    <div class="source-title">AI Bulletin · week of June 15–19, 2026</div>
+                    <div class="source-meta">作者/机构：CanIHireAnAI | 发布时间：2026-06-20 | <a href="https://www.canihireanai.com/blog/en/weekly-ai-bulletin-jun-15-19-2026/" class="source-link">原文链接</a></div>
+                </div>
+                <div class="source-item">
+                    <div class="source-title">AI News Today June 22 2026: 15 Biggest Stories</div>
+                    <div class="source-meta">作者/机构：BuildFastWithAI | 发布时间：2026-06-22 | <a href="https://www.buildfastwithai.com/blogs/ai-news-today-june-22-2026" class="source-link">原文链接</a></div>
+                </div>
+                <div class="source-item">
+                    <div class="source-title">Top 12 AI Tools For DevOps in 2026</div>
+                    <div class="source-meta">作者/机构：Spacelift | 发布时间：2026-06-01 | <a href="https://spacelift.io/blog/ai-devops-tools" class="source-link">原文链接</a></div>
+                </div>
+                <div class="source-item">
+                    <div class="source-title">具身智能融资狂热 昆仑行成立3个月融资数十亿元</div>
+                    <div class="source-meta">作者/机构：财新网 | 发布时间：2026-06-23 | <a href="https://www.caixin.com/2026-06-23/102456814.html" class="source-link">原文链接</a></div>
+                </div>
+                <div class="source-item">
+                    <div class="source-title">无界动力半年融资数亿美元</div>
+                    <div class="source-meta">作者/机构：财新网 | 发布时间：2026-06-26 | <a href="https://www.caixin.com/2026-06-26/102457906.html" class="source-link">原文链接</a></div>
+                </div>
+                <div class="source-item">
+                    <div class="source-title">AI for Project Management: The Complete 2026 Guide</div>
+                    <div class="source-meta">作者/机构：Tommaso Maria Ricci | 发布时间：2026-06-17 | <a href="https://www.tommasomariaricci.com/blog/ai-for-project-management-guide" class="source-link">原文链接</a></div>
+                </div>
+                <div class="source-item">
+                    <div class="source-title">2026具身智能投资价值重估</div>
+                    <div class="source-meta">作者/机构：搜狐/IT之家 | 发布时间：2026-06-03 | <a href="https://www.sohu.com/a/1031658070_702717" class="source-link">原文链接</a></div>
+                </div>
+                <div class="source-item">
+                    <div class="source-title">Kubernetes for AI in 2026</div>
+                    <div class="source-meta">作者/机构：Rajinikanth Vadla | 发布时间：2026-04-22 | <a href="https://rajinikanthvadla.com/blog/kubernetes-cloud-native-ai-ml-deployment-trends-2026/" class="source-link">原文链接</a></div>
+                </div>
+                <div class="source-item">
+                    <div class="source-title">2026年地缘政治策略展望</div>
+                    <div class="source-meta">作者/机构：EY安永 | 发布时间：2026年 | <a href="https://www.ey.com/content/dam/ey-unified-site/ey-com/zh-tw/insights/geostrategy/documents/ey-2026-geostrategic-oulook.pdf" class="source-link">原文链接</a></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="footer">
+        <p>OpenClaw 晨报 · 由 豆饼（Doubing）生成 · 2026年6月28日</p>
+        <p style="margin-top:8px;">数据来源：公开网络信息整理，仅供学习参考</p>
+    </div>
+</body>
+</html>
