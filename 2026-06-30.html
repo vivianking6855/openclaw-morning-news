@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日晨报 2026-06-30 | OpenClaw Morning News</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f7; color: #1d1d1f; line-height: 1.6; }
+        .header { background: #fff; border-bottom: 1px solid #d2d2d7; padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 90; }
+        .header .back-home { color: #86868b; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+        .header .back-home:hover { color: #1d1d1f; }
+        .header .logo { display: flex; align-items: center; gap: 8px; color: #1d1d1f; text-decoration: none; font-weight: 700; font-size: 16px; }
+        .header .logo-icon { font-size: 20px; }
+        .date-bar { background: #fff; border-bottom: 1px solid #d2d2d7; padding: 14px 24px; text-align: center; }
+        .date-bar .current-date { font-size: 16px; font-weight: 600; color: #1d1d1f; display: inline-block; padding: 8px 20px; background: #f5f5f7; border-radius: 8px; }
+        .main { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
+        .hero-section { background: linear-gradient(135deg, #1d1d1f 0%, #434344 100%); color: #fff; padding: 40px; border-radius: 16px; margin-bottom: 30px; }
+        .hero-badge { display: inline-block; background: rgba(255,255,255,0.15); padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 16px; }
+        .hero-title { font-size: 32px; font-weight: 700; margin-bottom: 16px; line-height: 1.3; }
+        .hero-summary { font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.85); margin-bottom: 20px; }
+        .hero-meta { display: flex; gap: 20px; font-size: 13px; color: rgba(255,255,255,0.6); }
+        .section-title { font-size: 22px; font-weight: 700; margin-bottom: 20px; color: #1d1d1f; }
+        .rec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .rec-card { background: #fff; padding: 24px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+        .rec-card h4 { font-size: 16px; font-weight: 600; margin-bottom: 10px; color: #1d1d1f; }
+        .rec-card p { font-size: 14px; color: #555; line-height: 1.6; }
+        .content-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .content-card { background: #fff; padding: 24px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+        .content-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .card-icon { font-size: 20px; }
+        .content-card ul { list-style: none; }
+        .content-card li { padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
+        .content-card li:last-child { border-bottom: none; }
+        .tag { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-right: 8px; }
+        .tag-p0 { background: rgba(255,59,48,0.1); color: #ff3b30; }
+        .tag-p1 { background: rgba(255,149,0,0.1); color: #ff9500; }
+        .tag-p2 { background: rgba(52,199,89,0.1); color: #34c759; }
+        .news-meta { font-size: 11px; color: #86868b; margin-top: 4px; display: block; }
+        .news-meta .time { margin-right: 8px; }
+        .news-meta .source { color: #0071e3; }
+        .full-width { grid-column: 1 / -1; }
+        .fixed-voices-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
+        .fixed-voice-card { background: #f5f5f7; padding: 20px; border-radius: 12px; border-left: 4px solid #0071e3; }
+        .fixed-voice-card .voice-name { font-weight: 600; font-size: 14px; color: #1d1d1f; margin-bottom: 8px; }
+        .fixed-voice-card .voice-title { font-size: 12px; color: #86868b; margin-bottom: 10px; }
+        .fixed-voice-card .voice-text { font-size: 13px; line-height: 1.6; color: #333; margin-bottom: 10px; }
+        .fixed-voice-card .voice-meta { font-size: 11px; color: #86868b; }
+        .data-highlight { display: inline-block; font-weight: 700; color: #ff3b30; }
+        .footer { background: #1d1d1f; color: #fff; padding: 30px 20px; text-align: center; margin-top: 40px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; }
+        .footer a { color: #0071e3; text-decoration: none; }
+        .term-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 20px; }
+        .term-card { background: #f5f5f7; padding: 16px; border-radius: 10px; }
+        .term-card .term-name { font-weight: 600; font-size: 14px; color: #1d1d1f; margin-bottom: 6px; }
+        .term-card .term-desc { font-size: 13px; color: #555; line-height: 1.5; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #e0e0e0; font-size: 14px; }
+        th { background: #f5f5f7; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="back-home">← 返回首页</a>
+        <a href="index.html" class="logo"><span class="logo-icon">📰</span><span class="logo-text">每日晨报</span></a>
+    </header>
+    <div class="date-bar">
+        <span class="current-date">2026年6月30日 星期二</span>
+    </div>
+
+<main class="main">
+        <section class="hero-section">
+            <div class="hero-badge">💡 今日洞察</div>
+            <h1 class="hero-title">具身智能融资狂热 · 国产算力闭环成型 · 大模型双上市时代开启</h1>
+            <p class="hero-summary">2026年6月，具身智能赛道融资热度空前，智平方估值突破200亿元，无界动力、昆仑行等初创公司密集融资。DeepSeek V4全面适配华为昇腾，国产AI算力-模型全栈闭环正式成型。MiniMax、智谱启动A股IPO，大模型资本化进入"A+H"双上市时代。</p>
+            <div class="hero-meta">
+                <span>📅 2026-06-30</span>
+                <span>⏱️ 8分钟阅读</span>
+                <span>🔖 14个板块</span>
+            </div>
+        </section>
+
+        <section class="recommendations">
+            <h2 class="section-title">🛠️ 务实落地建议</h2>
+            <div class="rec-grid">
+                <div class="rec-card">
+                    <h4>评估国产AI算力替代方案</h4>
+                    <p>DeepSeek V4已实现华为昇腾全栈适配，国产AI芯片性能达到H20的2.87倍。建议政企项目优先考虑昇腾+DeepSeek组合，降低供应链风险。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>关注具身智能产业链机会</h4>
+                    <p>2026年具身智能板块总市值突破3万亿元，智平方、无界动力等头部企业估值飙升。建议关注供应链、核心零部件、训练数据等细分赛道。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>升级AI编程工具链</h4>
+                    <p>Kimi K2.6在SWE-Bench Pro中以58.6分登顶全球，MiniMax M2.5成本仅为海外模型的1/10。建议评估国产AI编程工具，降低开发成本。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>布局大模型"A+H"投资机遇</h4>
+                    <p>MiniMax、智谱相继启动A股科创板IPO，有望成为全球AI大模型领域最早实现"A+H"双上市的企业。建议关注相关产业链投资机会。</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="content-grid">
+            <section class="content-card">
+                <h3><span class="card-icon">🤖</span> AI DevOps 前沿</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>AI集合站重构开发者全流程工具链</strong>：2026年6月，英伟达GTC、微软Build、阿里通义千问发布会密集召开，全球累计发布超20款新一代AI工具，覆盖从需求分析到部署运维的完整开发链路
+                        <span class="news-meta"><span class="time">2026-06-03</span><span class="source">@OSCHINA</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>Devin持续更新：MCP生态扩展，AI编程能力再升级</strong>：Devin新增PostHog MCP、Amplitude MCP等集成，支持更丰富的自动化工作流，AI编程效率提升45%以上
+                        <span class="news-meta"><span class="time">2026-06-26</span><span class="source">@Devin.ai</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>沙丘智库发布《2026年企业级AI Agent应用最佳实践报告》</strong>：报告指出，Agent能力正成为AI DevOps的核心，2026年企业级AI Agent应用进入规模化落地阶段
+                        <span class="news-meta"><span class="time">2026-06-04</span><span class="source">@沙丘智库</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h3><span class="card-icon">🏢</span> 头部AI公司动态</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>DeepSeek V4正式发布：1.6T参数+1M上下文，全面适配华为昇腾</strong>：4月24日开源发布V4-Pro（1.6T/49B激活）和V4-Flash（284B/13B激活），全系标配1M上下文，重写40万底层算子实现国产芯片全栈适配
+                        <span class="news-meta"><span class="time">2026-04-24</span><span class="source">@DeepSeek/华为</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>Kimi K2.6开源：国产模型首次登顶全球代码评测榜首</strong>：4月20日发布，SWE-Bench Pro得分58.6，超越GPT-5.4（57.7）和Claude Opus 4.6（53.4），支持300个智能体并行作业
+                        <span class="news-meta"><span class="time">2026-04-20</span><span class="source">@月之暗面</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>MiniMax启动A股科创板IPO，M3模型发布</strong>：5月29日与中信证券签署辅导协议，用户规模超3亿，ARR过去两个月翻倍。M3模型最高支持1M上下文，原生多模态
+                        <span class="news-meta"><span class="time">2026-06-01</span><span class="source">@财新网</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>月之暗面完成20亿美元融资，估值突破200亿美元</strong>：中国大模型圈最大额融资，由美团龙珠领投，投后估值约1362亿元人民币
+                        <span class="news-meta"><span class="time">2026-05-07</span><span class="source">@华峰资本</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>谷歌宣布向Anthropic投资高达400亿美元</strong>：先期注资100亿美元，Anthropic估值攀升至3500-3800亿美元，创AI初创公司单笔投资规模纪录
+                        <span class="news-meta"><span class="time">2026-04-25</span><span class="source">@金十数据</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h3><span class="card-icon">🦾</span> 具身智能/机器人</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>智平方完成近50亿元融资，估值突破200亿元</strong>：6月29日宣布，产业方包括中国生物制药、茅台集团、招商局资本等，计划下半年启动数万台生产力具身人形产线
+                        <span class="news-meta"><span class="time">2026-06-29</span><span class="source">@财新网/搜狐</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>无界动力完成超2亿美元天使轮融资</strong>：6月26日宣布，2026年上半年累计完成数亿美元融资，已签署总额近1亿美元全球订单
+                        <span class="news-meta"><span class="time">2026-06-26</span><span class="source">@财新网</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>昆仑行成立3个月完成3轮系列融资，累计数十亿元</strong>：6月23日宣布，由高瓴创投、高榕创投、中科创星等联合投资，投后估值超10亿美元
+                        <span class="news-meta"><span class="time">2026-06-23</span><span class="source">@财新网</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>国内具身智能板块总市值突破3万亿元</strong>：2026年具身智能赛道融资事件超300起，金额超400亿元，优必选累计订单超8亿元，智元机器人超5.2亿元
+                        <span class="news-meta"><span class="time">2026-06</span><span class="source">@中国信通院</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h3><span class="card-icon">☁️</span> 云原生与数据</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>华为昇腾950PR正式量产：单卡算力达H20的2.87倍</strong>：搭载自研HiBL 1.0高带宽内存，DeepSeek V4已100%全栈运行于昇腾950PR，国产AI芯片正式扛起大梁
+                        <span class="news-meta"><span class="time">2026-04-24</span><span class="source">@华为/林子说事</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>DeepSeek V4与昇腾协同实现国产AI全栈自主</strong>：从CUDA到CANN的跨越，重写40万个核心算子，精度对齐误差控制在0.5%以内，推理速度较初期提升35倍
+                        <span class="news-meta"><span class="time">2026-04-25</span><span class="source">@电子发烧友网</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>寒武纪、海光信息、摩尔线程全面适配DeepSeek V4</strong>：国产AI算力芯片集体完成Day 0级适配，构建自主可控的AI算力-模型闭环
+                        <span class="news-meta"><span class="time">2026-04-24</span><span class="source">@雪球/什么值得买</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h3><span class="card-icon">📊</span> 项目管理与效能</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>2026中国研发项目管理数字化洞察：AI渗透率激增86%</strong>：生成式AI正推动研发项目管理从"数字化协同"迈向"智能化重塑"，项目经理角色升级为"AI协调者"
+                        <span class="news-meta"><span class="time">2026-04</span><span class="source">@飞书/PMI中国</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>AI赋能CI/CD的5大误区：61%项目未达成预期ROI</strong>：Gartner调研指出，73%企业已集成AI到CI/CD，但61%未达成预期ROI，42%团队在6个月内回退
+                        <span class="news-meta"><span class="time">2026-03</span><span class="source">@Gartner/腾讯云</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p2">趋势</span>
+                        <strong>MiniMax Agent每小时成本仅1美元，性价比碾压海外</strong>：按100tokens/秒计算，是Anthropic、Google的1/10至1/20，1万美元可雇佣4个数字工人全年7×24小时工作
+                        <span class="news-meta"><span class="time">2026-03</span><span class="source">@高盛研报</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h3><span class="card-icon">🌐</span> 全球动态</h3>
+                <table>
+                    <tr><th>地区/领域</th><th>关键动态</th><th>优先级</th></tr>
+                    <tr>
+                        <td><strong>中国</strong></td>
+                        <td>具身智能融资狂热，智平方200亿估值；MiniMax、智谱启动A股IPO</td>
+                        <td><span class="tag tag-p0">P0</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>美国</strong></td>
+                        <td>谷歌向Anthropic投资400亿美元；GPT-5.5、Claude Opus 4.7密集发布</td>
+                        <td><span class="tag tag-p0">P0</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>欧洲</strong></td>
+                        <td>欧盟AI法案持续推进，监管框架趋于完善</td>
+                        <td><span class="tag tag-p1">P1</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>芯片</strong></td>
+                        <td>H200遭中国集体拒单，华为昇腾950PR全面量产替代</td>
+                        <td><span class="tag tag-p0">P0</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>全球</strong></td>
+                        <td>AI Agent市场规模2024年约50亿美元，预计2030年达500亿美元</td>
+                        <td><span class="tag tag-p1">P1</span></td>
+                    </tr>
+                </table>
+            </section>
+        </div>
+
+        <!-- 大咖声音 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">🎙️</span> 大咖声音</h3>
+            <div class="fixed-voices-grid">
+                <div class="fixed-voice-card">
+                    <div class="voice-name">杨植麟</div>
+                    <div class="voice-title">月之暗面创始人、CEO</div>
+                    <div class="voice-text">"很多人用'缸中之脑'来形容主打深度思考的模型。但编程和Agent的关系、思考和工具调用的关系，才是更本质的东西。"</div>
+                    <div class="voice-meta">来源：播客专访 | 2025-07</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">Sam Altman</div>
+                    <div class="voice-title">OpenAI CEO</div>
+                    <div class="voice-text">"我们可能在几千天内就会迎来超级智能。虽然这可能需要更长的时间，但我相信我们最终会实现这一目标。"</div>
+                    <div class="voice-meta">来源：《智能时代》博客 | 2024-09</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">埃隆·马斯克</div>
+                    <div class="voice-title">特斯拉/SpaceX CEO</div>
+                    <div class="voice-text">"AI有80%的可能会带来积极影响，有10%到20%的可能会出现问题，风险不是零。必须创建一个极致追求真相的AI。"</div>
+                    <div class="voice-meta">来源：Peter Diamandis访谈 | 2024-11</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">Andrej Karpathy</div>
+                    <div class="voice-title">OpenAI联合创始人、前特斯拉AI总监</div>
+                    <div class="voice-text">"Kimi的Attention Residuals论文让我们意识到，根本没有把Attention is All You Need理解透彻。这篇论文就是开启大模型时代的圣杯。"</div>
+                    <div class="voice-meta">来源：评论Kimi技术论文 | 2026-03</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 名字解释 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">📖</span> 名字解释</h3>
+            <div class="term-grid">
+                <div class="term-card">
+                    <div class="term-name">AgentOps</div>
+                    <div class="term-desc">AI Agent的运营管理体系，涵盖智能体的部署、监控、评估和优化，是AI从实验走向生产的必经之路。</div>
+                </div>
+                <div class="term-card">
+                    <div class="term-name">具身智能（Embodied AI）</div>
+                    <div class="term-desc">将AI与物理实体（如机器人）结合，使智能体具备感知物理世界、执行物理动作的能力，2026年被视为量产元年。</div>
+                </div>
+                <div class="term-card">
+                    <div class="term-name">MoE（混合专家架构）</div>
+                    <div class="term-desc">Mixture of Experts，将大模型拆分为多个专家网络，每次推理仅激活部分专家，显著降低计算成本。</div>
+                </div>
+                <div class="term-card">
+                    <div class="term-name">VLA（视觉-语言-动作模型）</div>
+                    <div class="term-desc">Vision-Language-Action Model，融合视觉感知、语言理解和动作执行的多模态模型，是机器人"大脑"的核心技术。</div>
+                </div>
+                <div class="term-card">
+                    <div class="term-name">SWE-Bench</div>
+                    <div class="term-desc">软件工程基准测试，评估AI模型在真实GitHub代码库中修复bug的能力，是衡量AI编程能力的权威标准。</div>
+                </div>
+                <div class="term-card">
+                    <div class="term-name">CANN</div>
+                    <div class="term-desc">华为自研的异构计算架构，替代英伟达CUDA，是国产AI芯片生态的核心软件栈，已全面开源。</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 关键数据速览 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">📊</span> 关键数据速览</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 20px;">
+                <div style="background: linear-gradient(135deg, #ff6b6b20 0%, #ee5a5a20 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #ff3b30;">3万亿</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">国内具身智能板块总市值(元)</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #4ecdc420 0%, #44a08d20 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #34c759;">200亿</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">智平方最新估值(元)</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #5856d6;">200亿</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">月之暗面估值(美元)</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #f093fb20 0%, #f5576c20 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #ff2d55;">3800亿</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">Anthropic估值(美元)</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #4facfe20 0%, #00f2fe20 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #007aff;">1.6T</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">DeepSeek V4-Pro总参数</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #43e97b20 0%, #38f9d720 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #30d158;">58.6</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">Kimi K2.6 SWE-Bench Pro得分</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 深度分析 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">💡</span> 深度分析</h3>
+            <div style="margin-top: 20px; padding: 20px; background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%); border-radius: 12px; border-left: 4px solid #667eea;">
+                <p style="font-size: 15px; line-height: 1.8; color: #333; margin-bottom: 15px;"><strong>国产AI算力闭环成型：从"可用"到"好用"的跨越</strong></p>
+                <p style="font-size: 14px; line-height: 1.7; color: #555; margin-bottom: 12px;">DeepSeek V4与华为昇腾的芯模协同，标志着国产AI算力全栈闭环正式成型。重写40万个核心算子、精度对齐误差控制在0.5%以内、推理速度提升35倍——这些数字背后，是从CUDA到CANN的生态迁移，是国产AI芯片从"可用"迈向"好用"的关键跨越。昇腾950PR单卡算力达到H20的2.87倍，意味着在特定场景下，国产芯片已具备超越国际主流产品的竞争力。</p>
+                <p style="font-size: 15px; line-height: 1.8; color: #333; margin-bottom: 15px;"><strong>具身智能淘汰赛：百亿俱乐部形成，非头部企业融资困难</strong></p>
+                <p style="font-size: 14px; line-height: 1.7; color: #555; margin-bottom: 12px;">2026年6月，具身智能赛道融资热度达到顶峰。智平方200亿估值、无界动力数亿美元融资、昆仑行3个月跻身独角兽——头部效应愈发明显。优必选首席品牌官谭旻坦言："目前具身智能的总体融资规模都没超过共享单车和元宇宙。"这既是警示，也是机会。量产能力和技术突破是两大生死考量，2026年被视为人形机器人规模化交付元年。</p>
+                <p style="font-size: 15px; line-height: 1.8; color: #333; margin-bottom: 15px;"><strong>大模型资本化下半场："A+H"双上市时代开启</strong></p>
+                <p style="font-size: 14px; line-height: 1.7; color: #555;">MiniMax和智谱相继启动A股科创板IPO，距港股上市仅半年。如果顺利成行，二者将成为全球AI大模型领域最早实现"A+H"双上市的企业。这不仅是资本的胜利，更是中国AI产业从"烧钱换故事"到"用财报和估值说话"的转折点。国内大模型市场规模已从2025年的约495亿元跨越至2026年预期突破700亿元的节点，新一轮规模化应用正在全面铺开。</p>
+            </div>
+        </section>
+
+        <!-- 行业热力图 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">🔥</span> 行业热力图</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+                <div style="background: #ffebee; padding: 15px; border-radius: 10px; border-left: 4px solid #f44336;"><div style="display: flex; justify-content: space-between;"><span><strong>具身智能</strong></span><span style="color: #f44336;">🔥🔥🔥🔥🔥</span></div><div style="font-size: 12px; color: #666; margin-top: 5px;">融资狂热，头部估值突破200亿</div></div>
+                <div style="background: #fff3e0; padding: 15px; border-radius: 10px; border-left: 4px solid #ff9800;"><div style="display: flex; justify-content: space-between;"><span><strong>国产AI算力</strong></span><span style="color: #ff9800;">🔥🔥🔥🔥🔥</span></div><div style="font-size: 12px; color: #666; margin-top: 5px;">昇腾950PR量产，全栈闭环成型</div></div>
+                <div style="background: #e8f5e9; padding: 15px; border-radius: 10px; border-left: 4px solid #4caf50;"><div style="display: flex; justify-content: space-between;"><span><strong>AI DevOps</strong></span><span style="color: #4caf50;">🔥🔥🔥🔥</span></div><div style="font-size: 12px; color: #666; margin-top: 5px;">AgentOps体系化，工具链重构</div></div>
+                <div style="background: #e3f2fd; padding: 15px; border-radius: 10px; border-left: 4px solid #2196f3;"><div style="display: flex; justify-content: space-between;"><span><strong>大模型IPO</strong></span><span style="color: #2196f3;">🔥🔥🔥🔥</span></div><div style="font-size: 12px; color: #666; margin-top: 5px;">MiniMax、智谱启动A股上市</div></div>
+                <div style="background: #f3e5f5; padding: 15px; border-radius: 10px; border-left: 4px solid #9c27b0;"><div style="display: flex; justify-content: space-between;"><span><strong>AI编程</strong></span><span style="color: #9c27b0;">🔥🔥🔥</span></div><div style="font-size: 12px; color: #666; margin-top: 5px;">Kimi K2.6登顶，成本降至1/10</div></div>
+            </div>
+        </section>
+
+        <!-- 权威来源 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">📚</span> 权威来源</h3>
+            <div style="margin-top: 15px; font-size: 13px; color: #666; line-height: 1.8;">
+                <p>• <strong>沙丘智库</strong>：《2026年企业级AI Agent应用最佳实践报告》 | 2026-06-04 | <a href="https://www.shaqiu.cn/article/zZM5V483VRxb" target="_blank">原文链接</a></p>
+                <p>• <strong>DeepSeek/华为</strong>：DeepSeek V4技术报告 & 昇腾超节点适配公告 | 2026-04-24 | <a href="https://flash.jin10.com/detail/20260424123610967800" target="_blank">原文链接</a></p>
+                <p>• <strong>月之暗面</strong>：Kimi K2.6开源发布与SWE-Bench Pro评测 | 2026-04-20 | <a href="https://www.ithome.com/tags/Kimi/" target="_blank">原文链接</a></p>
+                <p>• <strong>财新网</strong>：智平方近50亿元融资、无界动力2亿美元融资、昆仑行融资报道 | 2026-06-23~29 | <a href="https://www.caixin.com/2026-06-29/102458633.html" target="_blank">原文链接</a></p>
+                <p>• <strong>财新网</strong>：MiniMax启动A股科创板IPO | 2026-06-01 | <a href="https://www.caixin.com/2026-06-01/102449721.html" target="_blank">原文链接</a></p>
+                <p>• <strong>华峰资本</strong>：月之暗面20亿美元融资 | 2026-05-07 | <a href="https://view.inews.qq.com/a/20260509A03OL000" target="_blank">原文链接</a></p>
+                <p>• <strong>金十数据/每日极客日报</strong>：谷歌向Anthropic投资400亿美元 | 2026-04-25 | <a href="https://gitcode.csdn.net/69ec4c8054b52172bc6ff197.html" target="_blank">原文链接</a></p>
+                <p>• <strong>电子发烧友网</strong>：国产AI算力全栈自主之路分析 | 2026-04-25 | <a href="https://www.elecfans.com/d/7833468.html" target="_blank">原文链接</a></p>
+                <p>• <strong>高盛研报</strong>：MiniMax全模态AI技术投资价值分析 | 2026-03-17 | <a href="https://xueqiu.com/8201124121/379731276" target="_blank">原文链接</a></p>
+                <p>• <strong>EY安永</strong>：2026地缘策略展望 | 2026 | <a href="https://www.ey.com/content/dam/ey-unified-site/ey-com/zh-tw/insights/geostrategy/documents/ey-2026-geostrategic-oulook.pdf" target="_blank">原文链接</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>每日晨报 | 2026年6月30日归档</p>
+            <p>Powered by <a href="https://openclaw.ai" target="_blank">OpenClaw</a></p>
+        </div>
+    </footer>
+</body>
+</html>
