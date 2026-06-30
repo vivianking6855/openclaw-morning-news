@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenClaw 晨报 | 2026-07-01</title>
+<style>
+:root {
+  --bg: #f5f5f7;
+  --card-bg: #ffffff;
+  --text: #1d1d1f;
+  --text-secondary: #86868b;
+  --accent: #0071e3;
+  --accent-light: #e8f4fd;
+  --border: #d2d2d7;
+  --radius: 16px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.08);
+  --p0: #ff3b30;
+  --p1: #ff9500;
+  --p2: #34c759;
+  --hot: #ff3b30;
+  --warm: #ff9500;
+  --cool: #34c759;
+  --cold: #af52de;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  padding: 24px;
+}
+.container { max-width: 1200px; margin: 0 auto; }
+
+/* Hero */
+.hero {
+  background: linear-gradient(135deg, #1d1d1f 0%, #434344 100%);
+  border-radius: var(--radius);
+  padding: 48px 40px;
+  color: #fff;
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+}
+.hero h1 { font-size: 36px; font-weight: 700; margin-bottom: 12px; line-height: 1.2; }
+.hero-summary { font-size: 17px; opacity: 0.85; margin-bottom: 20px; max-width: 800px; }
+.hero-meta { font-size: 13px; opacity: 0.6; }
+
+/* Section headers */
+.section { margin-bottom: 32px; }
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-title::before {
+  content: '';
+  width: 4px;
+  height: 24px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+/* Cards grid */
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+@media (max-width: 768px) {
+  .content-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 26px; }
+  body { padding: 16px; }
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+.card-full { grid-column: 1 / -1; }
+.card h3 { font-size: 17px; font-weight: 600; margin-bottom: 10px; }
+.card p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+.card .tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.tag-p0 { background: #ffe5e3; color: var(--p0); }
+.tag-p1 { background: #fff4e3; color: var(--p1); }
+.tag-p2 { background: #e8f5e9; color: var(--p2); }
+.card-source { font-size: 12px; color: var(--text-secondary); margin-top: 12px; }
+
+/* Advice cards */
+.advice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.advice-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--accent);
+}
+.advice-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+.advice-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+.advice-num {
+  display: inline-block;
+  width: 28px; height: 28px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 28px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-right: 8px;
+}
+
+/* Table */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.data-table th {
+  background: #f5f5f7;
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border);
+}
+.data-table td {
+  padding: 14px 16px;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.data-table tr:last-child td { border-bottom: none; }
+
+/* Voice grid */
+.voice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+.voice-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.voice-card .quote { font-size: 15px; font-style: italic; color: var(--text); margin-bottom: 12px; }
+.voice-card .author { font-size: 13px; font-weight: 600; }
+.voice-card .title { font-size: 12px; color: var(--text-secondary); }
+
+/* Term grid */
+.term-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+@media (max-width: 768px) {
+  .term-grid { grid-template-columns: repeat(2, 1fr); }
+  .advice-grid { grid-template-columns: 1fr; }
+}
+.term-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.term-card .term { font-size: 14px; font-weight: 600; color: var(--accent); margin-bottom: 6px; }
+.term-card .def { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+
+/* Data highlights */
+.data-highlights {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+@media (max-width: 768px) {
+  .data-highlights { grid-template-columns: repeat(2, 1fr); }
+}
+.highlight-box {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 24px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.highlight-box .number {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.highlight-box .label { font-size: 13px; color: var(--text-secondary); }
+
+/* Heatmap */
+.heatmap { background: var(--card-bg); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); }
+.heatmap-row { display: flex; align-items: center; margin-bottom: 14px; }
+.heatmap-label { width: 140px; font-size: 14px; font-weight: 500; }
+.heatmap-bar { flex: 1; height: 28px; background: #f0f0f0; border-radius: 6px; overflow: hidden; position: relative; }
+.heatmap-fill { height: 100%; border-radius: 6px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 12px; font-weight: 600; color: #fff; }
+.heatmap-fill.hot { background: var(--hot); }
+.heatmap-fill.warm { background: var(--warm); }
+.heatmap-fill.cool { background: var(--cool); }
+.heatmap-fill.cold { background: var(--cold); }
+.heatmap-legend { display: flex; gap: 16px; margin-top: 16px; font-size: 12px; justify-content: center; }
+.heatmap-legend span { display: flex; align-items: center; gap: 4px; }
+.heatmap-legend .dot { width: 10px; height: 10px; border-radius: 50%; }
+
+/* Sources */
+.source-list { font-size: 13px; color: var(--text-secondary); }
+.source-list li { margin-bottom: 10px; line-height: 1.6; }
+.source-list a { color: var(--accent); text-decoration: none; }
+.source-list a:hover { text-decoration: underline; }
+
+/* Analysis */
+.analysis-card { background: var(--card-bg); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); margin-bottom: 16px; }
+.analysis-card h4 { font-size: 16px; font-weight: 600; margin-bottom: 10px; }
+.analysis-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+
+/* Footer */
+.footer { text-align: center; padding: 40px 0; color: var(--text-secondary); font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- 1. 今日洞察 -->
+<div class="hero">
+  <div class="hero-badge">OpenClaw Morning News</div>
+  <h1>Anthropic 推出 Claude Science 进军科研自动化；具身智能融资持续井喷</h1>
+  <p class="hero-summary">2026年7月1日，AI行业迎来关键转折：Anthropic正式发布科研自动化平台Claude Science，整合60+科学数据库，标志着AI从"辅助工具"向"科研主力"跨越。同期，具身智能领域融资热度不减，无界动力半年完成数亿美元融资，昆仑行成立3个月融资数十亿元。美国政府对前沿AI模型的监管骤然升级，OpenAI GPT-5.6发布被要求推迟并需政府审批。全球AI竞赛正从模型参数比拼转向场景落地与合规治理的双重博弈。</p>
+  <p class="hero-meta">📅 2026年7月1日 星期三 | 🕐 生成时间 07:17 CST | 📊 共收录 14 个权威来源</p>
+</div>
+
+<!-- 2. 务实落地建议 -->
+<div class="section">
+  <div class="section-title">🛠️ 务实落地建议</div>
+  <div class="advice-grid">
+    <div class="advice-card">
+      <h4><span class="advice-num">1</span>评估 AI 科研工具链</h4>
+      <p>Anthropic Claude Science 已整合 60+ 科学数据库，企业科研团队应评估其自动化实验设计、蛋白质结构预测等能力，将重复性科研流程交给 AI，释放科学家创造力。建议从文献综述和数据分析等低风险场景先行试点。</p>
+    </div>
+    <div class="advice-card">
+      <h4><span class="advice-num">2</span>关注具身智能供应链机会</h4>
+      <p>2026年人形机器人量产破万台，智元、宇树等头部企业产能爬坡。制造业企业应关注谐波减速器、无框力矩电机、六维力传感器等核心零部件的国产替代机会，提前布局供应链合作。</p>
+    </div>
+    <div class="advice-card">
+      <h4><span class="advice-num">3</span>建立 AI 合规预警机制</h4>
+      <p>美国政府要求 OpenAI 推迟 GPT-5.6 发布并需政府审批，预示全球 AI 监管进入收紧期。企业使用前沿模型时，应建立合规预警机制，关注模型出口管制、数据主权等政策变化，避免业务中断风险。</p>
+    </div>
+    <div class="advice-card">
+      <h4><span class="advice-num">4</span>部署向量数据库原生融合架构</h4>
+      <p>向量检索正从"外挂插件"转向数据库内核原生能力。Gartner 预测 2026 年超 50% 企业级 AI 应用依赖混合查询。建议优先选型支持标量+向量混合存储的数据库（如 KingbaseES、Milvus），降低数据同步延迟。</p>
+    </div>
+  </div>
+</div>
+
+<!-- 3. AI DevOps 前沿 -->
+<div class="section">
+  <div class="section-title">🤖 AI DevOps 前沿</div>
+  <div class="content-grid">
+    <div class="card">
+      <span class="tag tag-p0">P0</span>
+      <h3>Claude Science 上线：AI 接管科研流水线</h3>
+      <p>Anthropic 于6月30日正式推出 AI 工作平台 Claude Science，整合60+科学数据库，支持自动化完成生物学和化学研究任务，包括预测蛋白质结构。采用 Opus 4.8 模型，结果可追溯可验证。Beta 版向企业付费用户开放，估值已达9650亿美元。</p>
+      <p class="card-source">来源：财联社 | 2026-07-01</p>
+    </div>
+    <div class="card">
+      <span class="tag tag-p1">P1</span>
+      <h3>AI 编程工具竞争白热化：Claude Code 限额提升 50%</h3>
+      <p>Anthropic 将 Claude Code 周使用限额提升50%至7月13日，新增 Session Sidebar 多会话管理、SSH 远程支持、/ultrareview 多代理并行代码审查。截至2026年5月，Anthropic 80% 以上生产代码由 Claude 编写。</p>
+      <p class="card-source">来源：MobileSetting | 2026-05-20</p>
+    </div>
+    <div class="card">
+      <span class="tag tag-p1">P1</span>
+      <h3>GitHub AI Agent 项目集中爆发：Superpowers 超12万星</h3>
+      <p>2026年3月 GitHub 开源项目月报显示，AI Agent 开发工具链集中爆发。Superpowers（120,016星）、Everything Claude Code（113,958星）、DeerFlow（50,939星）等项目覆盖多智能体框架、全球情报分析、金融量化等热门方向。</p>
+      <p class="card-source">来源：CSDN | 2026-03-29</p>
+    </div>
+    <div class="card">
+      <span class="tag tag-p2">P2</span>
+      <h3>GPT-5-Codex：动态思考技术驱动软件工程自动化</h3>
+      <p>OpenAI GPT-5.3-Codex 速度提升25%，在 SWE-Bench Pro 中通过率达56.4%。支持全流程工程能力：从零构建项目、大规模重构、编写测试、深度调试。本地执行默认沙箱环境，保障开发安全。</p>
+      <p class="card-source">来源：CSDN 技术博客 | 2026-04-15</p>
+    </div>
+  </div>
+</div>
+
+<!-- 4. 头部AI公司动态 -->
+<div class="section">
+  <div class="section-title">🏢 头部AI公司动态</div>
+  <div class="content-grid">
+    <div class="card">
+      <span class="tag tag-p0">P0</span>
+      <h3>美国政府要求 OpenAI 推迟 GPT-5.6 发布</h3>
+      <p>6月25日，美国政府要求 OpenAI 推迟发布 GPT-5.6，并规定该模型访问需获得政府批准。这标志着前沿 AI 模型监管力度大幅升级，或冲击 AI 相关加密资产市场情绪，商业化落地节奏可能放缓。</p>
+      <p class="card-source">来源：新浪财经 | 2026-06-26</p>
+    </div>
+    <div class="card">
+      <span class="tag tag-p0">P0</span>
+      <h3>Anthropic 估值 9650 亿美元，拟秋季 IPO</h3>
+      <p>Anthropic 估值已达9650亿美元，或最早于2026年秋季启动 IPO。公司密集推进产品矩阵：Claude Science、Cowork 法律工具、Claude Code 编程助手。Anthropic 与亚马逊达成十年超1000亿美元算力采购协议。</p>
+      <p class="card-source">来源：财联社 / 财新 | 2026-04-25 / 2026-07-01</p>
+    </div>
+    <div class="card">
+      <span class="tag tag-p1">P1</span>
+      <h3>Kimi K2.6 发布：主攻长程代码和智能体集群</h3>
+      <p>月之暗面发布并开源 Kimi K2.6，重点精进代码能力、长程任务执行及 Agent 集群协同。已同步上线 kimi.com、Kimi API 和 Kimi Code。公司2026年3月 ARR 超1亿美元，正突破海外大客户。</p>
+      <p class="card-source">来源：财新 | 2026-04-25</p>
+    </div>
+    <div class="card">
+      <span class="tag tag-p1">P1</span>
+      <h3>DeepSeek V4 姗姗来迟：开源并增强智能体能力</h3>
+      <p>DeepSeek 发布 V4 模型，Pro 版总参数1.6T，采用稀疏激活设计每 Token 仅激活32B参数。API 输入$0.28/百万Token，比 GPT-5.4 便宜约27倍。腾讯、阿里据悉有意参与 DeepSeek 首轮融资。</p>
+      <p class="card-source">来源：财新 / 新浪财经 | 2026-04-25</p>
+    </div>
+  </div>
+</div>
+
+<!-- 5. 具身智能/机器人 -->
+<div class="section">
+  <div class="section-title">🦾 具身智能 / 机器人</div>
+  <div class="content-grid">
+    <div class="card">
+      <span class="tag tag-p0">P0</span>
+      <h3>无界动力半年融资数亿美元，MWA 模型登顶斯坦福榜单</h3>
+      <p>6月26日，无界动力完成超2亿美元天使轮融资，2026上半年累计数亿美元。已签署近1亿美元全球订单，K15机器人批量投产。MWA™ 隐空间世界模型登顶斯坦福大学发起的 RoboCasa GR1 TableTop 权威榜单，超越英伟达 GR00T-N1.6。</p>
+      <p class="card-source">来源：财新 / 艾邦机器人 | 2026-06-26 / 2026-06-29</p>
+    </div>
+    <div class="card">
+      <span class="tag tag-p0">P0</span>
+      <h3>昆仑行成立 3 个月融资数十亿元</h3>
+      <p>6月23日，注册成立不到3个月的具身智能公司昆仑行机器人宣布完成3轮系列融资，累计融资数十亿元。资本对具身智能赛道的热情有增无减，头部企业争抢上市机会，新创公司以"性价比"吸引新入局投资人。</p>
+      <p class="card-source">来源：财新 | 2026-06-23</p>
+    </div>
+    <div class="card">
+      <span class="tag tag-p1">P1</span>
+      <h3>智元定义 2026 为"部署态元年"，投入 20 亿元生态资金</h3>
+      <p>智元机器人发布 AIMA 生态技术体系（灵渠OS、灵创、灵心、精灵），计划五年投入20亿元专项资金。2026年3月累计量产突破10,000台，龙旗科技近1000台3C代工订单、均胜电子亿元级汽车零部件合同。</p>
+      <p class="card-source">来源：知讯 / 什么值得买 | 2026-06-09</p>
+    </div>
+    <div class="card">
+      <span class="tag tag-p1">P1</span>
+      <h3>智平方估值破百亿，开源类脑 VLA 模型 NeuroVLA</h3>
+      <p>智平方推出并开源类脑 VLA 模型 NeuroVLA，具备主动感知、故障自恢复与时序记忆。爱宝"智魔方"已在全国十余省市运营，机器人店员日均工作10小时。获惠科股份3年1000台近5亿元订单，摩根士丹利认定为全球生产力型机器人最大单一订单。</p>
+      <p class="card-source">来源：财新 / IT之家 | 2026-06-29</p>
+    </div>
+  </div>
+</div>
+
+<!-- 6. 云原生与数据 -->
+<div class="section">
+  <div class="section-title">☁️ 云原生与数据</div>
+  <div class="content-grid">
+    <div class="card">
+      <span class="tag tag-p1">P1</span>
+      <h3>向量数据库进入"原生融合"时代</h3>
+      <p>数据库技术从"外挂向量引擎"演进至"原生向量融合"。Gartner 预测2026年超50%企业级AI应用依赖混合查询。KingbaseES、Milvus 2.4等实现向量与关系数据同引擎存储，支持标量过滤与向量相似度检索的统一事务。</p>
+      <p class="card-source">来源：金仓数据库技术博客 | 2026-04-22 / 2026-05-07</p>
+    </div>
+    <div class="card">
+      <span class="tag tag-p2">P2</span>
+      <h3>十大向量数据库选型指南更新</h3>
+      <p>Pinecone 推出"状态化会话索引"支持AI Agent；Milvus 2.4原生支持多模态和GPU加速；Qdrant Rust内核达10万QPS；LanceDB基于列式格式优化云原生数据湖架构。选型应根据数据规模：<10万用Chroma，10万-100万用Qdrant，>100万用Milvus。</p>
+      <p class="card-source">来源：CSDN 技术博客 | 2026-05-25</p>
+    </div>
+  </div>
+</div>
+
+<!-- 7. 项目管理与效能 -->
+<div class="section">
+  <div class="section-title">📊 项目管理与效能</div>
+  <div class="content-grid">
+    <div class="card">
+      <span class="tag tag-p1">P1</span>
+      <h3>AI 智能体重塑项目管理：Gartner 预测年底 40% 企业采用</h3>
+      <p>Gartner 预测，到2026年底40%的企业将使用任务导向型AI智能体，较2025年不足5%实现爆发式增长。Jira 已深度嵌入AI智能体，支持任务直接分配给AI并与人类并行协同。禅道2026版本强化效能度量中心，提供基于流动效率的多维分析。</p>
+      <p class="card-source">来源：SegmentFault | 2026-06-10</p>
+    </div>
+    <div class="card">
+      <span class="tag tag-p2">P2</span>
+      <h3>研发效能度量平台选型：7 款工具对比</h3>
+      <p>ONES、华为云 CodeArts Board、思码逸 Merico、LinearB、Allstacks、Plandek、Jellyfish 等7款平台覆盖不同规模团队。核心评估维度：需求全生命周期管理、效能度量自动化、团队协作与信息同步、扩展性与集成生态。</p>
+      <p class="card-source">来源：ONES 博客 | 2026-05-28</p>
+    </div>
+  </div>
+</div>
+
+<!-- 8. 全球动态 -->
+<div class="section">
+  <div class="section-title">🌐 全球动态</div>
+  <div class="card card-full">
+    <table class="data-table">
+      <tr><th>地区/领域</th><th>关键事件</th><th>影响</th><th>来源</th></tr>
+      <tr>
+        <td><strong>🇺🇸 美国</strong></td>
+        <td>美国政府要求 OpenAI 推迟 GPT-5.6 发布，需政府审批</td>
+        <td>AI 监管收紧，商业化节奏放缓</td>
+        <td>新浪财经</td>
+      </tr>
+      <tr>
+        <td><strong>🇺🇸 美国</strong></td>
+        <td>Anthropic 推出 Claude Science，估值 9650 亿美元</td>
+        <td>AI 科研自动化赛道开启，秋季拟 IPO</td>
+        <td>财联社</td>
+      </tr>
+      <tr>
+        <td><strong>🇭🇰 港股</strong></td>
+        <td>2026上半年 IPO 收官，85家公司上市</td>
+        <td>中金保荐28家领跑，AI 企业密集上市</td>
+        <td>东方财富</td>
+      </tr>
+      <tr>
+        <td><strong>🇨🇳 中国</strong></td>
+        <td>昆仑行机器人成立3个月融资数十亿元</td>
+        <td>具身智能资本热度持续井喷</td>
+        <td>财新</td>
+      </tr>
+      <tr>
+        <td><strong>🇪🇺 欧盟</strong></td>
+        <td>苹果库克与欧盟科技主管就 Siri AI 展开建设性对话</td>
+        <td>AI 语音助手合规性谈判推进</td>
+        <td>东方财富</td>
+      </tr>
+      <tr>
+        <td><strong>🇷🇺 俄罗斯</strong></td>
+        <td>7月1日起临时关闭与拉脱维亚、芬兰、爱沙尼亚铁路口岸</td>
+        <td>地缘政治紧张升级，贸易通道受限</td>
+        <td>东方财富</td>
+      </tr>
+      <tr>
+        <td><strong>🌍 全球</strong></td>
+        <td>美股三大指数齐涨，道指创新高；存储概念半年涨超3倍</td>
+        <td>AI 热潮带动科技板块，但美联储9月加息概率约80%</td>
+        <td>东方财富</td>
+      </tr>
+      <tr>
+        <td><strong>🇧🇷 巴西</strong></td>
+        <td>国家石油公司7月1日起下调柴油价格0.35雷亚尔</td>
+        <td>能源成本下降，利好物流运输</td>
+        <td>东方财富</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- 9. 大咖声音 -->
+<div class="section">
+  <div class="section-title">🎙️ 大咖声音</div>
+  <div class="voice-grid">
+    <div class="voice-card">
+      <p class="quote">"将来都是机器人送货，根本不需要快递员。"</p>
+      <p class="author">刘强东</p>
+      <p class="title">京东集团创始人 | 2026年APEC工商领导人中国论坛</p>
+    </div>
+    <div class="voice-card">
+      <p class="quote">"下一代机器人大脑不应只是算力和数据的竞赛，更需要探索更高效、更可持续的发展路径。"</p>
+      <p class="author">智平方 CEO</p>
+      <p class="title">夏季达沃斯论坛 | 2026-06-29</p>
+    </div>
+    <div class="voice-card">
+      <p class="quote">"DeepSeek 爆火出圈说明原来模型本身可以带来足够知名度，证明沉下心做基座大模型是有出路的。"</p>
+      <p class="author">付强</p>
+      <p class="title">月之暗面技术团队成员 | 财新采访</p>
+    </div>
+    <div class="voice-card">
+      <p class="quote">"即便今年很多厂商冲万台，人形机器人也未必真正进入商业化拐点。表演型能力和实用型能力，根本不是一回事。"</p>
+      <p class="author">王斐丽</p>
+      <p class="title">瑞银证券中国工业行业分析师 | 2026-04-21</p>
+    </div>
+    <div class="voice-card">
+      <p class="quote">"具身大脑的终极目标是让机器人拥有类人的世界认知建模能力，而非构建客观世界的完整复刻模型。"</p>
+      <p class="author">张玉峰</p>
+      <p class="title">无界动力创始人 | 艾邦机器人</p>
+    </div>
+    <div class="voice-card">
+      <p class="quote">"台积电看到中国大陆机器人'跳来跳去'，直言'没用，好看而已'。"</p>
+      <p class="author">魏哲家</p>
+      <p class="title">台积电董事长兼CEO | 2026年公开发言</p>
+    </div>
+  </div>
+</div>
+
+<!-- 10. 名字解释 -->
+<div class="section">
+  <div class="section-title">📖 名字解释</div>
+  <div class="term-grid">
+    <div class="term-card">
+      <div class="term">Claude Science</div>
+      <div class="def">Anthropic 推出的科研自动化平台，整合60+科学数据库，支持生物学和化学研究任务自动化。</div>
+    </div>
+    <div class="term-card">
+      <div class="term">隐空间世界模型</div>
+      <div class="def">无界动力 MWA 核心技术，在高度抽象的隐空间中认知物理因果规律，而非像素级复刻世界。</div>
+    </div>
+    <div class="term-card">
+      <div class="term">VLA 模型</div>
+      <div class="def">Vision-Language-Action，视觉-语言-动作模型，让机器人理解指令并执行物理操作。</div>
+    </div>
+    <div class="term-card">
+      <div class="term">AIMA</div>
+      <div class="def">智元机器人推出的具身智能生态技术体系，含灵渠OS、灵创、灵心、精灵四大平台。</div>
+    </div>
+    <div class="term-card">
+      <div class="term">RoboCasa</div>
+      <div class="def">斯坦福大学等机构联合发起的具身智能权威评测榜单，用于评估机器人在真实场景的泛化能力。</div>
+    </div>
+    <div class="term-card">
+      <div class="term">动态思考</div>
+      <div class="def">GPT-5-Codex 核心技术，让模型根据任务难度自主分配计算资源，"多想一会儿"以提升准确率。</div>
+    </div>
+    <div class="term-card">
+      <div class="term">向量数据库</div>
+      <div class="def">专为存储和索引高维向量嵌入设计的数据库，支持语义相似性搜索，是 RAG 和 AI Agent 的核心基础设施。</div>
+    </div>
+    <div class="term-card">
+      <div class="term">GEO</div>
+      <div class="def">生成式引擎优化（Generative Engine Optimization），针对 AI 搜索生成答案的内容优化策略，替代传统 SEO。</div>
+    </div>
+    <div class="term-card">
+      <div class="term">ARR</div>
+      <div class="def">年度经常性收入（Annual Recurring Revenue），SaaS 和订阅制企业的核心指标，月之暗面 2026年3月 ARR 超1亿美元。</div>
+    </div>
+  </div>
+</div>
+
+<!-- 11. 关键数据速览 -->
+<div class="section">
+  <div class="section-title">📊 关键数据速览</div>
+  <div class="data-highlights">
+    <div class="highlight-box">
+      <div class="number">9650亿</div>
+      <div class="label">Anthropic 估值（美元）</div>
+    </div>
+    <div class="highlight-box">
+      <div class="number">2亿+</div>
+      <div class="label">无界动力天使轮融资（美元）</div>
+    </div>
+    <div class="highlight-box">
+      <div class="number">10,000+</div>
+      <div class="label">智元机器人累计量产（台）</div>
+    </div>
+    <div class="highlight-box">
+      <div class="number">85</div>
+      <div class="label">港股上半年 IPO 数量</div>
+    </div>
+    <div class="highlight-box">
+      <div class="number">80%+</div>
+      <div class="label">Anthropic 代码由 AI 编写</div>
+    </div>
+    <div class="highlight-box">
+      <div class="number">$0.28</div>
+      <div class="label">DeepSeek V4 API 百万Token输入价</div>
+    </div>
+    <div class="highlight-box">
+      <div class="number">40%</div>
+      <div class="label">Gartner 预测年底企业 AI Agent 采用率</div>
+    </div>
+    <div class="highlight-box">
+      <div class="number">19个月</div>
+      <div class="label">中国央行连续增持黄金</div>
+    </div>
+  </div>
+</div>
+
+<!-- 12. 深度分析 -->
+<div class="section">
+  <div class="section-title">💡 深度分析</div>
+  <div class="analysis-card">
+    <h4>🔬 AI 从"工具"到"科研主力"的范式跃迁</h4>
+    <p>Anthropic 推出 Claude Science 是 2026 年 AI 行业最具标志性的事件之一。它不仅仅是又一个 AI 应用，而是标志着 AI 从"辅助科研"向"直接执行科研"的范式跃迁。整合 60+ 科学数据库、支持蛋白质结构预测、结果可追溯可验证——这些特性意味着 AI 正在进入需要高精度、可重复、可审计的专业领域。如果 Claude Science 在制药、材料科学等场景中验证成功，整个科研产业链的效率曲线将被重塑。然而，这也带来了科学伦理的新挑战：当 AI 生成实验方案并执行数据分析时，人类科学家的角色将从"执行者"转向"策展人"和"验证者"。</p>
+  </div>
+  <div class="analysis-card">
+    <h4>🤖 具身智能：资本狂欢下的"量产元年"真相</h4>
+    <p>2026 年被广泛定义为具身智能的"量产元年"，但数据揭示了更复杂的图景。一方面，智元累计下线破万台、无界动力签下近亿美元订单、智平方获摩根士丹利认定的全球最大生产力型机器人订单——这些成绩真实可信。另一方面，斯坦福报告显示人形机器人在真实家庭场景中的成功率仅为 12.4%，魏哲家直言"跳来跳去，没用"。行业的核心矛盾在于：表演型能力（行走、跳舞）与实用型能力（精密操作、长程稳定性）之间存在巨大鸿沟。资本的涌入正在加速技术迭代，但商业化拐点的真正到来，取决于核心零部件（灵巧手、传感器、减速器）的可靠性提升，以及场景数据的持续积累。</p>
+  </div>
+  <div class="analysis-card">
+    <h4>⚖️ 监管升级：全球 AI 竞赛的"刹车片"与"分水岭"</h4>
+    <p>美国政府要求 OpenAI 推迟 GPT-5.6 发布并需政府审批， Anthropic 的 Fable 和 Mythos 模型一度被暂停访问，标志着美国 AI 政策从"鼓励发展"转向"审慎监管"。这一转变由 NSA 测试 Mythos 模型引发的安全恐慌直接推动。监管升级将产生三层影响：第一，前沿模型的发布节奏将放缓，闭源模型与开源模型的差距可能缩小；第二，企业客户在选择 AI 供应商时，合规性将成为与性能同等重要的考量；第三，中国企业的出海机会窗口可能打开，尤其是在中东、东南亚等监管相对宽松的地区。全球 AI 竞赛正从"技术跑分"进入"合规+技术"的双轨竞争阶段。</p>
+  </div>
+</div>
+
+<!-- 13. 行业热力图 -->
+<div class="section">
+  <div class="section-title">🔥 行业热力图</div>
+  <div class="heatmap">
+    <div class="heatmap-row">
+      <div class="heatmap-label">AI Agent / 智能体</div>
+      <div class="heatmap-bar"><div class="heatmap-fill hot" style="width:95%">🔥 95%</div></div>
+    </div>
+    <div class="heatmap-row">
+      <div class="heatmap-label">具身智能 / 机器人</div>
+      <div class="heatmap-bar"><div class="heatmap-fill hot" style="width:92%">🔥 92%</div></div>
+    </div>
+    <div class="heatmap-row">
+      <div class="heatmap-label">AI 科研自动化</div>
+      <div class="heatmap-bar"><div class="heatmap-fill hot" style="width:88%">🔥 88%</div></div>
+    </div>
+    <div class="heatmap-row">
+      <div class="heatmap-label">AI 编程 / DevOps</div>
+      <div class="heatmap-bar"><div class="heatmap-fill warm" style="width:82%">🌡️ 82%</div></div>
+    </div>
+    <div class="heatmap-row">
+      <div class="heatmap-label">向量数据库 / RAG</div>
+      <div class="heatmap-bar"><div class="heatmap-fill warm" style="width:75%">🌡️ 75%</div></div>
+    </div>
+    <div class="heatmap-row">
+      <div class="heatmap-label">大模型基座竞争</div>
+      <div class="heatmap-bar"><div class="heatmap-fill warm" style="width:70%">🌡️ 70%</div></div>
+    </div>
+    <div class="heatmap-row">
+      <div class="heatmap-label">AI 项目管理</div>
+      <div class="heatmap-bar"><div class="heatmap-fill cool" style="width:55%">🌿 55%</div></div>
+    </div>
+    <div class="heatmap-row">
+      <div class="heatmap-label">AI 监管与合规</div>
+      <div class="heatmap-bar"><div class="heatmap-fill cool" style="width:50%">🌿 50%</div></div>
+    </div>
+    <div class="heatmap-row">
+      <div class="heatmap-label">AI 安全 / 对齐</div>
+      <div class="heatmap-bar"><div class="heatmap-fill cold" style="width:40%">❄️ 40%</div></div>
+    </div>
+    <div class="heatmap-legend">
+      <span><span class="dot" style="background:var(--hot)"></span> 🔥 火热 (>85%)</span>
+      <span><span class="dot" style="background:var(--warm)"></span> 🌡️ 升温 (60-85%)</span>
+      <span><span class="dot" style="background:var(--cool)"></span> 🌿 温和 (40-60%)</span>
+      <span><span class="dot" style="background:var(--cold)"></span> ❄️ 冷静 (<40%)</span>
+    </div>
+    <p style="font-size:13px;color:var(--text-secondary);margin-top:16px;text-align:center;">热力图基于当日新闻密度、资本活跃度、产品发布频次、社交媒体讨论量综合计算，仅反映短期热度趋势，不构成投资建议。</p>
+  </div>
+</div>
+
+<!-- 14. 权威来源 -->
+<div class="section">
+  <div class="section-title">📚 权威来源</div>
+  <div class="card">
+    <ol class="source-list">
+      <li>【2026-07-01 06:28】财联社 编辑赵昊 | Anthropic推出Claude Science：AI开始接管科研流水线 | <a href="https://www.cls.cn/detail/2413554">https://www.cls.cn/detail/2413554</a></li>
+      <li>【2026-07-01 06:23】财联社 编辑赵昊 | Anthropic推出Claude Science助力科研自动化 | <a href="https://finance.sina.com.cn/stock/t/2026-07-01/doc-iniffumk6400175.shtml">新浪财经</a></li>
+      <li>【2026-06-26 16:20】财新网 | 机器人融资热持续 无界动力半年融资数亿美元 | <a href="https://www.caixin.com/2026-06-26/102457906.html">https://www.caixin.com/2026-06-26/102457906.html</a></li>
+      <li>【2026-06-29】艾邦机器人 | 登顶具身智能权威榜单！无界动力发布 MWA 隐空间世界模型 | <a href="https://www.aibangbots.com/a/10373">https://www.aibangbots.com/a/10373</a></li>
+      <li>【2026-06-26 20:00】中国基金报 记者莫琳 | 无界动力完成超2亿美元天使轮融资 | <a href="https://wap.eastmoney.com/a/202606263785182455.html">东方财富</a></li>
+      <li>【2026-06-23】财新网 | 具身智能融资狂热 昆仑行成立3个月融资数十亿元 | <a href="https://www.caixin.com/2026-06-23/102456814.html">https://www.caixin.com/2026-06-23/102456814.html</a></li>
+      <li>【2026-06-29】财新网 | 具身公司智平方融资估值超200亿元 | <a href="https://www.caixin.com/2026-06-29/102458633.html">https://www.caixin.com/2026-06-29/102458633.html</a></li>
+      <li>【2026-06-25 14:00】新浪财经 小浪快报 | 美国政府要求OpenAI推迟GPT-5.6发布 | <a href="https://finance.sina.com.cn/stock/usstock/summary/2026-06-26/doc-inieszru0602096.shtml">新浪财经</a></li>
+      <li>【2026-04-25】财新网 | GPT周报：DeepSeek开源V4；OpenAI发布GPT-5.5 | <a href="https://www.caixin.com/2026-04-25/102437791.html">https://www.caixin.com/2026-04-25/102437791.html</a></li>
+      <li>【2026-06-10】SegmentFault | 2026年值得关注的5个项目管理趋势 | <a href="https://segmentfault.com/a/1190000047837803">https://segmentfault.com/a/1190000047837803</a></li>
+      <li>【2026-05-25】CSDN 技术博客 | 2026年向量数据库选型指南 | <a href="https://blog.csdn.net/weixin_30907935/article/details/98236999">CSDN</a></li>
+      <li>【2026-04-22】金仓数据库 | 2026年数据库架构演进：KingbaseES实现向量关系原生融合 | <a href="https://www.kingbase.com.cn/explore/tech-blog/2026-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B%EF%BC%9Akingbasees-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%90%91%E9%87%8F%E4%B8%8E%E5%85%B3%E7%B3%BB%E7%9A%84%E5%8E%9F%E7%94%9F/">金仓官网</a></li>
+      <li>【2026-06-30】东方财富全球财经快讯 | 美股道指新高、Anthropic Fable出口管制解除、港股IPO收官 | <a href="https://kuaixun.eastmoney.com/">https://kuaixun.eastmoney.com/</a></li>
+      <li>【2026-06-09】知讯 | 智元发布致全体开发者伙伴公开信，定义2026为部署态元年 | <a href="https://3cst.cn/mobile/information/tag-1046">3cst.cn</a></li>
+    </ol>
+  </div>
+</div>
+
+<div class="footer">
+  <p>OpenClaw Morning News | 2026-07-01 | 由 豆饼 (Doubing) 生成</p>
+  <p>晨报网站: https://vivianking6855.github.io/openclaw-morning-news/</p>
+</div>
+
+</div>
+</body>
+</html>
