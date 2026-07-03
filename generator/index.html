@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>豆饼晨报生成器 | Morning News Generator</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+            background: #f5f5f7;
+            color: #1d1d1f;
+            line-height: 1.6;
+        }
+
+        /* 顶部导航 */
+        .topbar {
+            background: #1d1d1f;
+            color: white;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .topbar h1 { font-size: 16px; font-weight: 600; }
+        .topbar .brand { display: flex; align-items: center; gap: 8px; }
+        .topbar .brand span { font-size: 20px; }
+        .topbar-nav a {
+            color: #86868b;
+            text-decoration: none;
+            font-size: 13px;
+            margin-left: 20px;
+            transition: color 0.2s;
+        }
+        .topbar-nav a:hover { color: white; }
+
+        /* 主布局：左侧表单 + 右侧预览 */
+        .main-layout {
+            display: flex;
+            height: calc(100vh - 48px);
+        }
+
+        /* 左侧表单区 */
+        .form-panel {
+            width: 45%;
+            min-width: 420px;
+            max-width: 560px;
+            background: white;
+            border-right: 1px solid #e5e5e5;
+            overflow-y: auto;
+            padding: 24px;
+        }
+
+        /* 右侧预览区 */
+        .preview-panel {
+            flex: 1;
+            overflow-y: auto;
+            background: #f5f5f7;
+        }
+        .preview-panel iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .preview-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #86868b;
+        }
+        .preview-placeholder .icon { font-size: 64px; margin-bottom: 16px; opacity: 0.3; }
+
+        /* 步骤导航 */
+        .step-nav {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .step-nav button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            background: #f5f5f7;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #86868b;
+        }
+        .step-nav button.active {
+            background: #1d1d1f;
+            color: white;
+        }
+        .step-nav button:hover:not(.active) {
+            background: #e8e8ed;
+            color: #1d1d1f;
+        }
+
+        /* 步骤内容 */
+        .step-content { display: none; }
+        .step-content.active { display: block; }
+
+        /* 表单元素 */
+        .form-group { margin-bottom: 20px; }
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #1d1d1f;
+        }
+        .form-group label .hint {
+            font-weight: 400;
+            color: #86868b;
+            font-size: 12px;
+            margin-left: 4px;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="date"],
+        .form-group input[type="time"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #0071e3;
+            box-shadow: 0 0 0 3px rgba(0,113,227,0.1);
+        }
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        /* 动态列表项 */
+        .list-item {
+            background: #fbfbfd;
+            border: 1px solid #e8e8ed;
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 12px;
+            position: relative;
+        }
+        .list-item .remove-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 24px;
+            height: 24px;
+            border: none;
+            background: #ffebee;
+            color: #c62828;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .list-item .remove-btn:hover { background: #ffcdd2; }
+        .add-btn {
+            width: 100%;
+            padding: 12px;
+            border: 2px dashed #d1d5db;
+            border-radius: 10px;
+            background: white;
+            color: #86868b;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .add-btn:hover {
+            border-color: #0071e3;
+            color: #0071e3;
+            background: #f0f7ff;
+        }
+
+        /* 优先级选择 */
+        .priority-select {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .priority-select label {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid transparent;
+        }
+        .priority-select input { display: none; }
+        .priority-select input:checked + span.p0 { background: #ffebee; color: #c62828; border-color: #ef9a9a; }
+        .priority-select input:checked + span.p1 { background: #fff3e0; color: #ef6c00; border-color: #ffcc80; }
+        .priority-select input:checked + span.p2 { background: #e8f5e9; color: #2e7d32; border-color: #a5d6a7; }
+        .priority-select span {
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid #e5e5e5;
+            transition: all 0.2s;
+        }
+
+        /* 热力图级别 */
+        .heat-select {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .heat-select label {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid transparent;
+        }
+        .heat-select input { display: none; }
+        .heat-select input:checked + span.hot { background: linear-gradient(135deg, #ffebee, #ffcdd2); color: #c62828; border-color: #ef9a9a; }
+        .heat-select input:checked + span.warm { background: linear-gradient(135deg, #fff3e0, #ffe0b2); color: #ef6c00; border-color: #ffcc80; }
+        .heat-select input:checked + span.cool { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); color: #2e7d32; border-color: #a5d6a7; }
+        .heat-select span {
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid #e5e5e5;
+        }
+
+        /* 底部操作栏 */
+        .action-bar {
+            position: sticky;
+            bottom: 0;
+            background: white;
+            border-top: 1px solid #e5e5e5;
+            padding: 16px 0;
+            margin-top: 24px;
+            display: flex;
+            gap: 10px;
+        }
+        .btn {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: 10px;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .btn-primary {
+            background: #1d1d1f;
+            color: white;
+        }
+        .btn-primary:hover { background: #374151; }
+        .btn-secondary {
+            background: #f5f5f7;
+            color: #1d1d1f;
+            border: 1px solid #d1d5db;
+        }
+        .btn-secondary:hover { background: #e8e8ed; }
+        .btn-success {
+            background: #0071e3;
+            color: white;
+        }
+        .btn-success:hover { background: #005bb5; }
+
+        /* 折叠面板 */
+        .collapsible {
+            border: 1px solid #e8e8ed;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+        .collapsible-header {
+            padding: 12px 16px;
+            background: #fbfbfd;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .collapsible-header:hover { background: #f5f5f7; }
+        .collapsible-header .toggle { transition: transform 0.2s; }
+        .collapsible-header.open .toggle { transform: rotate(180deg); }
+        .collapsible-body {
+            padding: 16px;
+            display: none;
+        }
+        .collapsible-body.open { display: block; }
+
+        /* 小标签 */
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 6px;
+        }
+        .badge-required { background: #ffebee; color: #c62828; }
+        .badge-optional { background: #e8f5e9; color: #2e7d32; }
+
+        /* 提示信息 */
+        .tip {
+            background: #f0f7ff;
+            border-left: 3px solid #0071e3;
+            padding: 10px 14px;
+            border-radius: 0 8px 8px 0;
+            font-size: 12px;
+            color: #1d1d1f;
+            margin-bottom: 16px;
+        }
+
+        /* 导出区 */
+        .export-area {
+            background: #1d1d1f;
+            color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 16px;
+        }
+        .export-area h3 { font-size: 16px; margin-bottom: 12px; }
+        .export-area textarea {
+            width: 100%;
+            min-height: 200px;
+            background: #2d2d2f;
+            color: #e5e5e5;
+            border: 1px solid #434344;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 11px;
+            resize: vertical;
+        }
+
+        /* 响应式 */
+        @media (max-width: 900px) {
+            .main-layout { flex-direction: column; height: auto; }
+            .form-panel { width: 100%; max-width: none; height: auto; border-right: none; border-bottom: 1px solid #e5e5e5; }
+            .preview-panel { height: 500px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <div class="brand">
+            <span>❤️‍🔥</span>
+            <h1>豆饼晨报生成器</h1>
+        </div>
+        <div class="topbar-nav">
+            <a href="../index.html">← 返回晨报首页</a>
+            <a href="#" onclick="loadDemoData()">加载示例数据</a>
+        </div>
+    </div>
+
+    <div class="main-layout">
+        <!-- 左侧表单 -->
+        <div class="form-panel">
+            <!-- 步骤导航 -->
+            <div class="step-nav">
+                <button class="active" data-step="1">① 基础信息</button>
+                <button data-step="2">② 新闻内容</button>
+                <button data-step="3">③ 分析板块</button>
+                <button data-step="4">④ 导出</button>
+            </div>
+
+            <!-- Step 1: 基础信息 -->
+            <div class="step-content active" data-step="1">
+                <div class="tip">
+                    📌 填写今日晨报的基本信息。标题和摘要将显示在页面顶部的英雄区。
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>日期 <span class="badge badge-required">必填</span></label>
+                        <input type="date" id="date" value="">
+                    </div>
+                    <div class="form-group">
+                        <label>时间</label>
+                        <input type="text" id="time" value="07:17 CST" placeholder="07:17 CST">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>英雄区主标题 <span class="badge badge-required">必填</span></label>
+                    <input type="text" id="heroTitle" placeholder="用3-5个关键词概括今日核心主题，用 · 分隔" value="">
+                </div>
+
+                <div class="form-group">
+                    <label>核心摘要 <span class="badge badge-required">必填</span></label>
+                    <textarea id="heroSummary" rows="4" placeholder="2-3句话概括当日重点，200字左右"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>务实落地建议 <span class="badge badge-required">必填</span></label>
+                    <div id="recommendationsList"></div>
+                    <button class="add-btn" onclick="addRecommendation()">+ 添加建议</button>
+                </div>
+            </div>
+
+            <!-- Step 2: 新闻内容 -->
+            <div class="step-content" data-step="2">
+                <div class="tip">
+                    📌 填写6大领域的新闻内容。每个条目包含标题、描述、来源和优先级。
+                </div>
+
+                <div class="collapsible">
+                    <div class="collapsible-header" onclick="toggleCollapse(this)">
+                        🤖 AI DevOps 前沿 <span class="badge badge-optional">可选</span>
+                        <span class="toggle">▼</span>
+                    </div>
+                    <div class="collapsible-body">
+                        <div id="aiDevOpsList"></div>
+                        <button class="add-btn" onclick="addNewsItem('aiDevOps')">+ 添加新闻</button>
+                    </div>
+                </div>
+
+                <div class="collapsible">
+                    <div class="collapsible-header" onclick="toggleCollapse(this)">
+                        🏢 头部AI公司动态 <span class="badge badge-optional">可选</span>
+                        <span class="toggle">▼</span>
+                    </div>
+                    <div class="collapsible-body">
+                        <div id="aiCompaniesList"></div>
+                        <button class="add-btn" onclick="addNewsItem('aiCompanies')">+ 添加新闻</button>
+                    </div>
+                </div>
+
+                <div class="collapsible">
+                    <div class="collapsible-header" onclick="toggleCollapse(this)">
+                        🦾 具身智能/机器人 <span class="badge badge-optional">可选</span>
+                        <span class="toggle">▼</span>
+                    </div>
+                    <div class="collapsible-body">
+                        <div id="roboticsList"></div>
+                        <button class="add-btn" onclick="addNewsItem('robotics')">+ 添加新闻</button>
+                    </div>
+                </div>
+
+                <div class="collapsible">
+                    <div class="collapsible-header" onclick="toggleCollapse(this)">
+                        ☁️ 云原生与数据 <span class="badge badge-optional">可选</span>
+                        <span class="toggle">▼</span>
+                    </div>
+                    <div class="collapsible-body">
+                        <div id="cloudNativeList"></div>
+                        <button class="add-btn" onclick="addNewsItem('cloudNative')">+ 添加新闻</button>
+                    </div>
+                </div>
+
+                <div class="collapsible">
+                    <div class="collapsible-header" onclick="toggleCollapse(this)">
+                        📊 项目管理与效能 <span class="badge badge-optional">可选</span>
+                        <span class="toggle">▼</span>
+                    </div>
+                    <div class="collapsible-body">
+                        <div id="projectManagementList"></div>
+                        <button class="add-btn" onclick="addNewsItem('projectManagement')">+ 添加新闻</button>
+                    </div>
+                </div>
+
+                <div class="collapsible">
+                    <div class="collapsible-header" onclick="toggleCollapse(this)">
+                        🌐 全球动态 <span class="badge badge-optional">可选</span>
+                        <span class="toggle">▼</span>
+                    </div>
+                    <div class="collapsible-body">
+                        <div id="globalList"></div>
+                        <button class="add-btn" onclick="addGlobalRow()">+ 添加地区</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: 分析板块 -->
+            <div class="step-content" data-step="3">
+                <div class="tip">
+                    📌 填写大咖声音、术语解释、关键数据、深度分析和行业热力图。
+                </div>
+
+                <div class="collapsible">
+                    <div class="collapsible-header" onclick="toggleCollapse(this)">
+                        🎙️ 大咖声音 <span class="badge badge-optional">可选</span>
+                        <span class="toggle">▼</span>
+                    </div>
+                    <div class="collapsible-body">
+                        <div id="quotesList"></div>
+                        <button class="add-btn" onclick="addQuote()">+ 添加引用</button>
+                    </div>
+                </div>
+
+                <div class="collapsible">
+                    <div class="collapsible-header" onclick="toggleCollapse(this)">
+                        📖 名字解释 <span class="badge badge-optional">可选</span>
+                        <span class="toggle">▼</span>
+                    </div>
+                    <div class="collapsible-body">
+                        <div id="termsList"></div>
+                        <button class="add-btn" onclick="addTerm()">+ 添加术语</button>
+                    </div>
+                </div>
+
+                <div class="collapsible">
+                    <div class="collapsible-header" onclick="toggleCollapse(this)">
+                        📊 关键数据速览 <span class="badge badge-optional">可选</span>
+                        <span class="toggle">▼</span>
+                    </div>
+                    <div class="collapsible-body">
+                        <div id="dataList"></div>
+                        <button class="add-btn" onclick="addData()">+ 添加数据</button>
+                    </div>
+                </div>
+
+                <div class="collapsible">
+                    <div class="collapsible-header" onclick="toggleCollapse(this)">
+                        💡 深度分析 <span class="badge badge-optional">可选</span>
+                        <span class="toggle">▼</span>
+                    </div>
+                    <div class="collapsible-body">
+                        <div id="analysisList"></div>
+                        <button class="add-btn" onclick="addAnalysis()">+ 添加分析</button>
+                    </div>
+                </div>
+
+                <div class="collapsible">
+                    <div class="collapsible-header" onclick="toggleCollapse(this)">
+                        🔥 行业热力图 <span class="badge badge-optional">可选</span>
+                        <span class="toggle">▼</span>
+                    </div>
+                    <div class="collapsible-body">
+                        <div id="heatmapList"></div>
+                        <button class="add-btn" onclick="addHeatmapItem()">+ 添加领域</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: 导出 -->
+            <div class="step-content" data-step="4">
+                <div class="tip">
+                    📌 预览生成的晨报，确认无误后下载HTML文件。
+                </div>
+
+                <div class="export-area">
+                    <h3>📄 生成的HTML源码</h3>
+                    <textarea id="outputCode" readonly></textarea>
+                </div>
+
+                <div class="action-bar" style="position: static; border: none; margin-top: 16px;">
+                    <button class="btn btn-primary" onclick="copyCode()">📋 复制源码</button>
+                    <button class="btn btn-success" onclick="downloadHTML()">⬇️ 下载HTML</button>
+                </div>
+            </div>
+
+            <!-- 底部导航按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-secondary" id="prevBtn" onclick="changeStep(-1)" style="display:none">← 上一步</button>
+                <button class="btn btn-primary" id="nextBtn" onclick="changeStep(1)">下一步 →</button>
+            </div>
+        </div>
+
+        <!-- 右侧预览 -->
+        <div class="preview-panel">
+            <div class="preview-placeholder" id="previewPlaceholder">
+                <div class="icon">❤️‍🔥</div>
+                <p>填写左侧表单，实时预览晨报效果</p>
+                <p style="font-size: 13px; margin-top: 8px;">点击"下一步"自动更新预览</p>
+            </div>
+            <iframe id="previewFrame" style="display:none;"></iframe>
+        </div>
+    </div>
+
+    <script src="template.js"></script>
+    <script>
+        // ========== 状态管理 ==========
+        let currentStep = 1;
+        const data = {
+            date: '',
+            time: '07:17 CST',
+            hero: { title: '', summary: '' },
+            recommendations: [],
+            aiDevOps: [],
+            aiCompanies: [],
+            robotics: [],
+            cloudNative: [],
+            projectManagement: [],
+            global: [],
+            quotes: [],
+            terms: [],
+            dataHighlights: [],
+            analysis: [],
+            heatmap: [],
+            sources: []
+        };
+
+        // 初始化日期为今天
+        document.getElementById('date').value = new Date().toISOString().split('T')[0];
+
+        // ========== 步骤导航 ==========
+        function changeStep(delta) {
+            const newStep = currentStep + delta;
+            if (newStep < 1 || newStep > 4) return;
+
+            // 保存当前步骤数据
+            saveCurrentStepData();
+
+            currentStep = newStep;
+            updateStepUI();
+
+            // 如果到第4步，生成并显示代码
+            if (currentStep === 4) {
+                generateAndShowCode();
+            }
+
+            // 实时预览（除第4步外）
+            if (currentStep !== 4) {
+                updatePreview();
+            }
+        }
+
+        function updateStepUI() {
+            document.querySelectorAll('.step-nav button').forEach((btn, i) => {
+                btn.classList.toggle('active', i + 1 === currentStep);
+            });
+            document.querySelectorAll('.step-content').forEach((content, i) => {
+                content.classList.toggle('active', i + 1 === currentStep);
+            });
+            document.getElementById('prevBtn').style.display = currentStep === 1 ? 'none' : 'block';
+            document.getElementById('nextBtn').textContent = currentStep === 4 ? '完成' : '下一步 →';
+        }
+
+        document.querySelectorAll('.step-nav button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                saveCurrentStepData();
+                currentStep = parseInt(btn.dataset.step);
+                updateStepUI();
+                if (currentStep === 4) generateAndShowCode();
+                else updatePreview();
+            });
+        });
+
+        // ========== 数据收集 ==========
+        function saveCurrentStepData() {
+            data.date = document.getElementById('date').value;
+            data.time = document.getElementById('time').value;
+            data.hero.title = document.getElementById('heroTitle').value;
+            data.hero.summary = document.getElementById('heroSummary').value;
+        }
+
+        // ========== 动态列表操作 ==========
+        function addRecommendation() {
+            const id = `rec-${Date.now()}`;
+            const html = `<div class="list-item" id="${id}">
+                <button class="remove-btn" onclick="removeItem('${id}')">×</button>
+                <div class="form-group">
+                    <label>建议标题</label>
+                    <input type="text" class="rec-title" placeholder="例如：关注AgentOps体系建设">
+                </div>
+                <div class="form-group">
+                    <label>具体内容</label>
+                    <textarea class="rec-content" rows="2" placeholder="1-2句话的具体建议"></textarea>
+                </div>
+                <div class="priority-select">
+                    <label><input type="radio" name="priority-${id}" value="p0" class="rec-priority"><span class="p0">P0 立即行动</span></label>
+                    <label><input type="radio" name="priority-${id}" value="p1" class="rec-priority" checked><span class="p1">P1 本周规划</span></label>
+                    <label><input type="radio" name="priority-${id}" value="p2" class="rec-priority"><span class="p2">P2 本月试点</span></label>
+                </div>
+            </div>`;
+            document.getElementById('recommendationsList').insertAdjacentHTML('beforeend', html);
+        }
+
+        function addNewsItem(section) {
+            const id = `${section}-${Date.now()}`;
+            const html = `<div class="list-item" id="${id}">
+                <button class="remove-btn" onclick="removeItem('${id}')">×</button>
+                <div class="form-group">
+                    <label>新闻标题</label>
+                    <input type="text" class="news-title-input" placeholder="新闻标题">
+                </div>
+                <div class="form-group">
+                    <label>内容描述</label>
+                    <textarea class="news-desc-input" rows="2" placeholder="新闻详细描述"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>来源</label>
+                        <input type="text" class="news-source-input" placeholder="例如：36氪 / 2026-07-03">
+                    </div>
+                    <div class="form-group">
+                        <label>优先级</label>
+                        <div class="priority-select">
+                            <label><input type="radio" name="priority-${id}" value="p0" class="news-priority"><span class="p0">P0</span></label>
+                            <label><input type="radio" name="priority-${id}" value="p1" class="news-priority" checked><span class="p1">P1</span></label>
+                            <label><input type="radio" name="priority-${id}" value="p2" class="news-priority"><span class="p2">P2</span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+            document.getElementById(section + 'List').insertAdjacentHTML('beforeend', html);
+        }
+
+        function addGlobalRow() {
+            const id = `global-${Date.now()}`;
+            const html = `<div class="list-item" id="${id}">
+                <button class="remove-btn" onclick="removeItem('${id}')">×</button>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>地区/领域</label>
+                        <input type="text" class="global-region" placeholder="例如：🇨🇳 中国">
+                    </div>
+                    <div class="form-group">
+                        <label>优先级</label>
+                        <div class="priority-select">
+                            <label><input type="radio" name="gp-${id}" value="p0" class="global-priority"><span class="p0">P0</span></label>
+                            <label><input type="radio" name="gp-${id}" value="p1" class="global-priority" checked><span class="p1">P1</span></label>
+                            <label><input type="radio" name="gp-${id}" value="p2" class="global-priority"><span class="p2">P2</span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>关键事件</label>
+                    <input type="text" class="global-event" placeholder="该地区的关键事件描述">
+                </div>
+            </div>`;
+            document.getElementById('globalList').insertAdjacentHTML('beforeend', html);
+        }
+
+        function addQuote() {
+            const id = `quote-${Date.now()}`;
+            const html = `<div class="list-item" id="${id}">
+                <button class="remove-btn" onclick="removeItem('${id}')">×</button>
+                <div class="form-group">
+                    <label>引言内容</label>
+                    <textarea class="quote-text-input" rows="2" placeholder="大咖的原话"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>姓名</label>
+                        <input type="text" class="quote-author-input" placeholder="例如：黄仁勋">
+                    </div>
+                    <div class="form-group">
+                        <label>职位</label>
+                        <input type="text" class="quote-title-input" placeholder="例如：英伟达创始人兼CEO">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>来源</label>
+                    <input type="text" class="quote-source-input" placeholder="例如：2026年达沃斯论坛">
+                </div>
+            </div>`;
+            document.getElementById('quotesList').insertAdjacentHTML('beforeend', html);
+        }
+
+        function addTerm() {
+            const id = `term-${Date.now()}`;
+            const html = `<div class="list-item" id="${id}">
+                <button class="remove-btn" onclick="removeItem('${id}')">×</button>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>术语名称</label>
+                        <input type="text" class="term-name-input" placeholder="例如：S-1招股书">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>一句话解释</label>
+                    <textarea class="term-desc-input" rows="2" placeholder="用通俗语言解释这个术语"></textarea>
+                </div>
+            </div>`;
+            document.getElementById('termsList').insertAdjacentHTML('beforeend', html);
+        }
+
+        function addData() {
+            const id = `data-${Date.now()}`;
+            const html = `<div class="list-item" id="${id}">
+                <button class="remove-btn" onclick="removeItem('${id}')">×</button>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>数字</label>
+                        <input type="text" class="data-number-input" placeholder="例如：8520亿">
+                    </div>
+                    <div class="form-group">
+                        <label>说明</label>
+                        <input type="text" class="data-label-input" placeholder="例如：OpenAI估值（美元）">
+                    </div>
+                </div>
+            </div>`;
+            document.getElementById('dataList').insertAdjacentHTML('beforeend', html);
+        }
+
+        function addAnalysis() {
+            const id = `analysis-${Date.now()}`;
+            const html = `<div class="list-item" id="${id}">
+                <button class="remove-btn" onclick="removeItem('${id}')">×</button>
+                <div class="form-group">
+                    <label>分析标题</label>
+                    <input type="text" class="analysis-title-input" placeholder="分析小节标题">
+                </div>
+                <div class="form-group">
+                    <label>分析内容</label>
+                    <textarea class="analysis-desc-input" rows="4" placeholder="深入的分析内容，200-400字"></textarea>
+                </div>
+            </div>`;
+            document.getElementById('analysisList').insertAdjacentHTML('beforeend', html);
+        }
+
+        function addHeatmapItem() {
+            const id = `heat-${Date.now()}`;
+            const html = `<div class="list-item" id="${id}">
+                <button class="remove-btn" onclick="removeItem('${id}')">×</button>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>领域名称</label>
+                        <input type="text" class="heat-name-input" placeholder="例如：AI IPO/融资">
+                    </div>
+                    <div class="form-group">
+                        <label>热度级别</label>
+                        <div class="heat-select">
+                            <label><input type="radio" name="hl-${id}" value="hot" class="heat-level" checked><span class="hot">🔥🔥🔥 极度活跃</span></label>
+                            <label><input type="radio" name="hl-${id}" value="warm" class="heat-level"><span class="warm">🔥🔥 快速升温</span></label>
+                            <label><input type="radio" name="hl-${id}" value="cool" class="heat-level"><span class="cool">🔥 持续跟踪</span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>状态描述</label>
+                    <input type="text" class="heat-status-input" placeholder="例如：近期有重大资本事件">
+                </div>
+            </div>`;
+            document.getElementById('heatmapList').insertAdjacentHTML('beforeend', html);
+        }
+
+        function removeItem(id) {
+            document.getElementById(id).remove();
+        }
+
+        // ========== 折叠面板 ==========
+        function toggleCollapse(header) {
+            header.classList.toggle('open');
+            const body = header.nextElementSibling;
+            body.classList.toggle('open');
+        }
+
+        // ========== 收集表单数据 ==========
+        function collectFormData() {
+            saveCurrentStepData();
+
+            // 收集建议
+            data.recommendations = [];
+            document.querySelectorAll('#recommendationsList .list-item').forEach(item => {
+                data.recommendations.push({
+                    title: item.querySelector('.rec-title').value,
+                    content: item.querySelector('.rec-content').value,
+                    priority: item.querySelector('.rec-priority:checked')?.value || 'p2'
+                });
+            });
+
+            // 收集新闻
+            ['aiDevOps', 'aiCompanies', 'robotics', 'cloudNative', 'projectManagement'].forEach(section => {
+                data[section] = [];
+                document.querySelectorAll(`#${section}List .list-item`).forEach(item => {
+                    data[section].push({
+                        title: item.querySelector('.news-title-input').value,
+                        desc: item.querySelector('.news-desc-input').value,
+                        source: item.querySelector('.news-source-input').value,
+                        priority: item.querySelector('.news-priority:checked')?.value || 'p2'
+                    });
+                });
+            });
+
+            // 收集全球动态
+            data.global = [];
+            document.querySelectorAll('#globalList .list-item').forEach(item => {
+                data.global.push({
+                    region: item.querySelector('.global-region').value,
+                    event: item.querySelector('.global-event').value,
+                    priority: item.querySelector('.global-priority:checked')?.value || 'p2'
+                });
+            });
+
+            // 收集大咖声音
+            data.quotes = [];
+            document.querySelectorAll('#quotesList .list-item').forEach(item => {
+                data.quotes.push({
+                    text: item.querySelector('.quote-text-input').value,
+                    author: item.querySelector('.quote-author-input').value,
+                    title: item.querySelector('.quote-title-input').value,
+                    source: item.querySelector('.quote-source-input').value
+                });
+            });
+
+            // 收集术语
+            data.terms = [];
+            document.querySelectorAll('#termsList .list-item').forEach(item => {
+                data.terms.push({
+                    name: item.querySelector('.term-name-input').value,
+                    desc: item.querySelector('.term-desc-input').value
+                });
+            });
+
+            // 收集数据
+            data.dataHighlights = [];
+            document.querySelectorAll('#dataList .list-item').forEach(item => {
+                data.dataHighlights.push({
+                    number: item.querySelector('.data-number-input').value,
+                    label: item.querySelector('.data-label-input').value
+                });
+            });
+
+            // 收集分析
+            data.analysis = [];
+            document.querySelectorAll('#analysisList .list-item').forEach(item => {
+                data.analysis.push({
+                    title: item.querySelector('.analysis-title-input').value,
+                    desc: item.querySelector('.analysis-desc-input').value
+                });
+            });
+
+            // 收集热力图
+            data.heatmap = [];
+            document.querySelectorAll('#heatmapList .list-item').forEach(item => {
+                data.heatmap.push({
+                    name: item.querySelector('.heat-name-input').value,
+                    level: item.querySelector('.heat-level:checked')?.value || 'cool',
+                    status: item.querySelector('.heat-status-input').value
+                });
+            });
+        }
+
+        // ========== 预览 ==========
+        function updatePreview() {
+            collectFormData();
+            const html = MorningNewsTemplate.render(data);
+            const blob = new Blob([html], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const frame = document.getElementById('previewFrame');
+            frame.src = url;
+            frame.style.display = 'block';
+            document.getElementById('previewPlaceholder').style.display = 'none';
+        }
+
+        // ========== 生成代码 ==========
+        function generateAndShowCode() {
+            collectFormData();
+            const html = MorningNewsTemplate.render(data);
+            document.getElementById('outputCode').value = html;
+        }
+
+        function copyCode() {
+            const textarea = document.getElementById('outputCode');
+            textarea.select();
+            document.execCommand('copy');
+            alert('源码已复制到剪贴板');
+        }
+
+        function downloadHTML() {
+            collectFormData();
+            const html = MorningNewsTemplate.render(data);
+            const blob = new Blob([html], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `morning-news-${data.date || 'today'}.html`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // ========== 加载示例数据 ==========
+        function loadDemoData() {
+            document.getElementById('heroTitle').value = 'AI IPO狂潮来袭 · 国产算力突破 · 具身智能量产元年';
+            document.getElementById('heroSummary').value = '2026年7月，全球AI产业进入资本变现关键节点。OpenAI冲刺万亿IPO，DeepSeek V4全昇腾部署打破算力垄断，具身智能赛道融资超200亿元。';
+
+            // 添加示例建议
+            addRecommendation();
+            const recItems = document.querySelectorAll('#recommendationsList .list-item');
+            if (recItems.length > 0) {
+                const last = recItems[recItems.length - 1];
+                last.querySelector('.rec-title').value = '关注AI Agent落地场景，优先接入MCP协议';
+                last.querySelector('.rec-content').value = 'Skywork等Agent专属模型已原生兼容MCP协议，企业应尽快评估现有工作流中可被Agent自动化的环节。';
+            }
+
+            // 添加示例新闻
+            addNewsItem('aiDevOps');
+            const aiItems = document.querySelectorAll('#aiDevOpsList .list-item');
+            if (aiItems.length > 0) {
+                const last = aiItems[aiItems.length - 1];
+                last.querySelector('.news-title-input').value = 'DeepSeek V4全昇腾部署：完全跑在华为芯片上';
+                last.querySelector('.news-desc-input').value = 'DeepSeek V4实现全部运行在华为昇腾芯片上，未使用一张英伟达GPU，中文能力超过GPT-5.4。';
+                last.querySelector('.news-source-input').value = 'AI Agent社区 / 2026-07-01';
+                last.querySelector('.news-priority[value="p0"]').checked = true;
+            }
+
+            // 添加示例数据
+            addData();
+            const dataItems = document.querySelectorAll('#dataList .list-item');
+            if (dataItems.length > 0) {
+                const last = dataItems[dataItems.length - 1];
+                last.querySelector('.data-number-input').value = '8520亿';
+                last.querySelector('.data-label-input').value = 'OpenAI估值（美元）';
+            }
+
+            updatePreview();
+            alert('示例数据已加载，请继续填写或查看预览');
+        }
+
+        // 默认添加一个空建议
+        addRecommendation();
+    </script>
+</body>
+</html>
