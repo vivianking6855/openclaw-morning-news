@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenClaw 晨报 | 2026-07-12</title>
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --card: #ffffff;
+      --text: #1d1d1f;
+      --text-secondary: #6e6e73;
+      --accent: #0071e3;
+      --accent-light: #e8f4fd;
+      --p0: #ff3b30;
+      --p1: #ff9500;
+      --p2: #34c759;
+      --border: rgba(0,0,0,0.08);
+      --shadow: 0 4px 24px rgba(0,0,0,0.06);
+      --radius: 16px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #1d1d1f 0%, #2d2d30 100%);
+      border-radius: var(--radius);
+      padding: 48px;
+      margin-bottom: 32px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%; right: -20%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,113,227,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .hero h1 { font-size: 36px; font-weight: 700; margin-bottom: 16px; position: relative; }
+    .hero-summary { font-size: 17px; line-height: 1.7; opacity: 0.85; max-width: 800px; position: relative; }
+    .hero-meta { display: flex; gap: 24px; margin-top: 24px; font-size: 13px; opacity: 0.6; position: relative; }
+
+    /* Section */
+    .section { margin-bottom: 32px; }
+    .section-title {
+      font-size: 22px; font-weight: 700; margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-title .emoji { font-size: 24px; }
+
+    /* Content Grid */
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 768px) {
+      .content-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 26px; }
+      .hero { padding: 28px; }
+    }
+
+    /* Card */
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+    .card-header {
+      display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;
+    }
+    .card-title { font-size: 16px; font-weight: 600; line-height: 1.4; }
+    .card-body { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+    .card-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 14px; padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--text-secondary);
+    }
+
+    /* Priority Tag */
+    .tag {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .tag-p0 { background: #ffe5e5; color: var(--p0); }
+    .tag-p1 { background: #fff4e5; color: var(--p1); }
+    .tag-p2 { background: #e5f9eb; color: var(--p2); }
+
+    /* Advice Cards */
+    .advice-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .advice-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--accent);
+    }
+    .advice-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+    .advice-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+    /* Table */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .data-table th, .data-table td {
+      padding: 14px 18px;
+      text-align: left;
+      font-size: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-table th {
+      background: #fafafa;
+      font-weight: 600;
+      color: var(--text-secondary);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+
+    /* Expert Cards Grid */
+    .expert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    .expert-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+    .expert-quote {
+      font-style: italic;
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 12px;
+      padding-left: 16px;
+      border-left: 3px solid var(--accent);
+    }
+    .expert-name { font-weight: 600; font-size: 13px; }
+    .expert-title { font-size: 12px; color: var(--text-secondary); }
+
+    /* Term Cards Grid */
+    .term-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 768px) {
+      .term-grid { grid-template-columns: repeat(2, 1fr); }
+      .advice-grid { grid-template-columns: 1fr; }
+    }
+    .term-card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+    .term-name { font-weight: 600; font-size: 14px; color: var(--accent); margin-bottom: 6px; }
+    .term-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+
+    /* Data Overview */
+    .data-overview {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 768px) {
+      .data-overview { grid-template-columns: repeat(2, 1fr); }
+    }
+    .data-item {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .data-number { font-size: 32px; font-weight: 700; color: var(--accent); }
+    .data-label { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
+    .data-change { font-size: 12px; margin-top: 4px; }
+    .data-up { color: var(--p2); }
+    .data-down { color: var(--p0); }
+
+    /* Heatmap */
+    .heatmap {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+    }
+    @media (max-width: 768px) {
+      .heatmap { grid-template-columns: repeat(3, 1fr); }
+    }
+    .heatmap-item {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .heatmap-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .heat-high { background: var(--p0); }
+    .heat-mid { background: var(--p1); }
+    .heat-low { background: var(--p2); }
+    .heat-warm { background: #ffcc00; }
+    .heatmap-name { font-size: 13px; font-weight: 500; }
+    .heatmap-status { font-size: 11px; color: var(--text-secondary); margin-top: 4px; }
+
+    /* Sources */
+    .source-list { background: var(--card); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); }
+    .source-item { margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--border); font-size: 13px; }
+    .source-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .source-time { color: var(--text-secondary); font-size: 12px; }
+    .source-author { color: var(--accent); font-weight: 500; }
+    .source-link { color: var(--accent); text-decoration: none; }
+    .source-link:hover { text-decoration: underline; }
+
+    /* Analysis */
+    .analysis-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 16px;
+    }
+    .analysis-card h4 { font-size: 16px; font-weight: 600; margin-bottom: 10px; }
+    .analysis-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+
+    /* Full width section override */
+    .full-width { grid-column: 1 / -1; }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 32px;
+      color: var(--text-secondary);
+      font-size: 13px;
+      border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
+
+    /* News item in card */
+    .news-item { margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+    .news-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .news-title { font-weight: 600; font-size: 14px; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+    .news-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- 1. 今日洞察 -->
+    <div class="hero">
+      <div class="hero-badge">📅 2026年7月12日 · 第97期</div>
+      <h1>Token经济全面爆发：大模型公司集体冲刺IPO，具身智能进入量产爬坡期</h1>
+      <p class="hero-summary">
+        本周AI行业迎来多重里程碑：OpenAI发布GPT-5.6系列、Anthropic最强模型解除出口限制、美团开源万亿参数LongCat-2.0——头部玩家正从拼能力转向验证商业价值。Token经济已来，豆包日均调用量突破180万亿，Uber四个月耗尽全年AI预算。具身智能赛道2026年融资超200亿元，人形机器人万台级交付成为行业关键观测点。向量数据库从"外挂"走向"原生融合"，云原生基础设施进入新一轮升级周期。
+      </p>
+      <div class="hero-meta">
+        <span>📊 6大领域监控</span>
+        <span>🔥 14条核心动态</span>
+        <span>⏱️ 阅读约 8 分钟</span>
+      </div>
+    </div>
+
+    <!-- 2. 务实落地建议 -->
+    <div class="section">
+      <h2 class="section-title"><span class="emoji">🛠️</span> 务实落地建议</h2>
+      <div class="advice-grid">
+        <div class="advice-card">
+          <h4>1. Agent落地：从MVA开始，拒绝"大而全"</h4>
+          <p>不要一上来就追求全能助手。将复杂流程拆解为原子任务，聚焦单一核心路径实现端到端自动化，核心任务准确率&gt;70%即可进入迭代。参考银行智能客服案例：信用卡申请处理从2小时降至15分钟。</p>
+        </div>
+        <div class="advice-card">
+          <h4>2. 向量数据库选型：原生融合 &gt; 外挂插件</h4>
+          <p>2026年主流架构正转向向量内嵌化。KingbaseES V9等原生融合方案可消除跨库延迟，实现事务与向量索引原子一致。评估现有数据资产可向量化程度，优先将高价值非结构化数据纳入向量索引规划。</p>
+        </div>
+        <div class="advice-card">
+          <h4>3. Token成本管控：峰谷定价+分层路由</h4>
+          <p>DeepSeek-V4引入峰谷定价，高峰期调用价翻倍。建议建立模型分层路由策略：高频低复杂度任务用Flash/轻量模型，复杂推理任务用Pro/旗舰模型，避免Uber式的预算失控。</p>
+        </div>
+        <div class="advice-card">
+          <h4>4. 效能度量：先想清楚量什么，再选工具</h4>
+          <p>68%企业认为AI显著提升项目管理效率，但效能度量不是买了工具就自动见效。从团队级、系统级指标起步，遵循"用于改进而非评判"原则，避免过早将个人绩效与单一指标挂钩。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. AI DevOps 前沿 -->
+    <div class="section">
+      <h2 class="section-title"><span class="emoji">🤖</span> AI DevOps 前沿</h2>
+      <div class="content-grid">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">AI Agent开发十大最佳实践发布</span>
+            <span class="tag tag-p0">P0</span>
+          </div>
+          <div class="card-body">
+            <p>行业落地案例总结出完整生命周期实践：以业务痛点为起点、采用MVA模式快速验证、构建模块化四层架构（感知-决策-执行-学习）、优先RAG而非全量微调、LoRA参数高效微调、强化工具安全与熔断机制、建立多Agent协同框架、设计持续学习闭环。RAG可使任务完成率提升67%且无需重新训练模型。</p>
+          </div>
+          <div class="card-footer">
+            <span>来源：行业技术博客</span>
+            <span>2025-08-30</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">2026 DevOps工具链智能化迭代</span>
+            <span class="tag tag-p1">P1</span>
+          </div>
+          <div class="card-body">
+            <p>AI DevOps工具涌现新玩家：Wayfinder（数据驱动预防瓶颈）、Canine（简化部署降本）、AgentPulse（AI驱动会话回放诊断）、Stakpak 3.0（AI安全基础设施管理）。DevOps已从技术实践升维为企业级战略，Gartner数据显示超60%企业将DevSecOps作为核心交付范式。</p>
+          </div>
+          <div class="card-footer">
+            <span>来源：HuntScreens/CSDN</span>
+            <span>2026-04-15</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Hacktoberfest 2026启动7天DevOps贡献挑战</span>
+            <span class="tag tag-p2">P2</span>
+          </div>
+          <div class="card-body">
+            <p>GitHub社区策划2026年10月1-7日的DevOps专项贡献活动，每天5-15分钟无编码任务：添加工程师档案、推荐工具、修复问题、贡献测试题、分享技术栈等。目标是降低开源贡献门槛，通过社交分享与排行榜机制扩大DevOps社区影响力。</p>
+          </div>
+          <div class="card-footer">
+            <span>来源：GitHub/The DevOps Daily</span>
+            <span>2026-04-03</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">测试工程师2026技能树重构</span>
+            <span class="tag tag-p1">P1</span>
+          </div>
+          <div class="card-body">
+            <p>硬技能升级路线：AI辅助测试开发（大模型提示工程自动生成测试脚本，覆盖率可达95%+）、云原生技术栈（K8s+Helm环境即代码，缩短环境准备时间50%）、安全合规深度（GDPR/等保2.0）。软技能：DevOps文化布道、价值度量能力（构建ROI模型证明自动化测试降低30%发布失败率）。</p>
+          </div>
+          <div class="card-footer">
+            <span>来源：CSDN技术博客</span>
+            <span>2026-04-15</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. 头部AI公司动态 -->
+    <div class="section">
+      <h2 class="section-title"><span class="emoji">🏢</span> 头部AI公司动态</h2>
+      <div class="content-grid">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">OpenAI发布GPT-5.6系列</span>
+            <span class="tag tag-p0">P0</span>
+          </div>
+          <div class="card-body">
+            <p>6月26日发布GPT-5.6系列，按性能及价格分为Sol、Terra和Luna三个模型。与前代GPT-5.5相比，三个模型API价格均有下降，且较Anthropic最新旗舰Claude Fable 5及Claude Mythos 5价格更低。目前仅对"值得信赖的合作伙伴"开启有限权限，预计数周内全面开放。</p>
+          </div>
+          <div class="card-footer">
+            <span>来源：财新网</span>
+            <span>2026-07-03</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Anthropic解除出口限制，发布Claude Sonnet 5</span>
+            <span class="tag tag-p0">P0</span>
+          </div>
+          <div class="card-body">
+            <p>6月30日宣布美国商务部已移除对Claude Fable 5和Claude Mythos 5的出口限制，7月1日起恢复访问权限。同日发布Claude Sonnet 5，称其为当前智能体能力最强的Sonnet模型；推出面向科研人员的AI工作台Claude Science。此前因Claude Code中嵌入"间谍软件"代码引发争议，官方回应称系防范中间商滥用的试验机制。</p>
+          </div>
+          <div class="card-footer">
+            <span>来源：财新网</span>
+            <span>2026-07-03</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">美团开源万亿参数大模型LongCat-2.0</span>
+            <span class="tag tag-p0">P0</span>
+          </div>
+          <div class="card-body">
+            <p>6月30日正式发布并开源LongCat-2.0，业界首个在五万卡国产算力集群上完成全流程训练与推理的万亿参数模型（总参数1.6T，平均激活约48B，动态范围33B~56B），原生支持1M超长上下文。已跻身OpenRouter全球大模型调用量前三。</p>
+          </div>
+          <div class="card-footer">
+            <span>来源：财新网</span>
+            <span>2026-07-03</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">DeepSeek-V4引入峰谷定价机制</span>
+            <span class="tag tag-p1">P1</span>
+          </div>
+          <div class="card-body">
+            <p>6月29日公告DeepSeek-V4正式版计划7月中旬上线，将引入峰谷定价机制。每日9-12点和14-18点高峰时段，调用DeepSeek-V4-Pro和DeepSeek-V4-Flash价格翻倍。此机制反映算力供需紧张，企业需重新评估API调用策略以控制成本。</p>
+          </div>
+          <div class="card-footer">
+            <span>来源：财新网</span>
+            <span>2026-07-03</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">华为开源openPangu-2.0-Flash</span>
+            <span class="tag tag-p1">P1</span>
+          </div>
+          <div class="card-body">
+            <p>6月30日开源盘古openPangu-2.0-Flash模型，基于昇腾NPU训练的MoE语言模型，参数规模约92B，每token激活参数约6B，支持512k上下文长度，训练数据总量约34T tokens。进一步丰富了国产自主可控的大模型生态。</p>
+          </div>
+          <div class="card-footer">
+            <span>来源：财新网</span>
+            <span>2026-07-03</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Token经济爆发：豆包日均调用突破180万亿</span>
+            <span class="tag tag-p0">P0</span>
+          </div>
+          <div class="card-body">
+            <p>6月豆包大模型日均Token调用量突破180万亿。智谱一季度API收入同比增长60倍，阿里云年初至今Token收入增长超15倍。但成本控制挑战浮现：Uber四个月耗尽全年AI预算，开始限制员工使用Claude Code、Cursor等工具；埃森哲限制非技术员工非必要场景使用AI。</p>
+          </div>
+          <div class="card-footer">
+            <span>来源：财新网/封面报道</span>
+            <span>2026-07-03</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">智谱上市，股价剧烈波动</span>
+            <span class="tag tag-p1">P1</span>
+          </div>
+          <div class="card-body">
+            <p>智谱2026年一季度API调用定价提升83%，调用量增长400%。5月底股价一度触及1993港元/股，市值超8800亿港元，较发行价上涨近1600%。随后两周股价接近腰斩，GLM-5.2发布后再度飙升。已从"对标OpenAI"转向"中国版Anthropic"定位。</p>
+          </div>
+          <div class="card-footer">
+            <span>来源：财新数据库</span>
+            <span>2026-07-02</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">大模型公司集体冲刺IPO</span>
+            <span class="tag tag-p1">P1</span>
+          </div>
+          <div class="card-body">
+            <p>Anthropic估值约3800亿美元推进G轮融资，月之暗面估值约180亿美元筹备上市，OpenAI上市计划频频被提及，阶跃星辰也被传出进入筹备阶段。信号明确：大模型竞争已从拼能力进入验证商业价值阶段，资本市场耐心达到上限。</p>
+          </div>
+          <div class="card-footer">
+            <span>来源：虎嗅</span>
+            <span>2026-03-29</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. 具身智能/机器人 -->
+    <div class="section">
+      <h2 class="section-title"><span class="emoji">🦾</span> 具身智能 / 机器人</h2>
+      <div class="content-grid">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">具身智能2026全景：万亿市场、460亿融资</span>
+            <span class="tag tag-p0">P0</span>
+          </div>
+          <div class="card-body">
+            <p>36氪研究院数据显示，2026年广义具身智能已是万亿市场，中国在非人形机器人（AGV/协作臂/清洁机器人）已实现规模化盈利。人形机器人2026年进入量产爬坡，万台级真实场景交付是最重要观测点。整机成本持续下探：宇树R1售价2.99万，松延Bumi低于1万。核心零部件中低端替代完成，高端丝杠/六维力传感器是最大短板。</p>
+          </div>
+          <div class="card-footer">
+            <span>来源：36氪研究院/搜狐</span>
+            <span>2026-07-01</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">宇树科技IPO注册申请获批</span>
+            <span class="tag tag-p0">P0</span>
+          </div>
+          <div class="card-body">
+            <p>宇树科技IPO注册申请获批，标志着具身智能领域首家头部企业即将登陆资本市场。2026年第一季度国内具身智能领域累计融资额约200-300亿元，远超2025年同期。银河通用单轮融资25亿刷新行业纪录，千寻智能两年估值破百亿。</p>
+          </div>
+          <div class="card-footer">
+            <span>来源：财新网/虎嗅</span>
+            <span>2026-07-03/05-06</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">人形机器人"七小龙"估值均破百亿</span>
+            <span class="tag tag-p1">P1</span>
+          </div>
+          <div class="card-body">
+            <p>宇树科技、智元机器人、乐聚机器人、众擎机器人、银河通用、松延动力、加速进化七家公司被称为"人形机器人七小龙"，单家估值均超百亿元。投资方涵盖红杉、高瓴、美团、宁德时代、比亚迪等头部资本。2026年是检验其从技术演示迈向大规模应用的关键分水岭。</p>
+          </div>
+          <div class="card-footer">
+            <span>来源：虎嗅</span>
+            <span>2026-05-06</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">智元3个月量产5000台，具身智能突破万台量产</span>
+            <span class="tag tag-p1">P1</span>
+          </div>
+          <div class="card-body">
+            <p>智元机器人短短3个月已量产5000台，达到去年全年数量。智身科技具身机器人突破万台量产大关。北京人形机器人创新中心完成首轮超7亿元市场化融资，北京市人工智能产业投资基金等多家国资参与。985院校争相设立具身智能专业。</p>
+          </div>
+          <div class="card-footer">
+            <span>来源：什么值得买/搜狐</span>
+            <span>2026-06-11/02-04</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. 云原生与数据 -->
+    <div class="section">
+      <h2 class="section-title"><span class="emoji">☁️</span> 云原生与数据</h2>
+      <div class="content-grid">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">向量数据库从"外挂"走向"原生融合"</span>
+            <span class="tag tag-p0">P0</span>
+          </div>
+          <div class="card-body">
+            <p>2026年主流架构转向向量内嵌化：向量索引直接作为数据库引擎的原生存储引擎，消除跨库调用，事务更新与向量索引更新在同一事务原子中完成。Gartner预测超50%企业级AI应用将依赖混合查询能力。金仓KingbaseES V9原生向量引擎、KXData-M向量化加速组件已落地。</p>
+          </div>
+          <div class="card-footer">
+            <span>来源：金仓技术博客</span>
+            <span>2026-05-07</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Milvus 2.6.x重大更新：混合检索提速100倍</span>
+            <span class="tag tag-p1">P1</span>
+          </div>
+          <div class="card-body">
+            <p>Milvus v2.6.x系列带来JSON Shredding & JSON Path Index（元数据过滤提速100倍）、BM25全文搜索比Elasticsearch快4-7倍、Semantic Highlighter、FP32-to-FP16/BF16自动转换。存算分离架构下三层存储（内存→RocksDB SSD→S3对象存储），TCO大幅下降，千亿级向量检索成为可能。</p>
+          </div>
+          <div class="card-footer">
+            <span>来源：CSDN技术博客</span>
+            <span>2026-06-06</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">存储架构演进：全内存→存算分离→对象存储原生</span>
+            <span class="tag tag-p1">P1</span>
+          </div>
+          <div class="card-body">
+            <p>向量数据库存储架构历经三代演进：2018-2022全内存（快但贵）→ 2022-2024内存+磁盘混合 → 2024-2026对象存储原生（存算分离，成本降至全内存1/10）。RaBitQ（1+3 bit量化）等新技术让冷数据加载从分钟级压缩到5-10秒，让对象存储原生架构真正可行。</p>
+          </div>
+          <div class="card-footer">
+            <span>来源：金仓技术博客</span>
+            <span>2026-07-08</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">向量数据库选型速查：Milvus/Qdrant/Weaviate/Pgvector</span>
+            <span class="tag tag-p2">P2</span>
+          </div>
+          <div class="card-body">
+            <p>开发测试（&lt;10万条）：Chroma+SQLite零配置；中等规模（10万-100万条）：Qdrant+K8s容器化，Rust内核10万QPS；大规模生产（&gt;100万条）：Milvus+K8s分布式，计算存储分离。安全提醒：ChromaDB CVE-2026-45829（CVSS 10.0）暴露约73%互联网暴露实例存在漏洞。</p>
+          </div>
+          <div class="card-footer">
+            <span>来源：百度开发者中心/CSDN</span>
+            <span>2026-06-04</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. 项目管理与效能 -->
+    <div class="section">
+      <h2 class="section-title"><span class="emoji">📊</span> 项目管理与效能</h2>
+      <div class="content-grid">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">68%企业认为AI显著提升项目管理效率</span>
+            <span class="tag tag-p0">P0</span>
+          </div>
+          <div class="card-body">
+            <p>中国信通院报告显示，AI与项目管理融合已从概念验证走向规模化落地。AI可实现需求洞察与标准化（准确率从70-80%提升至90%+）、工期与成本精准估算（误差率较人工降低50%+）、智能资源配置（基于人员-技能-项目三元关系图谱自动匹配最优执行人）。</p>
+          </div>
+          <div class="card-footer">
+            <span>来源：腾讯云/中国信通院</span>
+            <span>2026-01-30/06-17</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">ONES/Jira/Asana AI能力全面升级</span>
+            <span class="tag tag-p1">P1</span>
+          </div>
+          <div class="card-body">
+            <p>ONES Copilot覆盖智能任务创建、文档自动生成，内置研发效能度量体系；Jira深化Atlassian Intelligence，支持自然语言配置自动化规则；Asana提出"AI队友"概念，智能工作流引擎动态调整资源分配。选型建议：百人以上严格审计选ONES，敏捷+瀑布混合选Jira，五十人以内轻量选Tower/Asana。</p>
+          </div>
+          <div class="card-footer">
+            <span>来源：ONES博客/SegmentFault</span>
+            <span>2026-05-30/06-18</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">研发效能度量平台选型：7款工具对比</span>
+            <span class="tag tag-p1">P1</span>
+          </div>
+          <div class="card-body">
+            <p>ONES、华为云CodeArts Board、思码逸Merico、LinearB、Allstacks、Plandek、Jellyfish七大平台对比。核心差异：数据覆盖度、分析深度、集成能力。关键原则：效能度量不是买了工具就自动见效，先想清楚要量什么指标，再看工具能不能支持采集和呈现。</p>
+          </div>
+          <div class="card-footer">
+            <span>来源：ONES博客</span>
+            <span>2026-05-28</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">香港AI效能提升组：年内推出100个政务AI工具</span>
+            <span class="tag tag-p2">P2</span>
+          </div>
+          <div class="card-body">
+            <p>香港施政报告提出成立AI效能提升组，由政务司副司长担任组长。计划明年内推出涵盖100个政务环节的AI工具，2026-27年度陆续推出AI旗舰项目。数字政策办公室将量身订造部门AI应用项目，目标2027年内将涵盖政务环节增至200个。</p>
+          </div>
+          <div class="card-footer">
+            <span>来源：香港政府新闻网</span>
+            <span>2025-09-20</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. 全球动态 -->
+    <div class="section">
+      <h2 class="section-title"><span class="emoji">🌐</span> 全球动态</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>地区/领域</th>
+            <th>核心动态</th>
+            <th>影响评估</th>
+            <th>优先级</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>🇺🇸 美国</td>
+            <td>OpenAI发布GPT-5.6；Anthropic解除出口限制；美联储利率路径反复</td>
+            <td>大模型竞争从能力比拼转向商业价值验证</td>
+            <td><span class="tag tag-p0">P0</span></td>
+          </tr>
+          <tr>
+            <td>🇨🇳 中国</td>
+            <td>美团开源LongCat-2.0；华为开源openPangu-2.0-Flash；DeepSeek峰谷定价</td>
+            <td>国产自主可控大模型生态加速完善</td>
+            <td><span class="tag tag-p0">P0</span></td>
+          </tr>
+          <tr>
+            <td>🌍 中东</td>
+            <td>美伊谈判突然暂停；环太平洋军演6.24-7.31举行（31国、2.5万兵力）</td>
+            <td>地缘风险推升油价与金价波动，科技股承压</td>
+            <td><span class="tag tag-p1">P1</span></td>
+          </tr>
+          <tr>
+            <td>🇪🇺 欧洲</td>
+            <td>德国官员建议大众引入在华研发车型；国际乌克兰重建大会6.25-26召开</td>
+            <td>欧洲汽车产业组织模式面临重构</td>
+            <td><span class="tag tag-p1">P1</span></td>
+          </tr>
+          <tr>
+            <td>💰 金融市场</td>
+            <td>国际金价波动率超30%，年初至今下跌7%；黄金一度跌破4000美元/盎司</td>
+            <td>高波动率环境下避险资产重新定价</td>
+            <td><span class="tag tag-p1">P1</span></td>
+          </tr>
+          <tr>
+            <td>🤖 机器人产业</td>
+            <td>宇树IPO获批；京东连投3家机器人公司；具身智能2026融资超200亿</td>
+            <td>人形机器人从Demo走向量产关键年</td>
+            <td><span class="tag tag-p0">P0</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 9. 大咖声音 -->
+    <div class="section">
+      <h2 class="section-title"><span class="emoji">🎙️</span> 大咖声音</h2>
+      <div class="expert-grid">
+        <div class="expert-card">
+          <div class="expert-quote">"Kimi是一款还不错的模型，落后美国最前沿几个月，延续了DeepSeek的轨迹。其编码和工具调用分数已足够高，我预计现实中会有人真正用它，因此观察其采用率能折射竞争力。"</div>
+          <div class="expert-name">Jack Clark</div>
+          <div class="expert-title">Anthropic联合创始人 / 2025年7月21日博客</div>
+        </div>
+        <div class="expert-card">
+          <div class="expert-quote">"让我们意识到根本没有把Attention is All You Need理解透彻。"——评价Kimi团队发布的Attention Residuals论文，挑战已有10年历史的残差连接机制。</div>
+          <div class="expert-name">Andrej Karpathy</div>
+          <div class="expert-title">OpenAI联合创始人 / 2026年3月16日</div>
+        </div>
+        <div class="expert-card">
+          <div class="expert-quote">"每一项基础技术都值得重新思考。"——将优化器、注意力机制、残差连接三大核心模块比作8-11年历史的陈旧技术标准，提出新的技术突破。</div>
+          <div class="expert-name">杨植麟</div>
+          <div class="expert-title">月之暗面CEO / 英伟达GTC 2026主旨演讲</div>
+        </div>
+        <div class="expert-card">
+          <div class="expert-quote">"对来自中国的技术采取孤立和封闭的态度是完全错误的，中国技术还可以用于保障下萨克森州以及整个德国生产基地的就业，并创造全新的价值。"</div>
+          <div class="expert-name">Olaf Lies</div>
+          <div class="expert-title">德国下萨克森州经济部长 / 2026年6月</div>
+        </div>
+        <div class="expert-card">
+          <div class="expert-quote">"不要视其为短期投机，只看每天的短期波动就失去了长期投资黄金的底层逻辑。任何金融资产都会面对历史高点多次，也会有新的回调。"</div>
+          <div class="expert-name">王立新</div>
+          <div class="expert-title">世界黄金协会中国区CEO / 2026年7月</div>
+        </div>
+        <div class="expert-card">
+          <div class="expert-quote">"当头部公司开始密集走向IPO，说明这条赛道已经很难再依赖一级市场的耐心维持运转。大模型公司仍然需要钱，但资本开始不愿意再无限期等下去了。"</div>
+          <div class="expert-name">行业观察</div>
+          <div class="expert-title">虎嗅深度分析 / 2026年3月</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. 名字解释 -->
+    <div class="section">
+      <h2 class="section-title"><span class="emoji">📖</span> 名字解释</h2>
+      <div class="term-grid">
+        <div class="term-card">
+          <div class="term-name">MoE（混合专家）</div>
+          <div class="term-desc">稀疏激活的大模型架构，每个token只激活部分参数，实现更大总参数规模的同时控制推理成本。Kimi K2、DeepSeek-V4、LongCat-2.0均采用此架构。</div>
+        </div>
+        <div class="term-card">
+          <div class="term-name">RAG（检索增强生成）</div>
+          <div class="term-desc">将外部知识检索与大模型生成结合的技术，可使任务完成率提升67%且无需重新训练模型，优先于全量微调的企业级落地方案。</div>
+        </div>
+        <div class="term-card">
+          <div class="term-name">Token经济</div>
+          <div class="term-desc">以大模型API调用量（Token消耗）为核心的新计费模式与商业生态，智能体普及对Token消耗呈乘数效应，日均消耗有望再增长5倍以上。</div>
+        </div>
+        <div class="term-card">
+          <div class="term-name">VLA模型</div>
+          <div class="term-desc">Vision-Language-Action（视觉-语言-动作）端到端模型，具身智能的核心技术路线，将视觉感知、语言理解与动作执行统一到一个模型中。</div>
+        </div>
+        <div class="term-card">
+          <div class="term-name">存算分离</div>
+          <div class="term-desc">计算和存储独立扩展的云原生架构，向量数据库成本可降至全内存的1/10，但AI负载下正面临向"存算一体+GPU/NPU挂载"演进的新趋势。</div>
+        </div>
+        <div class="term-card">
+          <div class="term-name">MVA（最小可行Agent）</div>
+          <div class="term-desc">Minimum Viable Agent，将复杂流程拆解为原子任务，聚焦单一核心路径快速验证的Agent开发模式，降低失败风险、快速见效。</div>
+        </div>
+        <div class="term-card">
+          <div class="term-name">LoRA微调</div>
+          <div class="term-desc">Low-Rank Adaptation，参数高效微调技术，仅训练低秩矩阵适配器，显存占用降低70%、训练成本下降85%，替代全参数微调的首选方案。</div>
+        </div>
+        <div class="term-card">
+          <div class="term-name">DORA指标</div>
+          <div class="term-desc">DevOps Research and Assessment提出的四大关键指标：部署频率、变更前置时间、变更失败率、服务恢复时间，是衡量研发效能的业界标准。</div>
+        </div>
+        <div class="term-card">
+          <div class="term-name">峰谷定价</div>
+          <div class="term-desc">按时段差异化定价机制，高峰期（如9-12点、14-18点）调用价格翻倍，引导用户错峰使用，缓解算力供需紧张。DeepSeek-V4率先引入。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11. 关键数据速览 -->
+    <div class="section">
+      <h2 class="section-title"><span class="emoji">📊</span> 关键数据速览</h2>
+      <div class="data-overview">
+        <div class="data-item">
+          <div class="data-number">180万亿</div>
+          <div class="data-label">豆包日均Token调用量</div>
+          <div class="data-change data-up">↑ 持续突破</div>
+        </div>
+        <div class="data-item">
+          <div class="data-number">1.6T</div>
+          <div class="data-label">LongCat-2.0总参数规模</div>
+          <div class="data-change data-up">↑ 五万卡国产算力</div>
+        </div>
+        <div class="data-item">
+          <div class="data-number">200亿+</div>
+          <div class="data-label">2026年具身智能融资额</div>
+          <div class="data-change data-up">↑ 远超2025年同期</div>
+        </div>
+        <div class="data-item">
+          <div class="data-number">60%+</div>
+          <div class="data-label">企业采用DevSecOps比例</div>
+          <div class="data-change data-up">↑ Gartner 2026</div>
+        </div>
+        <div class="data-item">
+          <div class="data-number">68%</div>
+          <div class="data-label">企业认为AI提升PM效率</div>
+          <div class="data-change data-up">↑ 中国信通院</div>
+        </div>
+        <div class="data-item">
+          <div class="data-number">400%</div>
+          <div class="data-label">智谱API调用量增长</div>
+          <div class="data-change data-up">↑ 2026Q1</div>
+        </div>
+        <div class="data-item">
+          <div class="data-number">30%</div>
+          <div class="data-label">国际金价当前波动率</div>
+          <div class="data-change data-down">↓ 从50%回落</div>
+        </div>
+        <div class="data-item">
+          <div class="data-number">67%</div>
+          <div class="data-label">RAG提升任务完成率</div>
+          <div class="data-change data-up">↑ 无需重新训练</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. 深度分析 -->
+    <div class="section">
+      <h2 class="section-title"><span class="emoji">💡</span> 深度分析</h2>
+      <div class="analysis-card">
+        <h4>一、Token经济：从"无限增长"到"成本觉醒"</h4>
+        <p>2026年上半年，Token经济呈现爆发式增长与成本失控并存的双重面貌。一方面，豆包日均Token调用量突破180万亿，智谱API收入同比增长60倍，阿里云Token收入增长超15倍，智能体普及对Token消耗的乘数效应正在释放。中金指出，随着单任务复杂度、使用时长与渗透率的协同提升，日均Token消耗有望再实现5倍以上增长。</p>
+        <p>另一方面，成本失控案例频发：Uber四个月耗尽全年AI预算，被迫限制员工使用Claude Code和Cursor；埃森哲限制非技术员工在非必要场景使用AI。Anthropic率先将企业订阅从固定费用转为按实际算力消耗收费，DeepSeek-V4引入峰谷定价机制——这些信号表明，大模型行业正从"免费/低价获客"阶段进入"精细化成本管理"阶段。对企业而言，建立模型分层路由策略（高频任务用轻量模型、复杂任务用旗舰模型）和峰谷调度机制，将成为AI成本控制的核心能力。</p>
+      </div>
+      <div class="analysis-card">
+        <h4>二、具身智能：量产爬坡中的"确定性"与"不确定性"</h4>
+        <p>2026年是人形机器人从Demo到量产的关键切换窗口。确定性在于：广义具身智能已是万亿市场，非人形机器人已实现规模化盈利；整机成本持续下探（宇树R1售价2.99万）；国内供应链中低端替代完成（谐波减速器、无框力矩电机批量供货）；资本市场火热（2026年Q1融资200-300亿元）。</p>
+        <p>不确定性在于：高端丝杠和六维力传感器仍是供应链自主最大短板；特斯拉Optimus V3单台制造成本仍超6万美元、每台亏超1万美元；商业化首要在工业场景验证，家庭场景还需3-5年世界模型成熟。投资视角上，"卖铲子"（减速器、伺服、丝杠）确定性高于整机，整机看谁先拿到持续运行的真实工厂订单而非演示视频。</p>
+      </div>
+      <div class="analysis-card">
+        <h4>三、向量数据库：AI基础设施的"最后一公里"</h4>
+        <p>向量数据库正经历从"外挂检索工具"到"AI基础设施核心"的质变。Gartner预测2026年超50%企业级AI应用依赖混合查询能力。技术演进呈现三大趋势：一是向量内嵌化（消除跨库延迟、实现事务强一致）；二是混合查询标配化（向量相似度+标量过滤+全文检索统一引擎）；三是存算架构再平衡（从存算分离回归存算一体+GPU/NPU挂载以降低推理延迟）。</p>
+        <p>选型建议上，企业不必等待2026年才行动。评估现有数据资产可向量化程度，优先将高价值非结构化数据纳入向量索引规划；选取一个非核心业务模块进行原生向量方案试点（如内部知识库搜索）；培训团队掌握向量SQL语法，将过滤排序逻辑下沉至数据库层。安全方面需特别关注：ChromaDB CVE-2026-45829暴露了约73%互联网暴露实例存在漏洞，安全响应能力应与性能同等重要。</p>
+      </div>
+    </div>
+
+    <!-- 13. 行业热力图 -->
+    <div class="section">
+      <h2 class="section-title"><span class="emoji">🔥</span> 行业热力图</h2>
+      <div class="heatmap">
+        <div class="heatmap-item">
+          <span class="heatmap-dot heat-high"></span>
+          <div class="heatmap-name">大模型</div>
+          <div class="heatmap-status">🔥 爆发期</div>
+        </div>
+        <div class="heatmap-item">
+          <span class="heatmap-dot heat-high"></span>
+          <div class="heatmap-name">具身智能</div>
+          <div class="heatmap-status">🔥 量产爬坡</div>
+        </div>
+        <div class="heatmap-item">
+          <span class="heatmap-dot heat-mid"></span>
+          <div class="heatmap-name">向量数据库</div>
+          <div class="heatmap-status">🌡️ 快速升温</div>
+        </div>
+        <div class="heatmap-item">
+          <span class="heatmap-dot heat-mid"></span>
+          <div class="heatmap-name">AI项目管理</div>
+          <div class="heatmap-status">🌡️ 加速落地</div>
+        </div>
+        <div class="heatmap-item">
+          <span class="heatmap-dot heat-warm"></span>
+          <div class="heatmap-name">云原生DevOps</div>
+          <div class="heatmap-status">📈 稳健增长</div>
+        </div>
+        <div class="heatmap-item">
+          <span class="heatmap-dot heat-low"></span>
+          <div class="heatmap-name">全球地缘</div>
+          <div class="heatmap-status">⚠️ 高波动</div>
+        </div>
+      </div>
+      <p style="font-size:12px;color:var(--text-secondary);margin-top:12px;">
+        <strong>状态说明：</strong>
+        <span style="color:var(--p0)">🔥 爆发期</span> = 重大发布/融资密集/市场高度关注 |
+        <span style="color:var(--p1)">🌡️ 快速升温</span> = 技术突破/产品迭代/ adoption加速 |
+        <span style="color:#ffcc00">📈 稳健增长</span> = 持续演进/生态完善 |
+        <span style="color:var(--p2)">⚠️ 高波动</span> = 不确定性上升/需持续关注
+      </p>
+    </div>
+
+    <!-- 14. 权威来源 -->
+    <div class="section">
+      <h2 class="section-title"><span class="emoji">📚</span> 权威来源</h2>
+      <div class="source-list">
+        <div class="source-item">
+          <div><span class="source-author">财新网</span> · GPT周报｜宇树IPO注册申请获批；OpenAI发布GPT-5.6；Anthropic最强模型解除出口限制</div>
+          <div class="source-time">发布时间：2026-07-03 ｜ 作者：财新编辑部 ｜ <a class="source-link" href="https://www.caixin.com/2026-07-03/102460396.html">原文链接</a></div>
+        </div>
+        <div class="source-item">
+          <div><span class="source-author">财新网</span> · 封面报道｜Token经济已来</div>
+          <div class="source-time">发布时间：2026-07-03 ｜ 作者：财新周刊深度报道团队 ｜ <a class="source-link" href="https://weekly.caixin.com/2026-07-03/102460630.html">原文链接</a></div>
+        </div>
+        <div class="source-item">
+          <div><span class="source-author">36氪研究院/搜狐</span> · 具身智能2026深度拆解：万亿市场、460亿融资与人形机器人量产拐点</div>
+          <div class="source-time">发布时间：2026-07-01 ｜ 作者：36氪研究院 ｜ <a class="source-link" href="https://www.sohu.com/a/1044123688_122904014">原文链接</a></div>
+        </div>
+        <div class="source-item">
+          <div><span class="source-author">虎嗅</span> · Kimi从被唱衰到估值1200亿：2026年中国AI模型的逆袭之路</div>
+          <div class="source-time">发布时间：2026-03-30 ｜ 作者：虎嗅科技报道 ｜ <a class="source-link" href="https://www.huxiu.com/article/4846656.html">原文链接</a></div>
+        </div>
+        <div class="source-item">
+          <div><span class="source-author">虎嗅</span> · Anthropic与月之暗面计划2026年上市 大模型公司集体冲刺资本市场</div>
+          <div class="source-time">发布时间：2026-03-29 ｜ 作者：虎嗅深度分析 ｜ <a class="source-link" href="https://www.huxiu.com/article/4846352.html">原文链接</a></div>
+        </div>
+        <div class="source-item">
+          <div><span class="source-author">金仓数据库技术博客</span> · 2025-2026向量数据库发展趋势：从检索工具到AI基础设施核心</div>
+          <div class="source-time">发布时间：2026-07-08 ｜ 作者：数据库架构师 ｜ <a class="source-link" href="https://www.kingbase.com.cn/explore/tech-blog/">原文链接</a></div>
+        </div>
+        <div class="source-item">
+          <div><span class="source-author">CSDN技术博客</span> · 向量数据库选型决战：2026年Milvus、Qdrant、Weaviate、Pgvector的压测报告</div>
+          <div class="source-time">发布时间：2026-06-06 ｜ 作者：数据库技术博主 ｜ <a class="source-link" href="https://blog.csdn.net/2601_95807009/article/details/161751043">原文链接</a></div>
+        </div>
+        <div class="source-item">
+          <div><span class="source-author">ONES博客</span> · 2026年14款AI项目管理软件深度解析：选型指南与核心能力对比</div>
+          <div class="source-time">发布时间：2026-06-17 ｜ 作者：ONES产品团队 ｜ <a class="source-link" href="https://segmentfault.com/a/1190000047977887">原文链接</a></div>
+        </div>
+        <div class="source-item">
+          <div><span class="source-author">财新网</span> · 国际金价波动率超过30% 谁在买、谁在卖？</div>
+          <div class="source-time">发布时间：2026-07-03 ｜ 作者：财新金融报道 ｜ <a class="source-link" href="https://finance.caixin.com/2026-07-03/102460340.html">原文链接</a></div>
+        </div>
+        <div class="source-item">
+          <div><span class="source-author">微信公众号/行业技术博客</span> · AI Agent开发最佳实践总结</div>
+          <div class="source-time">发布时间：2025-08-30 ｜ 作者：AI工程实践者 ｜ 来源：微信技术号</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>OpenClaw 晨报 · 由 豆饼 自动生成 · 2026-07-12</p>
+      <p style="margin-top:4px;">数据来源：公开网络信息整理，仅供参考</p>
+    </div>
+
+  </div>
+</body>
+</html>
