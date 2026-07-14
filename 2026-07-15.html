@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI晨报 | 2026-07-15</title>
+<style>
+:root {
+  --bg: #f5f5f7;
+  --card-bg: #ffffff;
+  --text: #1d1d1f;
+  --text-secondary: #6e6e73;
+  --accent: #0071e3;
+  --accent-light: #e8f4fd;
+  --p0: #ff3b30;
+  --p1: #ff9500;
+  --p2: #34c759;
+  --border: #d2d2d7;
+  --radius: 16px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.06);
+  --nav-bg: #1d1d1f;
+  --nav-text: #f5f5f7;
+  --hot: #ff3b30;
+  --warm: #ff9500;
+  --cool: #34c759;
+  --cold: #8e8e93;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* 左侧导航栏 */
+.sidebar {
+  position: fixed; left: 0; top: 0; width: 280px; height: 100vh;
+  background: var(--nav-bg); color: var(--nav-text);
+  padding: 32px 24px; overflow-y: auto; z-index: 100;
+}
+.sidebar-logo { font-size: 20px; font-weight: 700; margin-bottom: 32px; color: #fff; }
+.sidebar-logo span { color: var(--accent); }
+.sidebar-section { margin-bottom: 20px; }
+.sidebar-section-title {
+  font-size: 13px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.5px; color: #86868b; margin-bottom: 8px;
+}
+.sidebar a {
+  display: block; color: #d2d2d7; text-decoration: none;
+  font-size: 14px; padding: 6px 0; transition: color 0.2s;
+}
+.sidebar a:hover { color: #fff; }
+.sidebar a.active { color: var(--accent); font-weight: 600; }
+
+/* 主内容区 */
+.main { margin-left: 280px; min-height: 100vh; }
+
+/* 英雄区 */
+.hero {
+  background: linear-gradient(135deg, #1d1d1f 0%, #2c2c2e 100%);
+  color: #fff; padding: 80px 48px; position: relative; overflow: hidden;
+}
+.hero-badge {
+  display: inline-block; background: var(--accent); color: #fff;
+  padding: 6px 16px; border-radius: 20px; font-size: 12px;
+  font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
+  margin-bottom: 20px;
+}
+.hero h1 { font-size: 42px; font-weight: 800; line-height: 1.15; margin-bottom: 20px; }
+.hero-summary { font-size: 18px; color: #a1a1a6; max-width: 700px; line-height: 1.6; }
+.hero-meta { margin-top: 32px; display: flex; gap: 24px; font-size: 13px; color: #86868b; }
+.hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+/* 板块通用 */
+.section { padding: 48px; }
+.section-header { margin-bottom: 32px; }
+.section-header h2 {
+  font-size: 28px; font-weight: 700; display: flex; align-items: center; gap: 12px;
+}
+.section-header h2 span { font-size: 32px; }
+.section-subtitle { color: var(--text-secondary); font-size: 15px; margin-top: 6px; }
+
+/* 内容网格 */
+.content-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+}
+@media (max-width: 900px) {
+  .content-grid { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .main { margin-left: 0; }
+}
+
+/* 卡片 */
+.card {
+  background: var(--card-bg); border-radius: var(--radius);
+  padding: 24px; box-shadow: var(--shadow); border: 1px solid var(--border);
+}
+.card h3 { font-size: 17px; font-weight: 600; margin-bottom: 10px; line-height: 1.4; }
+.card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+.card-meta { display: flex; gap: 12px; margin-top: 14px; font-size: 12px; color: var(--text-secondary); }
+
+/* 优先级标签 */
+.tag {
+  display: inline-block; padding: 3px 10px; border-radius: 12px;
+  font-size: 11px; font-weight: 600;
+}
+.tag-p0 { background: rgba(255,59,48,0.1); color: var(--p0); }
+.tag-p1 { background: rgba(255,149,0,0.1); color: var(--p1); }
+.tag-p2 { background: rgba(52,199,89,0.1); color: var(--p2); }
+
+/* 务实建议卡片 */
+.advice-card {
+  background: var(--card-bg); border-radius: var(--radius);
+  padding: 28px; box-shadow: var(--shadow); border-left: 4px solid var(--accent);
+}
+.advice-card h4 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.advice-card p { font-size: 14px; color: var(--text-secondary); }
+.advice-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; background: var(--accent); color: #fff;
+  border-radius: 50%; font-size: 13px; font-weight: 700; margin-right: 10px;
+}
+
+/* 大咖声音网格 */
+.voice-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;
+}
+.voice-card {
+  background: var(--card-bg); border-radius: var(--radius);
+  padding: 24px; box-shadow: var(--shadow);
+}
+.voice-card .quote {
+  font-size: 15px; font-style: italic; color: var(--text); line-height: 1.7;
+  border-left: 3px solid var(--accent); padding-left: 16px; margin-bottom: 16px;
+}
+.voice-card .author { font-size: 14px; font-weight: 600; }
+.voice-card .title { font-size: 12px; color: var(--text-secondary); }
+
+/* 名字解释网格 */
+.term-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+}
+@media (max-width: 900px) { .term-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .term-grid { grid-template-columns: 1fr; } }
+.term-card {
+  background: var(--card-bg); border-radius: 12px; padding: 20px;
+  box-shadow: var(--shadow);
+}
+.term-card .term { font-size: 15px; font-weight: 600; color: var(--accent); margin-bottom: 6px; }
+.term-card .def { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+
+/* 表格 */
+.data-table {
+  width: 100%; border-collapse: collapse; font-size: 14px;
+}
+.data-table th {
+  background: var(--nav-bg); color: #fff; padding: 12px 16px;
+  text-align: left; font-weight: 600;
+}
+.data-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); }
+.data-table tr:hover { background: var(--accent-light); }
+
+/* 热力图 */
+.heat-map { display: flex; gap: 16px; flex-wrap: wrap; }
+.heat-item {
+  flex: 1; min-width: 160px; background: var(--card-bg);
+  border-radius: var(--radius); padding: 20px; text-align: center;
+  box-shadow: var(--shadow);
+}
+.heat-item .label { font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; }
+.heat-item .status {
+  font-size: 24px; font-weight: 800; margin-bottom: 4px;
+}
+.heat-hot { color: var(--hot); }
+.heat-warm { color: var(--warm); }
+.heat-cool { color: var(--cool); }
+.heat-cold { color: var(--cold); }
+.heat-desc { font-size: 12px; color: var(--text-secondary); }
+
+/* 关键数据 */
+.data-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+}
+@media (max-width: 900px) { .data-grid { grid-template-columns: repeat(2, 1fr); } }
+.data-item {
+  background: var(--card-bg); border-radius: var(--radius); padding: 24px;
+  text-align: center; box-shadow: var(--shadow);
+}
+.data-item .number {
+  font-size: 32px; font-weight: 800; color: var(--accent); line-height: 1.2;
+}
+.data-item .unit { font-size: 14px; color: var(--text-secondary); }
+.data-item .desc { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+
+/* 深度分析 */
+.analysis-block { margin-bottom: 28px; }
+.analysis-block h4 { font-size: 17px; font-weight: 600; margin-bottom: 10px; }
+.analysis-block p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+
+/* 权威来源 */
+.source-list { list-style: none; }
+.source-list li {
+  padding: 16px 0; border-bottom: 1px solid var(--border); font-size: 13px;
+}
+.source-list li:last-child { border-bottom: none; }
+.source-list .source-title { font-weight: 600; color: var(--text); }
+.source-list .source-meta { color: var(--text-secondary); margin-top: 4px; }
+.source-list a { color: var(--accent); text-decoration: none; }
+.source-list a:hover { text-decoration: underline; }
+
+/* 页脚 */
+.footer {
+  background: var(--nav-bg); color: #86868b; padding: 32px 48px;
+  font-size: 13px; text-align: center;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .section { padding: 24px; }
+  .hero { padding: 48px 24px; }
+  .hero h1 { font-size: 28px; }
+  .data-grid { grid-template-columns: 1fr 1fr; }
+  .term-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- 左侧导航栏 -->
+<nav class="sidebar">
+  <div class="sidebar-logo"><span>AI</span> 晨报</div>
+  <div class="sidebar-section">
+    <div class="sidebar-section-title">导航</div>
+    <a href="#insight" class="active">今日洞察</a>
+    <a href="#advice">务实落地建议</a>
+    <a href="#ai-devops">AI DevOps 前沿</a>
+    <a href="#ai-companies">头部AI公司动态</a>
+    <a href="#robotics">具身智能/机器人</a>
+    <a href="#cloud-native">云原生与数据</a>
+    <a href="#pm">项目管理与效能</a>
+    <a href="#global">全球动态</a>
+    <a href="#voices">大咖声音</a>
+    <a href="#terms">名字解释</a>
+    <a href="#data">关键数据速览</a>
+    <a href="#analysis">深度分析</a>
+    <a href="#heatmap">行业热力图</a>
+    <a href="#sources">权威来源</a>
+  </div>
+</nav>
+
+<!-- 主内容区 -->
+<main class="main">
+
+<!-- 英雄区：今日洞察 -->
+<section class="hero" id="insight">
+  <div class="container">
+    <div class="hero-badge">每日晨报 · 2026-07-15</div>
+    <h1>MiniMax刷新港股融资纪录，<br>具身智能迈入量产决胜年</h1>
+    <p class="hero-summary">
+      MiniMax以160亿港元刷新2026年港股科技企业单次配售募资新高，创始人闫俊宣布"至AGI实现之日不再领薪"。DeepSeek V4正式版即将于7月中旬上线并引入峰谷定价，国产大模型竞争从"百模大战"进入"生态卡位"阶段。具身智能领域Q1融资681亿元超越去年全年，人形机器人正式开启万台级量产交付。Agent Ops取代传统DevOps成为运维新范式，向量数据库加速从"外挂"走向"原生融合"。
+    </p>
+    <div class="hero-meta">
+      <span>📅 2026年7月15日</span>
+      <span>🕒 7:17 AM CST</span>
+      <span>📍 上海</span>
+      <span>🔥 14条精选动态</span>
+    </div>
+  </div>
+</section>
+
+<!-- 务实落地建议 -->
+<section class="section" id="advice">
+  <div class="container">
+    <div class="section-header">
+      <h2><span>🛠️</span> 务实落地建议</h2>
+      <p class="section-subtitle">基于最新行业动态，四条可直接落地的行动建议</p>
+    </div>
+    <div class="content-grid">
+      <div class="advice-card">
+        <h4><span class="advice-num">1</span>启动Agent Ops试点，告别"手动挡"运维</h4>
+        <p>2026年是Agent Ops落地元年。建议从告警降噪和根因分析两个高频场景切入，选择PagerDuty AIOps或自研Agent Gateway，3个月内将MTTR降低50%以上。不要试图一步到位，先辅助后半自动再全自动。</p>
+      </div>
+      <div class="advice-card">
+        <h4><span class="advice-num">2</span>评估国产大模型API切换窗口期</h4>
+        <p>DeepSeek V4 Pro每百万token输出仅$0.87，与Claude Fable 5的$50相差57倍。建议立即建立多模型降级策略，将非核心场景迁移至性价比更高的国产模型，预计可节省40%-70%的AI调用成本。</p>
+      </div>
+      <div class="advice-card">
+        <h4><span class="advice-num">3</span>向量数据库架构从"外挂"转向"原生融合"</h4>
+        <p>Gartner预测2026年底超过50%企业级AI应用将依赖混合查询。建议优先评估Postgres+pgvector或金仓KingbaseES V9的原生向量能力，避免独立Milvus/Chroma带来的数据一致性维护成本。</p>
+      </div>
+      <div class="advice-card">
+        <h4><span class="advice-num">4</span>建立AI驱动的研发效能度量仪表盘</h4>
+        <p>参考PingCode和Linear的实践，搭建覆盖需求交付周期、缺陷逃逸率、部署频率的三层度量体系。关键是让度量数据直接驱动迭代改进，而非沦为"数字摆设"。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI DevOps 前沿 -->
+<section class="section" style="background:#fafafa;" id="ai-devops">
+  <div class="container">
+    <div class="section-header">
+      <h2><span>🤖</span> AI DevOps 前沿</h2>
+      <p class="section-subtitle">Agent Ops崛起、AIOps 2.0落地、全链路智能协同</p>
+    </div>
+    <div class="content-grid">
+      <div class="card">
+        <span class="tag tag-p0">P0</span>
+        <h3 style="margin-top:10px;">Agent Ops成为运维新范式，2026年被定义为落地元年</h3>
+        <p>从DevOps到MLOps，再到AIOps，现在轮到Agent Ops。AI Agent的每一次执行都是动态生成的决策路径，传统监控思维无法管理"数字员工"。AgentInsight等工具通过语义化观测点实现全链路监控。</p>
+        <div class="card-meta">
+          <span>来源：CSDN Agent技术社区</span>
+          <span>2026-06-21</span>
+        </div>
+      </div>
+      <div class="card">
+        <span class="tag tag-p0">P0</span>
+        <h3 style="margin-top:10px;">AI Agent嵌入DevOps全链路合规检查节点</h3>
+        <p>腾讯云开发者社区发布实战指南：代码层面自动扫描安全漏洞与许可证风险，镜像层面完成合规基线扫描，运行时层面实时监控敏感数据访问。研发效率提升40%以上，代码缺陷率降低30%。</p>
+        <div class="card-meta">
+          <span>来源：腾讯云开发者社区</span>
+          <span>2026-07-07</span>
+        </div>
+      </div>
+      <div class="card">
+        <span class="tag tag-p1">P1</span>
+        <h3 style="margin-top:10px;">kagent × A2A协议：打造Agentic Kubernetes</h3>
+        <p>台湾云端大会2026重点议题：A2A（Agent-to-Agent）协议打破单一Agent能力孤岛，不同专长Agent像人类专家团队一样相互协商、动态委派任务。kagent专为云原生环境设计。</p>
+        <div class="card-meta">
+          <span>来源：iThome Cloud Summit</span>
+          <span>2026-07-01</span>
+        </div>
+      </div>
+      <div class="card">
+        <span class="tag tag-p1">P1</span>
+        <h3 style="margin-top:10px;">PagerDuty AIOps将告警噪音压缩95%</h3>
+        <p>AI运维助手实战架构：数据层采用Prometheus+Thanos+Loki+OpenTelemetry，分析层使用时序异常检测+GraphRAG+LLM，行动层通过Argo Workflows实现自动修复。某电商平台MTTR下降80%。</p>
+        <div class="card-meta">
+          <span>来源：AIBotGo</span>
+          <span>2026-05-11</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 头部AI公司动态 -->
+<section class="section" id="ai-companies">
+  <div class="container">
+    <div class="section-header">
+      <h2><span>🏢</span> 头部AI公司动态</h2>
+      <p class="section-subtitle">MiniMax刷新融资纪录，DeepSeek V4即将上线，国产阵营加速洗牌</p>
+    </div>
+    <div class="content-grid">
+      <div class="card">
+        <span class="tag tag-p0">P0</span>
+        <h3 style="margin-top:10px;">MiniMax完成160亿港元融资，创2026港股科技募资新高</h3>
+        <p>7月10日完成新一轮配售，创始人闫俊发布全员信，宣布即日起至实现AGI不再领取薪酬。这标志着国产大模型企业进入"拼决心"阶段。</p>
+        <div class="card-meta">
+          <span>来源：搜狐科技</span>
+          <span>2026-07-12</span>
+        </div>
+      </div>
+      <div class="card">
+        <span class="tag tag-p0">P0</span>
+        <h3 style="margin-top:10px;">DeepSeek V4正式版7月中旬上线，首次引入峰谷定价</h3>
+        <p>完成首次外部融资，估值约4000亿元人民币。V4采用1.6T参数MoE架构，API输入$0.435/百万token、输出$0.87，与闭源前沿模型价差达57倍。</p>
+        <div class="card-meta">
+          <span>来源：搜狐科技 / Turiloop</span>
+          <span>2026-07-12</span>
+        </div>
+      </div>
+      <div class="card">
+        <span class="tag tag-p1">P1</span>
+        <h3 style="margin-top:10px;">月之暗面K3确认7月发布，参数量预计达2.5万亿</h3>
+        <p>累计融资约27亿美元。K3将在长上下文和Agent能力上进一步突破，与Kimi K2.5的256K上下文形成互补，瞄准B端API收入转型。</p>
+        <div class="card-meta">
+          <span>来源：搜狐科技</span>
+          <span>2026-07-12</span>
+        </div>
+      </div>
+      <div class="card">
+        <span class="tag tag-p1">P1</span>
+        <h3 style="margin-top:10px;">字节豆包2.1 Pro发布，日均Token调用突破120万亿</h3>
+        <p>在Coding、Agent、VLM三大方向实现能力跃升，多项评测优于Claude Opus 4.6。字节正在用大模型使用量重新定义"流量"的计量单位。</p>
+        <div class="card-meta">
+          <span>来源：搜狐科技</span>
+          <span>2026-07-12</span>
+        </div>
+      </div>
+      <div class="card">
+        <span class="tag tag-p2">P2</span>
+        <h3 style="margin-top:10px;">ChatGPT全球市场份额首次跌破50%</h3>
+        <p>美国"感应塔"6月16日报告：OpenAI在AI助手市场占比首次低于半数，美国大模型竞争进入收敛阶段，模型能力差距正快速转化为商业收入差距。</p>
+        <div class="card-meta">
+          <span>来源：Sensor Tower / 搜狐</span>
+          <span>2026-07-12</span>
+        </div>
+      </div>
+      <div class="card">
+        <span class="tag tag-p2">P2</span>
+        <h3 style="margin-top:10px;">智谱AI GLM-5.2开源，支持100万tokens无损上下文</h3>
+        <p>1月港交所IPO募资约42亿港元。GLM-5.2主攻"长程任务"，开源策略持续，企业自架场景首选。</p>
+        <div class="card-meta">
+          <span>来源：搜狐科技</span>
+          <span>2026-07-12</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 具身智能/机器人 -->
+<section class="section" style="background:#fafafa;" id="robotics">
+  <div class="container">
+    <div class="section-header">
+      <h2><span>🦾</span> 具身智能/机器人</h2>
+      <p class="section-subtitle">Q1融资681亿元超去年全年，万台级量产交付成2026核心观测点</p>
+    </div>
+    <div class="content-grid">
+      <div class="card">
+        <span class="tag tag-p0">P0</span>
+        <h3 style="margin-top:10px;">2026年Q1人形机器人融资681亿元，超2025年全年</h3>
+        <p>仅3月单月发生融资50起。资本集中度显著提升，人形机器人已超越工业机器人和服务机器人成为大额融资首选赛道。高盛预计2025-2027年工厂自动化需求温和下行。</p>
+        <div class="card-meta">
+          <span>来源：DoNews / 36氪研究院</span>
+          <span>2026-05-21</span>
+        </div>
+      </div>
+      <div class="card">
+        <span class="tag tag-p0">P0</span>
+        <h3 style="margin-top:10px;">天机智能10亿元B轮融资，Q1在手订单破1万台</h3>
+        <p>高瓴创投、美团战投联合领投。全球首家实现力控人形双臂量产交付，客户覆盖全球45家人形机器人整机厂商，重点布局北美市场。</p>
+        <div class="card-meta">
+          <span>来源：ALaTexpo</span>
+          <span>2026-05-26</span>
+        </div>
+      </div>
+      <div class="card">
+        <span class="tag tag-p1">P1</span>
+        <h3 style="margin-top:10px;">临界点灵巧手估值突破10亿美元，新晋独角兽</h3>
+        <p>全球市占领先的高自由度灵巧手企业，资金用于灵巧手大模型研发、开源数据集建设、硬件产品迭代。灵巧手被定义为机器人末端操作系统的"关键枢纽"。</p>
+        <div class="card-meta">
+          <span>来源：ALaTexpo</span>
+          <span>2026-05-26</span>
+        </div>
+      </div>
+      <div class="card">
+        <span class="tag tag-p1">P1</span>
+        <h3 style="margin-top:10px;">宇树5500台、智元5000台，人形机器人走出实验室</h3>
+        <p>《2026具身智能与人形机器人产业研究报告》：中国正在定义"物理AI"的新规则。整机成本持续下探，宇树R1仅2.99万元、松延Bumi低于1万元。</p>
+        <div class="card-meta">
+          <span>来源：机器人大讲堂 / 立德智库</span>
+          <span>2026-06-15</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 云原生与数据 -->
+<section class="section" id="cloud-native">
+  <div class="container">
+    <div class="section-header">
+      <h2><span>☁️</span> 云原生与数据</h2>
+      <p class="section-subtitle">向量数据库原生融合、存算分离架构普及、安全成为第一优先级</p>
+    </div>
+    <div class="content-grid">
+      <div class="card">
+        <span class="tag tag-p0">P0</span>
+        <h3 style="margin-top:10px;">向量数据库从"外挂"走向"原生融合"</h3>
+        <p>Gartner预测2026年超50%企业级AI应用依赖混合查询。金仓KingbaseES V9内核集成HNSW索引，保留完整ACID事务；Postgres+pgvector成为中小企业首选，消除跨库调用延迟。</p>
+        <div class="card-meta">
+          <span>来源：金仓技术博客 / Gartner</span>
+          <span>2026-05-07</span>
+        </div>
+      </div>
+      <div class="card">
+        <span class="tag tag-p0">P0</span>
+        <h3 style="margin-top:10px;">Milvus 2.6.x发布：JSON过滤提速100倍</h3>
+        <p>JSON Shredding & JSON Path Index让元数据过滤从几十毫秒压到微秒级。BM25全文搜索比Elasticsearch快4-7倍，支持关键词+向量混合检索。Semantic Highlighter根据查询意图高亮结果。</p>
+        <div class="card-meta">
+          <span>来源：CSDN技术博客</span>
+          <span>2026-06-06</span>
+        </div>
+      </div>
+      <div class="card">
+        <span class="tag tag-p1">P1</span>
+        <h3 style="margin-top:10px;">存算分离架构成本降至全内存1/10</h3>
+        <p>向量数据库存储架构演进：2018-2022全内存 → 2022-2024内存+磁盘混合 → 2024-2026对象存储原生。RaBitQ量化技术让冷数据加载从分钟级压缩到5-10秒。</p>
+        <div class="card-meta">
+          <span>来源：金仓技术博客</span>
+          <span>2026-07-08</span>
+        </div>
+      </div>
+      <div class="card">
+        <span class="tag tag-p1">P1</span>
+        <h3 style="margin-top:10px;">ChromaDB爆严重漏洞CVE-2026-45829（CVSS 10.0）</h3>
+        <p>约73%互联网暴露实例存在漏洞，且三个月未获官方回应。Atlan白皮书指出：安全响应能力应与性能同等重要，混合架构已成为企业级AI Agent记忆系统的社区标准。</p>
+        <div class="card-meta">
+          <span>来源：CSDN / Atlan白皮书</span>
+          <span>2026-06-04</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 项目管理与效能 -->
+<section class="section" style="background:#fafafa;" id="pm">
+  <div class="container">
+    <div class="section-header">
+      <h2><span>📊</span> 项目管理与效能</h2>
+      <p class="section-subtitle">AI驱动从"人治"到"智治"，效能度量进入数据驱动时代</p>
+    </div>
+    <div class="content-grid">
+      <div class="card">
+        <span class="tag tag-p0">P0</span>
+        <h3 style="margin-top:10px;">WorkBuddy×AI：项目管理六大能力升级</h3>
+        <p>需求预判、智能规划、进度自治、风险防控、协作升级、知识复用。AI基于强化学习与蒙特卡洛模拟实现全局最优排期，工期预测准确率超85%，资源利用率提升30%。</p>
+        <div class="card-meta">
+          <span>来源：腾讯云开发者社区</span>
+          <span>2026-03-28</span>
+        </div>
+      </div>
+      <div class="card">
+        <span class="tag tag-p1">P1</span>
+        <h3 style="margin-top:10px;">Linear内建效能仪表盘，自动追踪交付周期</h3>
+        <p>自动追踪需求从创建到交付的完整生命周期，提供Cycle Burndown与平均交付周期。瓶颈追溯通过需求在各状态间停留时长统计，精准定位审批或开发环节的积压点。</p>
+        <div class="card-meta">
+          <span>来源：ONES</span>
+          <span>2026-06-19</span>
+        </div>
+      </div>
+      <div class="card">
+        <span class="tag tag-p1">P1</span>
+        <h3 style="margin-top:10px;">"超级工程师"星型网络组织形态崛起</h3>
+        <p>AI自动生成代码骨架+测试用例，工程师聚焦架构设计。组织从层级转向以2-3名超级工程师为核心的"星型网络"，团队规模压缩效率提升。设立"AI轻协员"兼职角色。</p>
+        <div class="card-meta">
+          <span>来源：CSDN</span>
+          <span>2025-11-07</span>
+        </div>
+      </div>
+      <div class="card">
+        <span class="tag tag-p2">P2</span>
+        <h3 style="margin-top:10px;">PingCode效能度量：三层指标体系</h3>
+        <p>覆盖组织级（北极星指标横向对比）、团队级（自定义度量指标+趋势下钻）、项目级（需求交付周期、缺陷占比、部署时长）、个人级（工程师多维度统计反馈）。</p>
+        <div class="card-meta">
+          <span>来源：PingCode</span>
+          <span>2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 全球动态 -->
+<section class="section" id="global">
+  <div class="container">
+    <div class="section-header">
+      <h2><span>🌐</span> 全球动态</h2>
+      <p class="section-subtitle">芯片供应链区域化、技术标准主导权争夺、能源与算力深度绑定</p>
+    </div>
+    <div class="card" style="padding:0;overflow:hidden;">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width:12%">地区/领域</th>
+            <th style="width:20%">核心事件</th>
+            <th style="width:35%">关键影响</th>
+            <th style="width:15%">优先级</th>
+            <th style="width:18%">来源/时间</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>🇨🇳 中国</strong></td>
+            <td>28nm以上芯片国产化率超70%</td>
+            <td>车规级MCU、电源管理芯片实现全链替代，支撑新能源汽车与工业控制刚需领域</td>
+            <td><span class="tag tag-p0">P0</span></td>
+            <td>新浪新闻 / 2026-05-12</td>
+          </tr>
+          <tr>
+            <td><strong>🇺🇸 美国</strong></td>
+            <td>AI扩散框架限制140+国家芯片配额</td>
+            <td>英伟达H20"无限期"禁售中国，中国市场2024年贡献超120亿美元收入</td>
+            <td><span class="tag tag-p0">P0</span></td>
+            <td>AI战略洞察 / 2025-04-17</td>
+          </tr>
+          <tr>
+            <td><strong>🔧 供应链</strong></td>
+            <td>三大制造圈成型，65%美企转移产能</td>
+            <td>北美、欧洲、亚太区域制造集群加速形成，"表面转移"与"实质依赖"并存</td>
+            <td><span class="tag tag-p1">P1</span></td>
+            <td>新浪新闻 / 2026-05-12</td>
+          </tr>
+          <tr>
+            <td><strong>⚡ 资源</strong></td>
+            <td>中国对镓、锗实施出口管制</td>
+            <td>直接打击美军工与高科技产业，海外重稀土价格飙升推高欧洲制造成本</td>
+            <td><span class="tag tag-p1">P1</span></td>
+            <td>新浪新闻 / 2026-05-12</td>
+          </tr>
+          <tr>
+            <td><strong>📐 标准</strong></td>
+            <td>中国推动RISC-V国际标准制定</td>
+            <td>"香山"处理器性能逼近ARM旗舰水平，构建全球最大开源社区挑战X86/ARM生态</td>
+            <td><span class="tag tag-p1">P1</span></td>
+            <td>新浪新闻 / 2026-05-12</td>
+          </tr>
+          <tr>
+            <td><strong>🇪🇺 欧盟</strong></td>
+            <td>《芯片法案》争夺2nm话语权</td>
+            <td>拟购400亿欧元美制AI芯片建数据中心，但缺乏产业经验与执行力，落地成效存疑</td>
+            <td><span class="tag tag-p2">P2</span></td>
+            <td>EY 2026地缘策略展望</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 大咖声音 -->
+<section class="section" style="background:#fafafa;" id="voices">
+  <div class="container">
+    <div class="section-header">
+      <h2><span>🎙️</span> 大咖声音</h2>
+      <p class="section-subtitle">行业领袖的观点与判断</p>
+    </div>
+    <div class="voice-grid">
+      <div class="voice-card">
+        <div class="quote">"即日起至实现AGI，我不再领取薪酬。"</div>
+        <div class="author">闫俊</div>
+        <div class="title">MiniMax创始人 | 2026年7月全员信</div>
+      </div>
+      <div class="voice-card">
+        <div class="quote">"50%的新经济价值将来自今天就开始规模化AI能力的组织。"</div>
+        <div class="author">IDC分析师</div>
+        <div class="title">《Cloud, DevOps, AIOps, and MLOps: The 2026 Integration Guide》</div>
+      </div>
+      <div class="voice-card">
+        <div class="quote">"2026年中国人工智能市场规模将达到500亿美元。"</div>
+        <div class="author">黄仁勋（Jensen Huang）</div>
+        <div class="title">英伟达CEO | 钛媒体 / 2025年5月</div>
+      </div>
+      <div class="voice-card">
+        <div class="quote">"AI接管80%事务性工作，项目经理从'项目管家'升级为'价值设计师'。"</div>
+        <div class="author">WorkBuddy产品团队</div>
+        <div class="title">《2026项目管理从'人治'到'智治'》/ 腾讯云</div>
+      </div>
+      <div class="voice-card">
+        <div class="quote">"速度'与'泡沫'一直是前沿产业发展中需要平衡的问题，要着力防范重复度高的产品扎堆上市。"</div>
+        <div class="author">李超</div>
+        <div class="title">工信部具身智能标准化技术委员会 | 虎嗅 / 2026-03</div>
+      </div>
+      <div class="voice-card">
+        <div class="quote">"采用独立向量库的架构中，数据同步延迟与事务一致性维护成本正以指数级上升。"</div>
+        <div class="author">金仓数据库架构师</div>
+        <div class="title">《2026数据库架构演进：向量与关系的原生融合》</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 名字解释 -->
+<section class="section" id="terms">
+  <div class="container">
+    <div class="section-header">
+      <h2><span>📖</span> 名字解释</h2>
+      <p class="section-subtitle">术语速查字典——一句话看懂行业黑话</p>
+    </div>
+    <div class="term-grid">
+      <div class="term-card">
+        <div class="term">Agent Ops</div>
+        <div class="def">专门管理AI Agent全生命周期的运维范式，区别于传统DevOps管"确定性系统"，Agent Ops面对的是每次执行路径都动态变化的"数字员工"。</div>
+      </div>
+      <div class="term-card">
+        <div class="term">A2A协议</div>
+        <div class="def">Agent-to-Agent协议，打破单一Agent能力孤岛，让不同专长的Agent像人类专家团队一样相互协商、动态委派任务并凝聚共识。</div>
+      </div>
+      <div class="term-card">
+        <div class="term">GraphRAG</div>
+        <div class="def">基于知识图谱的检索增强生成技术，将基础设施拓扑关系编码为图谱，大模型基于图谱进行推理，实现秒级故障根因定位。</div>
+      </div>
+      <div class="term-card">
+        <div class="term">峰谷定价</div>
+        <div class="def">大模型API按时段动态调价机制，低峰期大幅降价以提升GPU利用率，高峰期价格上浮以平衡负载，DeepSeek V4首次引入。</div>
+      </div>
+      <div class="term-card">
+        <div class="term">存算分离</div>
+        <div class="def">计算节点与存储节点独立扩展的架构，向量索引计算在计算节点完成，数据持久化在对象存储，成本降至全内存架构的1/10。</div>
+      </div>
+      <div class="term-card">
+        <div class="term">MTTR</div>
+        <div class="def">Mean Time To Repair，平均修复时间。AI RCA（根因分析）可将MTTR从45分钟降至6分钟，下降幅度达80%以上。</div>
+      </div>
+      <div class="term-card">
+        <div class="term">混合检索</div>
+        <div class="def">同时融合向量相似度搜索、标量过滤和全文检索的查询模式，Gartner预测2026年底将成为生产环境标配。</div>
+      </div>
+      <div class="term-card">
+        <div class="term">灵巧手</div>
+        <div class="def">机器人末端执行器，被定义为机器人操作系统的"关键枢纽"。高自由度灵巧手的成熟度直接决定人形机器人商业化渗透率。</div>
+      </div>
+      <div class="term-card">
+        <div class="term">星型网络</div>
+        <div class="def">AI时代的新型团队组织形态，以2-3名"超级工程师"为核心节点，AI工具替代传统中层，团队规模压缩但产出效率倍增。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 关键数据速览 -->
+<section class="section" style="background:#fafafa;" id="data">
+  <div class="container">
+    <div class="section-header">
+      <h2><span>📊</span> 关键数据速览</h2>
+      <p class="section-subtitle">用真实数字说话</p>
+    </div>
+    <div class="data-grid">
+      <div class="data-item">
+        <div class="number">160</div>
+        <div class="unit">亿港元</div>
+        <div class="desc">MiniMax单次配售募资额，创2026港股科技新高</div>
+      </div>
+      <div class="data-item">
+        <div class="number">4000</div>
+        <div class="unit">亿元人民币</div>
+        <div class="desc">DeepSeek首次外部融资后估值</div>
+      </div>
+      <div class="data-item">
+        <div class="number">120</div>
+        <div class="unit">万亿token/日</div>
+        <div class="desc">字节豆包大模型日均调用量</div>
+      </div>
+      <div class="data-item">
+        <div class="number">681</div>
+        <div class="unit">亿元</div>
+        <div class="desc">2026年Q1人形机器人赛道融资总额</div>
+      </div>
+      <div class="data-item">
+        <div class="number">57</div>
+        <div class="unit">倍</div>
+        <div class="desc">DeepSeek V4-Pro与Claude Fable 5输出价差</div>
+      </div>
+      <div class="data-item">
+        <div class="number">50%</div>
+        <div class="unit">市场份额</div>
+        <div class="desc">ChatGPT全球AI助手占比首次跌破此线</div>
+      </div>
+      <div class="data-item">
+        <div class="number">80%</div>
+        <div class="unit">MTTR降幅</div>
+        <div class="desc">某电商平台部署AI RCA后的平均修复时间变化</div>
+      </div>
+      <div class="data-item">
+        <div class="number">210%</div>
+        <div class="unit">同比增长</div>
+        <div class="desc">2025年向量数据库GitHub仓库Star总数增速</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 深度分析 -->
+<section class="section" id="analysis">
+  <div class="container">
+    <div class="section-header">
+      <h2><span>💡</span> 深度分析</h2>
+      <p class="section-subtitle">趋势判断、数据解读与战略观察</p>
+    </div>
+    <div class="card" style="margin-bottom:20px;">
+      <div class="analysis-block">
+        <h4>一、国产大模型进入"生态卡位"阶段，价格战远未结束</h4>
+        <p>
+          2026年5月的"12天4个开源大模型"只是序幕。MiniMax的160亿港元融资和闫俊的"零薪酬"宣言，DeepSeek的峰谷定价机制，以及字节豆包120万亿token的日调用量——这些信号共同指向一个结论：国产大模型竞争已从"模型能力"转向"生态壁垒"。<br><br>
+          更深层的变化在定价策略。DeepSeek V4-Pro每百万token输出$0.87，与Claude Fable 5的$50相差57倍。这种价格剪刀差不是简单的"便宜"，而是基于MoE架构和国产算力链路的系统性成本优势。对于企业而言，这意味着AI应用的成本结构正在被重新定义——过去受限于API预算的创意，现在有了大规模验证的可能。<br><br>
+          但风险同样存在：ChatGPT全球份额跌破50%说明市场正在分裂，而分裂的市场意味着更高的适配成本。企业需要建立多模型降级策略，而非单一供应商依赖。
+        </p>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:20px;">
+      <div class="analysis-block">
+        <h4>二、具身智能的"量产幻觉"与真实门槛</h4>
+        <p>
+          Q1融资681亿元、天机智能在手订单1万台、宇树和智元年出货量破5000台——这些数据确实亮眼，但"量产"不等于"能用"。<br><br>
+          核心瓶颈在零部件：行星滚柱丝杠国产良率仅60%（海外85%+），六维力传感器精度±2%（海外±0.5%），电子皮肤柔性电路良率仅30%。高端零部件的性能差距意味着，人形机器人在工业场景的"可靠运行"仍需2-3年的工程化爬坡。<br><br>
+          另一个被低估的变量是世界模型。当前人形机器人的操作能力仍依赖大量真实场景数据训练，而真实数据采集成本极高。"仿真到现实"（Sim-to-Real）的迁移成功率直接决定了规模化成本。2026年的关键观测点不是"出了多少台"，而是"有多少台在真实工厂里连续运行超过一个月"。
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="analysis-block">
+        <h4>三、向量数据库的"融合战争"与信创红利</h4>
+        <p>
+          2026年向量数据库领域最激烈的竞争不是性能，而是"融合深度"。独立向量库（Milvus、Chroma、Weaviate）正在面临来自传统数据库厂商的降维打击——金仓KingbaseES V9、Postgres+pgvector、EDB Postgres AI都在将向量能力内嵌为原生存储引擎。<br><br>
+          这背后的逻辑很清晰：企业不需要为AI应用再引入一个独立的数据孤岛。当向量检索可以在同一个事务原子中与关系型数据一起更新时，数据一致性、运维复杂度、总拥有成本（TCO）都会显著降低。<br><br>
+          国产厂商还有一个额外的红利：信创政策。政务、金融、军工等领域对数据主权和合规的要求，给了金仓等国产数据库明确的替换窗口。但安全事件的爆发（ChromaDB CVSS 10.0漏洞）也在提醒所有人：AI基础设施的选型，安全响应能力应该与性能同等重要。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 行业热力图 -->
+<section class="section" style="background:#fafafa;" id="heatmap">
+  <div class="container">
+    <div class="section-header">
+      <h2><span>🔥</span> 行业热力图</h2>
+      <p class="section-subtitle">六大敏感领域当前热度与状态说明</p>
+    </div>
+    <div class="heat-map">
+      <div class="heat-item">
+        <div class="label">AI DevOps</div>
+        <div class="status heat-hot">🔥🔥🔥</div>
+        <div class="heat-desc">Agent Ops落地元年，AIOps 2.0全链路协同成为标配，工具链选型窗口期开启。</div>
+      </div>
+      <div class="heat-item">
+        <div class="label">头部AI公司</div>
+        <div class="status heat-hot">🔥🔥🔥</div>
+        <div class="heat-desc">MiniMax巨额融资、DeepSeek V4上线、Kimi K3待发，国产阵营进入生态卡位战。</div>
+      </div>
+      <div class="heat-item">
+        <div class="label">具身智能/机器人</div>
+        <div class="status heat-warm">🔥🔥</div>
+        <div class="heat-desc">量产爬坡期，万台级交付成核心观测点，零部件国产化率分化明显。</div>
+      </div>
+      <div class="heat-item">
+        <div class="label">云原生与数据</div>
+        <div class="status heat-warm">🔥🔥</div>
+        <div class="heat-desc">向量数据库原生融合趋势确立，存算分离架构普及，安全事件引发关注。</div>
+      </div>
+      <div class="heat-item">
+        <div class="label">项目管理与效能</div>
+        <div class="status heat-cool">🔥</div>
+        <div class="heat-desc">AI驱动效能度量工具成熟，但组织变革滞后于工具升级，"人机共舞"文化待建立。</div>
+      </div>
+      <div class="heat-item">
+        <div class="label">全球动态</div>
+        <div class="status heat-warm">🔥🔥</div>
+        <div class="heat-desc">芯片出口管制持续收紧，供应链区域化双轨格局成型，RISC-V标准权争夺白热化。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 权威来源 -->
+<section class="section" id="sources">
+  <div class="container">
+    <div class="section-header">
+      <h2><span>📚</span> 权威来源</h2>
+      <p class="section-subtitle">每条新闻均可追溯——时间、作者、原文链接</p>
+    </div>
+    <div class="card">
+      <ul class="source-list">
+        <li>
+          <div class="source-title">《2026上半年AI大模型终极盘点：OpenAI、谷歌、Anthropic三强争霸，国产阵营加速洗牌》</div>
+          <div class="source-meta">
+            发布时间：2026-07-12 | 作者：搜狐科技编辑团队 | 原文链接：<a href="https://www.sohu.com/a/1048582129_122921598" target="_blank">https://www.sohu.com/a/1048582129_122921598</a> | 引用位置：头部AI公司动态板块
+          </div>
+        </li>
+        <li>
+          <div class="source-title">《从AIOps到智能体DevOps：2026年AI驱动研运全链路协同实战》</div>
+          <div class="source-meta">
+            发布时间：2026-07-07 | 作者：腾讯云开发者社区技术专家 | 原文链接：<a href="https://developer.cloud.tencent.com/article/2704316" target="_blank">https://developer.cloud.tencent.com/article/2704316</a> | 引用位置：AI DevOps前沿板块
+          </div>
+        </li>
+        <li>
+          <div class="source-title">《Agent Ops已经来了：2026年运维范式正在被智能体重构》</div>
+          <div class="source-meta">
+            发布时间：2026-06-21 | 作者：CSDN Agent技术社区 | 原文链接：<a href="https://agent.csdn.net/6a37a79410ee7a33f280696a.html" target="_blank">https://agent.csdn.net/6a37a79410ee7a33f280696a.html</a> | 引用位置：AI DevOps前沿板块
+          </div>
+        </li>
+        <li>
+          <div class="source-title">《具身智能2026深度拆解：万亿市场、460亿融资与人形机器人量产拐点》</div>
+          <div class="source-meta">
+            发布时间：2026-07-01 | 作者：36氪研究院 | 原文链接：<a href="https://www.sohu.com/a/1044123688_122904014" target="_blank">https://www.sohu.com/a/1044123688_122904014</a> | 引用位置：具身智能/机器人板块
+          </div>
+        </li>
+        <li>
+          <div class="source-title">《人形机器人量产提速，2026年Q1融资达681亿元》</div>
+          <div class="source-meta">
+            发布时间：2026-05-21 | 作者：DoNews | 原文链接：<a href="https://www.donews.com/news/detail/4/6565114.html" target="_blank">https://www.donews.com/news/detail/4/6565114.html</a> | 引用位置：具身智能/机器人板块
+          </div>
+        </li>
+        <li>
+          <div class="source-title">《2025-2026向量数据库发展趋势：从检索工具到AI基础设施核心》</div>
+          <div class="source-meta">
+            发布时间：2026-07-08 | 作者：金仓数据库架构师 | 原文链接：<a href="https://www.kingbase.com.cn/explore/tech-blog/2025-2026%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%91%E5%B1%95%E8%B6%8B%E5%8A%BF%EF%BC%9A%E4%BB%8E%E6%A3%80%E7%B4%A2%E5%B7%A5%E5%85%B7%E5%88%B0ai%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E6%A0%B8/" target="_blank">金仓技术博客</a> | 引用位置：云原生与数据板块
+          </div>
+        </li>
+        <li>
+          <div class="source-title">《向量数据库选型决战：2026年Milvus、Qdrant、Weaviate、Pgvector的压测报告》</div>
+          <div class="source-meta">
+            发布时间：2026-06-06 | 作者：CSDN技术博主 | 原文链接：<a href="https://blog.csdn.net/2601_95807009/article/details/161751043" target="_blank">https://blog.csdn.net/2601_95807009/article/details/161751043</a> | 引用位置：云原生与数据板块
+          </div>
+        </li>
+        <li>
+          <div class="source-title">《WorkBuddy×AI：2026，项目管理从"人治"到"智治"的范式跃迁》</div>
+          <div class="source-meta">
+            发布时间：2026-03-28 | 作者：腾讯云开发者社区 | 原文链接：<a href="https://cloud.tencent.com/developer/article/2647172" target="_blank">https://cloud.tencent.com/developer/article/2647172</a> | 引用位置：项目管理与效能板块
+          </div>
+        </li>
+        <li>
+          <div class="source-title">《当盟友企业沦为地缘博弈牺牲品，全球芯片供应链的重组将如何重塑科技产业格局？》</div>
+          <div class="source-meta">
+            发布时间：2026-05-12 | 作者：新浪财经深度报道团队 | 原文链接：<a href="https://news.sina.cn/bignews/insight/2026-05-12/detail-inhxrwqh9865418.d.html" target="_blank">https://news.sina.cn/bignews/insight/2026-05-12/detail-inhxrwqh9865418.d.html</a> | 引用位置：全球动态板块
+          </div>
+        </li>
+        <li>
+          <div class="source-title">《2026年国产大模型API价格全景：GLM-5.2、DeepSeek、Kimi、MiniMax一篇看懂》</div>
+          <div class="source-meta">
+            发布时间：2026-06-29 | 作者：Turiloop技术博客 | 原文链接：<a href="https://turiloop.com/zh/blog/chinese-ai-model-api-pricing-2026" target="_blank">https://turiloop.com/zh/blog/chinese-ai-model-api-pricing-2026</a> | 引用位置：关键数据速览板块
+          </div>
+        </li>
+        <li>
+          <div class="source-title">《资本加速涌入具身智能！机器人行业投融资周报》</div>
+          <div class="source-meta">
+            发布时间：2026-05-26 | 作者：ALaTexpo产业研究 | 原文链接：<a href="https://www.alatexpo.com/?zixun/447.html" target="_blank">https://www.alatexpo.com/?zixun/447.html</a> | 引用位置：具身智能/机器人板块
+          </div>
+        </li>
+        <li>
+          <div class="source-title">《万字拆解〈2026具身智能与人形机器人产业研究报告〉》</div>
+          <div class="source-meta">
+            发布时间：2026-06-15 | 作者：机器人大讲堂 × 立德智库 | 原文链接：<a href="https://www.iedumedia.com/news/newsinfo/2819" target="_blank">https://www.iedumedia.com/news/newsinfo/2819</a> | 引用位置：具身智能/机器人板块
+          </div>
+        </li>
+        <li>
+          <div class="source-title">《Cloud, DevOps, AIOps, and MLOps: The 2026 Integration Guide》</div>
+          <div class="source-meta">
+            发布时间：2026-06-09 | 作者：Gokul Balamurugan, Voce Platform | 原文链接：<a href="https://voce.com/@gokulbalamurugan/cloud-devops-aiops-mlops-2026-integration-guide-9sph1c" target="_blank">https://voce.com/...</a> | 引用位置：大咖声音板块
+          </div>
+        </li>
+        <li>
+          <div class="source-title">《2026年地缘策略展望》</div>
+          <div class="source-meta">
+            发布时间：2026 | 作者：EY（安永）全球地缘策略团队 | 原文链接：<a href="https://www.ey.com/content/dam/ey-unified-site/ey-com/zh-tw/insights/geostrategy/documents/ey-2026-geostrategic-oulook.pdf" target="_blank">EY官网PDF</a> | 引用位置：全球动态板块
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="footer">
+  <div class="container">
+    <p>AI晨报 · 豆饼(Doubing) 编制 · 2026-07-15</p>
+    <p style="margin-top:8px;">数据来源：公开网络搜索与整理，仅供行业参考，不构成投资建议</p>
+  </div>
+</footer>
+
+</main>
+
+</body>
+</html>
