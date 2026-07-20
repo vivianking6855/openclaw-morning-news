@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日晨报 2026-07-21 | OpenClaw Morning News</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f7; color: #1d1d1f; line-height: 1.6; }
+        .main { max-width: 1200px; margin: 0 auto; padding: 24px; }
+        .hero-section { background: linear-gradient(135deg, #1d1d1f 0%, #434344 100%); color: #fff; padding: 40px; border-radius: 20px; margin-bottom: 30px; }
+        .hero-badge { display: inline-block; background: rgba(255,255,255,0.15); padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 16px; }
+        .hero-title { font-size: 32px; font-weight: 700; line-height: 1.3; margin-bottom: 16px; }
+        .hero-summary { font-size: 16px; line-height: 1.7; opacity: 0.9; margin-bottom: 20px; }
+        .hero-meta { display: flex; gap: 20px; font-size: 13px; opacity: 0.7; }
+        .section-title { font-size: 22px; font-weight: 700; margin-bottom: 20px; color: #1d1d1f; }
+        .rec-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 30px; }
+        .rec-card { background: #fff; padding: 24px; border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border-left: 4px solid #0071e3; }
+        .rec-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; color: #1d1d1f; }
+        .rec-card p { font-size: 13px; color: #555; line-height: 1.6; }
+        .content-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .content-card { background: #fff; padding: 24px; border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+        .content-card.full-width { grid-column: 1 / -1; }
+        .content-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .card-icon { font-size: 22px; }
+        .content-card ul { list-style: none; }
+        .content-card li { padding: 12px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; line-height: 1.6; }
+        .content-card li:last-child { border-bottom: none; }
+        .tag { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; margin-right: 6px; }
+        .tag-p0 { background: rgba(255,59,48,0.1); color: #ff3b30; }
+        .tag-p1 { background: rgba(255,149,0,0.1); color: #ff9500; }
+        .tag-p2 { background: rgba(52,199,89,0.1); color: #34c759; }
+        .news-meta { font-size: 11px; color: #86868b; margin-top: 4px; display: block; }
+        .news-meta .time { margin-right: 8px; }
+        .news-meta .source { color: #0071e3; }
+        .fixed-voices-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
+        .fixed-voice-card { background: #f5f5f7; padding: 20px; border-radius: 12px; border-left: 4px solid #0071e3; }
+        .fixed-voice-card .voice-name { font-weight: 600; font-size: 14px; color: #1d1d1f; margin-bottom: 8px; }
+        .fixed-voice-card .voice-title { font-size: 12px; color: #86868b; margin-bottom: 10px; }
+        .fixed-voice-card .voice-text { font-size: 13px; line-height: 1.6; color: #333; margin-bottom: 10px; }
+        .fixed-voice-card .voice-meta { font-size: 11px; color: #86868b; }
+        .term-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 20px; }
+        .term-card { background: #f5f5f7; padding: 16px; border-radius: 10px; }
+        .term-card .term { font-weight: 600; font-size: 14px; color: #1d1d1f; margin-bottom: 6px; }
+        .term-card .def { font-size: 12px; color: #555; line-height: 1.5; }
+        .header { background: #fff; border-bottom: 1px solid #d2d2d7; padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 90; }
+        .header .back-home { color: #86868b; text-decoration: none; font-size: 14px; font-weight: 500; }
+        .header .logo { display: flex; align-items: center; gap: 8px; color: #1d1d1f; text-decoration: none; font-weight: 700; font-size: 16px; }
+        .date-bar { background: #fff; border-bottom: 1px solid #d2d2d7; padding: 14px 24px; text-align: center; }
+        .date-bar .current-date { font-size: 16px; font-weight: 600; color: #1d1d1f; display: inline-block; padding: 8px 20px; background: #f5f5f7; border-radius: 8px; }
+        .footer { background: #1d1d1f; color: #fff; padding: 30px; text-align: center; margin-top: 40px; }
+        .footer a { color: #0071e3; }
+        .global-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 15px; }
+        .global-table th { background: #f5f5f7; padding: 10px; text-align: left; font-weight: 600; border-bottom: 2px solid #d2d2d7; }
+        .global-table td { padding: 10px; border-bottom: 1px solid #f0f0f0; }
+        .global-table .region { font-weight: 600; color: #0071e3; }
+        .heatmap-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-radius: 10px; font-size: 14px; }
+        .heatmap-item .fire { letter-spacing: 2px; }
+        @media (max-width: 768px) {
+            .content-grid, .rec-grid { grid-template-columns: 1fr; }
+            .term-grid { grid-template-columns: 1fr; }
+            .hero-title { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="back-home">← 返回首页</a>
+        <a href="index.html" class="logo"><span style="font-size:20px;">📰</span><span>每日晨报</span></a>
+    </header>
+    <div class="date-bar">
+        <span class="current-date">2026年7月21日 星期二</span>
+    </div>
+    <main class="main">
+
+        <!-- 1. 今日洞察 -->
+        <section class="hero-section">
+            <div class="hero-badge">💡 今日洞察</div>
+            <h1 class="hero-title">OpenAI Codex Agent公测 · IBM 50亿美元收购DataStax · 霍尔木兹危机重塑能源格局</h1>
+            <p class="hero-summary">OpenAI Codex Agent进入公测阶段，编码效率提升45%，标志AI编程从辅助走向自主执行。IBM以50亿美元收购DataStax，加速混合云AI数据平台布局。与此同时，霍尔木兹海峡危机持续发酵，美伊紧张局势推升油价至80美元/桶，全球石油需求在Q2下降500万桶/日，后石油时代加速到来。</p>
+            <div class="hero-meta">
+                <span>📅 2026-07-21</span>
+                <span>⏱️ 8分钟阅读</span>
+                <span>🔖 14个板块</span>
+            </div>
+        </section>
+
+        <!-- 2. 务实落地建议 -->
+        <section class="recommendations">
+            <h2 class="section-title">🛠️ 务实落地建议</h2>
+            <div class="rec-grid">
+                <div class="rec-card">
+                    <h4>评估AI Agent自主编码能力</h4>
+                    <p>OpenAI Codex Agent已进入公测，编码效率提升45%。建议技术团队申请内测资格，评估在代码审查、单元测试生成、Bug修复等场景的落地可行性，制定从"辅助编程"到"自主执行"的渐进式路线图。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>重新审视数据基础设施战略</h4>
+                    <p>IBM 50亿美元收购DataStax释放强烈信号：混合云+AI的数据平台成为竞争焦点。建议企业评估现有数据库架构对AI工作负载的支撑能力，关注向量数据库、实时数据管道和混合云部署方案。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>关注具身智能量产窗口期</h4>
+                    <p>2026上半年具身智能融资171起、总额超300亿元，万台级交付已成行业分水岭。建议供应链企业关注核心零部件（减速器、力矩传感器、灵巧手）的国产替代机会，把握2027年成本下降40%-50%的量产红利。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>建立地缘风险对冲机制</h4>
+                    <p>霍尔木兹危机导致油价剧烈波动，美伊紧张局势存在进一步升级风险。建议企业审查能源成本敞口，评估供应链多元化方案，对中东局势保持高度敏感，制定应急预案。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 内容网格 -->
+        <div class="content-grid">
+
+            <!-- 3. AI DevOps 前沿 -->
+            <section class="content-card">
+                <h3><span class="card-icon">🤖</span> AI DevOps 前沿</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>OpenAI Codex Agent公测：编码效率提升45%</strong>：OpenAI于7月16日宣布Codex Agent进入公测阶段，可自主完成代码编写、调试和PR提交，标志AI编程从Copilot辅助模式迈向Agent自主执行时代。
+                        <span class="news-meta"><span class="time">2026-07-16</span><span class="source">@OpenAI官方</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>IBM 50亿美元收购DataStax，加速混合云AI数据平台</strong>：IBM于7月17日宣布收购DataStax，强化其在混合云环境下的AI数据管理能力，直接对标MongoDB和Databricks。
+                        <span class="news-meta"><span class="time">2026-07-17</span><span class="source">@IBM官方/彭博</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>GitHub AI项目持续霸榜，Agent工具成主流</strong>：2026年7月GitHub Trending榜单继续被AI Agent项目主导，多Agent协作、记忆增强、自主执行等方向热度最高。
+                        <span class="news-meta"><span class="time">2026-07</span><span class="source">@GitHub</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>AI Agent市场：2024年50亿美元，2030年预计达500亿美元</strong>：Grand View Research数据显示，AI Agent市场正以年复合增长率约40%的速度扩张，AgentOps成为AI工程化的新焦点。
+                        <span class="news-meta"><span class="time">2026-07</span><span class="source">@Grand View Research</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 4. 头部AI公司动态 -->
+            <section class="content-card">
+                <h3><span class="card-icon">🏢</span> 头部AI公司动态</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>OpenAI：Codex Agent公测 + Grok-3.5发布</strong>：OpenAI在7月密集发布，Codex Agent标志编程范式转变；xAI Grok-3.5同步上线，多模态推理能力显著增强。
+                        <span class="news-meta"><span class="time">2026-07-16</span><span class="source">@OpenAI/xAI</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>Meta：LLaMA 4系列（Scout/Behemoth）开源发布</strong>：Meta继续推进开源战略，LLaMA 4 Scout面向边缘设备，Behemoth定位超大参数模型，与OpenAI闭源路线形成鲜明对比。
+                        <span class="news-meta"><span class="time">2026-07</span><span class="source">@Meta AI</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>Google：Gemini 2.5 Pro Flash全面可用</strong>：Google加速Gemini商业化部署，Flash版本在保持性能的同时显著降低延迟和成本，直接竞争OpenAI GPT系列。
+                        <span class="news-meta"><span class="time">2026-07</span><span class="source">@Google DeepMind</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p2">趋势</span>
+                        <strong>Apple Intelligence：iOS 26深度集成AI能力</strong>：苹果在WWDC 2026后持续推进端侧AI，Private Cloud Compute架构成为隐私计算的行业标杆。
+                        <span class="news-meta"><span class="time">2026-07</span><span class="source">@Apple</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 5. 具身智能/机器人 -->
+            <section class="content-card">
+                <h3><span class="card-icon">🦾</span> 具身智能/机器人</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>WAIC 2026发布全球首个具身智能通用大脑标准</strong>：7月19日世界人工智能大会发布具身智能通用大脑标准，为行业技术规范和 interoperability 奠定基础。
+                        <span class="news-meta"><span class="time">2026-07-19</span><span class="source">@WAIC/澎湃新闻</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>2026上半年融资171起，总额突破300亿元</strong>：具身智能赛道持续高热，国家队密集入场，资本向头部集中，"百亿俱乐部"门槛形成。
+                        <span class="news-meta"><span class="time">2026-07</span><span class="source">@中国信通院/投中网</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>万台级量产成为行业分水岭</strong>：智元机器人第一万台通用具身机器人远征A3完工出厂，2026年国内人形机器人出货量有望攀升至6.25万台。
+                        <span class="news-meta"><span class="time">2026-07</span><span class="source">@高工机器人</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>预计2027年成本下降40%-50%</strong>：随着规模效应显现和供应链成熟，人形机器人单台成本有望从当前数十万元降至十万元级别，C端市场将逐步打开。
+                        <span class="news-meta"><span class="time">2026-07</span><span class="source">@行业分析</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 6. 云原生与数据 -->
+            <section class="content-card">
+                <h3><span class="card-icon">☁️</span> 云原生与数据</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>IBM 50亿美元收购DataStax，重塑混合云数据库格局</strong>：DataStax旗下Astra DB和Apache Cassandra生态将被纳入IBM Cloud，直接挑战MongoDB Atlas和Databricks的市场地位。
+                        <span class="news-meta"><span class="time">2026-07-17</span><span class="source">@IBM/彭博</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>Kubernetes for AI：K8s成为AI工作负载标配</strong>：2026年Kubernetes在AI/ML场景采用率持续攀升，NVIDIA AI Cluster Runtime和Fluid数据编排成为关键组件。
+                        <span class="news-meta"><span class="time">2026-07</span><span class="source">@CNCF/KubeSphere</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>Edge AI加速：K3s/MicroK8s成边缘部署首选</strong>：轻量级K8s发行版在边缘AI场景快速增长，满足低延迟、离线运行和数据隐私需求。
+                        <span class="news-meta"><span class="time">2026-07</span><span class="source">@CNCF</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p2">趋势</span>
+                        <strong>Milvus：全球超60% RAG系统的向量存储首选</strong>：GitHub Star数已超25k，v2.6版本具备云原生架构、多模态支持、GPU加速等企业级特性。
+                        <span class="news-meta"><span class="time">2026-07</span><span class="source">@Zilliz</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 7. 项目管理与效能 -->
+            <section class="content-card">
+                <h3><span class="card-icon">📊</span> 项目管理与效能</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>73%项目专业人士期望混合AI-Human工作流</strong>：2026年AI项目管理工具从被动跟踪转向主动执行，Agent可自主监控项目、重新分配逾期任务、起草状态更新。
+                        <span class="news-meta"><span class="time">2026-07</span><span class="source">@Lark/McKinsey</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>AI工具平均减少项目延迟20-30%</strong>：预测性分析能力显著增强，AI可检测瓶颈、预测延期并推荐资源重新分配，从"救火"转向"预防"。
+                        <span class="news-meta"><span class="time">2026-07</span><span class="source">@Revolens/Gartner</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>54%项目专业人士在16-50%项目中使用GenAI</strong>：生成式AI在内容生成、状态报告、任务分解等场景渗透率快速提升，生产力增益最高达93%。
+                        <span class="news-meta"><span class="time">2026-07</span><span class="source">@Coursera/PMI</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p2">趋势</span>
+                        <strong>AI项目管理四阶段模型：从Assistant到Agent</strong>：Level 1辅助→Level 2分析→Level 3协调→Level 4自主执行，领先企业已进入Level 3-4阶段。
+                        <span class="news-meta"><span class="time">2026-07</span><span class="source">@Taazor</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 8. 全球动态 -->
+            <section class="content-card">
+                <h3><span class="card-icon">🌐</span> 全球动态</h3>
+                <table class="global-table">
+                    <tr><th>地区/领域</th><th>关键动态</th><th>影响等级</th></tr>
+                    <tr>
+                        <td class="region">🇮🇷 中东</td>
+                        <td>美伊紧张升级：7月7日取消伊朗售油豁免，7月8日MoU失效，7月13日恢复海上封锁；油价从70美元冲至80美元/桶</td>
+                        <td><span class="tag tag-p0">P0</span></td>
+                    </tr>
+                    <tr>
+                        <td class="region">🌍 全球能源</td>
+                        <td>2026年Q2全球石油需求下降500万桶/日（约5%）；海湾出口1610万桶/日，远低于战前2400万桶/日</td>
+                        <td><span class="tag tag-p0">P0</span></td>
+                    </tr>
+                    <tr>
+                        <td class="region">🇺🇸🇨🇳 国际关系</td>
+                        <td>皮尤7月15日报告：36国中25国对中国持正面看法，美国仅在6国保持优势；中国际形象回升，美国评价下降</td>
+                        <td><span class="tag tag-p1">P1</span></td>
+                    </tr>
+                    <tr>
+                        <td class="region">🇦🇪 阿联酋</td>
+                        <td>阿联酋退出OPEC，5月与美国宣布货币互换协议谈判；在AI、数据中心、能源转型领域与沙特竞争</td>
+                        <td><span class="tag tag-p1">P1</span></td>
+                    </tr>
+                    <tr>
+                        <td class="region">🇨🇳 中国科技</td>
+                        <td>加特兰车规级毫米波雷达芯片累计出货突破3000万颗；科创板七周年，超600家上市公司、总市值超14万亿元</td>
+                        <td><span class="tag tag-p2">P2</span></td>
+                    </tr>
+                    <tr>
+                        <td class="region">🇺🇸 美联储</td>
+                        <td>利率路径与降息预期反复，高利率环境对高估值成长股存在隐性压制；AI、存储等板块拥挤度上升</td>
+                        <td><span class="tag tag-p2">P2</span></td>
+                    </tr>
+                </table>
+            </section>
+        </div>
+
+        <!-- 9. 大咖声音 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">🎙️</span> 大咖声音</h3>
+            <div class="fixed-voices-grid">
+                <div class="fixed-voice-card">
+                    <div class="voice-name">Mathias Biilmann</div>
+                    <div class="voice-title">Netlify CEO，AX（Agent Experience）概念提出者</div>
+                    <div class="voice-text">"AX是UX和DX的自然继承者。正如公司先优化人类用户体验，再优化开发者体验，现在必须优化AI Agent的体验。Agent正在从产品主导增长的时代走向Agent主导增长的时代。"</div>
+                    <div class="voice-meta">来源：One Year of AX | 2026-01</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">Peter Steinberger</div>
+                    <div class="voice-title">OpenClaw创始人，现OpenAI Personal Agents团队</div>
+                    <div class="voice-text">"在欧洲，我们花更多时间写法律文件而不是写代码……欧洲留不住顶尖AI人才，因为他们忙着监管还没发明出来的东西。我的条件是项目必须保持开源。这对人类太重要了，不能交给一家公司。"</div>
+                    <div class="voice-meta">来源：Lex Fridman Podcast | 2026-02</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">Sam Altman</div>
+                    <div class="voice-title">OpenAI CEO</div>
+                    <div class="voice-text">（关于Codex Agent）"我们正在从AI辅助人类编码，转向AI自主完成编码任务。这不是替代开发者，而是让开发者从重复性工作中解放出来，专注于架构设计和创新。"</div>
+                    <div class="voice-meta">来源：OpenAI官方博客 | 2026-07-16</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">Daan Struyven</div>
+                    <div class="voice-title">高盛全球大宗商品研究联席主管</div>
+                    <div class="voice-text">"关键问题在于：这一下滑是暂时的，还是出现了显著的结构性需求损失？全球需求损失中，预计约三分之二与中国的石油进口需求下降有关。"</div>
+                    <div class="voice-meta">来源：财新专访 | 2026-07-08</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. 名字解释 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">📖</span> 名字解释</h3>
+            <div class="term-grid">
+                <div class="term-card">
+                    <div class="term">AgentOps</div>
+                    <div class="def">AI Agent的运营管理体系，覆盖Agent的部署、监控、评估和优化，是DevOps在AI时代的自然延伸。</div>
+                </div>
+                <div class="term-card">
+                    <div class="term">具身智能</div>
+                    <div class="def">将AI大模型与物理实体（机器人）结合，使AI具备感知物理世界并与之交互的能力，是AI从数字走向物理的关键一步。</div>
+                </div>
+                <div class="term-card">
+                    <div class="term">AX (Agent Experience)</div>
+                    <div class="def">Agent Experience的缩写，指AI Agent作为产品/平台用户时的整体体验，是UX和DX之后的第三代体验设计范式。</div>
+                </div>
+                <div class="term-card">
+                    <div class="term">Hallucination</div>
+                    <div class="def">AI大模型"幻觉"，指模型生成看似合理但实际错误的内容，是当前大模型在关键场景落地的核心挑战之一。</div>
+                </div>
+                <div class="term-card">
+                    <div class="term">RAG</div>
+                    <div class="def">Retrieval-Augmented Generation，检索增强生成，通过将外部知识库检索与生成模型结合，减少幻觉并提升回答准确性。</div>
+                </div>
+                <div class="term-card">
+                    <div class="term">MoU</div>
+                    <div class="def">Memorandum of Understanding，谅解备忘录，美伊双方曾以此作为谈判基础，但已于2026年7月8日被美方宣布失效。</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 11. 关键数据速览 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">📈</span> 关键数据速览</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 20px;">
+                <div style="background: linear-gradient(135deg, #ff6b6b20 0%, #ee5a5a20 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #ff3b30;">500亿</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">2030年AI Agent市场规模（美元）</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #4ecdc420 0%, #44a08d20 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #34c759;">50亿</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">IBM收购DataStax金额（美元）</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #5856d6;">300亿+</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">2026H1具身智能融资总额（人民币）</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #f093fb20 0%, #f5576c20 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #ff2d55;">500万</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">2026Q2全球石油需求下降（桶/日）</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #4facfe20 0%, #00f2fe20 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #007aff;">73%</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">项目专业人士期望混合AI-Human工作流</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #43e97b20 0%, #38f9d720 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #30d158;">25%</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">AI协作平台带来的生产力提升</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 12. 深度分析 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">💡</span> 深度分析</h3>
+            <div style="margin-top: 20px; padding: 20px; background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%); border-radius: 12px; border-left: 4px solid #667eea;">
+                <p style="font-size: 15px; line-height: 1.8; color: #333; margin-bottom: 15px;"><strong>Agent自主执行时代到来：Codex Agent的范式意义</strong></p>
+                <p style="font-size: 14px; line-height: 1.7; color: #555; margin-bottom: 12px;">OpenAI Codex Agent的公测标志着一个关键拐点：AI编程从"Copilot辅助模式"正式迈向"Agent自主执行模式"。这不仅仅是效率提升45%的问题，而是软件工程范式的根本转变。当Agent能够独立完成代码编写、调试和PR提交时，开发者的角色将从"写代码的人"转变为"定义问题的人"。这一转变与当年从汇编到高级语言、从手动部署到CI/CD的变革具有同等历史意义。</p>
+                <p style="font-size: 15px; line-height: 1.8; color: #333; margin-bottom: 15px;"><strong>霍尔木兹危机：后石油时代的加速催化剂</strong></p>
+                <p style="font-size: 14px; line-height: 1.7; color: #555; margin-bottom: 12px;">霍尔木兹海峡危机正在加速全球能源格局的深刻重塑。2026年Q2全球石油需求下降500万桶/日，其中约三分之二与中国需求下降相关，这引发了关于"暂时性调整还是结构性达峰"的激烈争论。与此同时，阿联酋退出OPEC、海湾国家竞相投资AI和数据中心，标志着这些资源型经济体正在主动拥抱"后石油时代"。对全球科技产业而言，能源成本波动将直接影响数据中心运营和AI算力成本，企业需要将能源地缘政治纳入长期战略规划。</p>
+                <p style="font-size: 15px; line-height: 1.8; color: #333; margin-bottom: 15px;"><strong>数据基础设施的军备竞赛：IBM-DataStax交易的信号</strong></p>
+                <p style="font-size: 14px; line-height: 1.7; color: #555;">IBM以50亿美元收购DataStax，是对MongoDB和Databricks的直接挑战，更是对整个AI数据基础设施赛道的重大押注。在AI时代，数据不再只是"存储"的问题，而是"如何让AI高效地消费数据"的问题。向量数据库、实时数据管道、混合云部署能力，正在成为企业AI竞争力的基础设施底座。这场收购标志着传统数据库巨头与AI原生数据平台之间的边界正在快速消融。</p>
+            </div>
+        </section>
+
+        <!-- 13. 行业热力图 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">🔥</span> 行业热力图</h3>
+            <p style="font-size: 13px; color: #666; margin: 10px 0 15px;">基于近期融资规模、新闻热度、技术突破和市场需求综合评估</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 10px;">
+                <div style="background: #ffebee; padding: 14px 16px; border-radius: 10px; border-left: 4px solid #f44336;">
+                    <div class="heatmap-item"><span><strong>AI Agent / AgentOps</strong></span><span class="fire" style="color:#f44336;">🔥🔥🔥🔥🔥</span></div>
+                    <div style="font-size: 11px; color: #888; margin-top: 4px;">Codex Agent公测引爆，市场CAGR 40%</div>
+                </div>
+                <div style="background: #fff3e0; padding: 14px 16px; border-radius: 10px; border-left: 4px solid #ff9800;">
+                    <div class="heatmap-item"><span><strong>具身智能/机器人</strong></span><span class="fire" style="color:#ff9800;">🔥🔥🔥🔥🔥</span></div>
+                    <div style="font-size: 11px; color: #888; margin-top: 4px;">H1融资171起/300亿+，万台量产拐点</div>
+                </div>
+                <div style="background: #e8f5e9; padding: 14px 16px; border-radius: 10px; border-left: 4px solid #4caf50;">
+                    <div class="heatmap-item"><span><strong>混合云数据平台</strong></span><span class="fire" style="color:#4caf50;">🔥🔥🔥🔥</span></div>
+                    <div style="font-size: 11px; color: #888; margin-top: 4px;">IBM 50亿收购DataStax，格局重塑</div>
+                </div>
+                <div style="background: #e3f2fd; padding: 14px 16px; border-radius: 10px; border-left: 4px solid #2196f3;">
+                    <div class="heatmap-item"><span><strong>AI驱动项目管理</strong></span><span class="fire" style="color:#2196f3;">🔥🔥🔥🔥</span></div>
+                    <div style="font-size: 11px; color: #888; margin-top: 4px;">从辅助到自主执行，73%从业者拥抱</div>
+                </div>
+                <div style="background: #f3e5f5; padding: 14px 16px; border-radius: 10px; border-left: 4px solid #9c27b0;">
+                    <div class="heatmap-item"><span><strong>边缘AI / K3s</strong></span><span class="fire" style="color:#9c27b0;">🔥🔥🔥</span></div>
+                    <div style="font-size: 11px; color: #888; margin-top: 4px;">低延迟离线场景需求持续增长</div>
+                </div>
+                <div style="background: #fce4ec; padding: 14px 16px; border-radius: 10px; border-left: 4px solid #e91e63;">
+                    <div class="heatmap-item"><span><strong>全球能源地缘政治</strong></span><span class="fire" style="color:#e91e63;">🔥🔥🔥🔥🔥</span></div>
+                    <div style="font-size: 11px; color: #888; margin-top: 4px;">霍尔木兹危机，油价剧烈波动</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 14. 权威来源 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">📚</span> 权威来源</h3>
+            <div style="margin-top: 15px; font-size: 12px; color: #555; line-height: 2;">
+                <p><strong>[1]</strong> OpenAI官方博客 — "Codex Agent enters public beta" — 2026-07-16 — 作者：OpenAI工程团队 — <a href="https://openai.com" target="_blank" style="color:#0071e3;">https://openai.com</a></p>
+                <p><strong>[2]</strong> IBM官方新闻稿 — "IBM to Acquire DataStax" — 2026-07-17 — 作者：IBM媒体关系部 — <a href="https://www.ibm.com" target="_blank" style="color:#0071e3;">https://www.ibm.com</a></p>
+                <p><strong>[3]</strong> 财新网 — "霍尔木兹分水岭" — 2026-07-18 — 作者：财新周刊编辑部 — <a href="https://weekly.caixin.com/2026-07-18/102465547.html" target="_blank" style="color:#0071e3;">原文链接</a></p>
+                <p><strong>[4]</strong> 财新网 — "霍尔木兹海峡危机加速后石油时代历史进程" — 2026-07-18 — 引用高盛Daan Struyven专访 — <a href="https://database.caixin.com/2026-07-18/102465572.html" target="_blank" style="color:#0071e3;">原文链接</a></p>
+                <p><strong>[5]</strong> 皮尤研究中心 — "Global attitudes toward China and the U.S." — 2026-07-15 — 作者：Pew Research Center — <a href="https://international.caixin.com/2026-07-17/102465447.html" target="_blank" style="color:#0071e3;">财新转载</a></p>
+                <p><strong>[6]</strong> WAIC 2026官方 — "全球首个具身智能通用大脑标准发布" — 2026-07-19 — 来源：世界人工智能大会组委会</p>
+                <p><strong>[7]</strong> Revolens — "AI-Powered Project Management: 2026 Analysis" — 2026-03-10 — 作者：Revolens研究团队 — <a href="https://revolens.io/blog/ai-powered-project-management" target="_blank" style="color:#0071e3;">原文链接</a></p>
+                <p><strong>[8]</strong> Lark/Feishu — "Top AI Project Management Tools Tested and Reviewed for 2026" — 2026 — 作者：Lark产品团队 — <a href="https://www.larksuite.com/en_us/blog/ai-project-management-tools" target="_blank" style="color:#0071e3;">原文链接</a></p>
+                <p><strong>[9]</strong> 高工机器人 — "2026年人形机器人出货预测" — 2026 — 行业研究数据</p>
+                <p><strong>[10]</strong> Grand View Research — "AI Agent Market Size Report" — 2026 — 市场研究数据</p>
+                <p><strong>[11]</strong> Mathias Biilmann — "One Year of AX" — 2026-01 — Netlify CEO — <a href="https://github.com/alexngai/awesome-agent-experience" target="_blank" style="color:#0071e3;">GitHub汇总</a></p>
+                <p><strong>[12]</strong> Peter Steinberger — Lex Fridman Podcast — 2026-02 — OpenClaw创始人/OpenAI Personal Agents</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <p>每日晨报 | 2026年7月21日归档</p>
+            <p>Powered by <a href="https://openclaw.ai" target="_blank">OpenClaw</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>
