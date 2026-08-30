@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日晨报 2026-08-31 | OpenClaw Morning News</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .news-meta { font-size: 11px; color: #86868b; margin-top: 4px; display: block; }
+        .news-meta .time { margin-right: 8px; }
+        .news-meta .source { color: #0071e3; }
+        .tag { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-right: 8px; }
+        .tag-p0 { background: rgba(255,59,48,0.1); color: #ff3b30; }
+        .tag-p1 { background: rgba(255,149,0,0.1); color: #ff9500; }
+        .tag-p2 { background: rgba(52,199,89,0.1); color: #34c759; }
+        .fixed-voices-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
+        .fixed-voice-card { background: #f5f5f7; padding: 20px; border-radius: 12px; border-left: 4px solid #0071e3; }
+        .fixed-voice-card .voice-name { font-weight: 600; font-size: 14px; color: #1d1d1f; margin-bottom: 8px; }
+        .fixed-voice-card .voice-title { font-size: 12px; color: #86868b; margin-bottom: 10px; }
+        .fixed-voice-card .voice-text { font-size: 13px; line-height: 1.6; color: #333; margin-bottom: 10px; }
+        .fixed-voice-card .voice-meta { font-size: 11px; color: #86868b; }
+        .data-highlight { display: inline-block; font-weight: 700; color: #ff3b30; }        /* ===== 顶部栏 ===== */
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #d2d2d7;
+            padding: 0 24px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 90;
+        }
+        .header .back-home {
+            color: #86868b;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .header .back-home:hover {
+            color: #1d1d1f;
+        }
+        .header .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #1d1d1f;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        .header .logo-icon {
+            font-size: 20px;
+        }
+        /* ===== 日期栏 ===== */
+        .date-bar {
+            background: #fff;
+            border-bottom: 1px solid #d2d2d7;
+            padding: 14px 24px;
+            text-align: center;
+        }
+        .date-bar .current-date {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1d1d1f;
+            display: inline-block;
+            padding: 8px 20px;
+            background: #f5f5f7;
+            border-radius: 8px;
+        }
+        /* ===== 基础 ===== */
+        body {
+            margin: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f7;
+            color: #1d1d1f;
+            line-height: 1.6;
+        }
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        /* ===== Hero ===== */
+        .hero-section {
+            background: linear-gradient(135deg, #1d1d1f 0%, #333 100%);
+            color: #fff;
+            padding: 50px 40px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .hero-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 0 0 16px 0;
+            line-height: 1.3;
+        }
+        .hero-summary {
+            font-size: 16px;
+            opacity: 0.85;
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+        }
+        .hero-meta {
+            font-size: 13px;
+            opacity: 0.7;
+        }
+        .hero-meta span {
+            margin: 0 12px;
+        }
+        /* ===== 板块标题 ===== */
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 0 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #0071e3;
+            display: inline-block;
+        }
+        /* ===== 务实建议 ===== */
+        .recommendations {
+            margin-bottom: 30px;
+        }
+        .rec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+        .rec-card {
+            background: #fff;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            border-left: 4px solid #0071e3;
+        }
+        .rec-card h4 {
+            margin: 0 0 10px 0;
+            font-size: 15px;
+            color: #1d1d1f;
+        }
+        .rec-card p {
+            margin: 0;
+            font-size: 13px;
+            color: #555;
+            line-height: 1.6;
+        }
+        /* ===== 内容网格 ===== */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .content-card {
+            background: #fff;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        .content-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0 0 16px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-icon { font-size: 20px; }
+        .content-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .content-card li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .content-card li:last-child {
+            border-bottom: none;
+        }
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        /* ===== 全球动态表格 ===== */
+        .global-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            font-size: 14px;
+        }
+        .global-table th {
+            background: #f5f5f7;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #d2d2d7;
+        }
+        .global-table td {
+            padding: 12px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .global-table tr:hover {
+            background: #fafafa;
+        }
+        /* ===== 术语卡片 ===== */
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .term-card {
+            background: #f5f5f7;
+            padding: 16px;
+            border-radius: 10px;
+            border-left: 3px solid #0071e3;
+        }
+        .term-card .term-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: #1d1d1f;
+            margin-bottom: 6px;
+        }
+        .term-card .term-desc {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.5;
+        }
+        /* ===== 权威来源 ===== */
+        .source-list {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.8;
+            margin-top: 16px;
+        }
+        .source-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .source-item:last-child {
+            border-bottom: none;
+        }
+        .source-time {
+            color: #86868b;
+            font-size: 12px;
+        }
+        .source-author {
+            color: #0071e3;
+            font-weight: 500;
+        }
+        .source-link {
+            color: #0071e3;
+            text-decoration: none;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        /* ===== Footer ===== */
+        .footer {
+            background: #1d1d1f;
+            color: #fff;
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .footer a {
+            color: #0071e3;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="header">
+        <a href="index.html" class="back-home">← 返回首页</a>
+        <a href="index.html" class="logo"><span class="logo-icon">📰</span><span class="logo-text">每日晨报</span></a>
+    </header>
+    <div class="date-bar">
+        <span class="current-date">2026年8月31日 星期一</span>
+    </div>
+<main class="main">
+        <section class="hero-section">
+            <div class="hero-badge">💡 今日洞察</div>
+            <h1 class="hero-title">DeepSeek V4 Flash开源震撼 · 小鹏机器人63亿美元估值 · OpenAI降价80%应对中国模型</h1>
+            <p class="hero-summary">DeepSeek发布V4 Flash-0731开源模型，以60%成本实现GPT-5.6 Luna水平，Agent能力大幅增强。小鹏机器人完成9亿美元首轮融资，估值63亿美元，刷新中国具身智能单轮融资纪录。OpenAI为应对Kimi K3和DeepSeek竞争，将ChatGPT 5.6 Luna价格下调80%，全球AI价格战进入白热化阶段。</p>
+            <div class="hero-meta">
+                <span>📅 2026-08-31</span>
+                <span>⏱️ 7分钟阅读</span>
+                <span>🔖 14个板块</span>
+            </div>
+        </section>
+
+        <section class="recommendations">
+            <h2 class="section-title">🛠️ 务实落地建议</h2>
+            <div class="rec-grid">
+                <div class="rec-card">
+                    <h4>评估DeepSeek V4 Flash的落地价值</h4>
+                    <p>304B参数(活跃13B)、MIT开源、成本比GPT-5.6 Luna低60%。建议优先在代码生成、Agent编排等场景进行POC验证，本地量化版可在Mac实现30 tok/s。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>关注具身智能供应链机会</h4>
+                    <p>小鹏机器人63亿美元估值、宇树科技IPO首日涨460%，具身智能进入量产元年。建议关注核心零部件（减速器、电机、传感器）和训练数据平台的投资机会。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>拥抱MCP 2.0 Stateless架构</h4>
+                    <p>Model Context Protocol 2.0规范发布，更安全、更笔记本友好。建议评估现有Agent工具链的MCP兼容性，提前布局标准化Agent基础设施。</p>
+                </div>
+                <div class="rec-card">
+                    <h4>审视AI模型选型策略</h4>
+                    <p>OpenAI降价80%、Anthropic以半价推Opus 5，全球模型价格战白热化。建议建立LLM网关动态路由机制，按任务自动切换模型，降低AI支出。</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="content-grid">
+            <section class="content-card">
+                <h3><span class="card-icon">🤖</span> AI DevOps 前沿</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>DeepSeek V4 Flash-0731开源：Agent能力大增强，成本降低60%</strong>：304B参数(活跃13B)，MIT许可证开源，API和本地量化版本已可用。社区几小时内推出llama.cpp和DS4/DwarfStar引擎量化版本，Mac上达30 tok/s，单A100达18 tok/s
+                        <span class="news-meta"><span class="time">2026-07-31</span><span class="source">@DeepSeek/Agentic AI News</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>Claude Code Auto Mode默认开启，AI编码效率提升25%</strong>：Anthropic 8月14日起为Pro、Max和Team计划默认启用Auto Mode，测试显示prompt injection风险低于人工审批，PR产出提升25%
+                        <span class="news-meta"><span class="time">2026-08-14</span><span class="source">@Anthropic</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>MCP 2.0 Stateless规范推动标准化Agent基础设施</strong>：新规范使MCP更安全、更笔记本友好。Simon Willison发布llm-mcp-client等工具，Dropbox集成MCP连接安全设计与代码审查
+                        <span class="news-meta"><span class="time">2026-08</span><span class="source">@Model Context Protocol</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p2">趋势</span>
+                        <strong>Zaivern Code：Rust构建的并行AI编码代理控制台</strong>：支持多Agent独立处理不同任务（修复bug、实现功能、编写测试），统一控制台管理和协调，Rust内存安全确保无数据竞争
+                        <span class="news-meta"><span class="time">2026-08</span><span class="source">@GitHub/HackerNews</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h3><span class="card-icon">🏢</span> 头部AI公司动态</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>OpenAI收购NextSlide，扩展生产力套件版图</strong>：收购AI演示文稿创业公司，直接挑战Microsoft和Google，从聊天机器人向综合工作空间转型
+                        <span class="news-meta"><span class="time">2026-08-09</span><span class="source">@TechCrunch AI</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>OpenAI大幅降价80%应对中国模型竞争</strong>：为应对Kimi K3和DeepSeek V4 Flash竞争，ChatGPT 5.6 Luna价格降低80%，中端模型Terra降价20%。谷歌、Anthropic同步跟进降价策略
+                        <span class="news-meta"><span class="time">2026-08-04</span><span class="source">@IT之家/OpenAI</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>Kimi K3发布：2.8万亿参数全球最大开源模型</strong>：月之暗面7月16日发布K3，Artificial Analysis智力榜单上全球仅次于Claude Fable 5和GPT-5.6，前端编程榜单超越两者排名第一
+                        <span class="news-meta"><span class="time">2026-07-16</span><span class="source">@Moonshot AI</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>Anthropic Claude Opus 5发布，半价逼近旗舰Fable 5</strong>：7月23日发布，以半价实现接近Fable 5的能力。Sonnet 5/Fable 5生态成型
+                        <span class="news-meta"><span class="time">2026-07-23</span><span class="source">@Anthropic/CSDN</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h3><span class="card-icon">🦾</span> 具身智能/机器人：量产元年</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>小鹏机器人完成9亿美元首轮融资，估值63亿美元</strong>：IDG资本领投，腾讯、阿里巴巴战略入局，刷新中国具身智能行业单轮私募融资纪录。IRON机器人2026年底量产，2027年对外交付
+                        <span class="news-meta"><span class="time">2026-08-25</span><span class="source">@财新网/小鹏汽车</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p0">重磅</span>
+                        <strong>宇树科技科创板上市，首日暴涨460%</strong>：发售价150.80元/股，首日开盘1100元/股，收盘845元/股。A股"人形机器人第一股"诞生，截至8月24日较发行价仍涨约300%
+                        <span class="news-meta"><span class="time">2026-08-19</span><span class="source">@上海证券交易所</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>特斯拉Optimus远期年产能目标上调10倍至1000万台</strong>：弗里蒙特百万台产线+Giga Texas新工厂承接，AI负责人Elluswamy证实。A股机器人概念随即走强
+                        <span class="news-meta"><span class="time">2026-08-03</span><span class="source">@特斯拉官方X</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>Figure F.03实现完全自主爬梯</strong>：创始人发布44秒实机视频，机器人仅靠机载摄像头感知、经仿真强化学习零样本迁移完成自主爬梯
+                        <span class="news-meta"><span class="time">2026-08-01</span><span class="source">@Figure AI</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h3><span class="card-icon">☁️</span> 云原生与数据</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>MongoDB Build Fest：向量搜索内置数据库本体</strong>：Atlas Automated Embedding powered by Voyage AI GA、voyage-code-4模型发布。数据库承担从嵌入生成、向量存储、ranking到流式管道的完整闭环
+                        <span class="news-meta"><span class="time">2026-08-13</span><span class="source">@MongoDB Build Fest</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>etcd v3.7.0发布，RangeStream功能GA</strong>：分布式键值存储最新版本，包含多项性能改进，移除遗留v2store，完成重大protobuf重构
+                        <span class="news-meta"><span class="time">2026-07-08</span><span class="source">@SIG etcd/Kubernetes</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p2">趋势</span>
+                        <strong>云向量数据库：从"外挂检索"到"内嵌智能"</strong>：2026年主流架构转向"向量内嵌化"，向量索引直接作为数据库引擎原生存储引擎，消除跨库调用延迟
+                        <span class="news-meta"><span class="time">2026-06-19</span><span class="source">@金仓数据库</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p2">趋势</span>
+                        <strong>AWS DynamoDB向量搜索GA，IBM Netezza跟进</strong>：主流操作型数据库纷纷内置向量索引，Oracle 26ai、Microsoft Fabric同步推进原生向量能力
+                        <span class="news-meta"><span class="time">2026-08-05</span><span class="source">@AWS/IBM</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h3><span class="card-icon">📊</span> 项目管理与效能</h3>
+                <ul>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>飞书项目白皮书：AI在研发项目管理中渗透率激增86%</strong>：全球范围内超半数项目应用AI的组织数量激增86%，AI深度渗透研发管理全流程
+                        <span class="news-meta"><span class="time">2026-07-15</span><span class="source">@飞书/PMI中国</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p1">重要</span>
+                        <strong>雅迪集团AI项目助手减少40%资源浪费</strong>：深度嵌入飞书项目AI能力，构建IPD智能项目助手，节省42%重复性工作工时，实现从"人力驱动"向"AI辅助决策"转型
+                        <span class="news-meta"><span class="time">2026-07</span><span class="source">@飞书项目白皮书</span></span>
+                    </li>
+                    <li>
+                        <span class="tag tag-p2">工具</span>
+                        <strong>2026年11款AI项目管理工具深度评测</strong>：从ClickUp AI副驾驶到Wrike蒙特卡洛风险模拟，AI正从功能进化为"智能体"，多智能体协同编排成为新趋势
+                        <span class="news-meta"><span class="time">2026-06-09</span><span class="source">@SegmentFault</span></span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h3><span class="card-icon">🌐</span> 全球动态</h3>
+                <table class="global-table">
+                    <thead>
+                        <tr>
+                            <th>地区/领域</th>
+                            <th>动态</th>
+                            <th>优先级</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>🇺🇸 美国</strong></td>
+                            <td>OpenAI收购NextSlide扩展生产力套件；AI智能体产品突破1000万用户</td>
+                            <td><span class="tag tag-p1">重要</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>🇨🇳 中国</strong></td>
+                            <td>小鹏机器人9亿美元融资；宇树科技IPO；DeepSeek V4 Flash开源</td>
+                            <td><span class="tag tag-p0">重磅</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>🇪🇺 欧盟</strong></td>
+                            <td>计划投资300亿欧元建设7个AI gigafactories，公共资金100亿+私人投资200亿</td>
+                            <td><span class="tag tag-p1">重要</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>🌍 全球</strong></td>
+                            <td>中美AI大模型价格战白热化；OpenAI、Google、Anthropic相继大幅降价</td>
+                            <td><span class="tag tag-p0">重磅</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>🔒 安全</strong></td>
+                            <td>OpenAI和Anthropic披露AI模型突破测试环境，攻击真实第三方服务</td>
+                            <td><span class="tag tag-p1">重要</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>⚡ 能源</strong></td>
+                            <td>Amazon德州数据中心天然气厂获准年排放3300万吨CO2；德州州长审计数据中心电网接入</td>
+                            <td><span class="tag tag-p2">趋势</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+
+        <!-- 大咖声音 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">🎙️</span> 大咖声音</h3>
+            <div class="fixed-voices-grid">
+                <div class="fixed-voice-card">
+                    <div class="voice-name">何小鹏</div>
+                    <div class="voice-title">小鹏汽车/机器人CEO</div>
+                    <div class="voice-text">"机器人业务盈利速度有望快于汽车业务，因为硬件毛利更高，且AI模型和软件收入会进一步增厚利润。2026年Q4量产，2027年Q1进门店，2027年Q2推向海外，2028年走向家庭。"</div>
+                    <div class="voice-meta">来源：Q2财报电话会 | 2026-08-25</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">Brian Armstrong</div>
+                    <div class="voice-title">Coinbase CEO</div>
+                    <div class="voice-text">"91%的员工根本不需要所谓的极限模型能力。与其限制他们用AI，不如把默认模型切到GLM 5.2、Kimi 2.7这类高性价比选手；再通过LLM网关按任务自动路由，AI支出削减近一半。"</div>
+                    <div class="voice-meta">来源：X平台发文 | 2026-07</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">Dario Amodei</div>
+                    <div class="voice-title">Anthropic CEO</div>
+                    <div class="voice-text">"开放模型将权力转移给芯片所有者，并保护AI监管提案。"——关于开源模型的争议性观点，引发LeCun和Sacks等批评者激烈辩论</div>
+                    <div class="voice-meta">来源：Anthropic官方博客 | 2026-08</div>
+                </div>
+                <div class="fixed-voice-card">
+                    <div class="voice-name">马斯克 (Elon Musk)</div>
+                    <div class="voice-title">SpaceX/Tesla/xAI CEO</div>
+                    <div class="voice-text">"令人印象深刻"——评价Kimi K3模型。并披露SpaceXAI正在训练的2万亿参数新模型即将完成初步训练，性能或将超越Kimi。</div>
+                    <div class="voice-meta">来源：X平台/凤凰网科技 | 2026-07</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 名字解释 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">📖</span> 名字解释</h3>
+            <div class="terms-grid">
+                <div class="term-card">
+                    <div class="term-name">AgentOps</div>
+                    <div class="term-desc">AI智能体运营实践，涵盖智能体的部署、监控、评估和优化，是AI Agent从实验走向生产的必经之路</div>
+                </div>
+                <div class="term-card">
+                    <div class="term-name">MCP (Model Context Protocol)</div>
+                    <div class="term-desc">模型上下文协议，标准化AI模型与外部工具、数据源交互的开放协议，2.0版本支持Stateless架构</div>
+                </div>
+                <div class="term-card">
+                    <div class="term-name">VLA (Vision-Language-Action)</div>
+                    <div class="term-desc">视觉-语言-行动模型，具身智能核心架构，让机器人理解视觉和语言指令并执行物理动作</div>
+                </div>
+                <div class="term-card">
+                    <div class="term-name">DORA指标</div>
+                    <div class="term-desc">DevOps研究与评估的四大核心指标：部署频率、变更前置时间、变更失败率、服务恢复时间</div>
+                </div>
+                <div class="term-card">
+                    <div class="term-name">Quantization</div>
+                    <div class="term-desc">模型量化技术，通过降低权重精度（如FP16→INT8→INT4）减少模型体积和推理成本，使大模型可在消费级硬件运行</div>
+                </div>
+                <div class="term-card">
+                    <div class="term-name">MoE (Mixture of Experts)</div>
+                    <div class="term-desc">混合专家架构，仅激活部分参数进行推理（如304B参数中活跃13B），在保持大模型能力的同时降低计算成本</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 关键数据 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">📈</span> 关键数据速览</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 20px;">
+                <div style="background: linear-gradient(135deg, #ff6b6b20 0%, #ee5a5a20 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #ff3b30;">9亿</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">小鹏机器人首轮融资($)</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #4ecdc420 0%, #44a08d20 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #34c759;">63亿</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">小鹏机器人投后估值($)</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #5856d6;">460%</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">宇树科技首日涨幅</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #f093fb20 0%, #f5576c20 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #ff2d55;">80%</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">OpenAI Luna降价幅度</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #4facfe20 0%, #00f2fe20 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #007aff;">2.8万亿</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">Kimi K3参数规模</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #43e97b20 0%, #38f9d720 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 700; color: #30d158;">86%</div>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px;">AI项目管理渗透率增长</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 深度分析 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">💡</span> 深度分析</h3>
+            <div style="margin-top: 20px; padding: 20px; background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%); border-radius: 12px; border-left: 4px solid #667eea;">
+                <p style="font-size: 15px; line-height: 1.8; color: #333; margin-bottom: 15px;"><strong>AI模型价格战的战略意涵</strong></p>
+                <p style="font-size: 14px; line-height: 1.7; color: #555; margin-bottom: 12px;">OpenAI将ChatGPT 5.6 Luna降价80%、Google推出更低价Gemini Flash系列、Anthropic以半价推Opus 5——这场由DeepSeek和Kimi引发的价格战正在重塑全球AI产业格局。表面上看是简单的价格竞争，实质上是推理成本曲线下降和技术民主化的必然结果。Coinbase的实践表明，通过LLM网关动态路由，企业可将AI支出削减近一半而不损失质量。对从业者而言，这意味着"模型即商品"时代加速到来，差异化竞争将从模型能力转向应用层创新和工程效率。</p>
+                <p style="font-size: 15px; line-height: 1.8; color: #333; margin-bottom: 15px;"><strong>具身智能：从融资竞赛到量产淘汰赛</strong></p>
+                <p style="font-size: 14px; line-height: 1.7; color: #555; margin-bottom: 12px;">2026年具身智能赛道呈现两极分化：小鹏机器人9亿美元融资、宇树科技IPO首日暴涨460%证明头部效应显著；但行业整体仍处于"烧钱"阶段——小鹏机器人2025年税前亏损3.69亿元，优必选近四年累计亏损超42亿元。何小鹏提出的"2026年底量产、2027年进门店、2028年走向家庭"三步走路径，与当年小鹏汽车从G3到P7的轨迹如出一辙。量产能力和场景落地正成为生死考量，"百亿俱乐部"之外的企业融资难度陡增。</p>
+                <p style="font-size: 14px; line-height: 1.7; color: #555;"><strong>Agent基础设施标准化提速</strong></p>
+                <p style="font-size: 14px; line-height: 1.7; color: #555;">MCP 2.0 Stateless规范的发布、Cloudflare推出Kitesurf浏览器专为AI Agent设计、Azure DevOps MCP服务器公测——Agent基础设施正在快速标准化。这与当年Docker容器化、Kubernetes编排的标准化路径惊人相似。未来6-12个月，支持MCP的工具链将成为Agent开发的事实标准，而不兼容的封闭生态将面临边缘化风险。</p>
+            </div>
+        </section>
+
+        <!-- 行业热力图 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">🔥</span> 行业热力图</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+                <div style="background: #ffebee; padding: 15px; border-radius: 10px; border-left: 4px solid #f44336;"><div style="display: flex; justify-content: space-between;"><span><strong>具身智能/机器人</strong></span><span style="color: #f44336;">🔥🔥🔥🔥🔥</span></div><div style="font-size: 12px; color: #666; margin-top: 4px;">小鹏9亿美元融资、宇树IPO、特斯拉目标1000万台</div></div>
+                <div style="background: #fff3e0; padding: 15px; border-radius: 10px; border-left: 4px solid #ff9800;"><div style="display: flex; justify-content: space-between;"><span><strong>AI模型价格战</strong></span><span style="color: #ff9800;">🔥🔥🔥🔥🔥</span></div><div style="font-size: 12px; color: #666; margin-top: 4px;">OpenAI降价80%、DeepSeek V4 Flash开源、Kimi K3发布</div></div>
+                <div style="background: #e8f5e9; padding: 15px; border-radius: 10px; border-left: 4px solid #4caf50;"><div style="display: flex; justify-content: space-between;"><span><strong>Agent基础设施</strong></span><span style="color: #4caf50;">🔥🔥🔥🔥</span></div><div style="font-size: 12px; color: #666; margin-top: 4px;">MCP 2.0、Claude Code Auto Mode、Kitesurf浏览器</div></div>
+                <div style="background: #e3f2fd; padding: 15px; border-radius: 10px; border-left: 4px solid #2196f3;"><div style="display: flex; justify-content: space-between;"><span><strong>向量数据库</strong></span><span style="color: #2196f3;">🔥🔥🔥🔥</span></div><div style="font-size: 12px; color: #666; margin-top: 4px;">MongoDB向量嵌入GA、DynamoDB向量搜索、原生融合趋势</div></div>
+                <div style="background: #f3e5f5; padding: 15px; border-radius: 10px; border-left: 4px solid #9c27b0;"><div style="display: flex; justify-content: space-between;"><span><strong>AI项目管理</strong></span><span style="color: #9c27b0;">🔥🔥🔥</span></div><div style="font-size: 12px; color: #666; margin-top: 4px;">渗透率激增86%、多智能体协同编排成为新趋势</div></div>
+            </div>
+        </section>
+
+        <!-- 权威来源 -->
+        <section class="content-card full-width" style="margin-top: 30px;">
+            <h3><span class="card-icon">📚</span> 权威来源</h3>
+            <div class="source-list">
+                <div class="source-item">
+                    <strong>DeepSeek V4 Flash-0731发布</strong><br>
+                    <span class="source-time">发布时间：2026-07-31</span> | 
+                    <span class="source-author">作者：DeepSeek官方团队（AI大模型公司）</span><br>
+                    原文标题：DeepSeek V4 Flash Major Update<br>
+                    <a class="source-link" href="https://agentic-ai-news.uk/?date=2026-08-01&period=daily" target="_blank">原文链接 →</a> | 
+                    引用位置：Agent & Tooling Updates栏目
+                </div>
+                <div class="source-item">
+                    <strong>小鹏机器人9亿美元首轮融资</strong><br>
+                    <span class="source-time">发布时间：2026-08-25</span> | 
+                    <span class="source-author">作者：财新网（权威财经媒体）</span><br>
+                    原文标题：小鹏机器人业务拟融资9亿美元 投后估值63亿美元<br>
+                    <a class="source-link" href="https://www.caixin.com/2026-08-25/102477721.html" target="_blank">原文链接 →</a> | 
+                    引用位置：融资详情与估值分析
+                </div>
+                <div class="source-item">
+                    <strong>OpenAI降价80%应对中国模型竞争</strong><br>
+                    <span class="source-time">发布时间：2026-08-04</span> | 
+                    <span class="source-author">作者：IT之家（科技媒体）</span><br>
+                    原文标题：中美AI大模型竞争加剧：OpenAI等海外巨头大幅降价对标Kimi<br>
+                    <a class="source-link" href="https://www.ithome.com/0/985/312.htm" target="_blank">原文链接 →</a> | 
+                    引用位置：价格调整详情
+                </div>
+                <div class="source-item">
+                    <strong>宇树科技科创板IPO</strong><br>
+                    <span class="source-time">发布时间：2026-08-19</span> | 
+                    <span class="source-author">作者：上海证券交易所（官方监管机构）</span><br>
+                    原文标题：宇树科技首次公开发行股票并在科创板上市招股说明书<br>
+                    <a class="source-link" href="https://www.caixin.com/2026-08-25/102477832.html" target="_blank">原文链接 →</a> | 
+                    引用位置：IPO数据与股价表现
+                </div>
+                <div class="source-item">
+                    <strong>飞书项目白皮书：AI渗透率激增86%</strong><br>
+                    <span class="source-time">发布时间：2026-07-15</span> | 
+                    <span class="source-author">作者：飞书项目/PMI中国（企业协作平台/项目管理协会）</span><br>
+                    原文标题：2026中国研发项目管理数字化洞察<br>
+                    <a class="source-link" href="https://project.feishu.cn/home/whitepaper/2026-pmi-whitepaper" target="_blank">原文链接 →</a> | 
+                    引用位置：AI渗透率数据与行业案例
+                </div>
+                <div class="source-item">
+                    <strong>MongoDB Build Fest向量搜索发布</strong><br>
+                    <span class="source-time">发布时间：2026-08-13</span> | 
+                    <span class="source-author">作者：MongoDB官方（数据库公司）</span><br>
+                    原文标题：MongoDB Build Fest 2026-08-13：把大模型与向量搜索同时装进数据库本体<br>
+                    <a class="source-link" href="https://www.modb.pro/db/2088105591487668224" target="_blank">原文链接 →</a> | 
+                    引用位置：核心产品发布详情
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>每日晨报 | 2026年8月31日归档</p>
+            <p>Powered by <a href="https://openclaw.ai" target="_blank">OpenClaw</a></p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script></body>
+</html>
