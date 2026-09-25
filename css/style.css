@@ -556,6 +556,249 @@ body {
     animation: fadeIn 0.5s ease-out;
 }
 
+
+/* ===== 优先级标签 ===== */
+.priority-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+.priority-tag.p0 {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.priority-tag.p1 {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.priority-tag.p2 {
+    background: #d1fae5;
+    color: #059669;
+}
+
+/* ===== 新闻条目 ===== */
+.news-list li {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.news-list li:last-child {
+    border-bottom: none;
+}
+
+.news-list li strong {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.news-meta {
+    display: block;
+    font-size: 12px;
+    color: var(--secondary);
+    margin-top: 6px;
+    padding-left: 4px;
+}
+
+/* ===== 术语卡片 ===== */
+.term-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+}
+
+.term-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+}
+
+.term-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.term-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* ===== 数据速览补充 ===== */
+.data-item {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 24px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    transition: transform 0.2s;
+}
+
+.data-item:hover {
+    transform: translateY(-4px);
+}
+
+.data-number {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+}
+
+.data-unit {
+    font-size: 13px;
+    color: var(--secondary);
+    margin-bottom: 8px;
+}
+
+.data-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* ===== 深度分析 ===== */
+.analysis-content h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-top: 32px;
+    margin-bottom: 16px;
+    padding-left: 12px;
+    border-left: 4px solid var(--accent);
+}
+
+.analysis-content h3:first-child {
+    margin-top: 0;
+}
+
+.analysis-content p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 16px;
+    padding-left: 16px;
+}
+
+/* ===== 行业热力图 ===== */
+.heatmap-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.heatmap-item {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+}
+
+.heatmap-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.heatmap-bar {
+    height: 10px;
+    background: var(--bg);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.heatmap-fill {
+    height: 100%;
+    border-radius: 5px;
+    transition: width 0.6s ease-out;
+}
+
+.heatmap-status {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* ===== 权威来源 ===== */
+.sources-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.source-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+}
+
+.source-item:last-child {
+    border-bottom: none;
+}
+
+.source-time {
+    font-weight: 600;
+    color: var(--accent);
+    min-width: 100px;
+    flex-shrink: 0;
+}
+
+.source-author {
+    color: var(--text-secondary);
+    min-width: 180px;
+    flex-shrink: 0;
+}
+
+.source-title {
+    color: var(--primary);
+    flex: 1;
+}
+
+.source-link {
+    color: var(--accent);
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.source-link:hover {
+    text-decoration: underline;
+}
+
+/* ===== 页脚容器 ===== */
+.footer-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px 24px;
+}
+
+.footer-container p {
+    color: var(--secondary);
+    font-size: 14px;
+    margin: 4px 0;
+}
+
 /* ===== 打印样式 ===== */
 @media print {
     .header,
